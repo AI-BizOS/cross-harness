@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:troupe:1:mailbox-response",
+  "title": "Troupe mailbox response (troupe/1)",
+  "description": "The engine's answer, written atomically to <mailbox>/responses/<id>.json.",
+  "oneOf": [
+    {
+      "type": "object",
+      "required": ["id", "ok", "result"],
+      "properties": { "id": { "type": "string" }, "ok": { "const": true }, "result": {} }
+    },
+    {
+      "type": "object",
+      "required": ["id", "ok", "error"],
+      "properties": {
+        "id": { "type": "string" },
+        "ok": { "const": false },
+        "error": { "type": "object", "required": ["code", "message"], "properties": { "code": { "type": "string", "pattern": "^TROUPE_[A-Z_]+$" }, "message": { "type": "string" } } }
+      }
+    }
+  ]
+}

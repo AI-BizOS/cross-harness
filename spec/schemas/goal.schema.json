@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:troupe:1:goal",
+  "title": "Troupe goal (troupe.goal/1)",
+  "type": "object",
+  "required": ["schema", "id", "title", "outcome", "criteria", "assignees", "status", "revision"],
+  "properties": {
+    "schema": { "const": "troupe.goal/1" },
+    "id": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,39}$" },
+    "title": { "type": "string", "maxLength": 200 },
+    "outcome": { "type": "string", "maxLength": 4000 },
+    "criteria": {
+      "type": "array",
+      "maxItems": 30,
+      "items": {
+        "type": "object",
+        "required": ["id", "text"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,39}$" },
+          "text": { "type": "string", "maxLength": 4000 },
+          "check": {
+            "type": "object",
+            "required": ["run"],
+            "properties": {
+              "run": { "type": "string", "minLength": 1, "maxLength": 2000 },
+              "cwd": { "enum": ["worktree", "project"] },
+              "timeoutSec": { "type": "number", "exclusiveMinimum": 0, "maximum": 3600 },
+              "expect": { "type": "object", "properties": { "exitCode": { "type": "integer" }, "output": { "type": "string", "maxLength": 500 } } }
+            }
+          },
+          "review": { "type": "object", "required": ["by"], "properties": { "by": { "type": "string", "minLength": 1, "maxLength": 64 } } }
+        },
+        "not": { "required": ["check", "review"] }
+      }
+    },
+    "boundaries": { "type": "array", "maxItems": 20, "items": { "type": "string", "maxLength": 500 } },
+    "questions": { "type": "array", "maxItems": 20, "items": { "type": "object", "required": ["id", "text"], "properties": { "id": { "type": "string" }, "text": { "type": "string" }, "answer": { "type": ["string", "null"] } } } },
+    "assignees": { "type": "array", "maxItems": 10, "items": { "type": "string", "pattern": "^[a-z][a-z0-9_-]{0,31}$" } },
+    "maxIterations": { "type": "integer", "minimum": 1, "maximum": 20 },
+    "status": { "enum": ["draft", "approved", "running", "met", "needs-you", "failed"] },
+    "revision": { "type": "integer", "minimum": 1 },
+    "approvedRevision": { "type": ["integer", "null"] },
+    "confirmations": { "type": "object", "additionalProperties": { "const": true } },
+    "createdAt": { "type": "string" },
+    "updatedAt": { "type": "string" },
+    "gates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["iteration", "agent", "at", "passed", "criteria"],
+        "properties": {
+          "iteration": { "type": "integer", "minimum": 1 },
+          "agent": { "type": "string" },
+          "at": { "type": "string" },
+          "tree": { "type": ["string", "null"] },
+          "passed": { "type": "boolean" },
+          "criteria": { "type": "array", "items": { "type": "object", "required": ["id", "passed", "summary"], "properties": { "id": { "type": "string" }, "passed": { "type": "boolean" }, "summary": { "type": "string" }, "evidence": { "type": "object" } } } }
+        }
+      }
+    }
+  }
+}

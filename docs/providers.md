@@ -1,0 +1,172 @@
+# Providers
+
+A provider is a coding-agent CLI (a *harness*) that Troupe knows how to start and talk
+to. Troupe ships definitions for the common ones; you can change them or add your own,
+including closed-source runners, in `~/.troupe/config.json`.
+
+## Built-in harnesses
+
+| Id | Harness | Started as | Protocol | Modes | Checked |
+| --- | --- | --- | --- | --- | --- |
+| `claude` | Claude Code | `claude -p --input-format stream-json …` | `claude-stream` | all | documented |
+| `codex` | Codex | `codex app-server` | `codex-app` | all | handshake |
+| `opencode` | OpenCode | `opencode acp` | `acp` | all | handshake |
+| `kimi` | Kimi Code | `kimi acp` | `acp` | all | handshake |
+| `dsh` | DeepSeek Harness | `dsh --profile acp` | `acp` | all | handshake |
+| `gemini` | Gemini CLI | `gemini --experimental-acp` | `acp` | all | documented |
+| `qwen` | Qwen Code | `qwen --experimental-acp` | `acp` | all | documented |
+| `copilot` | Copilot CLI | `copilot --acp` | `acp` | all | documented |
+| `goose` | Goose | `goose acp` | `acp` | all | documented |
+| `cursor` | Cursor Agent | `cursor-agent acp` | `acp` | all | documented |
+| `amp` | Amp | `amp -x <prompt>` per message | `exec` | full | documented |
+| `aider` | Aider | `aider --yes-always --no-pretty --message <prompt>` per message | `exec` | full | documented |
+
+The rank (the order of this table) decides which harnesses `@auto` and `@all` pick first.
+
+### What "checked" means
+
+- **handshake** — the definition has `verified: true`. On 2026-10-09 Troupe's own adapter
+  started the installed CLI with exactly these arguments and completed the protocol's
+  opening handshake: ACP `initialize` (protocol version 1) for OpenCode, Kimi Code and
+  DeepSeek Harness, and `initialize` for `codex app-server` 0.159.1. No session was
+  created and no model was called.
+- **documented** — the definition has `verified: false` and the interfaces label it
+  "untested". The integration follows the vendor's published documentation but has not
+  been run by Troupe against a real install. Claude Code is in this group for this
+  release: its stream-json transport is documented and fully exercised by the mock agent,
+  but it was not run against a real install.
+
+Every protocol is tested end to end with mock agents (`test/fixtures/`). No integration
+has yet been run with a real model as part of the automated tests. If you try one, please
+open an issue with the harness version and what happened; a confirmed run is how an entry
+moves to "handshake" or further.
+
+## Detection
+
+`troupe detect` (or `troupe detect --json`) lists every known harness and whether it can
+run here.
+
+- The command is looked up on `PATH`, then in common install directories that a GUI-started
+  process may not have on its `PATH`: `~/.local/bin`, `~/.npm-global/bin`, `~/.bun/bin`,
+  `~/.cargo/bin`, `~/.volta/bin`, `/opt/homebrew/bin`, `/usr/local/bin` and, on Windows,
+  `%APPDATA%\npm`.
+- Troupe runs `<command> --version` (or the definition's `versionArgs`) with a 10-second
+  limit and reads the version from the output.
+- Results are cached for 30 seconds and re-checked when the executable changes.
+- A harness that is not available is reported with a reason (`not-installed`,
+  `probe-timeout`, `probe-failed`) and a fix: the install command, or what went wrong.
+
+## Permission modes
+
+Troupe has four modes (see [spec/orchestration.md §Approvals](../spec/orchestration.md#approvals)).
+Each adapter also puts the harness itself in the closest mode it offers, so the harness's
+own sandbox agrees with Troupe:
+
+| Troupe mode | Claude Code | Codex | ACP agents | One-shot (`exec`) |
+| --- | --- | --- | --- | --- |
+| `plan` | `--permission-mode plan` | sandbox `read-only`, approvals `on-request`; Troupe declines every request | the agent's mode named like "plan" | only with `exec.modeArgs.plan` |
+| `ask` | `--permission-mode default`; every prompt goes to Troupe | sandbox `read-only`, approvals `on-request` | keeps the agent's mode, unless that mode approves by itself (then "default", "normal", "ask" or "manual") | only with `exec.modeArgs.ask` |
+| `workspace` | `--permission-mode default`; Troupe approves edits inside the worktree | sandbox `workspace-write`, approvals `on-request` | "acceptEdits", else "default" | only with `exec.modeArgs.workspace` |
+| `full` | `--permission-mode default`; Troupe approves everything | sandbox `workspace-write`, approvals `never` | "bypass", "yolo", "full" or "auto" | always |
+
+One-shot harnesses act without asking, so they run only in `full` unless their definition
+maps another mode to flags. When the default mode is not available for a harness, a new
+agent gets the closest lower mode it supports; if it supports only higher modes (Amp and
+Aider support only `full`), the agent's transcript and a warning say so.
+
+## Your own definitions
+
+`~/.troupe/config.json` (or `$TROUPE_HOME/config.json`) has a `providers` object. An entry
+with a built-in id changes only the fields it names:
+
+```json
+{
+  "providers": {
+    "codex": { "args": ["-c", "model_reasoning_effort=high"] },
+    "claude": { "command": "/opt/claude/bin/claude", "strictMcp": true }
+  }
+}
+```
+
+An entry with a new id defines a new harness and needs `name`, `command` and `protocol`.
+
+| Field | Meaning |
+| --- | --- |
+| `name` | Display name. |
+| `command` | Executable name on `PATH`, or an absolute path. |
+| `protocol` | `acp`, `codex-app`, `claude-stream` or `exec`. |
+| `args` | Arguments for the command. For `acp` they are the whole argument list (`["acp"]`); for `codex-app` and `claude-stream` they go before Troupe's own. |
+| `modes` | Permission modes the harness may run in. Default: all four; for `exec`, `full` plus the modes in `exec.modeArgs`. |
+| `rank` | Order for `@auto`, `@all` and lists; lower first. Default 50. |
+| `verified` | `true` if you checked it yourself. Default `false` (shown as "untested"). |
+| `writes` | `false` for harnesses that never change files; they work in the project directory without a worktree. |
+| `env` | Extra environment variables, as strings. |
+| `install`, `signIn` | Hints shown when the harness is missing or needs a sign-in. |
+| `versionArgs` | Arguments for detection. Default `["--version"]`. |
+| `strictMcp` | `claude-stream` only: also pass `--strict-mcp-config`, so the session loads Troupe's MCP server and no others. |
+| `exec` | `exec` only: `{ "args": [...], "modelArgs": [...], "modeArgs": { "plan": [...] } }`. `args` must contain `"{prompt}"`; `modelArgs` may contain `"{model}"`. |
+
+Only this user-level file can name commands. A project directory — possibly someone
+else's repository — never decides what Troupe runs.
+
+A one-shot example:
+
+```json
+{
+  "providers": {
+    "mytool": {
+      "name": "My Tool",
+      "command": "mytool",
+      "protocol": "exec",
+      "exec": { "args": ["run", "{prompt}"], "modelArgs": ["--model", "{model}"], "modeArgs": { "plan": ["--dry-run"] } }
+    }
+  }
+}
+```
+
+`mytool` may then run in `plan` (with `--dry-run`) and `full`.
+
+## Bring your own runner
+
+A closed-source agent runtime joins Troupe without publishing anything: it speaks the
+[Agent Client Protocol](https://agentclientprotocol.com) on stdin and stdout, and the user
+registers it:
+
+```json
+{
+  "providers": {
+    "acme": { "name": "Acme Agent", "command": "/opt/acme/bin/acme-agent", "args": ["--acp"], "protocol": "acp", "rank": 3 }
+  }
+}
+```
+
+`@acme` then takes tasks, asks and answers other agents, and goes through the same
+approvals, reviews and goal checks as every other agent. BizOS's own runner is designed to
+join this way.
+
+What Troupe needs from an ACP runner:
+
+| Method | Needed for |
+| --- | --- |
+| `initialize` | Reply with `protocolVersion: 1`. Set `agentCapabilities.loadSession` if sessions can be resumed. Troupe offers no `fs` or `terminal` client capabilities, so the runner reads, writes and runs commands itself. |
+| `session/new {cwd, mcpServers}` | Work in `cwd` (the agent's worktree) and start the stdio MCP servers it is given: that is how the runner gets `troupe_ask_agent` and the other collaboration tools. |
+| `session/load` or `session/resume` | Optional: continue a conversation after an idle timeout or restart. |
+| `session/prompt` | Stream `session/update` notifications (`agent_message_chunk`, `tool_call`, `tool_call_update`, `plan`, optionally `usage_update`) and reply with a `stopReason`. |
+| `session/request_permission` | Ask before risky actions, with options of kind `allow_once`, `allow_always` and `reject_once`. Give edits `locations` with absolute paths: Troupe approves edits inside the worktree automatically only when it knows the paths. |
+| `session/cancel` | Stop the running turn promptly. |
+| `session/set_mode` | Optional: offer modes whose names contain "plan", "default", "acceptEdits" or "bypass", so Troupe's modes map onto yours. |
+
+Report a missing sign-in as JSON-RPC error `-32000`; Troupe shows it as
+`TROUPE_AUTH_REQUIRED` with the definition's `signIn` hint. The mock agent in
+`test/fixtures/mock-acp-agent.js` is a small working example of this surface, and
+`troupe run "@acme say hello" --json` is a quick end-to-end check.
+
+## Troubleshooting
+
+| Symptom | What to do |
+| --- | --- |
+| `troupe detect` says not installed | Put the command on `PATH`, or set `command` to an absolute path. |
+| `TROUPE_AUTH_REQUIRED` | Run the harness once on its own and sign in. |
+| `TROUPE_PLAN_DENIED` | The harness cannot run in that permission mode; pick another with `p` (terminal UI) or the mode menu (web UI). |
+| `TROUPE_START_FAILED` or `TROUPE_VERSION_UNSUPPORTED` | Update the harness; check `troupe detect` for its version. |
+| An "untested" harness misbehaves | Try overriding `args` for your version, and open an issue with what you found. |

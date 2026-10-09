@@ -1,0 +1,173 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:troupe:1:client-rpc",
+  "title": "Troupe client protocol message (troupe/1)",
+  "description": "Newline-delimited JSON-RPC 2.0 between a user interface and an engine (`troupe serve --stdio`, also over SSH).",
+  "oneOf": [
+    {
+      "title": "initialize request",
+      "type": "object",
+      "required": [
+        "jsonrpc",
+        "id",
+        "method"
+      ],
+      "properties": {
+        "jsonrpc": {
+          "const": "2.0"
+        },
+        "id": {
+          "type": [
+            "integer",
+            "string"
+          ]
+        },
+        "method": {
+          "const": "initialize"
+        },
+        "params": {
+          "type": "object"
+        }
+      }
+    },
+    {
+      "title": "call request",
+      "type": "object",
+      "required": [
+        "jsonrpc",
+        "id",
+        "method",
+        "params"
+      ],
+      "properties": {
+        "jsonrpc": {
+          "const": "2.0"
+        },
+        "id": {
+          "type": [
+            "integer",
+            "string"
+          ]
+        },
+        "method": {
+          "const": "call"
+        },
+        "params": {
+          "type": "object",
+          "required": [
+            "method"
+          ],
+          "properties": {
+            "method": {
+              "enum": [
+                "snapshot",
+                "providers",
+                "completions",
+                "send",
+                "createAgent",
+                "prompt",
+                "stop",
+                "resumeQueue",
+                "retry",
+                "archive",
+                "rename",
+                "setMode",
+                "setModel",
+                "transcript",
+                "approve",
+                "answerDecision",
+                "boardWrite",
+                "diff",
+                "review",
+                "merge",
+                "goalSave",
+                "goalApprove",
+                "goalStart",
+                "goalPause",
+                "goalCheck",
+                "goalConfirm",
+                "goalDraft",
+                "goalDelete"
+              ]
+            },
+            "params": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "event notification",
+      "type": "object",
+      "required": [
+        "jsonrpc",
+        "method",
+        "params"
+      ],
+      "properties": {
+        "jsonrpc": {
+          "const": "2.0"
+        },
+        "method": {
+          "const": "event"
+        },
+        "params": {
+          "type": "object",
+          "required": [
+            "event"
+          ]
+        }
+      }
+    },
+    {
+      "title": "response",
+      "type": "object",
+      "required": [
+        "jsonrpc",
+        "id"
+      ],
+      "properties": {
+        "jsonrpc": {
+          "const": "2.0"
+        },
+        "id": {
+          "type": [
+            "integer",
+            "string"
+          ]
+        },
+        "result": {},
+        "error": {
+          "type": "object",
+          "required": [
+            "code",
+            "message"
+          ],
+          "properties": {
+            "code": {
+              "type": "integer"
+            },
+            "message": {
+              "type": "string"
+            },
+            "data": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string",
+                  "pattern": "^TROUPE_[A-Z_]+$"
+                }
+              }
+            }
+          }
+        }
+      },
+      "not": {
+        "required": [
+          "method"
+        ]
+      }
+    }
+  ]
+}

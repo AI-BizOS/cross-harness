@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:troupe:1:mailbox-request",
+  "title": "Troupe mailbox request (troupe/1)",
+  "description": "One collaboration call, written atomically by `troupe mcp` to <mailbox>/requests/<id>.json. At most 256 KiB.",
+  "type": "object",
+  "required": ["id", "op", "params", "token"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "type": "string", "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$" },
+    "op": { "enum": ["list_agents", "ask_agent", "check_answers", "ask_user", "board_read", "board_write", "report_progress", "goal_status"] },
+    "params": { "type": "object" },
+    "token": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+  },
+  "allOf": [
+    { "if": { "properties": { "op": { "const": "ask_agent" } } }, "then": { "properties": { "params": { "required": ["agent", "question"], "properties": { "agent": { "type": "string", "minLength": 1, "maxLength": 200 }, "question": { "type": "string", "minLength": 1, "maxLength": 20000 }, "wait_seconds": { "type": "number", "minimum": 0, "maximum": 1800 } } } } } },
+    { "if": { "properties": { "op": { "const": "ask_user" } } }, "then": { "properties": { "params": { "required": ["question"], "properties": { "question": { "type": "string", "minLength": 1, "maxLength": 20000 }, "options": { "type": "array", "maxItems": 6, "items": { "type": "string", "minLength": 1, "maxLength": 200 } }, "wait_seconds": { "type": "number", "minimum": 0, "maximum": 1800 } } } } } },
+    { "if": { "properties": { "op": { "const": "board_write" } } }, "then": { "properties": { "params": { "required": ["key", "value"], "properties": { "key": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$" }, "value": { "type": "string", "maxLength": 16000 } } } } } },
+    { "if": { "properties": { "op": { "const": "report_progress" } } }, "then": { "properties": { "params": { "required": ["status"], "properties": { "status": { "type": "string", "minLength": 1, "maxLength": 200 } } } } } }
+  ]
+}

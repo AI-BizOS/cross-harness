@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="{{LANG}}" data-lang="{{LANG}}" data-version="{{VERSION}}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Troupe</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css">
+<script type="module" src="/app.js"></script>
+</head>
+<body>
+<div class="shell" id="shell">
+  <header class="topbar" id="topbar"></header>
+  <aside class="sidebar" id="sidebar" aria-label="Agents"></aside>
+  <main class="pane" id="pane">
+    <section class="waiting" id="waiting" aria-live="polite"></section>
+    <div class="agent-head" id="agent-head"></div>
+    <div class="scroller" id="scroller">
+      <div class="entries" id="entries" role="log"></div>
+      <div class="live" id="live"></div>
+    </div>
+    <form class="composer" id="composer" autocomplete="off">
+      <div class="completion" id="completion" role="listbox" hidden></div>
+      <textarea id="input" rows="2" spellcheck="false" aria-label="Message"></textarea>
+      <button type="submit" class="primary" id="send"></button>
+    </form>
+  </main>
+</div>
+<div class="banner" id="banner" hidden></div>
+<dialog id="dialog"></dialog>
+<div class="toasts" id="toasts" aria-live="polite"></div>
+</body>
+</html>
