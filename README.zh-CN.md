@@ -1,26 +1,48 @@
-# Troupe
+<h1 align="center">Troupe</h1>
 
-**让 Claude Code、Codex、OpenCode、Gemini CLI、Kimi Code 等编程代理并肩工作——在一个终端或一个浏览器标签页里。** 一条消息派给多个代理；代理之间可以互相提问；所有权限请求集中在一处审批；每个代理有自己的 git worktree；只有通过你信得过的核查，它们的成果才会合并。
+<p align="center">
+  <b>让 Claude Code、Codex、Kimi Code、OpenCode、Gemini CLI 等编程代理并肩工作，像一个团队一样协作。</b>
+</p>
 
-Troupe 是 [BizOS](https://github.com/AI-BizOS) 开源的跨 Harness 协议，附带一个参考实现，提供终端界面和本地网页界面，运行时零依赖。
+<p align="center">
+  一条消息派给多个代理 · 代理之间互相提问 · 一处审批 · 每个代理一个 git worktree · 合并前由另一个代理审查 · 用证据核查目标
+</p>
 
-[English](README.md) · [协议](spec/README.md) · [架构](docs/architecture.md) · [代理接入](docs/providers.md) · [对比](docs/comparison.md)
+<p align="center">
+  <a href="https://github.com/AI-BizOS/troupe/releases"><img alt="Release" src="https://img.shields.io/github/v/release/AI-BizOS/troupe?include_prereleases&label=release&color=2f81f7"></a>
+  <a href="LICENSE"><img alt="License: Apache-2.0" src="https://img.shields.io/badge/license-Apache--2.0-blue"></a>
+  <img alt="Node.js 20.11 或更高" src="https://img.shields.io/badge/node-%E2%89%A5%2020.11-339933">
+  <img alt="零运行时依赖" src="https://img.shields.io/badge/runtime%20dependencies-0-success">
+  <a href="spec/README.md"><img alt="协议 troupe/1" src="https://img.shields.io/badge/protocol-troupe%2F1-8957e5"></a>
+</p>
 
-```
- Troupe │ shop-api (main)  ·  3 个代理  ·  1 个工作中  ·  1 项待你处理  ·  ◆ Parser reports line numbers · 进行中
- 代理                           │ @codex · Codex · 工作区 · troupe/codex                       51k tok  工作中
-▶⠸ @codex                工作中 │──────────────────────────────────────────────────────────────────────────────
-    $ npm test -- parser        │ 你 ›
- ! @claude                  ! 1 │   修复 parser 在没有结尾换行时丢最后一行的问题
-    Wrote 6 edge-case tests     │
- ○ @kimi                   空闲 │ @claude 提问 ›
-    troupe/kimi                 │   Will parse() keep throwing ParseError with {line, column}?
-                                │
- 等你处理 (1)                   │ @codex ›  14s
-  @claude: npm test -- --cover… │   Yes — the error shape stays the same. I wrote it on the board under api.parse.
-──────────────────────────────────────────────────────────────────────────────────────────────────────────────
-› 发给 @codex，或以 @代理 开头   ·   Enter 发送
-```
+<p align="center">
+  <a href="README.md">English</a> ·
+  <a href="#安装">安装</a> ·
+  <a href="#快速开始">快速开始</a> ·
+  <a href="spec/README.md">协议</a> ·
+  <a href="docs/architecture.md">架构</a> ·
+  <a href="docs/providers.md">代理接入</a> ·
+  <a href="docs/comparison.md">对比</a>
+</p>
+
+<p align="center">
+  <img src="docs/media/hero.zh.svg" alt="Troupe 终端界面：一条消息同时启动 Codex、Claude Code 和 Kimi Code；Claude 向 Codex 提问，你批准一条命令，每个代理在自己的分支上完成工作。">
+</p>
+
+<p align="center"><sub>
+  录自 Troupe 真实的终端界面。为了能重复录制，画面中的代理是按脚本行动的替身，使用的是 Claude Code、Codex 和 ACP 的真实协议：
+  它们说的话是预先写好的，而引擎、worktree、测试运行、审批，以及代理之间传递的提问都是真实发生的。
+  <a href="tools/media">录制方法</a>。
+</sub></p>
+
+## 为什么需要 Troupe
+
+每个编程代理都有自己的终端、自己的权限弹窗、自己对仓库的理解。同时用两个，你就得在窗口之间来回复制回答、把同一条命令批准两遍、再去理清它们对同一批文件的改动。
+
+Troupe 把它们放到同一个舞台上。它通过各厂商自己提供的协议启动代理，所以每条命令、每次改文件、每个计划步骤和每个权限请求，Troupe 拿到的都是结构化数据。你用 `@代理` 点名派活；代理可以通过 Troupe 互相提问；它们想做的事都排在同一个队列里等你决定；每个代理在自己的 git 分支上工作；只有通过你信得过的核查——Troupe 自己运行的命令，或另一个代理的审查——之后才会合并。
+
+Troupe 是 [BizOS](https://github.com/AI-BizOS) 开源的跨 Harness 协议，本仓库是它的参考实现：终端界面、本地网页界面和供脚本使用的命令，纯 Node.js 编写，零依赖。
 
 ## 能做什么
 
@@ -33,15 +55,49 @@ Troupe 是 [BizOS](https://github.com/AI-BizOS) 开源的跨 Harness 协议，�
 - **有证据的目标。** 事先写清楚"完成"的标准：Troupe 自己运行的命令、另一个代理的审查、你的确认。Troupe 自己核查成果，把失败项发回给代理，并且只有在被合并的那一版代码通过核查后才允许合并。
 - **随处可用。** 终端界面、本地网页界面、供脚本和 CI 使用的 `troupe run`，以及 `--ssh host` 把所有代理放到另一台机器上运行。
 
+## 先审查，再合并
+
+按 `d` 查看代理在自己分支上的改动，按 `m` 合并。Troupe 会先请另一个代理审查这份 diff——这里是 Claude Code 审查 Codex 的修复——你确认后才以 `--no-ff` 合并。
+
+<p align="center">
+  <img src="docs/media/review-merge.zh.svg" alt="Troupe 终端界面：查看 Codex 分支的 diff，Claude Code 审查结论为 PASS，然后合并到 main。">
+</p>
+
+## 浏览器里也一样
+
+`troupe gui` 在 `127.0.0.1` 上提供同一个引擎：代理和它们实时的工作、一键处理的审批卡片、diff、审查与合并、目标和项目看板。跟随你的浅色或深色主题，手机宽度也能用。
+
+<p align="center">
+  <img src="docs/media/web.zh.svg" alt="Troupe 网页界面：在浏览器里发出同一条消息，处理 Claude Code 的命令审批卡片，再由另一个代理审查后合并。">
+</p>
+
+<p align="center"><sub>在 Chrome 中录自真实的网页界面，页面由 Troupe 自己的请求处理程序提供。这张图会跟随你系统的浅色或深色主题。</sub></p>
+
+## 工作原理
+
+<p align="center">
+  <img src="docs/media/how-it-works.zh.svg" alt="你的界面（终端界面、网页界面、troupe run、SSH）连接每个项目唯一的 Troupe 引擎。引擎通过各厂商自己的协议连接代理：Claude Code 用 stream-json，Codex 用 app-server，Kimi Code、OpenCode、Gemini CLI 等用 ACP，其余单次运行。代理通过文件信箱调用 Troupe 的工具。">
+</p>
+
+一个项目对应一个引擎。所有界面都通过同一套精简的客户端协议和它通信，可以在同一进程内，也可以经 stdio 或 SSH。每个代理都通过厂商自己的会话协议接入，并被归一成同样的七种事件；代理则通过一个 MCP 服务器（`troupe mcp`）回调 Troupe，工具调用以文件形式传递，所以在代理的沙箱里也能工作。协议规范见 [spec/](spec/README.md)，实现说明见 [docs/architecture.md](docs/architecture.md)。
+
 ## 安装
 
 需要 Node.js 20.11 或更高版本、git，以及至少一个已安装并登录的编程代理（例如 `claude`、`codex`、`opencode`、`kimi`）。
+
+从发布页安装 0.1.0 预览版：
+
+```sh
+npm install -g https://github.com/AI-BizOS/troupe/releases/download/v0.1.0/bizos-ai-troupe-0.1.0.tgz
+troupe detect           # 查看 Troupe 找到了哪些代理
+```
+
+或者从源码安装：
 
 ```sh
 git clone https://github.com/AI-BizOS/troupe.git
 cd troupe
 npm install -g .        # 安装 troupe 命令；没有任何依赖
-troupe detect           # 查看 Troupe 找到了哪些代理
 ```
 
 ## 快速开始
@@ -152,7 +208,7 @@ troupe gui --ssh dev@buildbox --cwd src/shop-api
 | 代理 | 命令 | 协议 | 核验情况 |
 | --- | --- | --- | --- |
 | Claude Code | `claude` | stream-json | 按文档接入 |
-| Codex | `codex` | app-server | 握手已验证 |
+| Codex | `codex` | app-server | 真实编码已验证 |
 | OpenCode | `opencode acp` | ACP | 握手已验证 |
 | Kimi Code | `kimi acp` | ACP | 握手已验证 |
 | DeepSeek Harness | `dsh --profile acp` | ACP | 握手已验证 |
@@ -164,7 +220,7 @@ troupe gui --ssh dev@buildbox --cwd src/shop-api
 | Amp | `amp -x` | 单次运行 | 按文档接入 |
 | Aider | `aider --message` | 单次运行 | 按文档接入 |
 
-"握手已验证"表示 Troupe 的适配器已与该 CLI 的真实安装完成协议握手（2026-10-09：codex 0.159.1、opencode、kimi、dsh）；"按文档接入"的按厂商文档实现，界面上标注"未实测"。目前自动化测试里还没有任何集成用真实模型跑过完整流程：每种协议都用模拟代理覆盖。详见 [docs/providers.md](docs/providers.md)。
+"握手已验证"表示 Troupe 的适配器已与该 CLI 的真实安装完成协议握手（2026-10-09：codex 0.159.1、opencode、kimi、dsh）。"真实编码已验证"表示在此基础上，0.1.0 发布前还有一个真实的 Codex 会话通过 `troupe run` 完成了编码任务，结果经过独立核查。"按文档接入"的按厂商文档实现，界面上标注"未实测"。Troupe 的自动化测试用模拟代理覆盖每种协议，不调用真实模型。详见 [docs/providers.md](docs/providers.md)。
 
 ## 接入你自己的运行器
 
@@ -206,7 +262,7 @@ troupe gui --ssh dev@buildbox --cwd src/shop-api
 ## 局限
 
 - Troupe 通过代理自己的协议驱动它们。没有会话协议的代理只能单次运行（没有在线会话、审批和协作工具）。
-- 标注"未实测"的集成，可能需要针对你的版本微调参数。自动化测试里还没有任何集成用真实模型跑过完整流程。
+- 标注"未实测"的集成，可能需要针对你的版本微调参数。目前只有 Codex 通过 Troupe 完成过真实的编码任务；自动化测试使用模拟代理。
 - 尚未在 Windows 上测试。
 - 没有内置编辑器、终端、Pull Request 集成或用量计费；见 [docs/comparison.md](docs/comparison.md)。
 
@@ -216,4 +272,4 @@ troupe gui --ssh dev@buildbox --cwd src/shop-api
 npm test        # node --test；每种代理协议都用模拟代理覆盖
 ```
 
-设置 `TROUPE_PLAYWRIGHT` 指向一个 Playwright 安装时，还会运行浏览器测试。见 [CONTRIBUTING.md](CONTRIBUTING.md)。采用 [Apache License 2.0](LICENSE) 许可。
+设置 `TROUPE_PLAYWRIGHT` 指向一个 Playwright 安装时，还会运行浏览器测试。本 README 里的动画用 `npm run media` 从真实界面录制（见 [tools/media](tools/media)）。见 [CONTRIBUTING.md](CONTRIBUTING.md)。采用 [Apache License 2.0](LICENSE) 许可。

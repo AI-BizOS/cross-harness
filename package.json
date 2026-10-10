@@ -27,7 +27,8 @@
   "scripts": {
     "test": "node --test --test-concurrency=4 test/*.test.js",
     "start": "node bin/troupe.js",
-    "gui": "node bin/troupe.js gui"
+    "gui": "node bin/troupe.js gui",
+    "media": "node tools/media/record.js --lang en && node tools/media/record.js --lang zh && node tools/media/diagram.js"
   },
   "keywords": [
     "agents",

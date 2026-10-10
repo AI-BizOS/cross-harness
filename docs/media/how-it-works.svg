@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 470" width="1000" height="470" role="img" aria-label="How Troupe works: interfaces talk to one engine per project; the engine reaches each agent through the protocol its vendor ships; agents call Troupe back through a file mailbox.">
+<title>How Troupe works: interfaces talk to one engine per project; the engine reaches each agent through the protocol its vendor ships; agents call Troupe back through a file mailbox.</title>
+<style>
+text{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei","Noto Sans CJK SC",Helvetica,Arial,sans-serif;fill:#1f2328}.mono{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;font-size:12.5px;fill:#656d76}
+.caps{font-size:11.5px;font-weight:700;letter-spacing:.8px;fill:#656d76}.name{font-size:15px;font-weight:600}.small{font-size:13.5px}.title{font-size:18px;font-weight:700}.note{font-size:12px;fill:#656d76}.left{text-anchor:start}
+.card{fill:#ffffff;stroke:#d0d7de}.own{stroke-dasharray:5 4}.engine{fill:#f6f8fa;stroke:#2f81f7;stroke-width:1.5}.pill{fill:#ddf4ff}.pilltext{font-size:13.5px;fill:#0969da}.accent{fill:#0969da}.tag{fill:#8250df}
+.mail{fill:#fff8c5;stroke:#d4a72c}.mailtext{fill:#7d4e00}.wire{fill:none;stroke:#afb8c1;stroke-width:1.5}.dashed{stroke-dasharray:4 4}
+.dot{opacity:0;animation-duration:9s;animation-iteration-count:infinite;animation-timing-function:linear}.task{fill:#2f81f7}.ask{fill:#8250df}.approve{fill:#bf8700}
+@media (prefers-color-scheme:dark){text{fill:#e6edf3}.mono,.caps,.note{fill:#8b949e}.card{fill:#161b22;stroke:#30363d}.engine{fill:#0d1117;stroke:#2f81f7}.pill{fill:#12263b}.pilltext,.accent{fill:#58a6ff}.tag{fill:#bc8cff}.mail{fill:#2b2111;stroke:#9e6a03}.mailtext{fill:#e3b341}.wire{stroke:#484f58}.task{fill:#58a6ff}.ask{fill:#bc8cff}.approve{fill:#d29922}}
+@keyframes t1{0%,2.22%{transform:translate(240px,97px);opacity:0}3.89%{opacity:1}2.22%{transform:translate(240px,97px)}5.56%{transform:translate(330px,97px)}16.67%{transform:translate(630px,92px)}18.89%{transform:translate(690px,92px)}18.89%{opacity:1}22.22%{opacity:0;transform:translate(690px,92px)}100%{opacity:0}}
+@keyframes t2{0%,2.22%{transform:translate(240px,97px);opacity:0}3.89%{opacity:1}2.22%{transform:translate(240px,97px)}5.75%{transform:translate(330px,97px)}17.65%{transform:translate(630px,146px)}20.00%{transform:translate(690px,146px)}20.00%{opacity:1}23.33%{opacity:0;transform:translate(690px,146px)}100%{opacity:0}}
+@keyframes t3{0%,2.22%{transform:translate(240px,97px);opacity:0}3.89%{opacity:1}2.22%{transform:translate(240px,97px)}5.86%{transform:translate(330px,97px)}18.69%{transform:translate(630px,200px)}21.11%{transform:translate(690px,200px)}21.11%{opacity:1}24.44%{opacity:0;transform:translate(690px,200px)}100%{opacity:0}}
+@keyframes q1{0%,28.89%{transform:translate(835px,330px);opacity:0}30.56%{opacity:1}28.89%{transform:translate(835px,330px)}30.81%{transform:translate(835px,380px)}44.44%{transform:translate(480px,380px)}46.36%{transform:translate(480px,330px)}55.47%{transform:translate(630px,146px)}57.78%{transform:translate(690px,146px)}57.78%{opacity:1}61.11%{opacity:0;transform:translate(690px,146px)}100%{opacity:0}}
+@keyframes a1{0%,64.44%{transform:translate(690px,92px);opacity:0}66.11%{opacity:1}64.44%{transform:translate(690px,92px)}66.67%{transform:translate(630px,92px)}77.78%{transform:translate(330px,97px)}81.11%{transform:translate(240px,97px)}81.11%{opacity:1}84.44%{opacity:0;transform:translate(240px,97px)}100%{opacity:0}}
+</style>
+<text x="20" y="50" class="caps">YOU</text>
+<text x="330" y="50" class="caps">ONE ENGINE PER PROJECT</text>
+<text x="690" y="50" class="caps">AGENTS · THEIR OWN PROTOCOLS</text>
+<path d="M240 97H330" class="wire"/>
+<rect x="20" y="70" width="220" height="54" rx="10" class="card"/>
+<text x="36" y="93" class="name">Terminal UI</text>
+<text x="36" y="112" class="mono">troupe</text>
+<path d="M240 165H330" class="wire"/>
+<rect x="20" y="138" width="220" height="54" rx="10" class="card"/>
+<text x="36" y="161" class="name">Web UI</text>
+<text x="36" y="180" class="mono">troupe gui</text>
+<path d="M240 233H330" class="wire"/>
+<rect x="20" y="206" width="220" height="54" rx="10" class="card"/>
+<text x="36" y="229" class="name">Scripts and CI</text>
+<text x="36" y="248" class="mono">troupe run</text>
+<path d="M240 301H330" class="wire"/>
+<rect x="20" y="274" width="220" height="54" rx="10" class="card"/>
+<text x="36" y="297" class="name">Another machine</text>
+<text x="36" y="316" class="mono">troupe --ssh host</text>
+<text x="285" y="354" text-anchor="middle" class="note">client protocol: in-process, stdio or SSH</text>
+<rect x="330" y="70" width="300" height="260" rx="10" class="engine"/>
+<text x="350" y="104" class="title">Troupe engine</text>
+<text x="610" y="104" text-anchor="end" class="mono accent">troupe/1</text>
+<rect x="350" y="126" width="260" height="30" rx="15" class="pill"/>
+<text x="366" y="146" class="pilltext">@mentions → tasks</text>
+<rect x="350" y="164" width="260" height="30" rx="15" class="pill"/>
+<text x="366" y="184" class="pilltext">one approval queue</text>
+<rect x="350" y="202" width="260" height="30" rx="15" class="pill"/>
+<text x="366" y="222" class="pilltext">a git worktree per agent</text>
+<rect x="350" y="240" width="260" height="30" rx="15" class="pill"/>
+<text x="366" y="260" class="pilltext">review by another agent</text>
+<rect x="350" y="278" width="260" height="30" rx="15" class="pill"/>
+<text x="366" y="298" class="pilltext">goal gates with evidence</text>
+<path d="M630 92H690" class="wire"/>
+<rect x="690" y="70" width="290" height="44" rx="10" class="card"/>
+<text x="704" y="97" class="name small">Claude Code</text>
+<text x="966" y="97" text-anchor="end" class="mono tag">stream-json</text>
+<path d="M630 146H690" class="wire"/>
+<rect x="690" y="124" width="290" height="44" rx="10" class="card"/>
+<text x="704" y="151" class="name small">Codex</text>
+<text x="966" y="151" text-anchor="end" class="mono tag">app-server</text>
+<path d="M630 200H690" class="wire"/>
+<rect x="690" y="178" width="290" height="44" rx="10" class="card"/>
+<text x="704" y="205" class="name small">Kimi Code · OpenCode · Gemini CLI</text>
+<text x="966" y="205" text-anchor="end" class="mono tag">ACP</text>
+<path d="M630 254H690" class="wire"/>
+<rect x="690" y="232" width="290" height="44" rx="10" class="card"/>
+<text x="704" y="259" class="name small">Aider · Amp</text>
+<text x="966" y="259" text-anchor="end" class="mono tag">one-shot</text>
+<path d="M630 308H690" class="wire"/>
+<rect x="690" y="286" width="290" height="44" rx="10" class="card own"/>
+<text x="704" y="313" class="name small">Your own runner</text>
+<text x="966" y="313" text-anchor="end" class="mono tag">ACP</text>
+<path d="M835 330V380" class="wire dashed"/>
+<path d="M480 330V380" class="wire dashed"/>
+<rect x="330" y="380" width="650" height="64" rx="10" class="mail"/>
+<text x="350" y="407" class="name mailtext">troupe mcp · file mailbox</text>
+<text x="350" y="428" class="mono mailtext">ask_agent · ask_user · board · report_progress · goal_status</text>
+<circle cx="29" cy="388" r="5" class="dot task" style="opacity:1;animation:none"/>
+<text x="42" y="392.5" class="note left">a task</text>
+<circle cx="29" cy="410" r="5" class="dot ask" style="opacity:1;animation:none"/>
+<text x="42" y="414.5" class="note left">a question between agents</text>
+<circle cx="29" cy="432" r="5" class="dot approve" style="opacity:1;animation:none"/>
+<text x="42" y="436.5" class="note left">an approval for you</text>
+<circle r="5" class="dot task" style="animation-name:t1"/>
+<circle r="5" class="dot task" style="animation-name:t2"/>
+<circle r="5" class="dot task" style="animation-name:t3"/>
+<circle r="5" class="dot ask" style="animation-name:q1"/>
+<circle r="5" class="dot approve" style="animation-name:a1"/>
+</svg>

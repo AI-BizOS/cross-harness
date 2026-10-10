@@ -71,6 +71,9 @@ documented method list equals `METHODS`.
   narrow terminal.
 - Web UI: keep the Content-Security-Policy strict (no inline scripts or styles; build the
   DOM with text nodes) and check a 360-pixel-wide window in dark mode.
+- The animations in the READMEs are recorded from the real interfaces. When a change
+  alters what they show, re-record them with `npm run media`
+  ([tools/media](tools/media/README.md)) in the same pull request.
 
 ## Pull requests
 

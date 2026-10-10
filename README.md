@@ -1,32 +1,48 @@
-# Troupe
+<h1 align="center">Troupe</h1>
 
-**Run Claude Code, Codex, OpenCode, Gemini CLI, Kimi Code and other coding agents side by side — in one terminal or browser tab.** Send one message to several agents, let them ask each other questions, approve what they want to do in one place, give each its own git worktree, and merge their work only after checks you trust have passed.
+<p align="center">
+  <b>Run Claude Code, Codex, Kimi Code, OpenCode, Gemini CLI and other coding agents side by side — as one team.</b>
+</p>
 
-Troupe is the open cross-harness protocol from [BizOS](https://github.com/AI-BizOS), with a reference implementation that has a terminal UI and a local web UI. It has no runtime dependencies.
+<p align="center">
+  One message to several agents · agents ask each other · one approval queue · a git worktree each · review by a different agent before merge · goals checked with evidence
+</p>
 
-[中文说明](README.zh-CN.md) · [Protocol](spec/README.md) · [Architecture](docs/architecture.md) · [Providers](docs/providers.md) · [Comparison](docs/comparison.md)
+<p align="center">
+  <a href="https://github.com/AI-BizOS/troupe/releases"><img alt="Release" src="https://img.shields.io/github/v/release/AI-BizOS/troupe?include_prereleases&label=release&color=2f81f7"></a>
+  <a href="LICENSE"><img alt="License: Apache-2.0" src="https://img.shields.io/badge/license-Apache--2.0-blue"></a>
+  <img alt="Node.js 20.11 or newer" src="https://img.shields.io/badge/node-%E2%89%A5%2020.11-339933">
+  <img alt="No runtime dependencies" src="https://img.shields.io/badge/runtime%20dependencies-0-success">
+  <a href="spec/README.md"><img alt="Protocol troupe/1" src="https://img.shields.io/badge/protocol-troupe%2F1-8957e5"></a>
+</p>
 
-```
- Troupe │ shop-api (main)  ·  3 agents  ·  1 working  ·  1 need you  ·  ◆ Parser reports line numbers · running
- AGENTS                         │ @codex · Codex · workspace · troupe/codex                     51k tok  working
-▶⠸ @codex               working │──────────────────────────────────────────────────────────────────────────────
-    $ npm test -- parser        │ you ›
- ! @claude                  ! 1 │   Fix the parser dropping the last line when there is no trailing newline
-    Wrote 6 edge-case tests     │
- ○ @kimi                   idle │ @claude asks ›
-    troupe/kimi                 │   Will parse() keep throwing ParseError with {line, column}?
-                                │
- WAITING FOR YOU (1)            │ @codex ›  14s
-  @claude: npm test -- --cover… │   Yes — the error shape stays the same. I wrote it on the board under api.parse.
-                                │   ✓ ⚙ troupe.troupe_board_write
- GOALS                          │
-  ◆ Parser reports line numbers │ ⠸ @codex working for 1m 35s
-                                │   ◐ Fix the tokenizer
- PROJECT BOARD (1)              │   ✓ ✎ src/parser/tokenizer.js
-                                │   ⠸ $ npm test -- parser
-──────────────────────────────────────────────────────────────────────────────────────────────────────────────
-› Message @codex, or start with @agent   ·   Enter send
-```
+<p align="center">
+  <a href="README.zh-CN.md">中文</a> ·
+  <a href="#install">Install</a> ·
+  <a href="#quick-start">Quick start</a> ·
+  <a href="spec/README.md">Protocol</a> ·
+  <a href="docs/architecture.md">Architecture</a> ·
+  <a href="docs/providers.md">Providers</a> ·
+  <a href="docs/comparison.md">Comparison</a>
+</p>
+
+<p align="center">
+  <img src="docs/media/hero.svg" alt="Troupe's terminal UI: one message starts Codex, Claude Code and Kimi Code in parallel; Claude asks Codex a question, you approve a command, and each agent finishes on its own branch.">
+</p>
+
+<p align="center"><sub>
+  Recorded from Troupe's real terminal UI. The agents are scripted stand-ins that speak the Claude Code, Codex and ACP protocols, so the recording can be repeated:
+  what they say is scripted, while the engine, the worktrees, the test runs, the approval and the question passed from one agent to another are real.
+  <a href="tools/media">How the recordings are made</a>.
+</sub></p>
+
+## Why Troupe
+
+Every coding agent comes with its own terminal, its own permission prompts and its own idea of the repository. Use two at once and you are copying answers between windows, approving the same command twice and untangling edits made to the same files.
+
+Troupe puts them on one stage. It starts each agent through the protocol its vendor ships, so it sees every command, edit, plan step and permission request as data. You address agents with `@mentions`, they can ask each other questions through Troupe, everything they want to do waits in one queue for you, each works on its own git branch, and nothing is merged until a check you trust — a command Troupe runs itself, or a review by a different agent — has passed.
+
+Troupe is the open cross-harness protocol from [BizOS](https://github.com/AI-BizOS), with this reference implementation: a terminal UI, a local web UI and a command for scripts, in plain Node.js with no dependencies.
 
 ## What it does
 
@@ -39,15 +55,49 @@ Troupe is the open cross-harness protocol from [BizOS](https://github.com/AI-Biz
 - **Goals with evidence.** Write down what "done" means: commands Troupe runs, reviews by another agent, confirmations by you. Troupe checks the work itself, sends failures back to the agent, and holds merges until the checks pass on the exact tree being merged.
 - **Anywhere.** A terminal UI, a local web UI, `troupe run` for scripts and CI, and `--ssh host` to run every agent on another machine.
 
+## Review by another agent, then merge
+
+Press `d` to see what an agent changed on its branch and `m` to merge it. Troupe first asks a different agent to review the diff — here Claude Code reviews Codex's fix — and merges with `--no-ff` only when you confirm.
+
+<p align="center">
+  <img src="docs/media/review-merge.svg" alt="Troupe's terminal UI: the diff of Codex's branch, a review by Claude Code that ends in PASS, and the merge into main.">
+</p>
+
+## The same, in your browser
+
+`troupe gui` serves the same engine on `127.0.0.1`: the agents and their live work, approval cards with one-click answers, diffs, reviews and merges, goals and the project board. It follows your light or dark theme and works in a phone-sized window.
+
+<p align="center">
+  <img src="docs/media/web.svg" alt="Troupe's web UI: the same message sent from the browser, an approval card for Claude Code's command, then a review by another agent and the merge.">
+</p>
+
+<p align="center"><sub>Recorded from the real web UI in Chrome, served by Troupe's own request handler. This image follows your system's light or dark theme.</sub></p>
+
+## How it works
+
+<p align="center">
+  <img src="docs/media/how-it-works.svg" alt="Your interfaces (terminal UI, web UI, troupe run, SSH) talk to one Troupe engine per project. The engine reaches each agent through the protocol its vendor ships: stream-json for Claude Code, app-server for Codex, ACP for Kimi Code, OpenCode, Gemini CLI and others, one-shot for the rest. Agents call Troupe's tools through a file mailbox.">
+</p>
+
+One engine serves one project. Every interface talks to it through the same small client protocol, in the same process, over stdio or over SSH. Every agent is reached through the session protocol its vendor ships, normalised into the same seven events; agents reach Troupe back through an MCP server (`troupe mcp`) that carries their tool calls as files, so it works inside their sandboxes. The protocol is specified in [spec/](spec/README.md) and the implementation is described in [docs/architecture.md](docs/architecture.md).
+
 ## Install
 
 Requirements: Node.js 20.11 or newer, git, and at least one coding agent installed and signed in (for example `claude`, `codex`, `opencode`, `kimi`).
+
+Install the 0.1.0 preview from its release:
+
+```sh
+npm install -g https://github.com/AI-BizOS/troupe/releases/download/v0.1.0/bizos-ai-troupe-0.1.0.tgz
+troupe detect           # shows which agents Troupe found
+```
+
+Or from source:
 
 ```sh
 git clone https://github.com/AI-BizOS/troupe.git
 cd troupe
 npm install -g .        # installs the `troupe` command; there are no dependencies
-troupe detect           # shows which agents Troupe found
 ```
 
 ## Quick start
@@ -158,7 +208,7 @@ Before it can start, the goal needs an independent check (a command or a review 
 | Agent | Command | Protocol | Checked |
 | --- | --- | --- | --- |
 | Claude Code | `claude` | stream-json | documented |
-| Codex | `codex` | app-server | handshake |
+| Codex | `codex` | app-server | coding run |
 | OpenCode | `opencode acp` | ACP | handshake |
 | Kimi Code | `kimi acp` | ACP | handshake |
 | DeepSeek Harness | `dsh --profile acp` | ACP | handshake |
@@ -170,7 +220,7 @@ Before it can start, the goal needs an independent check (a command or a review 
 | Amp | `amp -x` | one-shot | documented |
 | Aider | `aider --message` | one-shot | documented |
 
-"Handshake" means Troupe's adapter completed the protocol handshake with a real install of that CLI (codex 0.159.1, opencode, kimi, dsh on 2026-10-09); "documented" integrations follow the vendor's documentation and are labelled "untested" in the interface. No integration has yet been run end to end with a real model in Troupe's automated tests: every protocol is exercised with mock agents. See [docs/providers.md](docs/providers.md).
+"Handshake" means Troupe's adapter completed the protocol handshake with a real install of that CLI (codex 0.159.1, opencode, kimi, dsh on 2026-10-09). "Coding run" means that, in addition, a real Codex session completed a coding task through `troupe run` before the 0.1.0 release, and the result was checked independently. "Documented" integrations follow the vendor's documentation and are labelled "untested" in the interface. Troupe's automated tests exercise every protocol with mock agents, not real models. See [docs/providers.md](docs/providers.md).
 
 ## Bring your own runner
 
@@ -212,7 +262,7 @@ Only this user-level file can name commands to run. A repository cannot make Tro
 ## Limitations
 
 - Troupe drives agents through their protocols. Agents without one run one-shot (no live session, no approvals, no collaboration tools).
-- Integrations marked "untested" may need small argument changes for your version. No integration has yet been run end to end with a real model in the automated tests.
+- Integrations marked "untested" may need small argument changes for your version. Only Codex has completed a real coding task through Troupe so far; the automated tests use mock agents.
 - Windows support is untested.
 - There is no built-in editor, terminal, pull-request integration or usage billing; see [docs/comparison.md](docs/comparison.md).
 
@@ -222,4 +272,4 @@ Only this user-level file can name commands to run. A repository cannot make Tro
 npm test        # node --test; every harness protocol is exercised with mock agents
 ```
 
-The browser test also runs when `TROUPE_PLAYWRIGHT` points at a Playwright installation. See [CONTRIBUTING.md](CONTRIBUTING.md). Licensed under the [Apache License 2.0](LICENSE).
+The browser test also runs when `TROUPE_PLAYWRIGHT` points at a Playwright installation. The animations in this README are recorded from the real interfaces by `npm run media` ([tools/media](tools/media)). See [CONTRIBUTING.md](CONTRIBUTING.md). Licensed under the [Apache License 2.0](LICENSE).
