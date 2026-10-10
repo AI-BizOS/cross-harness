@@ -23,7 +23,8 @@
   <a href="spec/README.md">Protocol</a> ·
   <a href="docs/architecture.md">Architecture</a> ·
   <a href="docs/providers.md">Providers</a> ·
-  <a href="docs/comparison.md">Comparison</a>
+  <a href="docs/comparison.md">Comparison</a> ·
+  <a href="https://code.bizos-ai.com/en/">BizOS Code ↗</a>
 </p>
 
 <p align="center">
@@ -42,7 +43,10 @@ Every coding agent comes with its own terminal, its own permission prompts and i
 
 Troupe puts them on one stage. It starts each agent through the protocol its vendor ships, so it sees every command, edit, plan step and permission request as data. You address agents with `@mentions`, they can ask each other questions through Troupe, everything they want to do waits in one queue for you, each works on its own git branch, and nothing is merged until a check you trust — a command Troupe runs itself, or a review by a different agent — has passed.
 
-Troupe is the open cross-harness protocol from [BizOS](https://github.com/AI-BizOS), with this reference implementation: a terminal UI, a local web UI and a command for scripts, in plain Node.js with no dependencies.
+Troupe is the open cross-harness protocol from the team behind [BizOS Code](https://code.bizos-ai.com/en/), with this reference implementation: a terminal UI, a local web UI and a command for scripts, in plain Node.js with no dependencies.
+
+> [!TIP]
+> **Want it ready-made?** [BizOS Code](https://code.bizos-ai.com/en/) is the BizOS team's coding CLI: one terminal, every coding agent, orchestrated. It turns one request into a dependency-aware workflow and hands each step to a native BizOS agent or a coding CLI already on your computer — Claude Code, Codex, Kimi Code, DeepSeek and more. Independent steps run in parallel, writers take turns with the workspace, and every result comes back to one conversation. Install it from [code.bizos-ai.com](https://code.bizos-ai.com/en/).
 
 ## What it does
 
@@ -234,7 +238,7 @@ A closed-source agent runtime can join without publishing its code. Make it spea
 }
 ```
 
-`@bizos` then works like any other agent: it takes tasks, asks and answers other agents, and its work goes through the same approvals, reviews and goal checks. BizOS's own runner is designed to join Troupe this way and stays closed source; the command above is an example, so use whatever starts your runner as an ACP agent. See [docs/providers.md](docs/providers.md#bring-your-own-runner).
+`@bizos` then works like any other agent: it takes tasks, asks and answers other agents, and its work goes through the same approvals, reviews and goal checks. The runner behind [BizOS Code](https://code.bizos-ai.com/en/) is designed to join Troupe this way and stays closed source; the command above is an example, so use whatever starts your runner as an ACP agent. See [docs/providers.md](docs/providers.md#bring-your-own-runner).
 
 ## Configuration
 

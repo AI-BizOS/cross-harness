@@ -23,7 +23,8 @@
   <a href="spec/README.md">协议</a> ·
   <a href="docs/architecture.md">架构</a> ·
   <a href="docs/providers.md">代理接入</a> ·
-  <a href="docs/comparison.md">对比</a>
+  <a href="docs/comparison.md">对比</a> ·
+  <a href="https://code.bizos-ai.com/zh/">BizOS Code ↗</a>
 </p>
 
 <p align="center">
@@ -42,7 +43,10 @@
 
 Troupe 把它们放到同一个舞台上。它通过各厂商自己提供的协议启动代理，所以每条命令、每次改文件、每个计划步骤和每个权限请求，Troupe 拿到的都是结构化数据。你用 `@代理` 点名派活；代理可以通过 Troupe 互相提问；它们想做的事都排在同一个队列里等你决定；每个代理在自己的 git 分支上工作；只有通过你信得过的核查——Troupe 自己运行的命令，或另一个代理的审查——之后才会合并。
 
-Troupe 是 [BizOS](https://github.com/AI-BizOS) 开源的跨 Harness 协议，本仓库是它的参考实现：终端界面、本地网页界面和供脚本使用的命令，纯 Node.js 编写，零依赖。
+Troupe 是 [BizOS Code](https://code.bizos-ai.com/zh/) 团队开源的跨 Harness 协议，本仓库是它的参考实现：终端界面、本地网页界面和供脚本使用的命令，纯 Node.js 编写，零依赖。
+
+> [!TIP]
+> **想要开箱即用？** [BizOS Code](https://code.bizos-ai.com/zh/) 是 BizOS 团队的编码 CLI：一个终端，调度你所有的编码 Agent。它把一句话拆成带依赖的工作流，分派给 BizOS 原生 Agent 和你本机的 Claude Code、Codex、Kimi Code、DeepSeek 等编码 CLI：互不依赖的步骤并行跑，要写代码的依次拿工作区，结果汇总回同一个对话。安装方法见 [code.bizos-ai.com](https://code.bizos-ai.com/zh/)。
 
 ## 能做什么
 
@@ -234,7 +238,7 @@ troupe gui --ssh dev@buildbox --cwd src/shop-api
 }
 ```
 
-之后 `@bizos` 就和其他代理一样：接任务、向其他代理提问和回答，它的成果走同样的审批、审查和目标核查。BizOS 自己的运行器按这种方式接入 Troupe，并保持闭源；上面的命令只是示例，换成能以 ACP 方式启动你的运行器的命令即可。详见 [docs/providers.md](docs/providers.md#bring-your-own-runner)。
+之后 `@bizos` 就和其他代理一样：接任务、向其他代理提问和回答，它的成果走同样的审批、审查和目标核查。[BizOS Code](https://code.bizos-ai.com/zh/) 背后的运行器按这种方式接入 Troupe，并保持闭源；上面的命令只是示例，换成能以 ACP 方式启动你的运行器的命令即可。详见 [docs/providers.md](docs/providers.md#bring-your-own-runner)。
 
 ## 配置
 
