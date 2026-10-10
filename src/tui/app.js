@@ -33,10 +33,11 @@ const GOAL_TEMPLATE = {
 };
 
 /**
- * @param {{client:{call:Function, subscribe:Function, remote?:boolean}, lang?:string, terminal?:object, env?:NodeJS.ProcessEnv, now?:()=>number, editJson?:Function}} options
+ * @param {{client:{call:Function, subscribe:Function, remote?:boolean}, lang?:string, terminal?:object, env?:NodeJS.ProcessEnv, now?:()=>number, editJson?:Function, star?:object|null, openUrl?:Function|null}} options
+ *   `star` is the GitHub star prompt (src/star.js); `openUrl` opens its link in a browser.
  * @returns {Promise<void>} resolves when the user quits
  */
-export async function runTui({ client, lang = 'en', terminal = null, env = process.env, now = () => Date.now(), editJson = null }) {
+export async function runTui({ client, lang = 'en', terminal = null, env = process.env, now = () => Date.now(), editJson = null, star = null, openUrl = null }) {
   setLang(lang);
   const term = terminal || new Terminal({ env });
   const screen = new Screen(term);
@@ -164,6 +165,30 @@ export async function runTui({ client, lang = 'en', terminal = null, env = proce
   function closeModal() {
     ui.modal = null;
     schedule();
+  }
+
+  // Once per session at most, and only when the prompt says it is a good moment.
+  function askForStar(moment) {
+    if (!star || ui.modal || ui.starAsked) return;
+    let due = false;
+    try {
+      due = star.due(moment);
+    } catch {
+      /* An unreadable prompt file never gets in the way. */
+    }
+    if (!due) return;
+    ui.starAsked = true;
+    ui.modal = { type: 'star', url: star.url };
+    schedule();
+  }
+
+  function answerStar(choice) {
+    try {
+      star.answer(choice);
+    } catch {
+      /* Asked again another time. */
+    }
+    closeModal();
   }
 
   // ── composer ───────────────────────────────────────────────────────────
@@ -478,6 +503,7 @@ export async function runTui({ client, lang = 'en', terminal = null, env = proce
       const result = await client.call('merge', { agent: m.agentId, force });
       closeModal();
       notice('success', t('merge.done', { branch: result.branch, target: result.target }));
+      askForStar('merged');
     } catch (error) {
       if (ui.modal !== m) return;
       m.stage = 'error';
@@ -718,6 +744,14 @@ export async function runTui({ client, lang = 'en', terminal = null, env = proce
         if (key.name === 'enter') return void submitInput();
         inputKey(m.input, key);
         return schedule();
+      case 'star':
+        if (key.name === 'enter') {
+          openUrl?.(m.url);
+          answerStar('star');
+          notice('success', t('star.thanks'));
+        } else if (key.text === 'n') answerStar('never');
+        else if (key.text === 'l' || key.name === 'escape') answerStar('later');
+        return schedule();
       default:
         return closeModal();
     }
@@ -800,7 +834,13 @@ export async function runTui({ client, lang = 'en', terminal = null, env = proce
   term.on('key', onKey);
   term.on('resize', onResize);
   term.start();
+  try {
+    star?.opened();
+  } catch {
+    /* Counting launches is best effort. */
+  }
   render();
   if (store.waiting().length) openWaiting();
+  else askForStar('launch');
   return done;
 }

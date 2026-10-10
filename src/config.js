@@ -36,6 +36,8 @@ export function loadConfig(env = process.env) {
     providers: raw.providers && typeof raw.providers === 'object' ? raw.providers : {},
     defaults,
     lang: typeof raw.lang === 'string' ? raw.lang : null,
+    // false turns off the one-time question about starring Troupe on GitHub.
+    starPrompt: raw.starPrompt !== false,
   };
 }
 

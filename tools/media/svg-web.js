@@ -171,6 +171,10 @@ export function webSvg(frames, { end, width, height, pointer, clicks, url, label
     return list;
   };
   const always = (intervals) => intervals.length === 1 && intervals[0][0] <= 0 && intervals[0][1] >= total;
+  // With reduced motion the last frame stands still: what it shows is marked as the poster.
+  const poster = total - 1;
+  const onPoster = (intervals) => intervals.some(([from, to]) => from <= poster && poster < to);
+  const still = [];
 
   // Groups: the page itself, and one per scrolling area and size, per layer.
   const groups = new Map();
@@ -213,7 +217,7 @@ export function webSvg(frames, { end, width, height, pointer, clicks, url, label
       if (!svg) continue;
       if (item.clip) svg = `<g clip-path="url(#${clipFor(item.clip)})">${svg}</g>`;
       const intervals = spans(present);
-      inner.push(always(intervals) ? svg : `<g class="v" style="animation-name:${visibility(intervals)}">${svg}</g>`);
+      inner.push(always(intervals) ? svg : `<g class="v${onPoster(intervals) ? ' p' : ''}" style="animation-name:${visibility(intervals)}">${svg}</g>`);
     }
     if (!group.area) {
       body.push(...inner);
@@ -228,9 +232,10 @@ export function webSvg(frames, { end, width, height, pointer, clicks, url, label
     }
     const scroll = name('s');
     css.push(`@keyframes ${scroll}{${moves.map((m, i) => `${i ? pct(m.t, total) : '0%'}{${m.value}}`).join('')}}`);
-    const clipped = `<g clip-path="url(#${clipFor(group.area)})"><g class="scroll" style="animation-name:${scroll};${moves[0].value}">${inner.join('')}</g></g>`;
+    still.push(`.${scroll}{${moves.filter((m) => m.t <= poster).at(-1).value}!important}`);
+    const clipped = `<g clip-path="url(#${clipFor(group.area)})"><g class="scroll ${scroll}" style="animation-name:${scroll};${moves[0].value}">${inner.join('')}</g></g>`;
     const intervals = spans(shown);
-    body.push(always(intervals) ? clipped : `<g class="v" style="animation-name:${visibility(intervals)}">${clipped}</g>`);
+    body.push(always(intervals) ? clipped : `<g class="v${onPoster(intervals) ? ' p' : ''}" style="animation-name:${visibility(intervals)}">${clipped}</g>`);
   }
 
   // The pointer glides between the places it was moved to; a ring shows each click.
@@ -260,6 +265,7 @@ export function webSvg(frames, { end, width, height, pointer, clicks, url, label
     `@media (prefers-color-scheme:dark){.frame{fill:${D.frame};stroke:${D.border}}.edge{stroke:${D.border}}.urlbox{fill:${D.url}}.url{fill:${D.urlText}}.shadow{opacity:${D.card}}}`,
     ...colors.css(),
     ...css,
+    `@media (prefers-reduced-motion:reduce){.v,.scroll,.ptr,.ring,.pulse{animation:none!important}.v{opacity:0}.v.p{opacity:1}.ptr,.ring{display:none}${still.join('')}}`,
     '</style>',
     `<defs><filter id="sh" x="-10%" y="-10%" width="120%" height="140%"><feGaussianBlur stdDeviation="6"/><feOffset dy="3"/></filter><filter id="wsh" x="-5%" y="-5%" width="110%" height="115%"><feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000" flood-opacity=".22"/></filter>`,
     `<clipPath id="page"><path d="M0 0h${width}v${height - 10}a10 10 0 0 1-10 10h-${width - 20}a10 10 0 0 1-10-10z"/></clipPath>${defs.join('')}</defs>`,

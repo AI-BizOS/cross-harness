@@ -187,6 +187,7 @@ function diagram(lang) {
     '.card{fill:#ffffff;stroke:#d0d7de}.own{stroke-dasharray:5 4}.engine{fill:#f6f8fa;stroke:#2f81f7;stroke-width:1.5}.pill{fill:#ddf4ff}.pilltext{font-size:13.5px;fill:#0969da}.accent{fill:#0969da}.tag{fill:#8250df}',
     '.mail{fill:#fff8c5;stroke:#d4a72c}.mailtext{fill:#7d4e00}.wire{fill:none;stroke:#afb8c1;stroke-width:1.5}.dashed{stroke-dasharray:4 4}',
     `.dot{opacity:0;animation-duration:${LOOP}s;animation-iteration-count:infinite;animation-timing-function:linear}.task{fill:#2f81f7}.ask{fill:#8250df}.approve{fill:#bf8700}`,
+    '@media (prefers-reduced-motion:reduce){.dot{animation:none}}',
     '@media (prefers-color-scheme:dark){text{fill:#e6edf3}.mono,.caps,.note{fill:#8b949e}.card{fill:#161b22;stroke:#30363d}.engine{fill:#0d1117;stroke:#2f81f7}.pill{fill:#12263b}.pilltext,.accent{fill:#58a6ff}.tag{fill:#bc8cff}.mail{fill:#2b2111;stroke:#9e6a03}.mailtext{fill:#e3b341}.wire{stroke:#484f58}.task{fill:#58a6ff}.ask{fill:#bc8cff}.approve{fill:#d29922}}',
     ...css,
     '</style>',

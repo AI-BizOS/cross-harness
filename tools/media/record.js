@@ -7,8 +7,9 @@
 //   TROUPE_PLAYWRIGHT=/path/to/node_modules/playwright/index.js (TROUPE_CHROME optional)
 //
 // The engine, the terminal UI, worktrees, approvals, reviews and merges are all real;
-// the agents are stand-ins (standins/) that speak the Claude Code, Codex and ACP
-// protocols and act out story.js, editing files and running the tests for real.
+// the agents are stand-ins (standins/) that speak the BizOS CLI (`bizos acp`), Claude
+// Code, Codex and ACP protocols and act out story.js, editing files and running the
+// tests for real.
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -32,29 +33,29 @@ const suffix = lang === 'en' ? '' : `.${lang}`;
 const LABELS = {
   en: {
     dispatch: 'One message, three agents',
-    collaborate: 'Agents ask each other',
     approve: 'You approve in one place',
+    collaborate: 'Agents ask each other',
     done: 'Each on its own branch',
     diff: 'See what changed',
     review: 'Another agent reviews',
     merge: 'Merge',
     title: 'troupe — shop-api',
-    hero: 'Troupe terminal UI: one message starts Codex, Claude Code and Kimi Code in parallel; Claude asks Codex a question, you approve a command, and each agent finishes on its own branch.',
-    reviewMerge: 'Troupe terminal UI: the diff of Codex\'s branch, a review by Claude Code, then the merge.',
-    web: 'Troupe web UI: the same message from the browser, an approval card, then a review by another agent and the merge.',
+    hero: 'Troupe terminal UI: one message starts BizOS CLI (BizOS Code), Codex and Claude Code in parallel; you allow a command for BizOS once and for all, Codex asks BizOS a question, and each agent finishes on its own branch.',
+    reviewMerge: "Troupe terminal UI: the diff of BizOS CLI's branch, a review by Codex, then the merge.",
+    web: 'Troupe web UI: the same message from the browser, an approval card for BizOS CLI, then a review by another agent and the merge.',
   },
   zh: {
     dispatch: '一条消息，三个代理',
-    collaborate: '代理之间互相提问',
     approve: '在一处审批',
+    collaborate: '代理之间互相提问',
     done: '各自在独立分支完成',
     diff: '查看改动',
     review: '另一个代理审查',
     merge: '合并',
     title: 'troupe — shop-api',
-    hero: 'Troupe 终端界面：一条消息同时启动 Codex、Claude Code 和 Kimi Code；Claude 向 Codex 提问，你批准一条命令，每个代理在自己的分支上完成工作。',
-    reviewMerge: 'Troupe 终端界面：查看 Codex 分支的改动，由 Claude Code 审查，然后合并。',
-    web: 'Troupe 网页界面：在浏览器里发出同一条消息，处理审批卡片，再由另一个代理审查后合并。',
+    hero: 'Troupe 终端界面：一条消息同时启动 BizOS CLI（BizOS Code）、Codex 和 Claude Code；你为 BizOS 的命令选择“以后都允许”，Codex 向 BizOS 提问，每个代理在自己的分支上完成工作。',
+    reviewMerge: 'Troupe 终端界面：查看 BizOS CLI 分支的改动，由 Codex 审查，然后合并。',
+    web: 'Troupe 网页界面：在浏览器里发出同一条消息，处理 BizOS CLI 的审批卡片，再由另一个代理审查后合并。',
   },
 }[lang];
 
@@ -81,7 +82,8 @@ async function recordTerminal() {
     if (event.type === 'merge.result' && event.ok) merged = true;
   });
 
-  // Hero: dispatch, a question between agents, an approval, three finished branches.
+  // Hero: one message to three agents, a command allowed for good, a question between
+  // agents, three finished branches.
   await sleep(1300);
   tui.mark('dispatch');
   for (const [i, line] of story.message.entries()) {
@@ -95,12 +97,13 @@ async function recordTerminal() {
   }
   await sleep(800);
   tui.press('\r');
-  await until(() => named('codex')?.current?.input?.kind === 'question', 'the question to @codex');
-  tui.mark('collaborate');
   await until(() => engine.approvals.size > 0, 'an approval');
   tui.mark('approve');
   await sleep(2400);
-  tui.press('1');
+  // "Always allow this for @bizos": its second test run is not asked about.
+  tui.press('2');
+  await until(() => named('bizos')?.current?.input?.kind === 'question', 'the question to @bizos');
+  tui.mark('collaborate');
   await until(idle, 'every agent to finish');
   await sleep(1000);
   tui.mark('done');
@@ -110,7 +113,7 @@ async function recordTerminal() {
   await sleep(4200);
   tui.mark('hero-end');
 
-  // Review and merge @codex's branch.
+  // Review and merge @bizos's branch; Codex reviews it.
   tui.press('1');
   await sleep(1400);
   tui.mark('diff');
@@ -120,8 +123,8 @@ async function recordTerminal() {
   await sleep(1500);
   tui.mark('review');
   tui.press('\r');
-  await until(() => named('claude')?.current?.input?.kind === 'review', 'the review to start');
-  await until(() => !named('claude').busy, 'the review');
+  await until(() => named('codex')?.current?.input?.kind === 'review', 'the review to start');
+  await until(() => !named('codex').busy, 'the review');
   await sleep(3600);
   tui.mark('merge');
   tui.press('\r');
@@ -156,14 +159,15 @@ async function recordBrowser(playwright) {
   await web.click('#send');
   await until(() => engine.approvals.size > 0, 'an approval');
   await sleep(1600);
-  await web.click('#waiting .card button.primary');
+  // "Always allow this for @bizos".
+  await web.click('#waiting .card button.ok');
   await until(idle, 'every agent to finish');
   await sleep(1000);
   await web.click(`#agent-head button:text-is("${translate(lang, 'gui.merge')}")`);
   await sleep(1200);
   await web.click('dialog .dialog-actions button.primary');
-  await until(() => named('claude')?.current?.input?.kind === 'review', 'the review to start');
-  await until(() => !named('claude').busy, 'the review');
+  await until(() => named('codex')?.current?.input?.kind === 'review', 'the review to start');
+  await until(() => !named('codex').busy, 'the review');
   await sleep(2200);
   await web.click('dialog .dialog-actions button.primary');
   await until(() => merged, 'the merge');
@@ -188,7 +192,7 @@ if (only !== 'web') {
   const tape = await recordTerminal();
   const t = (name) => tape.marks.find((mark) => mark.name === name).t;
   const scenes = [
-    { file: `hero${suffix}.svg`, from: 0, to: t('hero-end'), names: ['dispatch', 'collaborate', 'approve', 'done'], label: LABELS.hero },
+    { file: `hero${suffix}.svg`, from: 0, to: t('hero-end'), names: ['dispatch', 'approve', 'collaborate', 'done'], label: LABELS.hero },
     { file: `review-merge${suffix}.svg`, from: t('hero-end'), to: t('merge-end'), names: ['diff', 'review', 'merge'], label: LABELS.reviewMerge },
   ];
   for (const scene of scenes) {

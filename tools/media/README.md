@@ -6,8 +6,8 @@ hand. This directory holds the tools that make them; the results are in
 
 | File | Shows | Made by |
 | --- | --- | --- |
-| `hero.svg`, `hero.zh.svg` | Terminal UI: one message to three agents, a question from one agent to another, an approval, three finished branches | `record.js` |
-| `review-merge.svg`, `review-merge.zh.svg` | Terminal UI: an agent's diff, a review by a different agent, the merge | `record.js` |
+| `hero.svg`, `hero.zh.svg` | Terminal UI: one message to the BizOS CLI, Codex and Claude Code, a command allowed for good, a question from Codex to BizOS, three finished branches | `record.js` |
+| `review-merge.svg`, `review-merge.zh.svg` | Terminal UI: the BizOS CLI's diff, a review by Codex, the merge | `record.js` |
 | `web.svg`, `web.zh.svg` | Web UI, in the viewer's light or dark theme: the same message, an approval card, review and merge | `record.js` with Playwright |
 | `how-it-works.svg`, `how-it-works.zh.svg` | Diagram of interfaces, engine, agent protocols and the mailbox | `diagram.js` |
 
@@ -20,12 +20,13 @@ hand. This directory holds the tools that make them; the results are in
   and performs the merge. The web UI is served by `createGuiHandler`, the same request
   handler `troupe gui` uses; Playwright routes the page's requests to it in-process.
 - **Scripted:** the agents. [standins/](standins) are small programs that speak the real
-  protocols — Claude Code stream-json (asking before every edit, command and MCP tool, as
+  protocols — the BizOS CLI's `bizos acp` (with BizOS Code's own tool names and approval
+  rules), Claude Code stream-json (asking before every edit, command and MCP tool, as
   Claude Code does in its default mode), `codex app-server`, and ACP — and act out
   [story.js](story.js). What they say is written in advance; the files they edit are
   written to their worktrees, and their `npm test` runs for real. They keep the real
   harnesses' names and "verified" labels, so the interface shows what it would show for
-  the real ones, including "untested" for Claude Code.
+  the real ones, including "untested" for the BizOS CLI and Claude Code.
 
 ## How a recording becomes an SVG
 

@@ -42,6 +42,28 @@ async function api(method, params = {}) {
   return body.result;
 }
 
+// The GitHub star prompt is kept by the local server (src/star.js), not by the engine.
+async function starRequest(method, value) {
+  const post = method === 'POST';
+  const response = await fetch(post ? '/api/star' : `/api/star?moment=${encodeURIComponent(value)}`, {
+    method,
+    headers: { Authorization: `Bearer ${token}`, ...(post ? { 'Content-Type': 'application/json' } : {}) },
+    ...(post ? { body: JSON.stringify({ answer: value }) } : {}),
+  });
+  const body = await response.json();
+  if (!body.ok) throw new Error(body.error?.message || 'Request failed');
+  return body.result;
+}
+
+// Once per page at most, and only when the server says it is a good moment.
+async function askForStar(moment) {
+  if (ui.starAsked) return;
+  const result = await starRequest('GET', moment).catch(() => null);
+  if (!result?.due || ui.dialog || ui.starAsked) return;
+  ui.starAsked = true;
+  openDialog({ type: 'star', url: result.url });
+}
+
 async function attempt(promise, success) {
   try {
     const result = await promise;
@@ -104,6 +126,7 @@ function handleBlock(block) {
     if (ui.selected) loadTranscript(ui.selected);
     updatePlaceholder();
     invalidate('all');
+    void askForStar('launch');
     return;
   }
   if (type === 'failure') return toast(payload.error?.message || 'failure', 'error');
@@ -676,11 +699,14 @@ input.addEventListener('blur', () => setTimeout(closeCompletion, 150));
 
 const dialog = $('dialog');
 dialog.addEventListener('close', () => {
+  // Escape closes the dialog without an answer: the star prompt counts that as "later".
+  if (ui.dialog?.type === 'star' && !ui.dialog.answered) void starRequest('POST', 'later').catch(() => {});
   ui.dialog = null;
 });
 
 function openDialog(state) {
   ui.dialog = state;
+  dialog.classList.toggle('small', state.type === 'star');
   renderDialog();
   if (!dialog.open) dialog.showModal();
   if (state.type === 'diff') loadDiff(state);
@@ -689,6 +715,10 @@ function openDialog(state) {
 }
 
 function closeDialog() {
+  if (ui.dialog?.type === 'star' && !ui.dialog.answered) {
+    ui.dialog.answered = true;
+    void starRequest('POST', 'later').catch(() => {});
+  }
   if (dialog.open) dialog.close();
   ui.dialog = null;
 }
@@ -700,7 +730,7 @@ function dialogFrame(title, body, extra = null) {
 function renderDialog() {
   const d = ui.dialog;
   if (!d) return;
-  const views = { diff: diffDialog, merge: mergeDialog, goals: goalsDialog, board: boardDialog, new: newDialog, rename: renameDialog };
+  const views = { diff: diffDialog, merge: mergeDialog, goals: goalsDialog, board: boardDialog, new: newDialog, rename: renameDialog, star: starDialog };
   replace(dialog, ...(views[d.type] || (() => []))(d));
 }
 
@@ -792,6 +822,7 @@ async function merge(d, force) {
     const result = await api('merge', { agent: d.agentId, force });
     toast(t('merge.done', { branch: result.branch, target: result.target }), 'success');
     closeDialog();
+    void askForStar('merged');
   } catch (error) {
     d.stage = 'error';
     d.error = { message: error.message, files: error.files };
@@ -1019,6 +1050,24 @@ function renameDialog(d) {
 }
 
 // ── toasts and start ────────────────────────────────────────────────────
+
+function starDialog(d) {
+  const answer = (choice) => {
+    d.answered = true;
+    void starRequest('POST', choice).catch(() => {});
+    closeDialog();
+  };
+  const star = () => {
+    window.open(d.url, '_blank', 'noopener,noreferrer');
+    toast(t('star.thanks'), 'success');
+    answer('star');
+  };
+  return dialogFrame(`★ ${t('star.title')}`, [
+    h('p', {}, t('star.body')),
+    h('p', { class: 'muted mono' }, d.url),
+    h('div', { class: 'dialog-actions' }, h('button', { class: 'primary', onclick: star }, `★ ${t('star.open')}`), h('button', { onclick: () => answer('later') }, t('star.later')), h('button', { class: 'ghost', onclick: () => answer('never') }, t('star.never'))),
+  ]);
+}
 
 function toast(text, level = 'info') {
   if (!text) return;

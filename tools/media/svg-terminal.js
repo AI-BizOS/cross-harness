@@ -189,6 +189,10 @@ export function terminalSvg(frames, { columns, rows, title, end, chapters = [], 
     return name;
   };
 
+  // With reduced motion the last frame stands still: its rows are marked as the poster.
+  const poster = total - 1;
+  const onPoster = (intervals) => intervals.some(([from, to]) => from <= poster && poster < to);
+
   // Rows: each distinct content of each row, with the stretches it is on screen.
   for (let r = 0; r < rows; r++) {
     const variants = new Map();
@@ -207,7 +211,7 @@ export function terminalSvg(frames, { columns, rows, title, end, chapters = [], 
       const svg = rowSvg(row, r);
       if (!svg) continue;
       if (intervals.length === 1 && intervals[0][0] <= 0 && intervals[0][1] >= total) body.push(svg);
-      else body.push(`<g style="animation-name:${keyframes(intervals)}">${svg}</g>`);
+      else body.push(`<g${onPoster(intervals) ? ' class="p"' : ''} style="animation-name:${keyframes(intervals)}">${svg}</g>`);
     }
   }
 
@@ -255,6 +259,7 @@ export function terminalSvg(frames, { columns, rows, title, end, chapters = [], 
     `.bar-title{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;font-size:12.5px;fill:#8b949e}`,
     `.chapter{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;font-size:13px;font-weight:600;fill:#8b949e;animation-duration:${seconds};animation-iteration-count:infinite;animation-timing-function:step-end}`,
     `.track{fill:#8b949e;opacity:.25}.fill{fill:#2f81f7;transform:scaleX(0);animation-duration:${seconds};animation-iteration-count:infinite;animation-timing-function:linear}`,
+    `@media (prefers-reduced-motion:reduce){.screen g,.cursor,.s,.chapter,.fill{animation:none!important}.screen g{opacity:0}.screen g.p{opacity:1}.cursor,.s{opacity:0}.s:first-child{opacity:1}}`,
     ...css,
     '</style>',
     `<defs><g id="spin">${spinner}</g><filter id="shadow" x="-5%" y="-5%" width="110%" height="115%"><feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000" flood-opacity=".28"/></filter></defs>`,

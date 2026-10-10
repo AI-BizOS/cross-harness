@@ -8,6 +8,7 @@ import { pathToFileURL } from 'node:url';
 import { createGuiHandler, startGui } from '../src/gui/server.js';
 import { Engine } from '../src/engine/engine.js';
 import { localClient } from '../src/engine/rpc.js';
+import { createStarPrompt } from '../src/star.js';
 import { gitEnv, gitRepo, mockProviders, tempDir, until } from './helpers.js';
 
 const PORT = 4321;
@@ -123,6 +124,27 @@ test('gui: calls are whitelisted and errors keep their codes', async (t) => {
   assert.equal(huge.status, 413);
   // Only loopback addresses: the token travels in plain HTTP.
   await assert.rejects(startGui({ client: null, host: '0.0.0.0' }), (error) => error.code === 'TROUPE_ARGUMENT_INVALID');
+});
+
+test('gui: the star prompt is answered through the local server, never the engine', async (t) => {
+  const { engine } = await setup(t);
+  const file = path.join(tempDir(t), 'star.json');
+  const star = createStarPrompt({ file });
+  const handler = createGuiHandler({ client: localClient(engine), token: TOKEN, port: () => PORT, star });
+  const ask = (moment) => request(handler, { url: `/api/star?moment=${moment}`, headers: auth });
+  assert.equal((await request(handler, { url: '/api/star?moment=merged' })).status, 401);
+  assert.equal((await ask('launch')).json.result.due, false);
+  const merged = await ask('merged');
+  assert.equal(merged.json.result.due, true);
+  assert.equal(merged.json.result.url, 'https://github.com/AI-BizOS/troupe');
+  const answer = (value, headers = { ...auth, 'content-type': 'application/json' }) => request(handler, { url: '/api/star', method: 'POST', body: { answer: value }, headers });
+  assert.equal((await answer('maybe')).status, 400);
+  assert.equal((await answer('never', auth)).status, 415);
+  assert.equal((await answer('never')).json.result.answer, 'never');
+  assert.equal((await ask('merged')).json.result.due, false);
+  // Without a prompt (turned off), nothing is due and nothing is stored.
+  const off = createGuiHandler({ client: localClient(engine), token: TOKEN, port: () => PORT });
+  assert.equal((await request(off, { url: '/api/star?moment=merged', headers: auth })).json.result.due, false);
 });
 
 test('gui: the event stream starts with a snapshot and follows the engine', async (t) => {

@@ -6,7 +6,9 @@ import path from 'node:path';
 import { Engine, VERSION } from '../engine/engine.js';
 import { connectRemote, localClient, serveEngine, sshCommand } from '../engine/rpc.js';
 import { PERMISSION_MODES, PROTOCOL_VERSION } from '../protocol/index.js';
-import { loadConfig } from '../config.js';
+import { loadConfig, troupeHome } from '../config.js';
+import { starPromptFor } from '../star.js';
+import { openUrl } from '../util/open.js';
 import { pickLang, setLang, t } from '../i18n/index.js';
 import { formatCount, oneLine, sanitize } from '../util/text.js';
 import { parseArgs } from './args.js';
@@ -232,7 +234,9 @@ async function runOnce(flags, positionals) {
 async function gui(flags, positionals) {
   const { startGui } = await import('../gui/server.js');
   const client = await openClient(flags, positionals);
-  const server = await startGui({ client, port: flags.port ? Number(flags.port) : 0, host: flags.host || '127.0.0.1', lang: pickLang(flags.lang || loadConfig().lang) });
+  const config = loadConfig();
+  const star = starPromptFor({ home: troupeHome(), config });
+  const server = await startGui({ client, port: flags.port ? Number(flags.port) : 0, host: flags.host || '127.0.0.1', lang: pickLang(flags.lang || config.lang), star });
   process.stdout.write(`${t('gui.listening', { url: server.url })}\n`);
   if (!flags['no-open']) server.openBrowser();
   await new Promise((resolve) => {
@@ -253,7 +257,8 @@ async function tui(flags, positionals) {
   const { runTui } = await import('../tui/app.js');
   const client = await openClient(flags, positionals);
   try {
-    await runTui({ client, lang: pickLang(flags.lang || loadConfig().lang) });
+    const config = loadConfig();
+    await runTui({ client, lang: pickLang(flags.lang || config.lang), star: starPromptFor({ home: troupeHome(), config }), openUrl });
   } finally {
     await client.close();
   }

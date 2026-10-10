@@ -1,7 +1,7 @@
 <h1 align="center">Troupe</h1>
 
 <p align="center">
-  <b>让 BizOS Code、Claude Code、Codex、Kimi Code、OpenCode、Gemini CLI 等编程代理并肩工作，像一个团队一样协作。</b>
+  <b>让 BizOS CLI、Claude Code、Codex、Kimi Code、OpenCode、Gemini CLI 等编程代理并肩工作，像一个团队一样协作。</b>
 </p>
 
 <p align="center">
@@ -9,6 +9,7 @@
 </p>
 
 <p align="center">
+  <a href="https://github.com/AI-BizOS/troupe"><img alt="GitHub 星标" src="https://img.shields.io/github/stars/AI-BizOS/troupe?style=social"></a>
   <a href="https://github.com/AI-BizOS/troupe/releases"><img alt="Release" src="https://img.shields.io/github/v/release/AI-BizOS/troupe?include_prereleases&label=release&color=2f81f7"></a>
   <a href="LICENSE"><img alt="License: Apache-2.0" src="https://img.shields.io/badge/license-Apache--2.0-blue"></a>
   <img alt="Node.js 20.11 或更高" src="https://img.shields.io/badge/node-%E2%89%A5%2020.11-339933">
@@ -28,11 +29,11 @@
 </p>
 
 <p align="center">
-  <img src="docs/media/hero.zh.svg" alt="Troupe 终端界面：一条消息同时启动 Codex、Claude Code 和 Kimi Code；Claude 向 Codex 提问，你批准一条命令，每个代理在自己的分支上完成工作。">
+  <img src="docs/media/hero.zh.svg" alt="Troupe 终端界面：一条消息同时启动 BizOS CLI、Codex 和 Claude Code；你为 BizOS 的测试命令选择“以后都允许”，Codex 向 BizOS 提问，每个代理在自己的分支上完成工作。">
 </p>
 
 <p align="center"><sub>
-  录自 Troupe 真实的终端界面。为了能重复录制，画面中的代理是按脚本行动的替身，使用的是 Claude Code、Codex 和 ACP 的真实协议：
+  录自 Troupe 真实的终端界面。为了能重复录制，画面中的代理是按脚本行动的替身，使用的是 BizOS CLI（<code>bizos acp</code>）、Codex 和 Claude Code 的真实协议：
   它们说的话是预先写好的，而引擎、worktree、测试运行、审批，以及代理之间传递的提问都是真实发生的。
   <a href="tools/media">录制方法</a>。
 </sub></p>
@@ -43,10 +44,12 @@
 
 Troupe 把它们放到同一个舞台上。它通过各厂商自己提供的协议启动代理，所以每条命令、每次改文件、每个计划步骤和每个权限请求，Troupe 拿到的都是结构化数据。你用 `@代理` 点名派活；代理可以通过 Troupe 互相提问；它们想做的事都排在同一个队列里等你决定；每个代理在自己的 git 分支上工作；只有通过你信得过的核查——Troupe 自己运行的命令，或另一个代理的审查——之后才会合并。
 
-Troupe 是 [BizOS Code](https://code.bizos-ai.com/zh/) 团队开源的跨 Harness 协议，本仓库是它的参考实现：终端界面、本地网页界面和供脚本使用的命令，纯 Node.js 编写，零依赖。
+Troupe 是 BizOS CLI 团队开源的跨 Harness 协议，本仓库是它的参考实现：终端界面、本地网页界面和供脚本使用的命令，纯 Node.js 编写，零依赖。BizOS CLI 已内置：输入 `@bizos`，它就和 Claude Code、Codex 等一起工作。
 
 > [!TIP]
-> **想要开箱即用？** [BizOS Code](https://code.bizos-ai.com/zh/) 是 BizOS 团队的编码 CLI：一个终端，调度你所有的编码 Agent。它把一句话拆成带依赖的工作流，分派给 BizOS 原生 Agent 和你本机的 Claude Code、Codex、Kimi Code、DeepSeek 等编码 CLI：互不依赖的步骤并行跑，要写代码的依次拿工作区，结果汇总回同一个对话。安装方法见 [code.bizos-ai.com](https://code.bizos-ai.com/zh/)；Troupe 已内置，直接用 `@bizos`（[设置方法](#bizos-code)）。
+> **内置 BizOS CLI。** BizOS CLI 即 [BizOS Code](https://code.bizos-ai.com/zh/)，是 BizOS 团队的终端编码代理：一个终端，调度你所有的编码 Agent。它把一句话拆成带依赖的工作流，分派给 BizOS 原生 Agent 和你本机的 Claude Code、Codex、Kimi Code、DeepSeek 等编码 CLI：互不依赖的步骤并行跑，要写代码的依次拿工作区，结果汇总回同一个对话。安装方法见 [code.bizos-ai.com](https://code.bizos-ai.com/zh/)；在 Troupe 里它就是 `@bizos`（[设置方法](#bizos-cli)）。
+
+⭐ **如果 Troupe 帮你省了时间，请[在 GitHub 上点个星标](https://github.com/AI-BizOS/troupe)**——星标能让更多开发者发现它，也是对 BizOS 团队的鼓励。
 
 ## 能做什么
 
@@ -61,10 +64,10 @@ Troupe 是 [BizOS Code](https://code.bizos-ai.com/zh/) 团队开源的跨 Harnes
 
 ## 先审查，再合并
 
-按 `d` 查看代理在自己分支上的改动，按 `m` 合并。Troupe 会先请另一个代理审查这份 diff——这里是 Claude Code 审查 Codex 的修复——你确认后才以 `--no-ff` 合并。
+按 `d` 查看代理在自己分支上的改动，按 `m` 合并。Troupe 会先请另一个代理审查这份 diff——这里是 Codex 审查 BizOS CLI 的修复——你确认后才以 `--no-ff` 合并。
 
 <p align="center">
-  <img src="docs/media/review-merge.zh.svg" alt="Troupe 终端界面：查看 Codex 分支的 diff，Claude Code 审查结论为 PASS，然后合并到 main。">
+  <img src="docs/media/review-merge.zh.svg" alt="Troupe 终端界面：查看 BizOS CLI 分支的 diff，Codex 审查结论为 PASS，然后合并到 main。">
 </p>
 
 ## 浏览器里也一样
@@ -72,7 +75,7 @@ Troupe 是 [BizOS Code](https://code.bizos-ai.com/zh/) 团队开源的跨 Harnes
 `troupe gui` 在 `127.0.0.1` 上提供同一个引擎：代理和它们实时的工作、一键处理的审批卡片、diff、审查与合并、目标和项目看板。跟随你的浅色或深色主题，手机宽度也能用。
 
 <p align="center">
-  <img src="docs/media/web.zh.svg" alt="Troupe 网页界面：在浏览器里发出同一条消息，处理 Claude Code 的命令审批卡片，再由另一个代理审查后合并。">
+  <img src="docs/media/web.zh.svg" alt="Troupe 网页界面：在浏览器里发出同一条消息，处理 BizOS CLI 测试命令的审批卡片，再由另一个代理审查后合并。">
 </p>
 
 <p align="center"><sub>在 Chrome 中录自真实的网页界面，页面由 Troupe 自己的请求处理程序提供。这张图会跟随你系统的浅色或深色主题。</sub></p>
@@ -89,7 +92,7 @@ Troupe 是 [BizOS Code](https://code.bizos-ai.com/zh/) 团队开源的跨 Harnes
 
 需要 Node.js 20.11 或更高版本、git，以及至少一个已安装并登录的编程代理（例如 `claude`、`codex`、`opencode`、`kimi`）。
 
-从发布页安装 0.1.0 预览版：
+从发布页安装 0.1.0 预览版（内置的 `@bizos` 和星标提示是 0.1.0 之后加入的，下一个版本发布前，想用它们请从源码安装）：
 
 ```sh
 npm install -g https://github.com/AI-BizOS/troupe/releases/download/v0.1.0/bizos-ai-troupe-0.1.0.tgz
@@ -211,7 +214,7 @@ troupe gui --ssh dev@buildbox --cwd src/shop-api
 
 | 代理 | 命令 | 协议 | 核验情况 |
 | --- | --- | --- | --- |
-| BizOS Code | `bizos acp` | ACP | 适配器已验证 |
+| BizOS CLI（BizOS Code） | `bizos acp` | ACP | 适配器已验证 |
 | Claude Code | `claude` | stream-json | 按文档接入 |
 | Codex | `codex` | app-server | 真实编码已验证 |
 | OpenCode | `opencode acp` | ACP | 握手已验证 |
@@ -227,9 +230,9 @@ troupe gui --ssh dev@buildbox --cwd src/shop-api
 
 "握手已验证"表示 Troupe 的适配器已与该 CLI 的真实安装完成协议握手（2026-10-09：codex 0.159.1、opencode、kimi、dsh）。"真实编码已验证"表示在此基础上，0.1.0 发布前还有一个真实的 Codex 会话通过 `troupe run` 完成了编码任务，结果经过独立核查。"适配器已验证"表示 Troupe 已与 BizOS Code 自己的 ACP 适配器（0.3.05）对接运行过，其中 BizOS 后台服务用替身代替，尚未在完整安装上运行。"按文档接入"的按厂商文档实现。这两类在界面上都标注"未实测"。Troupe 的自动化测试用模拟代理覆盖每种协议，不调用真实模型。详见 [docs/providers.md](docs/providers.md)。
 
-## BizOS Code
+## BizOS CLI
 
-[BizOS Code](https://code.bizos-ai.com/zh/) 已内置为 `@bizos`。Troupe 以它的 Agent Client Protocol 模式（`bizos acp`）启动它：它可以接任务、向其他代理提问和回答，成果走和其他代理一样的审批、审查和目标核查，背后的运行器保持闭源。
+BizOS CLI 即 [BizOS Code](https://code.bizos-ai.com/zh/)，已内置为 `@bizos`。Troupe 以它的 Agent Client Protocol 模式（`bizos acp`）启动它：它可以接任务、向其他代理提问和回答，成果走和其他代理一样的审批、审查和目标核查，背后的运行器保持闭源。
 
 ```sh
 curl -fsSL https://bizos-ai.cn/code/install.sh | sh    # Windows：irm https://bizos-ai.cn/code/install.ps1 | iex
@@ -271,6 +274,8 @@ BizOS Code 在操作系统沙箱里运行它的代理，只能读写你允许过
 ```
 
 只有这个用户级文件可以指定要运行的命令。仓库本身无法让 Troupe 执行任何东西；目标里的核查命令只有在你批准目标后才会运行。
+
+终端界面或网页界面会在你第一次合并之后、或第三次打开时，询问一次是否愿意在 GitHub 上给 Troupe 点星标；只有你选择时才会打开页面，不发送任何数据，回答后不再询问。在这个文件里设置 `"starPrompt": false`，或设置环境变量 `TROUPE_NO_STAR_PROMPT=1`，即可关闭；`troupe run` 和 CI 中从不询问。
 
 ## 安全模型
 

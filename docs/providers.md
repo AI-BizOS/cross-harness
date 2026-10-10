@@ -135,8 +135,9 @@ A one-shot example:
 
 ## BizOS Code
 
-`@bizos` is [BizOS Code](https://code.bizos-ai.com), the BizOS team's coding CLI, started in
-its ACP mode (`bizos acp`). Its runner is closed source and joins through the protocol alone.
+`@bizos` is the BizOS CLI, [BizOS Code](https://code.bizos-ai.com), the BizOS team's coding
+agent, started in its ACP mode (`bizos acp`). Its runner is closed source and joins through
+the protocol alone.
 
 ```sh
 curl -fsSL https://bizos-ai.com/code/install.sh | sh    # mainland China: https://bizos-ai.cn/code/install.sh
@@ -163,7 +164,11 @@ checkout outside the usual package directories, grant BizOS Code read access to 
 
 BizOS Code asks with two options, allow once and reject. "Always allow" in Troupe is kept
 as a Troupe rule for that agent and answered as allow once, so later matching requests are
-approved by Troupe without asking.
+approved by Troupe without asking. In Accept edits it changes existing files without asking
+and asks before creating a file or running a command; it calls Troupe's collaboration tools
+without asking. Its steps appear under its own tool names (`coding_read`,
+`coding_multi_edit`, `coding_create`, `coding_command_start`), and the collaboration tools
+under the names it gives MCP tools (`mcp_troupe_…`).
 
 ## Bring your own runner
 

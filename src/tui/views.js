@@ -561,7 +561,15 @@ function choiceModal({ ui }, width) {
   return box(m.title, body, { width, footerHint: '↑↓ · Enter · Esc' });
 }
 
-const MODALS = { waiting: waitingModal, diff: diffModal, merge: mergeModal, goals: goalsModal, board: boardModal, new: newAgentModal, help: helpModal, input: inputModal, choice: choiceModal };
+function starModal({ ui, t }, width) {
+  const body = [...wrapped(t('star.body'), width - 4), [], [span(ui.modal.url, 'cyan', 'underline')], []];
+  body.push([span('[Enter] ', 'bold', 'yellow'), span(`★ ${t('star.open')}`, 'bold')]);
+  body.push([span('[l] ', 'bold', 'cyan'), span(t('star.later'))]);
+  body.push([span('[n] ', 'dim'), span(t('star.never'), 'dim')]);
+  return box(`★ ${t('star.title')}`, body, { width, footerHint: 'Enter · l · n · Esc' });
+}
+
+const MODALS = { waiting: waitingModal, diff: diffModal, merge: mergeModal, goals: goalsModal, board: boardModal, new: newAgentModal, help: helpModal, input: inputModal, choice: choiceModal, star: starModal };
 
 /**
  * The whole screen.

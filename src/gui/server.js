@@ -6,10 +6,10 @@ import http from 'node:http';
 import fs from 'node:fs';
 import path from 'node:path';
 import { randomBytes, timingSafeEqual } from 'node:crypto';
-import { spawn } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { METHODS, VERSION } from '../engine/engine.js';
 import { CODES, fail } from '../protocol/errors.js';
+import { openUrl } from '../util/open.js';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const SRC = path.resolve(HERE, '..');
@@ -63,9 +63,10 @@ function readBody(req) {
 
 /**
  * The request handler, separate from the socket so it can be tested in-process.
- * @param {{client:{call:Function, subscribe:Function}, token:string, lang:string, port:()=>number}} options
+ * @param {{client:{call:Function, subscribe:Function}, token:string, lang:string, port:()=>number, star?:object|null}} options
+ *   `star` is the GitHub star prompt (src/star.js), local to this machine like the page.
  */
-export function createGuiHandler({ client, token, lang = 'en', port }) {
+export function createGuiHandler({ client, token, lang = 'en', port, star = null }) {
   const tokenBuffer = Buffer.from(token);
   const authorized = (req) => {
     const header = String(req.headers.authorization || '');
@@ -136,6 +137,29 @@ export function createGuiHandler({ client, token, lang = 'en', port }) {
       if (!url.pathname.startsWith('/api/')) return send(res, 404, errorBody({ code: 'TROUPE_NOT_FOUND', message: 'Not found' }));
       if (!authorized(req)) return send(res, 401, errorBody({ code: 'TROUPE_UNAUTHORIZED', message: 'Open Troupe from the link it printed (the token is in the address)' }));
       if (req.method === 'GET' && url.pathname === '/api/events') return events(req, res);
+      // The star prompt lives with this server, not with the engine, which may be remote.
+      if (req.method === 'GET' && url.pathname === '/api/star') {
+        const moment = url.searchParams.get('moment') === 'merged' ? 'merged' : 'launch';
+        let due = false;
+        try {
+          due = Boolean(star?.due(moment));
+        } catch {
+          /* An unreadable prompt file never gets in the way. */
+        }
+        return send(res, 200, { ok: true, result: { due, url: star?.url || null } });
+      }
+      if (req.method === 'POST' && url.pathname === '/api/star') {
+        if (!String(req.headers['content-type'] || '').startsWith('application/json')) return send(res, 415, errorBody({ code: 'TROUPE_ARGUMENT_INVALID', message: 'Send JSON' }));
+        let body;
+        try {
+          body = JSON.parse(await readBody(req));
+          if (!star) throw new Error('The star prompt is off');
+          star.answer(body?.answer);
+        } catch (error) {
+          return send(res, 400, errorBody({ code: 'TROUPE_ARGUMENT_INVALID', message: error.message }));
+        }
+        return send(res, 200, { ok: true, result: { answer: body.answer } });
+      }
       if (req.method === 'POST' && url.pathname === '/api/call') {
         if (!String(req.headers['content-type'] || '').startsWith('application/json')) return send(res, 415, errorBody({ code: 'TROUPE_ARGUMENT_INVALID', message: 'Send JSON' }));
         let request;
@@ -162,25 +186,17 @@ export function createGuiHandler({ client, token, lang = 'en', port }) {
   };
 }
 
-function openUrl(url) {
-  const [command, args] =
-    process.platform === 'darwin' ? ['open', [url]] : process.platform === 'win32' ? ['cmd', ['/c', 'start', '""', url.replace(/&/g, '^&')]] : ['xdg-open', [url]];
-  try {
-    const child = spawn(command, args, { stdio: 'ignore', detached: true, windowsHide: true });
-    child.on('error', () => {});
-    child.unref();
-    return true;
-  } catch {
-    return false;
-  }
-}
-
 /** Starts the GUI server on a loopback address and resolves once it listens. */
-export async function startGui({ client, port = 0, host = '127.0.0.1', lang = 'en', token = randomBytes(24).toString('hex') }) {
+export async function startGui({ client, port = 0, host = '127.0.0.1', lang = 'en', token = randomBytes(24).toString('hex'), star = null }) {
   // The token travels in plain HTTP, so the server must not be reachable from other machines.
   if (!LOOPBACK.includes(host)) throw fail(CODES.ARGUMENT_INVALID, `troupe gui only listens on this machine (${LOOPBACK.join(', ')}), not ${host}`);
   let actualPort = port;
-  const handler = createGuiHandler({ client, token, lang, port: () => actualPort });
+  const handler = createGuiHandler({ client, token, lang, port: () => actualPort, star });
+  try {
+    star?.opened();
+  } catch {
+    /* Counting launches is best effort. */
+  }
   const server = http.createServer((req, res) => void handler(req, res));
   await new Promise((resolve, reject) => {
     server.once('error', reject);

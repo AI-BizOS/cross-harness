@@ -655,6 +655,10 @@ dialog {
   max-height: calc(100vh - 40px);
 }
 
+dialog.small {
+  width: min(520px, calc(100vw - 24px));
+}
+
 dialog::backdrop {
   background: rgb(0 0 0 / 35%);
 }

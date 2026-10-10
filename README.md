@@ -1,7 +1,7 @@
 <h1 align="center">Troupe</h1>
 
 <p align="center">
-  <b>Run BizOS Code, Claude Code, Codex, Kimi Code, OpenCode, Gemini CLI and other coding agents side by side — as one team.</b>
+  <b>Run BizOS CLI, Claude Code, Codex, Kimi Code, OpenCode, Gemini CLI and other coding agents side by side — as one team.</b>
 </p>
 
 <p align="center">
@@ -9,6 +9,7 @@
 </p>
 
 <p align="center">
+  <a href="https://github.com/AI-BizOS/troupe"><img alt="GitHub stars" src="https://img.shields.io/github/stars/AI-BizOS/troupe?style=social"></a>
   <a href="https://github.com/AI-BizOS/troupe/releases"><img alt="Release" src="https://img.shields.io/github/v/release/AI-BizOS/troupe?include_prereleases&label=release&color=2f81f7"></a>
   <a href="LICENSE"><img alt="License: Apache-2.0" src="https://img.shields.io/badge/license-Apache--2.0-blue"></a>
   <img alt="Node.js 20.11 or newer" src="https://img.shields.io/badge/node-%E2%89%A5%2020.11-339933">
@@ -28,11 +29,11 @@
 </p>
 
 <p align="center">
-  <img src="docs/media/hero.svg" alt="Troupe's terminal UI: one message starts Codex, Claude Code and Kimi Code in parallel; Claude asks Codex a question, you approve a command, and each agent finishes on its own branch.">
+  <img src="docs/media/hero.svg" alt="Troupe's terminal UI: one message starts BizOS CLI, Codex and Claude Code in parallel; you allow BizOS's test command once and for all, Codex asks BizOS a question, and each agent finishes on its own branch.">
 </p>
 
 <p align="center"><sub>
-  Recorded from Troupe's real terminal UI. The agents are scripted stand-ins that speak the Claude Code, Codex and ACP protocols, so the recording can be repeated:
+  Recorded from Troupe's real terminal UI. The agents are scripted stand-ins that speak the BizOS CLI (<code>bizos acp</code>), Codex and Claude Code protocols, so the recording can be repeated:
   what they say is scripted, while the engine, the worktrees, the test runs, the approval and the question passed from one agent to another are real.
   <a href="tools/media">How the recordings are made</a>.
 </sub></p>
@@ -43,10 +44,12 @@ Every coding agent comes with its own terminal, its own permission prompts and i
 
 Troupe puts them on one stage. It starts each agent through the protocol its vendor ships, so it sees every command, edit, plan step and permission request as data. You address agents with `@mentions`, they can ask each other questions through Troupe, everything they want to do waits in one queue for you, each works on its own git branch, and nothing is merged until a check you trust — a command Troupe runs itself, or a review by a different agent — has passed.
 
-Troupe is the open cross-harness protocol from the team behind [BizOS Code](https://code.bizos-ai.com/en/), with this reference implementation: a terminal UI, a local web UI and a command for scripts, in plain Node.js with no dependencies.
+Troupe is the open cross-harness protocol from the team behind the BizOS CLI, with this reference implementation: a terminal UI, a local web UI and a command for scripts, in plain Node.js with no dependencies. The BizOS CLI is built in: type `@bizos` and it works next to Claude Code, Codex and the rest.
 
 > [!TIP]
-> **Want it ready-made?** [BizOS Code](https://code.bizos-ai.com/en/) is the BizOS team's coding CLI: one terminal, every coding agent, orchestrated. It turns one request into a dependency-aware workflow and hands each step to a native BizOS agent or a coding CLI already on your computer — Claude Code, Codex, Kimi Code, DeepSeek and more. Independent steps run in parallel, writers take turns with the workspace, and every result comes back to one conversation. Install it from [code.bizos-ai.com](https://code.bizos-ai.com/en/); Troupe has it built in as `@bizos` ([setup](#bizos-code)).
+> **BizOS CLI, built in.** The BizOS CLI, [BizOS Code](https://code.bizos-ai.com/en/), is the BizOS team's coding agent for the terminal: one terminal, every coding agent, orchestrated. It turns one request into a dependency-aware workflow and hands each step to a native BizOS agent or a coding CLI already on your computer — Claude Code, Codex, Kimi Code, DeepSeek and more. Independent steps run in parallel, writers take turns with the workspace, and every result comes back to one conversation. Install it from [code.bizos-ai.com](https://code.bizos-ai.com/en/); in Troupe it is `@bizos` ([setup](#bizos-cli)).
+
+⭐ **If Troupe saves you time, please [star it on GitHub](https://github.com/AI-BizOS/troupe)** — stars help other developers find it and keep the BizOS team going.
 
 ## What it does
 
@@ -61,10 +64,10 @@ Troupe is the open cross-harness protocol from the team behind [BizOS Code](http
 
 ## Review by another agent, then merge
 
-Press `d` to see what an agent changed on its branch and `m` to merge it. Troupe first asks a different agent to review the diff — here Claude Code reviews Codex's fix — and merges with `--no-ff` only when you confirm.
+Press `d` to see what an agent changed on its branch and `m` to merge it. Troupe first asks a different agent to review the diff — here Codex reviews the BizOS CLI's fix — and merges with `--no-ff` only when you confirm.
 
 <p align="center">
-  <img src="docs/media/review-merge.svg" alt="Troupe's terminal UI: the diff of Codex's branch, a review by Claude Code that ends in PASS, and the merge into main.">
+  <img src="docs/media/review-merge.svg" alt="Troupe's terminal UI: the diff of the BizOS CLI's branch, a review by Codex that ends in PASS, and the merge into main.">
 </p>
 
 ## The same, in your browser
@@ -72,7 +75,7 @@ Press `d` to see what an agent changed on its branch and `m` to merge it. Troupe
 `troupe gui` serves the same engine on `127.0.0.1`: the agents and their live work, approval cards with one-click answers, diffs, reviews and merges, goals and the project board. It follows your light or dark theme and works in a phone-sized window.
 
 <p align="center">
-  <img src="docs/media/web.svg" alt="Troupe's web UI: the same message sent from the browser, an approval card for Claude Code's command, then a review by another agent and the merge.">
+  <img src="docs/media/web.svg" alt="Troupe's web UI: the same message sent from the browser, an approval card for the BizOS CLI's test command, then a review by another agent and the merge.">
 </p>
 
 <p align="center"><sub>Recorded from the real web UI in Chrome, served by Troupe's own request handler. This image follows your system's light or dark theme.</sub></p>
@@ -89,7 +92,7 @@ One engine serves one project. Every interface talks to it through the same smal
 
 Requirements: Node.js 20.11 or newer, git, and at least one coding agent installed and signed in (for example `claude`, `codex`, `opencode`, `kimi`).
 
-Install the 0.1.0 preview from its release:
+Install the 0.1.0 preview from its release (the built-in `@bizos` and the star prompt came after 0.1.0; until the next release, install from source to have them):
 
 ```sh
 npm install -g https://github.com/AI-BizOS/troupe/releases/download/v0.1.0/bizos-ai-troupe-0.1.0.tgz
@@ -211,7 +214,7 @@ Before it can start, the goal needs an independent check (a command or a review 
 
 | Agent | Command | Protocol | Checked |
 | --- | --- | --- | --- |
-| BizOS Code | `bizos acp` | ACP | adapter checked |
+| BizOS CLI (BizOS Code) | `bizos acp` | ACP | adapter checked |
 | Claude Code | `claude` | stream-json | documented |
 | Codex | `codex` | app-server | coding run |
 | OpenCode | `opencode acp` | ACP | handshake |
@@ -227,9 +230,9 @@ Before it can start, the goal needs an independent check (a command or a review 
 
 "Handshake" means Troupe's adapter completed the protocol handshake with a real install of that CLI (codex 0.159.1, opencode, kimi, dsh on 2026-10-09). "Coding run" means that, in addition, a real Codex session completed a coding task through `troupe run` before the 0.1.0 release, and the result was checked independently. "Adapter checked" means Troupe was run against BizOS Code's own ACP adapter (0.3.05) with the BizOS service stubbed out, but not yet against a full install. "Documented" integrations follow the vendor's documentation. Both are labelled "untested" in the interface. Troupe's automated tests exercise every protocol with mock agents, not real models. See [docs/providers.md](docs/providers.md).
 
-## BizOS Code
+## BizOS CLI
 
-[BizOS Code](https://code.bizos-ai.com/en/) is built in as `@bizos`. Troupe starts it in its Agent Client Protocol mode (`bizos acp`), so it takes tasks, asks and answers other agents, and goes through the same approvals, reviews and goal checks as every other agent, while the runner behind it stays closed source.
+The BizOS CLI, [BizOS Code](https://code.bizos-ai.com/en/), is built in as `@bizos`. Troupe starts it in its Agent Client Protocol mode (`bizos acp`), so it takes tasks, asks and answers other agents, and goes through the same approvals, reviews and goal checks as every other agent, while the runner behind it stays closed source.
 
 ```sh
 curl -fsSL https://bizos-ai.com/code/install.sh | sh    # Windows: irm https://bizos-ai.com/code/install.ps1 | iex
@@ -271,6 +274,8 @@ Any other closed-source agent runtime can join the same way without publishing i
 ```
 
 Only this user-level file can name commands to run. A repository cannot make Troupe execute anything by itself; goal checks run only after you approve the goal.
+
+Once, after your first merge or the third time you open it, the terminal UI or the web UI asks whether you would like to star Troupe on GitHub; it opens the page only if you choose to, sends nothing, and never asks again after you answer. `"starPrompt": false` in this file, or `TROUPE_NO_STAR_PROMPT=1`, turns it off; `troupe run` and CI never ask.
 
 ## Security model
 

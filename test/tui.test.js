@@ -13,6 +13,7 @@ import { Engine } from '../src/engine/engine.js';
 import { localClient } from '../src/engine/rpc.js';
 import { displayWidth } from '../src/util/width.js';
 import { setLang, t } from '../src/i18n/index.js';
+import { REPOSITORY_URL, createStarPrompt } from '../src/star.js';
 import { gitEnv, gitRepo, mockProviders, tempDir, until } from './helpers.js';
 
 const strip = (text) => text.replace(/\x1b\[[0-9;?]*[A-Za-z]/g, '');
@@ -329,3 +330,40 @@ test('the TUI drives a real engine: send, approve, view the diff, merge, quit', 
   await done;
   assert.equal(term.started, false);
 });
+
+test('the TUI asks once for a GitHub star, opens the page on Enter and remembers it', async (t2) => {
+  setLang('en');
+  const home = tempDir(t2, 'troupe-home-');
+  const repo = gitRepo(t2);
+  const env = { ...gitEnv(), TROUPE_HOME: home };
+  const engine = await new Engine({ root: repo.dir, env, builtins: false, providers: mockProviders(), config: { providers: {}, defaults: { mode: 'ask', isolation: 'worktree', maxPerProvider: 3, idleMinutes: 15, gateTimeoutSec: 60, maxIterations: 5 }, lang: null } }).open();
+  t2.after(() => engine.close());
+  const star = createStarPrompt({ file: path.join(home, 'star.json') });
+  star.opened();
+  star.opened();
+  const opened = [];
+  const start = () => {
+    const term = new FakeTerminal(100, 30);
+    const done = runTui({ client: localClient(engine), lang: 'en', terminal: term, env: { ...env, NO_COLOR: '' }, star, openUrl: (url) => opened.push(url) });
+    return { term, done };
+  };
+  // The third launch asks.
+  const first = start();
+  await until(() => first.term.text().includes('Enjoying Troupe?'), { label: 'star prompt' });
+  assert.match(first.term.text(), /github\.com\/AI-BizOS\/troupe/);
+  first.term.press('enter');
+  await until(() => !first.term.text().includes('Enjoying Troupe?'), { label: 'prompt closed' });
+  assert.deepEqual(opened, [REPOSITORY_URL]);
+  first.term.press('escape');
+  first.term.type('q');
+  await first.done;
+  // Answered: later launches do not ask again.
+  const second = start();
+  await until(() => second.term.text().includes('No agents yet'), { label: 'welcome screen' });
+  await new Promise((resolve) => setTimeout(resolve, 150));
+  assert.doesNotMatch(second.term.text(), /Enjoying Troupe/);
+  second.term.press('escape');
+  second.term.type('q');
+  await second.done;
+});
+

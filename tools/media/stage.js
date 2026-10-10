@@ -1,5 +1,5 @@
 // The stage for a recording: a fresh copy of the demo project as a git repository,
-// and a Troupe engine whose @claude, @codex and @kimi are the stand-in agents. The
+// and a Troupe engine whose @bizos, @claude, @codex and @kimi are stand-in agents. The
 // stand-ins keep the real harnesses' names and "verified" labels, so the interface
 // shows what it would show for the real ones.
 import { execFileSync } from 'node:child_process';
@@ -12,7 +12,7 @@ import { BUILTIN_PROVIDERS } from '../../src/providers/registry.js';
 import { PROJECT } from './story.js';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
-const STANDINS = { claude: 'claude.js', codex: 'codex.js', kimi: 'acp.js' };
+const STANDINS = { bizos: 'bizos.js', claude: 'claude.js', codex: 'codex.js', kimi: 'acp.js' };
 
 // Agents show absolute paths, so the demo lives at a short, neutral place. The real
 // path: an agent's directory inside its worktree is computed from it.

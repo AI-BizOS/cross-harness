@@ -142,39 +142,35 @@ const FIX = [
 const TEXT = {
   en: {
     message: [
-      '@codex fix the parser dropping the last line without a trailing newline',
-      '@claude add edge-case tests for parse errors',
-      '@kimi document the import format in docs/import.md',
+      '@bizos fix the parser dropping the last line without a trailing newline',
+      '@codex add edge-case tests for parse errors',
+      '@claude document the import format in docs/import.md',
     ],
-    codexFixed:
+    bizosStart: 'Reproducing it with a test first.',
+    bizosFixed:
       'Fixed. `parse()` stopped at the last newline, so a file without a trailing newline lost its last order. It now parses the text after the last newline too, on the right line number.\n\nAdded a regression test; `npm test`: 4 passed.',
     question: 'Will parse() keep throwing ParseError with {line, column}? I am writing tests against both.',
-    codexAnswer: 'Yes. The error shape does not change: ParseError keeps `line` and `column`, both counted from 1. I wrote the contract on the board under api.parse.',
-    board: 'parse(text) returns [{sku, quantity, price}]. Throws ParseError with line and column, both from 1. The last line counts even without a trailing newline.',
-    claudeCheck: 'Asking @codex first, since it is changing parse() right now.',
-    claudeDone:
-      'Added 4 edge-case tests in test/errors.test.js: a bad quantity, a negative price, a missing field and Windows line endings. Each checks `line` and `column`, which @codex confirmed stay as they are.\n\n`npm test`: 7 passed.',
-    plan: ['Read the parser and its tests', 'Write docs/import.md', 'Link it from the README'],
+    bizosAnswer: 'Yes. The error shape does not change: ParseError keeps `line` and `column`, both counted from 1.',
+    codexDone:
+      'Added 4 edge-case tests in test/errors.test.js: a bad quantity, a negative price, a missing field and Windows line endings. Each checks `line` and `column`, which @bizos confirmed stay as they are.\n\n`npm test`: 7 passed.',
     importDoc:
       '# Importing orders\n\nEach line is one order item: `sku,quantity,price`.\n\n| Field | Rule |\n| --- | --- |\n| sku | text without commas |\n| quantity | a whole number |\n| price | zero or more, with a dot for decimals |\n\nBlank lines are skipped, and Windows line endings work.\n\nA line that breaks a rule stops the import with `ParseError`. Its `line` and `column`, both counted from 1, point at the problem.\n',
     readmeLink: '\nThe import format is described in [docs/import.md](docs/import.md).\n',
-    kimiDone: 'Documented the import format in docs/import.md: the three fields, their rules, blank lines and line endings, and how errors point at the line and column. Linked it from the README.',
+    claudeDone: 'Documented the import format in docs/import.md: the three fields, their rules, blank lines and line endings, and how errors point at the line and column. Linked it from the README.',
     review:
       'The loop now also parses the text after the last newline, and `line` is already right for it because it was advanced at that newline. Blank trailing text is still skipped. The new test covers the case that was broken, and nothing else changes.\n\nVERDICT: PASS',
   },
   zh: {
-    message: ['@codex 修复解析器：文件末尾没有换行时会丢掉最后一行', '@claude 给解析错误补充边界测试', '@kimi 在 docs/import.md 写清楚导入格式'],
-    codexFixed: '已修复。`parse()` 只处理到最后一个换行符，所以文件末尾没有换行时最后一条订单会丢失。现在换行符之后的文本也会解析，行号也正确。\n\n补了一个回归测试；`npm test`：4 passed。',
+    message: ['@bizos 修复解析器：文件末尾没有换行时会丢掉最后一行', '@codex 给解析错误补充边界测试', '@claude 在 docs/import.md 写清楚导入格式'],
+    bizosStart: '先用一个测试复现问题。',
+    bizosFixed: '已修复。`parse()` 只处理到最后一个换行符，所以文件末尾没有换行时最后一条订单会丢失。现在换行符之后的文本也会解析，行号也正确。\n\n补了一个回归测试；`npm test`：4 passed。',
     question: 'parse() 之后还会抛出带 {line, column} 的 ParseError 吗？我的测试会同时检查这两个字段。',
-    codexAnswer: '会。错误格式不变：ParseError 保留 `line` 和 `column`，都从 1 开始计数。我把约定写在了看板的 api.parse 下。',
-    board: 'parse(text) 返回 [{sku, quantity, price}]。出错时抛出 ParseError，带 line 和 column，都从 1 开始。没有结尾换行时最后一行同样计入。',
-    claudeCheck: '先问一下 @codex，它正在改 parse()。',
-    claudeDone: '在 test/errors.test.js 里补了 4 个边界测试：数量不合法、价格为负、缺少字段、Windows 换行。每个都检查 `line` 和 `column`，@codex 确认这两个字段保持不变。\n\n`npm test`：7 passed。',
-    plan: ['阅读解析器和测试', '编写 docs/import.md', '在 README 中加入链接'],
+    bizosAnswer: '会。错误格式不变：ParseError 保留 `line` 和 `column`，都从 1 开始计数。',
+    codexDone: '在 test/errors.test.js 里补了 4 个边界测试：数量不合法、价格为负、缺少字段、Windows 换行。每个都检查 `line` 和 `column`，@bizos 确认这两个字段保持不变。\n\n`npm test`：7 passed。',
     importDoc:
       '# 导入订单\n\n每行是一条订单明细：`sku,quantity,price`。\n\n| 字段 | 规则 |\n| --- | --- |\n| sku | 不含逗号的文本 |\n| quantity | 整数 |\n| price | 大于等于 0，小数用点号 |\n\n空行会被跳过，Windows 换行同样支持。\n\n某行不符合规则时，导入以 `ParseError` 停止，它的 `line` 和 `column`（都从 1 开始）指出问题所在。\n',
     readmeLink: '\n导入格式见 [docs/import.md](docs/import.md)。\n',
-    kimiDone: '在 docs/import.md 写清楚了导入格式：三个字段及其规则、空行和换行处理，以及错误如何指出行和列。README 里加了链接。',
+    claudeDone: '在 docs/import.md 写清楚了导入格式：三个字段及其规则、空行和换行处理，以及错误如何指出行和列。README 里加了链接。',
     review: '循环结束后，最后一个换行符之后的文本也会被解析，`line` 在遇到那个换行时已经加过，所以行号正确。末尾的空白仍会跳过。新测试覆盖了原来出错的情况，其余行为不变。\n\nVERDICT: PASS',
   },
 };
@@ -187,35 +183,30 @@ export function text(lang = 'en') {
 export function scenes(lang = 'en') {
   const s = text(lang);
   return {
-    codex: [
+    bizos: [
       {
-        match: /^Question from @claude/,
+        match: /^Question from @codex/,
         actions: [
           ['think', 700],
-          ['tool', 'troupe_board_write', { key: 'api.parse', value: s.board }],
-          ['say', s.codexAnswer],
-          ['usage', 8200, 310],
+          ['say', s.bizosAnswer],
         ],
       },
       {
-        match: /codex|parser|解析器/,
+        match: /parser|解析器/,
         actions: [
-          ['think', 900],
-          ['run', 'grep -n "export function parse" src/parser.js'],
-          ['wait', 500],
+          ['say', s.bizosStart],
+          ['read', 'src/parser.js', 700],
+          ['read', 'test/parser.test.js', 500],
           ['edit', 'test/parser.test.js', { append: REGRESSION_TEST }],
-          ['wait', 300],
           ['run', 'npm test'],
-          ['think', 1100],
+          ['think', 900],
           ['edit', 'src/parser.js', { replace: FIX }],
-          ['wait', 300],
           ['run', 'npm test'],
-          ['say', s.codexFixed],
-          ['usage', 23100, 1250],
+          ['say', s.bizosFixed],
         ],
       },
     ],
-    claude: [
+    codex: [
       {
         match: /^Review the changes/,
         actions: [
@@ -225,38 +216,31 @@ export function scenes(lang = 'en') {
         ],
       },
       {
-        match: /claude|tests|测试/,
+        match: /tests|测试/,
         actions: [
-          ['read', 'src/parser.js', 700],
-          ['read', 'test/parser.test.js', 500],
-          ['say', s.claudeCheck, { interim: true }],
-          ['tool', 'troupe_ask_agent', { agent: 'codex', question: s.question }],
+          ['think', 800],
+          ['run', 'grep -n "ParseError(" src/parser.js'],
+          ['tool', 'troupe_ask_agent', { agent: 'bizos', question: s.question }],
           ['think', 600],
           ['edit', 'test/errors.test.js', { write: ERROR_TESTS }],
           ['wait', 300],
           ['run', 'npm test'],
-          ['say', s.claudeDone],
-          ['usage', 18400, 990],
+          ['say', s.codexDone],
+          ['usage', 21400, 1180],
         ],
       },
     ],
-    kimi: [
+    claude: [
       {
-        match: /kimi|docs|文档|格式/,
+        match: /docs|文档|格式/,
         actions: [
-          ['plan', [['now', s.plan[0]], ['todo', s.plan[1]], ['todo', s.plan[2]]]],
-          ['think', 600],
-          ['read', 'src/parser.js', 800],
-          ['read', 'test/parser.test.js', 600],
-          ['plan', [['done', s.plan[0]], ['now', s.plan[1]], ['todo', s.plan[2]]]],
-          ['think', 1600],
+          ['read', 'src/parser.js', 700],
+          ['read', 'test/parser.test.js', 500],
+          ['think', 900],
           ['edit', 'docs/import.md', { write: s.importDoc }],
-          ['wait', 500],
-          ['plan', [['done', s.plan[0]], ['done', s.plan[1]], ['now', s.plan[2]]]],
           ['edit', 'README.md', { append: s.readmeLink }],
-          ['plan', [['done', s.plan[0]], ['done', s.plan[1]], ['done', s.plan[2]]]],
-          ['say', s.kimiDone],
-          ['usage', 12600, 840],
+          ['say', s.claudeDone],
+          ['usage', 14200, 860],
         ],
       },
     ],
