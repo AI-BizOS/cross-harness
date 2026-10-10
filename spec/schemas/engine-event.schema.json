@@ -10,13 +10,14 @@
     "at": { "type": "number" },
     "type": {
       "type": "string",
-      "examples": ["agent.updated", "agent.removed", "agent.message", "agent.text", "agent.activity", "agent.plan", "approval.requested", "approval.resolved", "decision.requested", "decision.resolved", "board.updated", "goal.updated", "gate.result", "merge.result", "notice", "project.updated"]
+      "examples": ["agent.updated", "agent.removed", "agent.message", "agent.text", "agent.activity", "agent.plan", "approval.requested", "approval.resolved", "decision.requested", "decision.resolved", "board.updated", "goal.updated", "gate.result", "merge.result", "review.started", "notice", "project.updated"]
     }
   },
   "allOf": [
-    { "if": { "properties": { "type": { "const": "agent.message" } } }, "then": { "required": ["agentId", "entry"], "properties": { "entry": { "type": "object", "required": ["id", "at", "role"], "properties": { "role": { "enum": ["user", "assistant", "question", "feedback", "review", "compare", "draft", "system", "error", "gate"] }, "text": { "type": "string" } } } } } },
+    { "if": { "properties": { "type": { "const": "agent.message" } } }, "then": { "required": ["agentId", "entry"], "properties": { "entry": { "type": "object", "required": ["id", "at", "role"], "properties": { "role": { "enum": ["user", "assistant", "question", "feedback", "review", "compare", "draft", "system", "error", "gate"] }, "text": { "type": "string" }, "code": { "type": "string" }, "key": { "type": "string" }, "params": { "type": "object" } } } } } },
     { "if": { "properties": { "type": { "const": "agent.activity" } } }, "then": { "required": ["agentId", "activity"], "properties": { "activity": { "type": "object", "required": ["id", "kind", "title", "status"], "properties": { "kind": { "enum": ["command", "edit", "read", "search", "thinking", "tool"] }, "status": { "enum": ["running", "done", "failed"] } } } } } },
     { "if": { "properties": { "type": { "const": "approval.requested" } } }, "then": { "required": ["approval"], "properties": { "approval": { "type": "object", "required": ["id", "agentId", "agentName", "kind", "title", "options"] } } } },
-    { "if": { "properties": { "type": { "const": "notice" } } }, "then": { "required": ["level", "text"], "properties": { "level": { "enum": ["info", "success", "warn", "error"] } } } }
+    { "if": { "properties": { "type": { "const": "review.started" } } }, "then": { "required": ["agentId", "reviewer"], "properties": { "reviewer": { "type": "string" } } } },
+    { "if": { "properties": { "type": { "const": "notice" } } }, "then": { "required": ["level", "text"], "properties": { "level": { "enum": ["info", "success", "warn", "error"] }, "code": { "type": "string" }, "key": { "type": "string" }, "params": { "type": "object" } } } }
   ]
 }

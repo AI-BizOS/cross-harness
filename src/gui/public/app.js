@@ -1,7 +1,7 @@
 // Troupe web UI. Same engine client and store as the terminal UI; everything an
 // agent wrote is inserted as text (never as HTML).
 import { createStore, lastGate } from '/store.js';
-import { translate } from '/i18n.js';
+import { engineText, translate } from '/i18n.js';
 
 const lang = document.documentElement.dataset.lang === 'zh' ? 'zh' : 'en';
 const t = (key, params) => translate(lang, key, params);
@@ -185,7 +185,14 @@ function react(event) {
       if (ui.dialog?.type === 'goals') invalidate('dialog');
       break;
     case 'notice':
-      toast(event.text, event.level);
+      toast(engineText(event, t), event.level);
+      break;
+    case 'review.started':
+      // The review dialog names the reviewer as soon as the engine has chosen one.
+      if (ui.dialog?.type === 'merge' && ui.dialog.agentId === event.agentId && ui.dialog.stage === 'reviewing') {
+        ui.dialog.reviewer = event.reviewer;
+        renderDialog();
+      }
       break;
     case 'project.updated':
       invalidate('top');
@@ -494,6 +501,7 @@ function stepRow(a) {
 }
 
 function entryNode(entry, agent) {
+  if (entry.params) entry = { ...entry, text: engineText(entry, t) };
   if (entry.role === 'system') return h('div', { class: 'entry system' }, `· ${entry.text}`, steps(entry.activities));
   if (entry.role === 'error') return h('div', { class: 'entry error' }, `✖ ${entry.text}${entry.code ? ` (${entry.code})` : ''}`, steps(entry.activities));
   if (entry.role === 'gate') {

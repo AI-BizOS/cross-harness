@@ -178,6 +178,47 @@ test('diff, review and merge bring an agent\'s work back', async (t) => {
   await assert.rejects(engine.call('merge', { agent: 'mock-acp' }), (error) => error.code === CODES.MERGE_NOTHING);
 });
 
+test('the review names its reviewer before the verdict and messages carry their parameters', async (t) => {
+  const { engine, events } = await open(t);
+  await engine.call('send', { text: '@mock-acp write it [edit:feature.txt=from the agent]' });
+  await idle(engine, 'mock-acp');
+  const author = engine.agentByName('mock-acp');
+  const created = author.transcript.find((e) => e.code === 'created');
+  assert.deepEqual(created.params, { branch: author.worktree.branch });
+  await engine.call('review', { agent: 'mock-acp', reviewer: 'mock-codex' });
+  const started = events.findIndex((e) => e.type === 'review.started');
+  assert.ok(started >= 0, 'review.started was sent');
+  assert.equal(events[started].agentId, author.id);
+  assert.equal(events[started].reviewer, 'mock-codex');
+  const answered = events.findIndex((e) => e.type === 'agent.message' && e.entry.role === 'assistant' && e.agentId === engine.agentByName('mock-codex').id);
+  assert.ok(started < answered, 'the reviewer is named before it answers');
+  const request = engine.agentByName('mock-codex').transcript.find((e) => e.role === 'review');
+  assert.deepEqual([request.key, request.params], ['review', { name: 'mock-acp' }]);
+});
+
+test('a project opened through a symbolic link gives agents their worktree', async (t) => {
+  const repo = gitRepo(t);
+  const link = path.join(tempDir(t, 'troupe-link-'), 'project');
+  fs.symlinkSync(repo.dir, link);
+  const home = tempDir(t, 'troupe-home-');
+  const state = path.join(home, 'mock');
+  fs.mkdirSync(state);
+  const engine = await new Engine({
+    root: link,
+    env: { ...gitEnv(), TROUPE_HOME: home, MOCK_STATE: state, MOCK_LOG: path.join(home, 'mock.log') },
+    builtins: false,
+    providers: mockProviders(),
+    config: { providers: {}, defaults: { mode: 'workspace', isolation: 'worktree', maxPerProvider: 3, idleMinutes: 15, gateTimeoutSec: 60, maxIterations: 5 }, lang: null },
+  }).open();
+  t.after(() => engine.close());
+  await engine.call('send', { text: '@mock-acp write it [edit:linked.txt=through the link]' });
+  await idle(engine, 'mock-acp');
+  const agent = engine.agentByName('mock-acp');
+  assert.equal(agent.cwd, agent.worktree.path);
+  assert.equal(agent.state, 'idle');
+  assert.equal(fs.readFileSync(path.join(agent.worktree.path, 'linked.txt'), 'utf8'), 'through the link\n');
+});
+
 test('a goal runs, is checked by Troupe and is met', async (t) => {
   const { engine, events, repo } = await open(t);
   const draft = await engine.call('goalSave', {

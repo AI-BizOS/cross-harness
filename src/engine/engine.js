@@ -20,7 +20,7 @@ import { Agent } from './agent.js';
 import { completions, looksLikeReview, parseDispatch, SPECIAL } from './dispatch.js';
 import { capMode, decide, ruleFor } from './policy.js';
 
-export const VERSION = '0.1.0';
+export const VERSION = '0.1.1';
 const BIN = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..', 'bin', 'troupe.js');
 const NAME = /^[a-z][a-z0-9_-]{0,31}$/;
 const KEY = /^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$/;
@@ -128,7 +128,7 @@ export class Engine {
       this.agents.set(agent.id, agent);
       if (record.state === 'running') {
         agent.state = 'stopped';
-        agent.record({ role: 'system', code: 'interrupted', text: 'Troupe exited while this agent was working. Check its changes before continuing.' });
+        agent.record({ role: 'system', code: 'interrupted', params: {}, text: 'Troupe exited while this agent was working. Check its changes before continuing.' });
       }
     }
     if (this.collabEnabled) {
@@ -232,7 +232,7 @@ export class Engine {
       writeJsonAtomic(path.join(this.stateDir, 'agents.json'), { schema: 1, agents: [...this.agents.values()].map((agent) => agent.toRecord()) });
       writeJsonAtomic(path.join(this.stateDir, 'decisions.json'), { schema: 1, decisions: [...this.decisions.values()] });
     } catch (error) {
-      this.notice('error', `Could not save Troupe state: ${error.message}`);
+      this.notice('error', `Could not save Troupe state: ${error.message}`, { code: 'state-save-failed', params: { error: error.message } });
     }
   }
 
@@ -253,7 +253,7 @@ export class Engine {
       this.providersCache = await this.detector.detectAll({ refresh });
       this.emit('project.updated', { project: this.project, providers: this.providersCache });
     } catch (error) {
-      this.notice('warn', `Could not check installed agents: ${error.message}`);
+      this.notice('warn', `Could not check installed agents: ${error.message}`, { code: 'detect-failed', params: { error: error.message } });
     }
     return this.providersCache;
   }
@@ -353,23 +353,28 @@ export class Engine {
       const dir = path.join(this.worktreeRoot, `${part}-${id.slice(0, 6)}`);
       const base = this.project.branch || this.project.head;
       worktree = await createWorktree({ root: this.project.gitRoot, dir, branch, base, env: this.env });
-      // A sub-directory project keeps its relative position inside the worktree.
-      cwd = path.join(worktree.path, path.relative(this.project.gitRoot, this.root));
+      // A sub-directory project keeps its relative position inside the worktree. Git
+      // reports its root with symbolic links resolved, so the project path is resolved too.
+      cwd = path.join(worktree.path, path.relative(this.project.gitRoot, fs.realpathSync(this.root)));
     } else {
       wantIsolation = 'shared';
     }
     const agent = new Agent(this, { id, name: agentName, provider: definition.id, mode: finalMode, model, isolation: wantIsolation, worktree, cwd, state: 'idle' });
     agent.state = 'idle';
     this.agents.set(agent.id, agent);
-    agent.record({
-      role: 'system',
-      code: 'created',
-      text: worktree ? `Working on branch ${worktree.branch} in its own worktree` : this.project.isGit ? 'Working directly in the project directory' : 'Working directly in the project directory (not a git repository, so no isolation)',
-    });
+    agent.record(
+      worktree
+        ? { role: 'system', code: 'created', params: { branch: worktree.branch }, text: `Working on branch ${worktree.branch} in its own worktree` }
+        : this.project.isGit
+          ? { role: 'system', code: 'created', key: 'created.shared', params: {}, text: 'Working directly in the project directory' }
+          : { role: 'system', code: 'created', key: 'created.plain', params: {}, text: 'Working directly in the project directory (not a git repository, so no isolation)' },
+    );
     if (MODE_RANK[finalMode] > MODE_RANK[chosenMode]) {
+      const key = finalMode === 'full' ? 'mode-raised.full' : 'mode-raised';
+      const params = { harness: definition.name, mode: chosenMode, final: finalMode };
       const text = `${definition.name} cannot run in ${chosenMode} mode, so this agent runs in ${finalMode} mode${finalMode === 'full' ? ' and acts without asking' : ''}`;
-      agent.record({ role: 'system', code: 'mode-raised', text });
-      this.notice('warn', `@${agent.name}: ${text}`, { agentId: agent.id });
+      agent.record({ role: 'system', code: 'mode-raised', key, params, text });
+      this.notice('warn', `@${agent.name}: ${text}`, { agentId: agent.id, code: 'mode-raised', key: `${key}.agent`, params: { ...params, name: agent.name } });
     }
     this.audit('agent.created', { agent: agent.name, provider: definition.id, mode: finalMode, isolation: wantIsolation, branch: worktree?.branch || null });
     this.agentChanged(agent);
@@ -449,7 +454,7 @@ export class Engine {
     const next = this.validateName(name, { except: agent });
     const before = agent.name;
     agent.name = next;
-    agent.record({ role: 'system', code: 'renamed', text: `Renamed from @${before} to @${next}` });
+    agent.record({ role: 'system', code: 'renamed', params: { before, next }, text: `Renamed from @${before} to @${next}` });
     for (const goal of this.goals.values()) {
       if (goal.assignees.includes(before)) {
         goal.assignees = goal.assignees.map((n) => (n === before ? next : n));
@@ -465,7 +470,7 @@ export class Engine {
     if (!PERMISSION_MODES.includes(mode)) throw fail(CODES.PERMISSION_INVALID, `Unknown mode "${mode}"`);
     if (!(agent.provider.modes || PERMISSION_MODES).includes(mode)) throw fail(CODES.PLAN_DENIED, `${agent.provider.name} cannot run in ${mode} mode`);
     agent.mode = mode;
-    agent.record({ role: 'system', code: 'mode', text: `Permission mode: ${mode}` });
+    agent.record({ role: 'system', code: 'mode', params: { mode }, text: `Permission mode: ${mode}` });
     // The harness applies its mode when a session starts; restart an idle one now.
     if (!agent.busy) await agent.closeSession('mode');
     agent.changed();
@@ -534,8 +539,8 @@ export class Engine {
       if (judge) {
         const request = assignments.map((a) => a.text).join('\n\n');
         void Promise.all(waits)
-          .then((answers) => judge.enqueue({ kind: 'compare', text: comparePrompt(request, answers), display: `Compare ${answers.length} answers`, from: { type: 'troupe', name: 'troupe' } }))
-          .catch((error) => this.notice('error', `Compare failed: ${error.message}`));
+          .then((answers) => judge.enqueue({ kind: 'compare', text: comparePrompt(request, answers), display: `Compare ${answers.length} answers`, displayKey: 'compare', displayParams: { n: answers.length }, from: { type: 'troupe', name: 'troupe' } }))
+          .catch((error) => this.notice('error', `Compare failed: ${error.message}`, { code: 'compare-failed', params: { error: error.message } }));
         dispatched.push({ agentId: judge.id, agent: judge.name, provider: judge.providerId, created: false, role: 'compare' });
       }
     }
@@ -652,7 +657,7 @@ export class Engine {
     const verdict = decide({ mode, request, rules: agent.rules, root: agent.worktree?.path || agent.cwd });
     if (verdict !== 'ask') {
       event.respond(verdict === 'allow' ? 'allow_once' : 'deny');
-      if (verdict === 'deny') this.notice('info', `Denied for @${agent.name} (${mode} mode): ${oneLine(event.title, 80)}`, { agentId: agent.id });
+      if (verdict === 'deny') this.notice('info', `Denied for @${agent.name} (${mode} mode): ${oneLine(event.title, 80)}`, { agentId: agent.id, code: 'denied', params: { name: agent.name, mode, title: oneLine(event.title, 80) } });
       this.audit('approval.auto', { agent: agent.name, kind: event.kind, title: oneLine(event.title, 200), verdict, mode });
       return;
     }
@@ -988,6 +993,7 @@ export class Engine {
     const chosen = await this.resolveReviewer(reviewer || this.suggestReviewer(author), author);
     const diff = await this.diffText(author);
     if (!diff.trim()) return { passed: true, summary: 'no changes to review', reviewer: chosen.name, answer: '' };
+    this.emit('review.started', { agentId: author.id, reviewer: chosen.name, reviewerId: chosen.id });
     const base = author.worktree?.base || this.project.branch || 'the main branch';
     const prompt = [
       `Review the changes @${author.name} (${author.provider.name}) made before they are merged into ${base}.`,
@@ -999,7 +1005,7 @@ export class Engine {
     ]
       .filter((line) => line !== '')
       .join('\n');
-    const answer = await this.askAndWait(chosen, { kind: 'review', text: prompt, display: `Review @${author.name}'s changes before merging`, modeCap: 'plan', from: { type: 'user', name: 'you' } });
+    const answer = await this.askAndWait(chosen, { kind: 'review', text: prompt, display: `Review @${author.name}'s changes before merging`, displayKey: 'review', displayParams: { name: author.name }, modeCap: 'plan', from: { type: 'user', name: 'you' } });
     if (answer.status !== 'answered') return { passed: false, summary: `review failed: ${answer.error}`, reviewer: chosen.name, answer: '' };
     const verdict = parseVerdict(answer.answer);
     this.audit('review', { author: author.name, reviewer: chosen.name, passed: verdict.passed });
@@ -1035,7 +1041,7 @@ export class Engine {
       // A turn may have started since the check above; the branch tip must still be what passed.
       if (gated && (await git(['rev-parse', 'HEAD^{tree}'], { cwd: agent.worktree.path, env: this.env })).trim() !== passedTree) throw changed();
       const result = await mergeBranch({ root: this.project.gitRoot, branch: agent.worktree.branch, message: `Merge ${agent.worktree.branch} (@${agent.name}, ${agent.provider.name})`, env: this.env });
-      agent.record({ role: 'system', code: 'merged', text: `Merged ${agent.worktree.branch} into ${result.target} (${result.commits} commit${result.commits === 1 ? '' : 's'})` });
+      agent.record({ role: 'system', code: 'merged', key: result.commits === 1 ? 'merged.one' : 'merged', params: { branch: agent.worktree.branch, target: result.target, commits: result.commits }, text: `Merged ${agent.worktree.branch} into ${result.target} (${result.commits} commit${result.commits === 1 ? '' : 's'})` });
       this.audit('merge', { agent: agent.name, branch: agent.worktree.branch, target: result.target, commit: result.commit, forced: Boolean(force && goal) });
       this.emit('merge.result', { agentId: agent.id, ok: true, result });
       await this.refreshProject();
@@ -1104,7 +1110,7 @@ export class Engine {
     this.writeGoal(running);
     for (const agent of agents) {
       agent.goalId = goal.id;
-      agent.enqueue({ kind: 'task', text: goalBrief(running), display: `Goal: ${running.title}`, from: { type: 'user', name: 'you' } });
+      agent.enqueue({ kind: 'task', text: goalBrief(running), display: `Goal: ${running.title}`, displayKey: 'goal', displayParams: { title: running.title }, from: { type: 'user', name: 'you' } });
     }
     this.audit('goal.started', { goal: goal.id, agents: agents.map((a) => a.name) });
     return running;
@@ -1152,7 +1158,7 @@ export class Engine {
       `Work to plan: ${text}`,
       DRAFT_INSTRUCTIONS.replace('AGENT', others[0] || 'codex'),
     ].join('\n\n');
-    const answer = await this.askAndWait(agent, { kind: 'draft', text: prompt, display: `Draft a goal: ${clip(text, 120)}`, modeCap: 'plan', from: { type: 'user', name: 'you' } });
+    const answer = await this.askAndWait(agent, { kind: 'draft', text: prompt, display: `Draft a goal: ${clip(text, 120)}`, displayKey: 'draft', displayParams: { text: clip(text, 120) }, modeCap: 'plan', from: { type: 'user', name: 'you' } });
     if (answer.status !== 'answered') throw fail(CODES.PROVIDER_FAILED, `@${agent.name} could not draft the goal: ${answer.error}`);
     const draft = parseGoalDraft(answer.answer);
     // A draft is always a new goal: an id from the agent could overwrite an approved one.
@@ -1195,14 +1201,14 @@ export class Engine {
         const allPassed = next.assignees.every((name) => [...next.gates].reverse().find((g) => g.agent === name)?.passed);
         if (allPassed && next.status === 'running') {
           next.status = 'met';
-          this.notice('success', `Goal met: ${next.title}`);
+          this.notice('success', `Goal met: ${next.title}`, { code: 'goal-met', params: { title: next.title } });
         }
       } else if (next.status === 'running' && !manual) {
         if (iteration >= next.maxIterations) {
           next.status = 'needs-you';
-          this.notice('warn', `Goal "${next.title}" still fails after ${iteration} checks; it needs you`);
+          this.notice('warn', `Goal "${next.title}" still fails after ${iteration} checks; it needs you`, { code: 'goal-stuck', params: { title: next.title, n: iteration } });
         } else {
-          agent.enqueue({ kind: 'feedback', text: feedbackPrompt(next, gate), display: `Check ${iteration}/${next.maxIterations}: ${failing.length} criteria not met`, from: { type: 'troupe', name: 'troupe' } });
+          agent.enqueue({ kind: 'feedback', text: feedbackPrompt(next, gate), display: `Check ${iteration}/${next.maxIterations}: ${failing.length} criteria not met`, displayKey: 'feedback', displayParams: { i: iteration, max: next.maxIterations, n: failing.length }, from: { type: 'troupe', name: 'troupe' } });
         }
       }
       this.writeGoal(next);
@@ -1222,6 +1228,8 @@ export class Engine {
       kind: 'review',
       text: reviewPrompt({ goal, criterion, author: author.name, diff }),
       display: `Review @${author.name}'s work: ${criterion.text}`,
+      displayKey: 'gate-review',
+      displayParams: { name: author.name, criterion: criterion.text },
       modeCap: 'plan',
       from: { type: 'troupe', name: 'troupe' },
     });

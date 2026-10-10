@@ -92,10 +92,10 @@ One engine serves one project. Every interface talks to it through the same smal
 
 Requirements: Node.js 20.11 or newer, git, and at least one coding agent installed and signed in (for example `claude`, `codex`, `opencode`, `kimi`).
 
-Install the 0.1.0 preview from its release (the built-in `@bizos` and the star prompt came after 0.1.0; until the next release, install from source to have them):
+Install the 0.1.1 preview from its release:
 
 ```sh
-npm install -g https://github.com/AI-BizOS/troupe/releases/download/v0.1.0/bizos-ai-troupe-0.1.0.tgz
+npm install -g https://github.com/AI-BizOS/troupe/releases/download/v0.1.1/bizos-ai-troupe-0.1.1.tgz
 troupe detect           # shows which agents Troupe found
 ```
 
@@ -214,7 +214,7 @@ Before it can start, the goal needs an independent check (a command or a review 
 
 | Agent | Command | Protocol | Checked |
 | --- | --- | --- | --- |
-| BizOS CLI (BizOS Code) | `bizos acp` | ACP | adapter checked |
+| BizOS CLI (BizOS Code) | `bizos acp` | ACP | real install |
 | Claude Code | `claude` | stream-json | documented |
 | Codex | `codex` | app-server | coding run |
 | OpenCode | `opencode acp` | ACP | handshake |
@@ -228,7 +228,7 @@ Before it can start, the goal needs an independent check (a command or a review 
 | Amp | `amp -x` | one-shot | documented |
 | Aider | `aider --message` | one-shot | documented |
 
-"Handshake" means Troupe's adapter completed the protocol handshake with a real install of that CLI (codex 0.159.1, opencode, kimi, dsh on 2026-10-09). "Coding run" means that, in addition, a real Codex session completed a coding task through `troupe run` before the 0.1.0 release, and the result was checked independently. "Adapter checked" means Troupe was run against BizOS Code's own ACP adapter (0.3.05) with the BizOS service stubbed out, but not yet against a full install. "Documented" integrations follow the vendor's documentation. Both are labelled "untested" in the interface. Troupe's automated tests exercise every protocol with mock agents, not real models. See [docs/providers.md](docs/providers.md).
+"Handshake" means Troupe's adapter completed the protocol handshake with a real install of that CLI (codex 0.159.1, opencode, kimi, dsh on 2026-10-09). "Coding run" means that, in addition, a real Codex session completed a coding task through `troupe run` before the 0.1.0 release, and the result was checked independently. "Real install" means Troupe was run against BizOS Code's own ACP adapter (0.3.05) with the BizOS service stubbed out, and the BizOS team then confirmed it with a signed-in install on 2026-10-10. "Documented" integrations follow the vendor's documentation and are labelled "untested" in the interface. Troupe's automated tests exercise every protocol with mock agents, not real models. See [docs/providers.md](docs/providers.md).
 
 ## BizOS CLI
 

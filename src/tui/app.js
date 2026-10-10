@@ -6,6 +6,7 @@ import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { armProblems } from '../goals/goal.js';
 import { setLang, t } from '../i18n/index.js';
+import { engineText } from '../i18n/strings.js';
 import { CODES } from '../protocol/errors.js';
 import { PERMISSION_MODES } from '../protocol/index.js';
 import { Editor } from './editor.js';
@@ -805,7 +806,11 @@ export async function runTui({ client, lang = 'en', terminal = null, env = proce
         if (ui.modal?.type === 'waiting' && !store.waiting().length) closeModal();
         break;
       case 'notice':
-        notice(event.level === 'success' ? 'success' : event.level, event.text);
+        notice(event.level === 'success' ? 'success' : event.level, engineText(event, t));
+        break;
+      case 'review.started':
+        // The review dialog names the reviewer as soon as the engine has chosen one.
+        if (ui.modal?.type === 'merge' && ui.modal.agentId === event.agentId && ui.modal.stage === 'reviewing') ui.modal.reviewer = event.reviewer;
         break;
       case 'merge.result':
         if (!event.ok && !ui.modal) notice('error', event.error?.message || 'merge failed');

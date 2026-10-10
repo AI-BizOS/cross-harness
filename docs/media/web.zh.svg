@@ -2,11 +2,11 @@
 <title>Troupe 网页界面：在浏览器里发出同一条消息，处理 BizOS CLI 的审批卡片，再由另一个代理审查后合并。</title>
 <style>
 .s{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei","Noto Sans CJK SC",Helvetica,Arial,sans-serif}.m{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Noto Sans Mono CJK SC",monospace}text{white-space:pre}
-.v{opacity:0;animation-duration:27.84s;animation-iteration-count:infinite;animation-timing-function:step-end}
-.scroll{animation-duration:27.84s;animation-iteration-count:infinite;animation-timing-function:step-end}
+.v{opacity:0;animation-duration:27.43s;animation-iteration-count:infinite;animation-timing-function:step-end}
+.scroll{animation-duration:27.43s;animation-iteration-count:infinite;animation-timing-function:step-end}
 .pulse{animation:pulse 1.2s ease-in-out infinite}@keyframes pulse{50%{opacity:.35}}
-.ptr{animation:ptr 27.84s linear infinite}
-.ring{fill:none;stroke:#2f6fed;stroke-width:2.5;opacity:0;animation-duration:27.84s;animation-iteration-count:infinite;animation-timing-function:ease-out}
+.ptr{animation:ptr 27.43s linear infinite}
+.ring{fill:none;stroke:#2f6fed;stroke-width:2.5;opacity:0;animation-duration:27.43s;animation-iteration-count:infinite;animation-timing-function:ease-out}
 .frame{fill:#e9e9ed;stroke:#d0d0d7}.edge{stroke:#d0d0d7}.urlbox{fill:#ffffff}.url{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei","Noto Sans CJK SC",Helvetica,Arial,sans-serif;font-size:12.5px;fill:#5f5f6b}.shadow{fill:#000;opacity:0.08}
 @media (prefers-color-scheme:dark){.frame{fill:#26272c;stroke:#3a3b42}.edge{stroke:#3a3b42}.urlbox{fill:#1b1c20}.url{fill:#a0a0ab}.shadow{opacity:0.35}}
 .f0{fill:#f6f6f8}
@@ -23,479 +23,428 @@
 .fb{fill:#e7eefe}
 .fc{fill:#6f8f1e}
 .fd{fill:#2e9d58}
-.fe{fill:#fff3dc}
-.ff{fill:#a35f00}
-.kg{stroke:#1c1c21}
-.fh{fill:#c62828}
-.fi{fill:#c94f7c}
-.fj{fill:#1a7f37}
+.fe{fill:#c94f7c}
+.kf{stroke:#1c1c21}
+.fg{fill:#c62828}
+.fh{fill:#1a7f37}
+.fi{fill:#fff3dc}
+.fj{fill:#a35f00}
 .kk{stroke:#a35f00}
 .fl{fill:#f2f2f6}
 .fm{fill:#e3f4e8}
 .fn{fill:#9b4dca}
 .fo{fill:#000000;fill-opacity:0.35}
 .kp{stroke:#1a7f37}
-@media (prefers-color-scheme:dark){.f0{fill:#111215}.f1{fill:#18191d}.k2{stroke:#2b2c32}.f3{fill:#2b2c32}.f4{fill:#e7e7ea}.f5{fill:#9b9ba6}.f6{fill:#202127}.f7{fill:#6c9cff}.k8{stroke:#6c9cff}.fb{fill:#1d2944}.fe{fill:#36290f}.ff{fill:#e0a640}.kg{stroke:#e7e7ea}.fh{fill:#ff6b63}.fj{fill:#4cc26a}.kk{stroke:#e0a640}.fl{fill:#1f2025}.fm{fill:#15301e}.kp{stroke:#4cc26a}}
-@keyframes v1{0%{opacity:1}19.557%{opacity:0}20.391%{opacity:1}}
-@keyframes v2{0%{opacity:1}19.557%{opacity:0}}
-@keyframes v3{0%{opacity:1}19.557%{opacity:0}}
-@keyframes v4{0%{opacity:1}19.557%{opacity:0}}
-@keyframes v5{0%{opacity:1}19.557%{opacity:0}}
-@keyframes v6{0%{opacity:1}19.557%{opacity:0}}
-@keyframes v7{0%{opacity:1}19.557%{opacity:0}}
-@keyframes v8{0%{opacity:1}19.557%{opacity:0}}
-@keyframes v9{0%{opacity:1}19.557%{opacity:0}}
-@keyframes va{0%{opacity:1}19.557%{opacity:0}}
-@keyframes vb{0%{opacity:1}19.557%{opacity:0}}
-@keyframes vc{0%{opacity:1}19.557%{opacity:0}}
-@keyframes vd{0%{opacity:1}19.557%{opacity:0}}
-@keyframes ve{0%{opacity:1}19.557%{opacity:0}}
-@keyframes vf{0%{opacity:1}19.557%{opacity:0}}
-@keyframes vg{0%{opacity:1}19.557%{opacity:0}}
-@keyframes vh{0%{opacity:1}19.557%{opacity:0}}
-@keyframes vi{0%{opacity:1}19.557%{opacity:0}}
-@keyframes vj{0%{opacity:1}19.557%{opacity:0}}
-@keyframes vk{0%{opacity:1}19.557%{opacity:0}}
-@keyframes vl{0%{opacity:1}19.557%{opacity:0}}
-@keyframes vm{0%{opacity:1}19.557%{opacity:0}}
-@keyframes vn{0%{opacity:1}19.557%{opacity:0}}
-@keyframes vo{0%{opacity:1}19.557%{opacity:0}}
-@keyframes vp{0%{opacity:1}19.557%{opacity:0}}
-@keyframes vq{0%{opacity:1}19.557%{opacity:0}}
-@keyframes vr{0%{opacity:1}19.557%{opacity:0}}
-@keyframes vs{0%{opacity:1}19.557%{opacity:0}}
-@keyframes vt{0%{opacity:1}19.557%{opacity:0}}
-@keyframes vu{0%{opacity:1}19.557%{opacity:0}}
-@keyframes vv{0%{opacity:1}19.557%{opacity:0}}
-@keyframes vw{0%{opacity:1}7.695%{opacity:0}}
-@keyframes vx{0%{opacity:1}6.865%{opacity:0}}
-@keyframes vy{0%{opacity:0}6.865%{opacity:1}7.695%{opacity:0}}
-@keyframes vz{0%{opacity:1}7.695%{opacity:0}}
-@keyframes v10{0%{opacity:0}7.695%{opacity:1}11.05%{opacity:0}19.557%{opacity:1}}
-@keyframes v11{0%{opacity:0}7.695%{opacity:1}11.05%{opacity:0}}
-@keyframes v12{0%{opacity:0}7.695%{opacity:1}8.518%{opacity:0}}
-@keyframes v13{0%{opacity:0}8.518%{opacity:1}9.355%{opacity:0}}
-@keyframes v14{0%{opacity:0}9.355%{opacity:1}10.195%{opacity:0}}
-@keyframes v15{0%{opacity:0}10.195%{opacity:1}11.05%{opacity:0}}
-@keyframes v16{0%{opacity:0}10.195%{opacity:1}11.05%{opacity:0}}
-@keyframes v17{0%{opacity:0}11.05%{opacity:1}19.557%{opacity:0}}
-@keyframes v18{0%{opacity:0}11.05%{opacity:1}19.557%{opacity:0}}
-@keyframes v19{0%{opacity:0}11.05%{opacity:1}19.557%{opacity:0}}
-@keyframes v1a{0%{opacity:0}11.05%{opacity:1}19.557%{opacity:0}}
-@keyframes v1b{0%{opacity:0}11.05%{opacity:1}11.895%{opacity:0}}
-@keyframes v1c{0%{opacity:0}11.895%{opacity:1}12.739%{opacity:0}}
-@keyframes v1d{0%{opacity:0}12.739%{opacity:1}13.597%{opacity:0}}
-@keyframes v1e{0%{opacity:0}13.597%{opacity:1}14.449%{opacity:0}}
-@keyframes v1f{0%{opacity:0}14.449%{opacity:1}19.557%{opacity:0}}
-@keyframes v1g{0%{opacity:0}19.557%{opacity:1}20.391%{opacity:0}}
-@keyframes v1h{0%{opacity:0}19.557%{opacity:1}20.391%{opacity:0}}
-@keyframes v1i{0%{opacity:0}19.557%{opacity:1}20.391%{opacity:0}34.265%{opacity:1}48.121%{opacity:0}}
-@keyframes v1j{0%{opacity:0}19.557%{opacity:1}20.391%{opacity:0}34.265%{opacity:1}48.121%{opacity:0}}
-@keyframes v1k{0%{opacity:0}19.557%{opacity:1}}
-@keyframes v1l{0%{opacity:0}19.557%{opacity:1}48.121%{opacity:0}}
-@keyframes v1m{0%{opacity:0}19.557%{opacity:1}}
-@keyframes v1n{0%{opacity:0}19.557%{opacity:1}27.321%{opacity:0}36.054%{opacity:1}48.121%{opacity:0}}
-@keyframes v1o{0%{opacity:0}19.557%{opacity:1}27.321%{opacity:0}36.054%{opacity:1}48.121%{opacity:0}}
-@keyframes v1p{0%{opacity:0}19.557%{opacity:1}24.709%{opacity:0}43.774%{opacity:1}}
-@keyframes v1q{0%{opacity:0}19.557%{opacity:1}56.887%{opacity:0}71.91%{opacity:1}77.191%{opacity:0}}
-@keyframes v1r{0%{opacity:0}19.557%{opacity:1}24.709%{opacity:0}48.121%{opacity:1}56.887%{opacity:0}71.91%{opacity:1}77.191%{opacity:0}}
-@keyframes v1s{0%{opacity:0}19.557%{opacity:1}24.709%{opacity:0}48.121%{opacity:1}56.887%{opacity:0}71.91%{opacity:1}77.191%{opacity:0}}
-@keyframes v1t{0%{opacity:0}19.557%{opacity:1}20.391%{opacity:0}}
-@keyframes v1u{0%{opacity:0}19.557%{opacity:1}20.391%{opacity:0}}
-@keyframes v1v{0%{opacity:0}19.557%{opacity:1}20.391%{opacity:0}}
-@keyframes v1w{0%{opacity:0}19.557%{opacity:1}20.391%{opacity:0}}
-@keyframes v1x{0%{opacity:0}19.557%{opacity:1}20.391%{opacity:0}}
-@keyframes v1y{0%{opacity:0}19.557%{opacity:1}27.321%{opacity:0}36.054%{opacity:1}48.121%{opacity:0}}
-@keyframes v1z{0%{opacity:0}19.557%{opacity:1}27.321%{opacity:0}36.054%{opacity:1}48.121%{opacity:0}}
-@keyframes v20{0%{opacity:0}19.557%{opacity:1}27.321%{opacity:0}36.054%{opacity:1}48.121%{opacity:0}}
-@keyframes v21{0%{opacity:0}19.557%{opacity:1}27.321%{opacity:0}36.054%{opacity:1}48.121%{opacity:0}}
-@keyframes v22{0%{opacity:0}19.557%{opacity:1}27.321%{opacity:0}36.054%{opacity:1}48.121%{opacity:0}}
-@keyframes v23{0%{opacity:0}19.557%{opacity:1}27.321%{opacity:0}36.054%{opacity:1}48.121%{opacity:0}}
-@keyframes v24{0%{opacity:0}19.557%{opacity:1}27.321%{opacity:0}36.054%{opacity:1}48.121%{opacity:0}}
-@keyframes v25{0%{opacity:0}19.557%{opacity:1}27.321%{opacity:0}36.054%{opacity:1}48.121%{opacity:0}}
-@keyframes v26{0%{opacity:0}19.557%{opacity:1}27.321%{opacity:0}36.054%{opacity:1}48.121%{opacity:0}}
-@keyframes v27{0%{opacity:0}19.557%{opacity:1}27.321%{opacity:0}36.054%{opacity:1}48.121%{opacity:0}}
-@keyframes v28{0%{opacity:0}19.557%{opacity:1}27.321%{opacity:0}36.054%{opacity:1}48.121%{opacity:0}}
-@keyframes v29{0%{opacity:0}19.557%{opacity:1}27.321%{opacity:0}36.054%{opacity:1}48.121%{opacity:0}}
-@keyframes v2a{0%{opacity:0}19.557%{opacity:1}27.321%{opacity:0}36.054%{opacity:1}48.121%{opacity:0}}
-@keyframes v2b{0%{opacity:0}19.557%{opacity:1}27.321%{opacity:0}36.054%{opacity:1}48.121%{opacity:0}}
-@keyframes v2c{0%{opacity:0}19.557%{opacity:1}27.321%{opacity:0}36.054%{opacity:1}48.121%{opacity:0}}
-@keyframes v2d{0%{opacity:0}19.557%{opacity:1}27.321%{opacity:0}36.054%{opacity:1}48.121%{opacity:0}}
-@keyframes v2e{0%{opacity:0}19.557%{opacity:1}27.321%{opacity:0}36.054%{opacity:1}48.121%{opacity:0}}
-@keyframes v2f{0%{opacity:0}19.557%{opacity:1}27.321%{opacity:0}36.054%{opacity:1}48.121%{opacity:0}}
-@keyframes v2g{0%{opacity:0}19.557%{opacity:1}27.321%{opacity:0}36.054%{opacity:1}48.121%{opacity:0}}
-@keyframes v2h{0%{opacity:0}19.557%{opacity:1}27.321%{opacity:0}36.054%{opacity:1}48.121%{opacity:0}}
-@keyframes v2i{0%{opacity:0}19.557%{opacity:1}27.321%{opacity:0}36.054%{opacity:1}48.121%{opacity:0}}
-@keyframes v2j{0%{opacity:0}19.557%{opacity:1}27.321%{opacity:0}36.054%{opacity:1}48.121%{opacity:0}}
-@keyframes v2k{0%{opacity:0}19.557%{opacity:1}27.321%{opacity:0}36.054%{opacity:1}48.121%{opacity:0}}
-@keyframes v2l{0%{opacity:0}19.557%{opacity:1}27.321%{opacity:0}36.054%{opacity:1}47.255%{opacity:0}}
-@keyframes v2m{0%{opacity:0}19.557%{opacity:1}27.321%{opacity:0}36.054%{opacity:1}47.255%{opacity:0}}
-@keyframes v2n{0%{opacity:0}19.557%{opacity:1}27.321%{opacity:0}36.054%{opacity:1}47.255%{opacity:0}}
-@keyframes v2o{0%{opacity:0}19.557%{opacity:1}27.321%{opacity:0}36.054%{opacity:1}47.255%{opacity:0}}
-@keyframes v2p{0%{opacity:0}19.557%{opacity:1}27.321%{opacity:0}36.054%{opacity:1}47.255%{opacity:0}}
-@keyframes v2q{0%{opacity:0}19.557%{opacity:1}20.391%{opacity:0}}
-@keyframes v2r{0%{opacity:0}19.557%{opacity:1}20.391%{opacity:0}}
-@keyframes v2s{0%{opacity:0}19.557%{opacity:1}}
-@keyframes v2t{0%{opacity:0}19.557%{opacity:1}}
-@keyframes v2u{0%{opacity:0}20.391%{opacity:1}}
-@keyframes v2v{0%{opacity:0}20.391%{opacity:1}34.265%{opacity:0}}
-@keyframes v2w{0%{opacity:0}20.391%{opacity:1}34.265%{opacity:0}}
-@keyframes v2x{0%{opacity:0}20.391%{opacity:1}34.265%{opacity:0}}
-@keyframes v2y{0%{opacity:0}20.391%{opacity:1}}
-@keyframes v2z{0%{opacity:0}20.391%{opacity:1}34.265%{opacity:0}}
-@keyframes v30{0%{opacity:0}20.391%{opacity:1}34.265%{opacity:0}}
-@keyframes v31{0%{opacity:0}20.391%{opacity:1}}
-@keyframes v32{0%{opacity:0}20.391%{opacity:1}27.321%{opacity:0}36.054%{opacity:1}}
-@keyframes v33{0%{opacity:0}20.391%{opacity:1}27.321%{opacity:0}36.054%{opacity:1}}
-@keyframes v34{0%{opacity:0}20.391%{opacity:1}27.321%{opacity:0}36.054%{opacity:1}}
-@keyframes v35{0%{opacity:0}20.391%{opacity:1}27.321%{opacity:0}36.054%{opacity:1}}
-@keyframes v36{0%{opacity:0}20.391%{opacity:1}27.321%{opacity:0}36.054%{opacity:1}}
-@keyframes v37{0%{opacity:0}20.391%{opacity:1}22.959%{opacity:0}}
-@keyframes v38{0%{opacity:0}19.557%{opacity:1}22.083%{opacity:0}}
-@keyframes v39{0%{opacity:0}20.391%{opacity:1}22.959%{opacity:0}}
-@keyframes v3a{0%{opacity:0}20.391%{opacity:1}22.959%{opacity:0}}
-@keyframes v3b{0%{opacity:0}20.391%{opacity:1}22.959%{opacity:0}}
-@keyframes v3c{0%{opacity:0}20.391%{opacity:1}22.959%{opacity:0}}
-@keyframes v3d{0%{opacity:0}22.959%{opacity:1}25.55%{opacity:0}}
-@keyframes v3e{0%{opacity:0}22.083%{opacity:1}25.55%{opacity:0}}
-@keyframes v3f{0%{opacity:0}22.959%{opacity:1}25.55%{opacity:0}}
-@keyframes v3g{0%{opacity:0}22.959%{opacity:1}25.55%{opacity:0}}
-@keyframes v3h{0%{opacity:0}22.959%{opacity:1}25.55%{opacity:0}}
-@keyframes v3i{0%{opacity:0}22.959%{opacity:1}25.55%{opacity:0}}
-@keyframes v3j{0%{opacity:0}24.709%{opacity:1}27.321%{opacity:0}}
-@keyframes v3k{0%{opacity:0}24.709%{opacity:1}48.121%{opacity:0}}
-@keyframes v3l{0%{opacity:0}24.709%{opacity:1}48.121%{opacity:0}}
-@keyframes v3m{0%{opacity:0}24.709%{opacity:1}56.887%{opacity:0}}
-@keyframes v3n{0%{opacity:0}25.55%{opacity:1}27.321%{opacity:0}}
-@keyframes v3o{0%{opacity:0}25.55%{opacity:1}27.321%{opacity:0}}
-@keyframes v3p{0%{opacity:0}25.55%{opacity:1}27.321%{opacity:0}}
-@keyframes v3q{0%{opacity:0}25.55%{opacity:1}27.321%{opacity:0}}
-@keyframes v3r{0%{opacity:0}25.55%{opacity:1}27.321%{opacity:0}}
-@keyframes v3s{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v3t{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v3u{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v3v{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v3w{0%{opacity:0}27.321%{opacity:1}43.774%{opacity:0}}
-@keyframes v3x{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v3y{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v3z{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v40{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v41{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v42{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v43{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v45{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v46{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v47{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v48{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v49{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v4a{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v4b{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v4c{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v4d{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v4e{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v4f{0%{opacity:0}27.321%{opacity:1}34.265%{opacity:0}}
-@keyframes v4g{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v4h{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v4i{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v4j{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v4k{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v4l{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v4m{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v4n{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v4o{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v4p{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v4q{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v4r{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v4s{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v4t{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v4u{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v4v{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v4w{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v4x{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v4y{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v4z{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v50{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v51{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v52{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v53{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v54{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v55{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v56{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v57{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v58{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v59{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v5a{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v5b{0%{opacity:0}27.321%{opacity:1}29.099%{opacity:0}}
-@keyframes v5c{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v5d{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v5e{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v5f{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v5g{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v5h{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v5i{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v5j{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v5k{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v5l{0%{opacity:0}29.099%{opacity:1}32.562%{opacity:0}}
-@keyframes v5m{0%{opacity:0}32.562%{opacity:1}36.054%{opacity:0}}
-@keyframes v5n{0%{opacity:0}34.265%{opacity:1}}
-@keyframes v5o{0%{opacity:0}34.265%{opacity:1}}
-@keyframes v5p{0%{opacity:0}34.265%{opacity:1}}
-@keyframes v5q{0%{opacity:0}34.265%{opacity:1}36.054%{opacity:0}}
-@keyframes v5r{0%{opacity:0}27.321%{opacity:1}36.054%{opacity:0}}
-@keyframes v5s{0%{opacity:0}36.054%{opacity:1}41.213%{opacity:0}}
-@keyframes v5t{0%{opacity:0}36.054%{opacity:1}39.488%{opacity:0}}
-@keyframes v5u{0%{opacity:0}36.054%{opacity:1}36.895%{opacity:0}}
-@keyframes v5v{0%{opacity:0}36.054%{opacity:1}36.895%{opacity:0}}
-@keyframes v5w{0%{opacity:0}36.054%{opacity:1}36.895%{opacity:0}}
-@keyframes v5x{0%{opacity:0}36.054%{opacity:1}41.213%{opacity:0}}
-@keyframes v5y{0%{opacity:0}41.213%{opacity:1}42.93%{opacity:0}}
-@keyframes v5z{0%{opacity:0}41.213%{opacity:1}42.93%{opacity:0}}
-@keyframes v60{0%{opacity:0}41.213%{opacity:1}42.93%{opacity:0}}
-@keyframes v61{0%{opacity:0}41.213%{opacity:1}42.93%{opacity:0}}
-@keyframes v62{0%{opacity:0}42.93%{opacity:1}43.774%{opacity:0}}
-@keyframes v63{0%{opacity:0}22.959%{opacity:1}27.321%{opacity:0}36.054%{opacity:1}43.774%{opacity:0}}
-@keyframes v64{0%{opacity:0}22.959%{opacity:1}27.321%{opacity:0}36.054%{opacity:1}43.774%{opacity:0}}
-@keyframes v65{0%{opacity:0}22.959%{opacity:1}27.321%{opacity:0}36.054%{opacity:1}43.774%{opacity:0}}
-@keyframes v66{0%{opacity:0}25.55%{opacity:1}27.321%{opacity:0}36.054%{opacity:1}43.774%{opacity:0}}
-@keyframes v67{0%{opacity:0}25.55%{opacity:1}27.321%{opacity:0}36.054%{opacity:1}43.774%{opacity:0}}
-@keyframes v68{0%{opacity:0}25.55%{opacity:1}27.321%{opacity:0}36.054%{opacity:1}43.774%{opacity:0}}
-@keyframes v69{0%{opacity:0}36.054%{opacity:1}43.774%{opacity:0}}
-@keyframes v6a{0%{opacity:0}36.054%{opacity:1}43.774%{opacity:0}}
-@keyframes v6b{0%{opacity:0}36.895%{opacity:1}43.774%{opacity:0}}
-@keyframes v6c{0%{opacity:0}36.895%{opacity:1}43.774%{opacity:0}}
-@keyframes v6d{0%{opacity:0}36.895%{opacity:1}43.774%{opacity:0}}
-@keyframes v6e{0%{opacity:0}39.488%{opacity:1}43.774%{opacity:0}}
-@keyframes v6f{0%{opacity:0}42.93%{opacity:1}43.774%{opacity:0}}
-@keyframes v6g{0%{opacity:0}42.93%{opacity:1}43.774%{opacity:0}}
-@keyframes v6h{0%{opacity:0}42.93%{opacity:1}43.774%{opacity:0}}
-@keyframes v6i{0%{opacity:0}42.93%{opacity:1}43.774%{opacity:0}}
-@keyframes v6j{0%{opacity:0}42.93%{opacity:1}43.774%{opacity:0}}
-@keyframes v6k{0%{opacity:0}42.93%{opacity:1}43.774%{opacity:0}}
-@keyframes v6l{0%{opacity:0}43.774%{opacity:1}47.255%{opacity:0}}
-@keyframes v6m{0%{opacity:0}43.774%{opacity:1}47.255%{opacity:0}}
-@keyframes v6n{0%{opacity:0}43.774%{opacity:1}47.255%{opacity:0}}
-@keyframes v6o{0%{opacity:0}43.774%{opacity:1}47.255%{opacity:0}}
-@keyframes v6p{0%{opacity:0}43.774%{opacity:1}47.255%{opacity:0}}
-@keyframes v6q{0%{opacity:0}43.774%{opacity:1}47.255%{opacity:0}}
-@keyframes v6r{0%{opacity:0}43.774%{opacity:1}47.255%{opacity:0}}
-@keyframes v6s{0%{opacity:0}43.774%{opacity:1}47.255%{opacity:0}}
-@keyframes v6t{0%{opacity:0}43.774%{opacity:1}47.255%{opacity:0}}
-@keyframes v6u{0%{opacity:0}43.774%{opacity:1}47.255%{opacity:0}}
-@keyframes v6v{0%{opacity:0}43.774%{opacity:1}47.255%{opacity:0}}
-@keyframes v6w{0%{opacity:0}43.774%{opacity:1}47.255%{opacity:0}}
-@keyframes v6x{0%{opacity:0}43.774%{opacity:1}47.255%{opacity:0}}
-@keyframes v6y{0%{opacity:0}43.774%{opacity:1}47.255%{opacity:0}}
-@keyframes v6z{0%{opacity:0}43.774%{opacity:1}47.255%{opacity:0}}
-@keyframes v70{0%{opacity:0}43.774%{opacity:1}47.255%{opacity:0}}
-@keyframes v71{0%{opacity:0}43.774%{opacity:1}47.255%{opacity:0}}
-@keyframes v72{0%{opacity:0}43.774%{opacity:1}47.255%{opacity:0}}
-@keyframes v73{0%{opacity:0}43.774%{opacity:1}47.255%{opacity:0}}
-@keyframes v74{0%{opacity:0}48.121%{opacity:1}56.887%{opacity:0}71.91%{opacity:1}77.191%{opacity:0}}
-@keyframes v75{0%{opacity:0}48.121%{opacity:1}56.887%{opacity:0}71.91%{opacity:1}77.191%{opacity:0}}
-@keyframes v76{0%{opacity:0}48.121%{opacity:1}}
-@keyframes v77{0%{opacity:0}48.121%{opacity:1}}
-@keyframes v78{0%{opacity:0}48.121%{opacity:1}}
-@keyframes v79{0%{opacity:0}48.121%{opacity:1}}
-@keyframes v7a{0%{opacity:0}48.121%{opacity:1}}
-@keyframes v7b{0%{opacity:0}48.121%{opacity:1}}
-@keyframes v7c{0%{opacity:0}48.121%{opacity:1}}
-@keyframes v7d{0%{opacity:0}48.121%{opacity:1}}
-@keyframes v7e{0%{opacity:0}48.121%{opacity:1}}
-@keyframes v7f{0%{opacity:0}48.121%{opacity:1}}
-@keyframes v7g{0%{opacity:0}48.121%{opacity:1}}
-@keyframes v7h{0%{opacity:0}48.121%{opacity:1}}
-@keyframes v7i{0%{opacity:0}48.121%{opacity:1}}
-@keyframes v7j{0%{opacity:0}48.121%{opacity:1}}
-@keyframes v7k{0%{opacity:0}48.121%{opacity:1}}
-@keyframes v7l{0%{opacity:0}48.121%{opacity:1}}
-@keyframes v7m{0%{opacity:0}48.121%{opacity:1}61.28%{opacity:0}63.903%{opacity:1}}
-@keyframes v7n{0%{opacity:0}48.121%{opacity:1}}
-@keyframes v7o{0%{opacity:0}48.121%{opacity:1}}
-@keyframes v7p{0%{opacity:0}48.121%{opacity:1}}
-@keyframes v7q{0%{opacity:0}48.121%{opacity:1}}
-@keyframes v7r{0%{opacity:0}48.121%{opacity:1}}
-@keyframes v7s{0%{opacity:0}48.121%{opacity:1}}
-@keyframes v7t{0%{opacity:0}48.121%{opacity:1}}
-@keyframes v7u{0%{opacity:0}48.121%{opacity:1}}
-@keyframes v7v{0%{opacity:0}48.121%{opacity:1}}
-@keyframes v7w{0%{opacity:0}48.121%{opacity:1}}
-@keyframes v7x{0%{opacity:0}48.121%{opacity:1}}
-@keyframes v7y{0%{opacity:0}48.121%{opacity:1}}
-@keyframes v7z{0%{opacity:0}48.121%{opacity:1}}
-@keyframes v80{0%{opacity:0}48.121%{opacity:1}}
-@keyframes v81{0%{opacity:0}48.121%{opacity:1}}
-@keyframes v82{0%{opacity:0}48.121%{opacity:1}}
-@keyframes v83{0%{opacity:0}48.121%{opacity:1}}
-@keyframes v84{0%{opacity:0}48.121%{opacity:1}}
-@keyframes v85{0%{opacity:0}48.121%{opacity:1}}
-@keyframes v86{0%{opacity:0}48.121%{opacity:1}}
-@keyframes v87{0%{opacity:0}48.121%{opacity:1}}
-@keyframes v88{0%{opacity:0}48.121%{opacity:1}}
-@keyframes v89{0%{opacity:0}48.121%{opacity:1}}
-@keyframes v8a{0%{opacity:0}48.121%{opacity:1}}
-@keyframes v8b{0%{opacity:0}48.121%{opacity:1}}
-@keyframes v8c{0%{opacity:0}48.121%{opacity:1}}
-@keyframes v8d{0%{opacity:0}48.121%{opacity:1}}
-@keyframes v8e{0%{opacity:0}48.121%{opacity:1}}
-@keyframes v8f{0%{opacity:0}48.121%{opacity:1}}
-@keyframes v8g{0%{opacity:0}48.121%{opacity:1}}
-@keyframes v8h{0%{opacity:0}48.121%{opacity:1}}
-@keyframes v8i{0%{opacity:0}48.121%{opacity:1}}
-@keyframes v8j{0%{opacity:0}48.121%{opacity:1}}
-@keyframes v8k{0%{opacity:0}48.121%{opacity:1}}
-@keyframes v8l{0%{opacity:0}48.121%{opacity:1}}
-@keyframes v8m{0%{opacity:0}48.121%{opacity:1}}
-@keyframes v8n{0%{opacity:0}48.121%{opacity:1}}
-@keyframes v8o{0%{opacity:0}61.28%{opacity:1}63.903%{opacity:0}}
-@keyframes v8p{0%{opacity:0}48.121%{opacity:1}}
-@keyframes v8q{0%{opacity:0}88.86%{opacity:1}}
-@keyframes v8r{0%{opacity:0}19.557%{opacity:1}}
-@keyframes v8s{0%{opacity:0}19.557%{opacity:1}24.709%{opacity:0}56.887%{opacity:1}}
-@keyframes v8t{0%{opacity:0}56.887%{opacity:1}71.91%{opacity:0}77.191%{opacity:1}}
-@keyframes v8u{0%{opacity:0}56.887%{opacity:1}71.91%{opacity:0}77.191%{opacity:1}}
-@keyframes v8v{0%{opacity:0}56.887%{opacity:1}71.91%{opacity:0}77.191%{opacity:1}}
-@keyframes v8w{0%{opacity:0}88.86%{opacity:1}}
-@keyframes v8x{0%{opacity:0}47.255%{opacity:1}48.121%{opacity:0}}
-@keyframes v8y{0%{opacity:0}47.255%{opacity:1}48.121%{opacity:0}}
-@keyframes v8z{0%{opacity:0}47.255%{opacity:1}48.121%{opacity:0}}
-@keyframes v90{0%{opacity:0}47.255%{opacity:1}48.121%{opacity:0}}
-@keyframes v91{0%{opacity:0}47.255%{opacity:1}48.121%{opacity:0}}
-@keyframes v92{0%{opacity:0}47.255%{opacity:1}48.121%{opacity:0}}
-@keyframes v93{0%{opacity:0}47.255%{opacity:1}48.121%{opacity:0}}
-@keyframes v94{0%{opacity:0}47.255%{opacity:1}48.121%{opacity:0}}
-@keyframes v95{0%{opacity:0}47.255%{opacity:1}48.121%{opacity:0}}
-@keyframes v96{0%{opacity:0}47.255%{opacity:1}48.121%{opacity:0}}
-@keyframes v97{0%{opacity:0}47.255%{opacity:1}48.121%{opacity:0}}
-@keyframes v98{0%{opacity:0}47.255%{opacity:1}48.121%{opacity:0}}
-@keyframes v99{0%{opacity:0}47.255%{opacity:1}48.121%{opacity:0}}
-@keyframes v9a{0%{opacity:0}47.255%{opacity:1}48.121%{opacity:0}}
-@keyframes v9b{0%{opacity:0}47.255%{opacity:1}48.121%{opacity:0}}
-@keyframes v9c{0%{opacity:0}47.255%{opacity:1}48.121%{opacity:0}}
-@keyframes v9d{0%{opacity:0}47.255%{opacity:1}48.121%{opacity:0}}
-@keyframes v9e{0%{opacity:0}47.255%{opacity:1}48.121%{opacity:0}}
-@keyframes v9f{0%{opacity:0}47.255%{opacity:1}48.121%{opacity:0}}
-@keyframes v9g{0%{opacity:0}47.255%{opacity:1}48.121%{opacity:0}}
-@keyframes v9h{0%{opacity:0}47.255%{opacity:1}48.121%{opacity:0}}
-@keyframes v9i{0%{opacity:0}47.255%{opacity:1}48.121%{opacity:0}}
-@keyframes v9j{0%{opacity:0}47.255%{opacity:1}48.121%{opacity:0}}
-@keyframes v9k{0%{opacity:0}47.255%{opacity:1}48.121%{opacity:0}}
-@keyframes v9l{0%{opacity:0}47.255%{opacity:1}48.121%{opacity:0}}
-@keyframes v9m{0%{opacity:0}47.255%{opacity:1}48.121%{opacity:0}}
-@keyframes v9n{0%{opacity:0}47.255%{opacity:1}48.121%{opacity:0}}
-@keyframes v9o{0%{opacity:0}47.255%{opacity:1}48.121%{opacity:0}}
-@keyframes v9p{0%{opacity:0}47.255%{opacity:1}48.121%{opacity:0}}
-@keyframes v9q{0%{opacity:0}47.255%{opacity:1}48.121%{opacity:0}}
-@keyframes v9r{0%{opacity:0}47.255%{opacity:1}48.121%{opacity:0}}
-@keyframes s9s{0%{transform:translateY(130.5px)}}
-@keyframes v9u{0%{opacity:0}47.255%{opacity:1}48.121%{opacity:0}}
-@keyframes v9w{0%{opacity:0}88.86%{opacity:1}}
-@keyframes v9x{0%{opacity:0}88.86%{opacity:1}}
-@keyframes v9y{0%{opacity:0}63.903%{opacity:1}88.86%{opacity:0}}
-@keyframes v9z{0%{opacity:0}63.903%{opacity:1}88.86%{opacity:0}}
-@keyframes va0{0%{opacity:0}63.903%{opacity:1}88.86%{opacity:0}}
-@keyframes va1{0%{opacity:0}63.903%{opacity:1}88.86%{opacity:0}}
-@keyframes va2{0%{opacity:0}63.903%{opacity:1}88.86%{opacity:0}}
-@keyframes va3{0%{opacity:0}63.903%{opacity:1}71.045%{opacity:0}}
-@keyframes va4{0%{opacity:0}63.903%{opacity:1}71.045%{opacity:0}}
-@keyframes va5{0%{opacity:0}63.903%{opacity:1}71.045%{opacity:0}}
-@keyframes va6{0%{opacity:0}63.903%{opacity:1}71.045%{opacity:0}}
-@keyframes va7{0%{opacity:0}63.903%{opacity:1}71.045%{opacity:0}}
-@keyframes va8{0%{opacity:0}63.903%{opacity:1}71.045%{opacity:0}}
-@keyframes va9{0%{opacity:0}63.903%{opacity:1}71.045%{opacity:0}}
-@keyframes vaa{0%{opacity:0}63.903%{opacity:1}71.045%{opacity:0}}
-@keyframes vab{0%{opacity:0}63.903%{opacity:1}71.045%{opacity:0}}
-@keyframes vac{0%{opacity:0}63.903%{opacity:1}71.045%{opacity:0}}
-@keyframes vad{0%{opacity:0}63.903%{opacity:1}71.045%{opacity:0}}
-@keyframes vae{0%{opacity:0}63.903%{opacity:1}71.045%{opacity:0}}
-@keyframes vaf{0%{opacity:0}63.903%{opacity:1}71.045%{opacity:0}}
-@keyframes vag{0%{opacity:0}63.903%{opacity:1}71.045%{opacity:0}}
-@keyframes vah{0%{opacity:0}63.903%{opacity:1}71.045%{opacity:0}}
-@keyframes vai{0%{opacity:0}63.903%{opacity:1}71.045%{opacity:0}}
-@keyframes vaj{0%{opacity:0}63.903%{opacity:1}71.045%{opacity:0}}
-@keyframes vak{0%{opacity:0}63.903%{opacity:1}71.045%{opacity:0}}
-@keyframes val{0%{opacity:0}63.903%{opacity:1}71.045%{opacity:0}}
-@keyframes vam{0%{opacity:0}63.903%{opacity:1}71.045%{opacity:0}}
-@keyframes van{0%{opacity:0}63.903%{opacity:1}71.045%{opacity:0}}
-@keyframes vao{0%{opacity:0}63.903%{opacity:1}71.045%{opacity:0}}
-@keyframes vap{0%{opacity:0}63.903%{opacity:1}71.045%{opacity:0}}
-@keyframes vaq{0%{opacity:0}63.903%{opacity:1}71.045%{opacity:0}}
-@keyframes var{0%{opacity:0}63.903%{opacity:1}71.045%{opacity:0}}
-@keyframes vas{0%{opacity:0}63.903%{opacity:1}71.045%{opacity:0}}
-@keyframes vat{0%{opacity:0}63.903%{opacity:1}71.045%{opacity:0}}
-@keyframes vau{0%{opacity:0}63.903%{opacity:1}71.045%{opacity:0}}
-@keyframes vaw{0%{opacity:0}63.903%{opacity:1}71.045%{opacity:0}}
-@keyframes vax{0%{opacity:0}63.903%{opacity:1}71.045%{opacity:0}}
-@keyframes vay{0%{opacity:0}63.903%{opacity:1}71.045%{opacity:0}}
-@keyframes vaz{0%{opacity:0}71.045%{opacity:1}77.191%{opacity:0}}
-@keyframes vb0{0%{opacity:0}71.045%{opacity:1}77.191%{opacity:0}}
-@keyframes vb1{0%{opacity:0}71.045%{opacity:1}77.191%{opacity:0}}
-@keyframes vb2{0%{opacity:0}71.045%{opacity:1}77.191%{opacity:0}}
-@keyframes vb3{0%{opacity:0}71.045%{opacity:1}77.191%{opacity:0}}
-@keyframes vb4{0%{opacity:0}71.045%{opacity:1}77.191%{opacity:0}}
-@keyframes vb5{0%{opacity:0}71.045%{opacity:1}77.191%{opacity:0}}
-@keyframes vb6{0%{opacity:0}71.045%{opacity:1}77.191%{opacity:0}}
-@keyframes vb7{0%{opacity:0}71.045%{opacity:1}77.191%{opacity:0}}
-@keyframes vb8{0%{opacity:0}71.045%{opacity:1}77.191%{opacity:0}}
-@keyframes vb9{0%{opacity:0}71.045%{opacity:1}77.191%{opacity:0}}
-@keyframes vba{0%{opacity:0}71.045%{opacity:1}77.191%{opacity:0}}
-@keyframes vbb{0%{opacity:0}71.045%{opacity:1}77.191%{opacity:0}}
-@keyframes vbc{0%{opacity:0}71.045%{opacity:1}77.191%{opacity:0}}
-@keyframes vbd{0%{opacity:0}71.045%{opacity:1}77.191%{opacity:0}}
-@keyframes vbe{0%{opacity:0}71.045%{opacity:1}77.191%{opacity:0}}
-@keyframes vbf{0%{opacity:0}71.045%{opacity:1}77.191%{opacity:0}}
-@keyframes vbg{0%{opacity:0}71.045%{opacity:1}77.191%{opacity:0}}
-@keyframes vbh{0%{opacity:0}71.045%{opacity:1}77.191%{opacity:0}}
-@keyframes vbi{0%{opacity:0}71.045%{opacity:1}77.191%{opacity:0}}
-@keyframes vbj{0%{opacity:0}71.045%{opacity:1}77.191%{opacity:0}}
-@keyframes vbk{0%{opacity:0}71.045%{opacity:1}77.191%{opacity:0}}
-@keyframes vbl{0%{opacity:0}71.045%{opacity:1}77.191%{opacity:0}}
-@keyframes vbm{0%{opacity:0}71.045%{opacity:1}77.191%{opacity:0}}
-@keyframes vbo{0%{opacity:0}71.045%{opacity:1}77.191%{opacity:0}}
-@keyframes vbp{0%{opacity:0}71.045%{opacity:1}77.191%{opacity:0}}
-@keyframes vbq{0%{opacity:0}71.045%{opacity:1}77.191%{opacity:0}}
-@keyframes vbr{0%{opacity:0}77.191%{opacity:1}88.86%{opacity:0}}
-@keyframes vbs{0%{opacity:0}77.191%{opacity:1}88.86%{opacity:0}}
-@keyframes vbt{0%{opacity:0}77.191%{opacity:1}88.86%{opacity:0}}
-@keyframes vbu{0%{opacity:0}77.191%{opacity:1}88.86%{opacity:0}}
-@keyframes vbv{0%{opacity:0}77.191%{opacity:1}88.86%{opacity:0}}
-@keyframes vbw{0%{opacity:0}77.191%{opacity:1}88.86%{opacity:0}}
-@keyframes vbx{0%{opacity:0}77.191%{opacity:1}88.86%{opacity:0}}
-@keyframes vby{0%{opacity:0}77.191%{opacity:1}88.86%{opacity:0}}
-@keyframes vbz{0%{opacity:0}77.191%{opacity:1}88.86%{opacity:0}}
-@keyframes vc0{0%{opacity:0}77.191%{opacity:1}88.86%{opacity:0}}
-@keyframes vc1{0%{opacity:0}77.191%{opacity:1}88.86%{opacity:0}}
-@keyframes vc2{0%{opacity:0}77.191%{opacity:1}88.86%{opacity:0}}
-@keyframes vc3{0%{opacity:0}77.191%{opacity:1}88.86%{opacity:0}}
-@keyframes vc4{0%{opacity:0}77.191%{opacity:1}88.86%{opacity:0}}
-@keyframes vc5{0%{opacity:0}77.191%{opacity:1}88.86%{opacity:0}}
-@keyframes vc6{0%{opacity:0}77.191%{opacity:1}88.86%{opacity:0}}
-@keyframes vc7{0%{opacity:0}77.191%{opacity:1}88.86%{opacity:0}}
-@keyframes vc8{0%{opacity:0}77.191%{opacity:1}88.86%{opacity:0}}
-@keyframes vc9{0%{opacity:0}77.191%{opacity:1}88.86%{opacity:0}}
-@keyframes vca{0%{opacity:0}77.191%{opacity:1}88.86%{opacity:0}}
-@keyframes vcb{0%{opacity:0}77.191%{opacity:1}88.86%{opacity:0}}
-@keyframes vcc{0%{opacity:0}77.191%{opacity:1}88.86%{opacity:0}}
-@keyframes vcd{0%{opacity:0}77.191%{opacity:1}88.86%{opacity:0}}
-@keyframes vce{0%{opacity:0}77.191%{opacity:1}88.86%{opacity:0}}
-@keyframes vcf{0%{opacity:0}77.191%{opacity:1}88.86%{opacity:0}}
-@keyframes vcg{0%{opacity:0}77.191%{opacity:1}88.86%{opacity:0}}
-@keyframes vch{0%{opacity:0}77.191%{opacity:1}88.86%{opacity:0}}
-@keyframes vci{0%{opacity:0}77.191%{opacity:1}88.86%{opacity:0}}
-@keyframes vcj{0%{opacity:0}77.191%{opacity:1}88.86%{opacity:0}}
-@keyframes vck{0%{opacity:0}77.191%{opacity:1}88.86%{opacity:0}}
-@keyframes scl{0%{transform:translateY(21px)}}
-@keyframes vcn{0%{opacity:0}63.903%{opacity:1}88.86%{opacity:0}}
-@keyframes ptr{0%{transform:translate(669.6px,363px)}0%{transform:translate(669.6px,363px)}3.621%{transform:translate(669.6px,363px)}5.956%{transform:translate(473px,618.7px)}15.742%{transform:translate(473px,618.7px)}18.077%{transform:translate(1038px,629.5px)}32.72%{transform:translate(1038px,629.5px)}35.055%{transform:translate(494.27px,165.25px)}59.94%{transform:translate(494.27px,165.25px)}62.275%{transform:translate(864px,76.5px)}67.567%{transform:translate(864px,76.5px)}69.902%{transform:translate(248px,121.5px)}84.89%{transform:translate(248px,121.5px)}87.225%{transform:translate(143px,199.5px)}100%{transform:translate(143px,199.5px)}}
-@keyframes rco{0%,6.614%{opacity:0;transform:scale(.2)}6.617%{opacity:.55;transform:scale(.2)}8.23%{opacity:0;transform:scale(1)}100%{opacity:0}}
-@keyframes rcp{0%,18.728%{opacity:0;transform:scale(.2)}18.731%{opacity:.55;transform:scale(.2)}20.344%{opacity:0;transform:scale(1)}100%{opacity:0}}
-@keyframes rcq{0%,35.713%{opacity:0;transform:scale(.2)}35.716%{opacity:.55;transform:scale(.2)}37.329%{opacity:0;transform:scale(1)}100%{opacity:0}}
-@keyframes rcr{0%,62.929%{opacity:0;transform:scale(.2)}62.933%{opacity:.55;transform:scale(.2)}64.546%{opacity:0;transform:scale(1)}100%{opacity:0}}
-@keyframes rcs{0%,70.553%{opacity:0;transform:scale(.2)}70.556%{opacity:.55;transform:scale(.2)}72.169%{opacity:0;transform:scale(1)}100%{opacity:0}}
-@keyframes rct{0%,87.883%{opacity:0;transform:scale(.2)}87.886%{opacity:.55;transform:scale(.2)}89.499%{opacity:0;transform:scale(1)}100%{opacity:0}}
-@media (prefers-reduced-motion:reduce){.v,.scroll,.ptr,.ring,.pulse{animation:none!important}.v{opacity:0}.v.p{opacity:1}.ptr,.ring{display:none}.s9s{transform:translateY(130.5px)!important}.scl{transform:translateY(21px)!important}}
+@media (prefers-color-scheme:dark){.f0{fill:#111215}.f1{fill:#18191d}.k2{stroke:#2b2c32}.f3{fill:#2b2c32}.f4{fill:#e7e7ea}.f5{fill:#9b9ba6}.f6{fill:#202127}.f7{fill:#6c9cff}.k8{stroke:#6c9cff}.fb{fill:#1d2944}.kf{stroke:#e7e7ea}.fg{fill:#ff6b63}.fh{fill:#4cc26a}.fi{fill:#36290f}.fj{fill:#e0a640}.kk{stroke:#e0a640}.fl{fill:#1f2025}.fm{fill:#15301e}.kp{stroke:#4cc26a}}
+@keyframes v1{0%{opacity:1}19.705%{opacity:0}}
+@keyframes v2{0%{opacity:1}19.705%{opacity:0}}
+@keyframes v3{0%{opacity:1}19.705%{opacity:0}}
+@keyframes v4{0%{opacity:1}19.705%{opacity:0}}
+@keyframes v5{0%{opacity:1}19.705%{opacity:0}}
+@keyframes v6{0%{opacity:1}19.705%{opacity:0}}
+@keyframes v7{0%{opacity:1}19.705%{opacity:0}}
+@keyframes v8{0%{opacity:1}19.705%{opacity:0}}
+@keyframes v9{0%{opacity:1}19.705%{opacity:0}}
+@keyframes va{0%{opacity:1}19.705%{opacity:0}}
+@keyframes vb{0%{opacity:1}19.705%{opacity:0}}
+@keyframes vc{0%{opacity:1}19.705%{opacity:0}}
+@keyframes vd{0%{opacity:1}19.705%{opacity:0}}
+@keyframes ve{0%{opacity:1}19.705%{opacity:0}}
+@keyframes vf{0%{opacity:1}19.705%{opacity:0}}
+@keyframes vg{0%{opacity:1}19.705%{opacity:0}}
+@keyframes vh{0%{opacity:1}19.705%{opacity:0}}
+@keyframes vi{0%{opacity:1}19.705%{opacity:0}}
+@keyframes vj{0%{opacity:1}19.705%{opacity:0}}
+@keyframes vk{0%{opacity:1}19.705%{opacity:0}}
+@keyframes vl{0%{opacity:1}19.705%{opacity:0}}
+@keyframes vm{0%{opacity:1}19.705%{opacity:0}}
+@keyframes vn{0%{opacity:1}19.705%{opacity:0}}
+@keyframes vo{0%{opacity:1}19.705%{opacity:0}}
+@keyframes vp{0%{opacity:1}19.705%{opacity:0}}
+@keyframes vq{0%{opacity:1}19.705%{opacity:0}}
+@keyframes vr{0%{opacity:1}19.705%{opacity:0}}
+@keyframes vs{0%{opacity:1}19.705%{opacity:0}}
+@keyframes vt{0%{opacity:1}19.705%{opacity:0}}
+@keyframes vu{0%{opacity:1}19.705%{opacity:0}}
+@keyframes vv{0%{opacity:1}7.763%{opacity:0}}
+@keyframes vw{0%{opacity:1}6.928%{opacity:0}}
+@keyframes vx{0%{opacity:0}6.928%{opacity:1}7.763%{opacity:0}}
+@keyframes vy{0%{opacity:1}7.763%{opacity:0}}
+@keyframes vz{0%{opacity:0}7.763%{opacity:1}11.107%{opacity:0}19.705%{opacity:1}}
+@keyframes v10{0%{opacity:0}7.763%{opacity:1}11.107%{opacity:0}}
+@keyframes v11{0%{opacity:0}7.763%{opacity:1}8.598%{opacity:0}}
+@keyframes v12{0%{opacity:0}8.598%{opacity:1}9.433%{opacity:0}}
+@keyframes v13{0%{opacity:0}9.433%{opacity:1}10.272%{opacity:0}}
+@keyframes v14{0%{opacity:0}10.272%{opacity:1}11.107%{opacity:0}}
+@keyframes v15{0%{opacity:0}10.272%{opacity:1}11.107%{opacity:0}}
+@keyframes v16{0%{opacity:0}11.107%{opacity:1}19.705%{opacity:0}}
+@keyframes v17{0%{opacity:0}11.107%{opacity:1}18.837%{opacity:0}}
+@keyframes v18{0%{opacity:0}11.107%{opacity:1}11.942%{opacity:0}}
+@keyframes v19{0%{opacity:0}11.942%{opacity:1}12.78%{opacity:0}}
+@keyframes v1a{0%{opacity:0}12.78%{opacity:1}13.623%{opacity:0}}
+@keyframes v1b{0%{opacity:0}13.623%{opacity:1}14.472%{opacity:0}}
+@keyframes v1c{0%{opacity:0}18.837%{opacity:1}19.705%{opacity:0}}
+@keyframes v1d{0%{opacity:0}11.107%{opacity:1}19.705%{opacity:0}}
+@keyframes v1e{0%{opacity:0}11.107%{opacity:1}19.705%{opacity:0}}
+@keyframes v1f{0%{opacity:0}14.472%{opacity:1}19.705%{opacity:0}}
+@keyframes v1g{0%{opacity:0}19.705%{opacity:1}}
+@keyframes v1h{0%{opacity:0}19.705%{opacity:1}33.834%{opacity:0}}
+@keyframes v1i{0%{opacity:0}19.705%{opacity:1}33.834%{opacity:0}}
+@keyframes v1j{0%{opacity:0}19.705%{opacity:1}}
+@keyframes v1k{0%{opacity:0}19.705%{opacity:1}47.912%{opacity:0}}
+@keyframes v1l{0%{opacity:0}19.705%{opacity:1}}
+@keyframes v1m{0%{opacity:0}19.705%{opacity:1}27.657%{opacity:0}36.514%{opacity:1}47.912%{opacity:0}}
+@keyframes v1n{0%{opacity:0}19.705%{opacity:1}27.657%{opacity:0}36.514%{opacity:1}47.912%{opacity:0}}
+@keyframes v1o{0%{opacity:0}19.705%{opacity:1}24.985%{opacity:0}44.365%{opacity:1}}
+@keyframes v1p{0%{opacity:0}19.705%{opacity:1}57.674%{opacity:0}72.255%{opacity:1}77.761%{opacity:0}}
+@keyframes v1q{0%{opacity:0}19.705%{opacity:1}24.985%{opacity:0}47.912%{opacity:1}57.674%{opacity:0}72.255%{opacity:1}77.761%{opacity:0}}
+@keyframes v1r{0%{opacity:0}19.705%{opacity:1}24.985%{opacity:0}47.912%{opacity:1}57.674%{opacity:0}72.255%{opacity:1}77.761%{opacity:0}}
+@keyframes v1s{0%{opacity:0}19.705%{opacity:1}33.834%{opacity:0}}
+@keyframes v1t{0%{opacity:0}19.705%{opacity:1}}
+@keyframes v1u{0%{opacity:0}19.705%{opacity:1}33.834%{opacity:0}}
+@keyframes v1v{0%{opacity:0}19.705%{opacity:1}33.834%{opacity:0}}
+@keyframes v1w{0%{opacity:0}19.705%{opacity:1}}
+@keyframes v1x{0%{opacity:0}19.705%{opacity:1}27.657%{opacity:0}36.514%{opacity:1}}
+@keyframes v1y{0%{opacity:0}19.705%{opacity:1}27.657%{opacity:0}36.514%{opacity:1}}
+@keyframes v1z{0%{opacity:0}19.705%{opacity:1}27.657%{opacity:0}36.514%{opacity:1}}
+@keyframes v20{0%{opacity:0}19.705%{opacity:1}27.657%{opacity:0}36.514%{opacity:1}}
+@keyframes v21{0%{opacity:0}19.705%{opacity:1}27.657%{opacity:0}36.514%{opacity:1}}
+@keyframes v22{0%{opacity:0}19.705%{opacity:1}27.657%{opacity:0}36.514%{opacity:1}}
+@keyframes v23{0%{opacity:0}19.705%{opacity:1}27.657%{opacity:0}36.514%{opacity:1}}
+@keyframes v24{0%{opacity:0}19.705%{opacity:1}27.657%{opacity:0}36.514%{opacity:1}}
+@keyframes v25{0%{opacity:0}19.705%{opacity:1}27.657%{opacity:0}36.514%{opacity:1}}
+@keyframes v26{0%{opacity:0}19.705%{opacity:1}27.657%{opacity:0}36.514%{opacity:1}47.912%{opacity:0}}
+@keyframes v27{0%{opacity:0}19.705%{opacity:1}27.657%{opacity:0}36.514%{opacity:1}47.912%{opacity:0}}
+@keyframes v28{0%{opacity:0}19.705%{opacity:1}27.657%{opacity:0}36.514%{opacity:1}47.912%{opacity:0}}
+@keyframes v29{0%{opacity:0}19.705%{opacity:1}27.657%{opacity:0}36.514%{opacity:1}47.912%{opacity:0}}
+@keyframes v2a{0%{opacity:0}19.705%{opacity:1}27.657%{opacity:0}36.514%{opacity:1}47.912%{opacity:0}}
+@keyframes v2b{0%{opacity:0}19.705%{opacity:1}27.657%{opacity:0}36.514%{opacity:1}47.912%{opacity:0}}
+@keyframes v2c{0%{opacity:0}19.705%{opacity:1}27.657%{opacity:0}36.514%{opacity:1}47.912%{opacity:0}}
+@keyframes v2d{0%{opacity:0}19.705%{opacity:1}27.657%{opacity:0}36.514%{opacity:1}61.273%{opacity:0}62.173%{opacity:1}}
+@keyframes v2e{0%{opacity:0}19.705%{opacity:1}27.657%{opacity:0}36.514%{opacity:1}62.173%{opacity:0}63.989%{opacity:1}}
+@keyframes v2f{0%{opacity:0}19.705%{opacity:1}27.657%{opacity:0}36.514%{opacity:1}}
+@keyframes v2g{0%{opacity:0}19.705%{opacity:1}27.657%{opacity:0}36.514%{opacity:1}}
+@keyframes v2h{0%{opacity:0}19.705%{opacity:1}27.657%{opacity:0}36.514%{opacity:1}}
+@keyframes v2i{0%{opacity:0}19.705%{opacity:1}27.657%{opacity:0}36.514%{opacity:1}}
+@keyframes v2j{0%{opacity:0}19.705%{opacity:1}27.657%{opacity:0}36.514%{opacity:1}}
+@keyframes v2k{0%{opacity:0}19.705%{opacity:1}27.657%{opacity:0}36.514%{opacity:1}}
+@keyframes v2l{0%{opacity:0}19.705%{opacity:1}27.657%{opacity:0}36.514%{opacity:1}}
+@keyframes v2m{0%{opacity:0}19.705%{opacity:1}27.657%{opacity:0}36.514%{opacity:1}}
+@keyframes v2n{0%{opacity:0}19.705%{opacity:1}27.657%{opacity:0}36.514%{opacity:1}}
+@keyframes v2o{0%{opacity:0}19.705%{opacity:1}27.657%{opacity:0}36.514%{opacity:1}}
+@keyframes v2p{0%{opacity:0}19.705%{opacity:1}27.657%{opacity:0}36.514%{opacity:1}}
+@keyframes v2q{0%{opacity:0}19.705%{opacity:1}23.198%{opacity:0}}
+@keyframes v2r{0%{opacity:0}19.705%{opacity:1}22.315%{opacity:0}}
+@keyframes v2s{0%{opacity:0}19.705%{opacity:1}23.198%{opacity:0}}
+@keyframes v2t{0%{opacity:0}19.705%{opacity:1}23.198%{opacity:0}}
+@keyframes v2u{0%{opacity:0}19.705%{opacity:1}23.198%{opacity:0}}
+@keyframes v2v{0%{opacity:0}19.705%{opacity:1}23.198%{opacity:0}}
+@keyframes v2w{0%{opacity:0}19.705%{opacity:1}}
+@keyframes v2x{0%{opacity:0}19.705%{opacity:1}}
+@keyframes v2y{0%{opacity:0}23.198%{opacity:1}25.86%{opacity:0}}
+@keyframes v2z{0%{opacity:0}22.315%{opacity:1}25.86%{opacity:0}}
+@keyframes v30{0%{opacity:0}23.198%{opacity:1}25.86%{opacity:0}}
+@keyframes v31{0%{opacity:0}23.198%{opacity:1}25.86%{opacity:0}}
+@keyframes v32{0%{opacity:0}23.198%{opacity:1}25.86%{opacity:0}}
+@keyframes v33{0%{opacity:0}23.198%{opacity:1}25.86%{opacity:0}}
+@keyframes v34{0%{opacity:0}24.985%{opacity:1}27.657%{opacity:0}}
+@keyframes v35{0%{opacity:0}24.985%{opacity:1}47.912%{opacity:0}}
+@keyframes v36{0%{opacity:0}24.985%{opacity:1}47.912%{opacity:0}}
+@keyframes v37{0%{opacity:0}24.985%{opacity:1}57.674%{opacity:0}}
+@keyframes v38{0%{opacity:0}25.86%{opacity:1}27.657%{opacity:0}}
+@keyframes v39{0%{opacity:0}25.86%{opacity:1}27.657%{opacity:0}}
+@keyframes v3a{0%{opacity:0}25.86%{opacity:1}27.657%{opacity:0}}
+@keyframes v3b{0%{opacity:0}25.86%{opacity:1}27.657%{opacity:0}}
+@keyframes v3c{0%{opacity:0}25.86%{opacity:1}27.657%{opacity:0}}
+@keyframes v3d{0%{opacity:0}27.657%{opacity:1}36.514%{opacity:0}}
+@keyframes v3e{0%{opacity:0}27.657%{opacity:1}36.514%{opacity:0}}
+@keyframes v3f{0%{opacity:0}27.657%{opacity:1}36.514%{opacity:0}}
+@keyframes v3g{0%{opacity:0}27.657%{opacity:1}36.514%{opacity:0}}
+@keyframes v3h{0%{opacity:0}27.657%{opacity:1}44.365%{opacity:0}}
+@keyframes v3i{0%{opacity:0}27.657%{opacity:1}36.514%{opacity:0}}
+@keyframes v3j{0%{opacity:0}27.657%{opacity:1}36.514%{opacity:0}}
+@keyframes v3k{0%{opacity:0}27.657%{opacity:1}36.514%{opacity:0}}
+@keyframes v3l{0%{opacity:0}27.657%{opacity:1}36.514%{opacity:0}}
+@keyframes v3m{0%{opacity:0}27.657%{opacity:1}36.514%{opacity:0}}
+@keyframes v3n{0%{opacity:0}27.657%{opacity:1}36.514%{opacity:0}}
+@keyframes v3o{0%{opacity:0}27.657%{opacity:1}36.514%{opacity:0}}
+@keyframes v3q{0%{opacity:0}27.657%{opacity:1}36.514%{opacity:0}}
+@keyframes v3r{0%{opacity:0}27.657%{opacity:1}36.514%{opacity:0}}
+@keyframes v3s{0%{opacity:0}27.657%{opacity:1}36.514%{opacity:0}}
+@keyframes v3t{0%{opacity:0}27.657%{opacity:1}36.514%{opacity:0}}
+@keyframes v3u{0%{opacity:0}27.657%{opacity:1}36.514%{opacity:0}}
+@keyframes v3v{0%{opacity:0}27.657%{opacity:1}36.514%{opacity:0}}
+@keyframes v3w{0%{opacity:0}27.657%{opacity:1}36.514%{opacity:0}}
+@keyframes v3x{0%{opacity:0}27.657%{opacity:1}36.514%{opacity:0}}
+@keyframes v3y{0%{opacity:0}27.657%{opacity:1}36.514%{opacity:0}}
+@keyframes v3z{0%{opacity:0}27.657%{opacity:1}36.514%{opacity:0}}
+@keyframes v40{0%{opacity:0}27.657%{opacity:1}33.834%{opacity:0}}
+@keyframes v41{0%{opacity:0}27.657%{opacity:1}36.514%{opacity:0}}
+@keyframes v42{0%{opacity:0}27.657%{opacity:1}36.514%{opacity:0}}
+@keyframes v43{0%{opacity:0}27.657%{opacity:1}36.514%{opacity:0}}
+@keyframes v44{0%{opacity:0}27.657%{opacity:1}36.514%{opacity:0}}
+@keyframes v45{0%{opacity:0}27.657%{opacity:1}36.514%{opacity:0}}
+@keyframes v46{0%{opacity:0}27.657%{opacity:1}36.514%{opacity:0}}
+@keyframes v47{0%{opacity:0}27.657%{opacity:1}36.514%{opacity:0}}
+@keyframes v48{0%{opacity:0}27.657%{opacity:1}36.514%{opacity:0}}
+@keyframes v49{0%{opacity:0}27.657%{opacity:1}36.514%{opacity:0}}
+@keyframes v4a{0%{opacity:0}27.657%{opacity:1}36.514%{opacity:0}}
+@keyframes v4b{0%{opacity:0}27.657%{opacity:1}36.514%{opacity:0}}
+@keyframes v4c{0%{opacity:0}27.657%{opacity:1}36.514%{opacity:0}}
+@keyframes v4d{0%{opacity:0}27.657%{opacity:1}36.514%{opacity:0}}
+@keyframes v4e{0%{opacity:0}27.657%{opacity:1}36.514%{opacity:0}}
+@keyframes v4f{0%{opacity:0}27.657%{opacity:1}36.514%{opacity:0}}
+@keyframes v4g{0%{opacity:0}27.657%{opacity:1}36.514%{opacity:0}}
+@keyframes v4h{0%{opacity:0}27.657%{opacity:1}36.514%{opacity:0}}
+@keyframes v4i{0%{opacity:0}27.657%{opacity:1}36.514%{opacity:0}}
+@keyframes v4j{0%{opacity:0}27.657%{opacity:1}36.514%{opacity:0}}
+@keyframes v4k{0%{opacity:0}27.657%{opacity:1}36.514%{opacity:0}}
+@keyframes v4l{0%{opacity:0}27.657%{opacity:1}36.514%{opacity:0}}
+@keyframes v4m{0%{opacity:0}27.657%{opacity:1}36.514%{opacity:0}}
+@keyframes v4n{0%{opacity:0}27.657%{opacity:1}36.514%{opacity:0}}
+@keyframes v4o{0%{opacity:0}27.657%{opacity:1}36.514%{opacity:0}}
+@keyframes v4p{0%{opacity:0}27.657%{opacity:1}36.514%{opacity:0}}
+@keyframes v4q{0%{opacity:0}27.657%{opacity:1}36.514%{opacity:0}}
+@keyframes v4r{0%{opacity:0}27.657%{opacity:1}36.514%{opacity:0}}
+@keyframes v4s{0%{opacity:0}27.657%{opacity:1}36.514%{opacity:0}}
+@keyframes v4t{0%{opacity:0}27.657%{opacity:1}36.514%{opacity:0}}
+@keyframes v4u{0%{opacity:0}27.657%{opacity:1}29.4%{opacity:0}}
+@keyframes v4v{0%{opacity:0}27.657%{opacity:1}36.514%{opacity:0}}
+@keyframes v4w{0%{opacity:0}27.657%{opacity:1}36.514%{opacity:0}}
+@keyframes v4x{0%{opacity:0}27.657%{opacity:1}36.514%{opacity:0}}
+@keyframes v4y{0%{opacity:0}27.657%{opacity:1}36.514%{opacity:0}}
+@keyframes v4z{0%{opacity:0}27.657%{opacity:1}36.514%{opacity:0}}
+@keyframes v50{0%{opacity:0}27.657%{opacity:1}36.514%{opacity:0}}
+@keyframes v51{0%{opacity:0}27.657%{opacity:1}36.514%{opacity:0}}
+@keyframes v52{0%{opacity:0}27.657%{opacity:1}36.514%{opacity:0}}
+@keyframes v53{0%{opacity:0}27.657%{opacity:1}36.514%{opacity:0}}
+@keyframes v54{0%{opacity:0}29.4%{opacity:1}32.923%{opacity:0}}
+@keyframes v55{0%{opacity:0}32.923%{opacity:1}36.514%{opacity:0}}
+@keyframes v56{0%{opacity:0}33.834%{opacity:1}47.912%{opacity:0}}
+@keyframes v57{0%{opacity:0}33.834%{opacity:1}47.912%{opacity:0}}
+@keyframes v58{0%{opacity:0}33.834%{opacity:1}}
+@keyframes v59{0%{opacity:0}33.834%{opacity:1}}
+@keyframes v5a{0%{opacity:0}33.834%{opacity:1}}
+@keyframes v5b{0%{opacity:0}33.834%{opacity:1}36.514%{opacity:0}}
+@keyframes v5c{0%{opacity:0}27.657%{opacity:1}36.514%{opacity:0}}
+@keyframes v5d{0%{opacity:0}36.514%{opacity:1}40.839%{opacity:0}}
+@keyframes v5e{0%{opacity:0}36.514%{opacity:1}40.839%{opacity:0}}
+@keyframes v5f{0%{opacity:0}36.514%{opacity:1}37.36%{opacity:0}}
+@keyframes v5g{0%{opacity:0}36.514%{opacity:1}37.36%{opacity:0}}
+@keyframes v5h{0%{opacity:0}36.514%{opacity:1}37.36%{opacity:0}}
+@keyframes v5i{0%{opacity:0}36.514%{opacity:1}40.839%{opacity:0}}
+@keyframes v5j{0%{opacity:0}40.839%{opacity:1}42.618%{opacity:0}}
+@keyframes v5k{0%{opacity:0}40.839%{opacity:1}42.618%{opacity:0}}
+@keyframes v5l{0%{opacity:0}40.839%{opacity:1}42.618%{opacity:0}}
+@keyframes v5m{0%{opacity:0}40.839%{opacity:1}42.618%{opacity:0}}
+@keyframes v5n{0%{opacity:0}42.618%{opacity:1}43.497%{opacity:0}}
+@keyframes v5o{0%{opacity:0}40.839%{opacity:1}43.497%{opacity:0}}
+@keyframes v5p{0%{opacity:0}42.618%{opacity:1}43.497%{opacity:0}}
+@keyframes v5q{0%{opacity:0}42.618%{opacity:1}43.497%{opacity:0}}
+@keyframes v5r{0%{opacity:0}42.618%{opacity:1}43.497%{opacity:0}}
+@keyframes v5s{0%{opacity:0}43.497%{opacity:1}44.365%{opacity:0}}
+@keyframes v5t{0%{opacity:0}23.198%{opacity:1}27.657%{opacity:0}36.514%{opacity:1}44.365%{opacity:0}}
+@keyframes v5u{0%{opacity:0}23.198%{opacity:1}27.657%{opacity:0}36.514%{opacity:1}44.365%{opacity:0}}
+@keyframes v5v{0%{opacity:0}23.198%{opacity:1}27.657%{opacity:0}36.514%{opacity:1}44.365%{opacity:0}}
+@keyframes v5w{0%{opacity:0}25.86%{opacity:1}27.657%{opacity:0}36.514%{opacity:1}44.365%{opacity:0}}
+@keyframes v5x{0%{opacity:0}25.86%{opacity:1}27.657%{opacity:0}36.514%{opacity:1}44.365%{opacity:0}}
+@keyframes v5y{0%{opacity:0}25.86%{opacity:1}27.657%{opacity:0}36.514%{opacity:1}44.365%{opacity:0}}
+@keyframes v5z{0%{opacity:0}36.514%{opacity:1}44.365%{opacity:0}}
+@keyframes v60{0%{opacity:0}36.514%{opacity:1}44.365%{opacity:0}}
+@keyframes v61{0%{opacity:0}37.36%{opacity:1}44.365%{opacity:0}}
+@keyframes v62{0%{opacity:0}37.36%{opacity:1}44.365%{opacity:0}}
+@keyframes v63{0%{opacity:0}37.36%{opacity:1}44.365%{opacity:0}}
+@keyframes v64{0%{opacity:0}42.618%{opacity:1}44.365%{opacity:0}}
+@keyframes v65{0%{opacity:0}42.618%{opacity:1}44.365%{opacity:0}}
+@keyframes v66{0%{opacity:0}42.618%{opacity:1}44.365%{opacity:0}}
+@keyframes v67{0%{opacity:0}43.497%{opacity:1}44.365%{opacity:0}}
+@keyframes v68{0%{opacity:0}43.497%{opacity:1}44.365%{opacity:0}}
+@keyframes v69{0%{opacity:0}43.497%{opacity:1}44.365%{opacity:0}}
+@keyframes v6a{0%{opacity:0}43.497%{opacity:1}44.365%{opacity:0}}
+@keyframes v6b{0%{opacity:0}43.497%{opacity:1}44.365%{opacity:0}}
+@keyframes v6c{0%{opacity:0}43.497%{opacity:1}44.365%{opacity:0}}
+@keyframes v6d{0%{opacity:0}43.497%{opacity:1}44.365%{opacity:0}}
+@keyframes v6e{0%{opacity:0}43.497%{opacity:1}44.365%{opacity:0}}
+@keyframes v6f{0%{opacity:0}43.497%{opacity:1}44.365%{opacity:0}}
+@keyframes v6g{0%{opacity:0}43.497%{opacity:1}44.365%{opacity:0}}
+@keyframes v6h{0%{opacity:0}43.497%{opacity:1}44.365%{opacity:0}}
+@keyframes v6i{0%{opacity:0}43.497%{opacity:1}44.365%{opacity:0}}
+@keyframes v6j{0%{opacity:0}43.497%{opacity:1}44.365%{opacity:0}}
+@keyframes v6k{0%{opacity:0}44.365%{opacity:1}}
+@keyframes v6l{0%{opacity:0}44.365%{opacity:1}}
+@keyframes v6m{0%{opacity:0}44.365%{opacity:1}}
+@keyframes v6n{0%{opacity:0}44.365%{opacity:1}}
+@keyframes v6o{0%{opacity:0}44.365%{opacity:1}}
+@keyframes v6p{0%{opacity:0}44.365%{opacity:1}}
+@keyframes v6q{0%{opacity:0}44.365%{opacity:1}}
+@keyframes v6r{0%{opacity:0}44.365%{opacity:1}}
+@keyframes v6s{0%{opacity:0}44.365%{opacity:1}}
+@keyframes v6t{0%{opacity:0}44.365%{opacity:1}}
+@keyframes v6u{0%{opacity:0}44.365%{opacity:1}}
+@keyframes v6v{0%{opacity:0}44.365%{opacity:1}}
+@keyframes v6w{0%{opacity:0}44.365%{opacity:1}}
+@keyframes v6x{0%{opacity:0}44.365%{opacity:1}}
+@keyframes v6y{0%{opacity:0}44.365%{opacity:1}}
+@keyframes v6z{0%{opacity:0}44.365%{opacity:1}}
+@keyframes v70{0%{opacity:0}44.365%{opacity:1}}
+@keyframes v71{0%{opacity:0}44.365%{opacity:1}47.019%{opacity:0}}
+@keyframes v72{0%{opacity:0}44.365%{opacity:1}47.019%{opacity:0}}
+@keyframes v73{0%{opacity:0}47.019%{opacity:1}47.912%{opacity:0}}
+@keyframes v74{0%{opacity:0}47.019%{opacity:1}47.912%{opacity:0}}
+@keyframes v75{0%{opacity:0}47.019%{opacity:1}47.912%{opacity:0}}
+@keyframes v76{0%{opacity:0}47.019%{opacity:1}47.912%{opacity:0}}
+@keyframes v77{0%{opacity:0}47.019%{opacity:1}47.912%{opacity:0}}
+@keyframes v78{0%{opacity:0}47.019%{opacity:1}47.912%{opacity:0}}
+@keyframes v79{0%{opacity:0}47.912%{opacity:1}57.674%{opacity:0}72.255%{opacity:1}77.761%{opacity:0}}
+@keyframes v7a{0%{opacity:0}47.912%{opacity:1}57.674%{opacity:0}72.255%{opacity:1}77.761%{opacity:0}}
+@keyframes v7b{0%{opacity:0}47.912%{opacity:1}}
+@keyframes v7c{0%{opacity:0}47.912%{opacity:1}}
+@keyframes v7d{0%{opacity:0}47.912%{opacity:1}}
+@keyframes v7e{0%{opacity:0}47.912%{opacity:1}}
+@keyframes v7f{0%{opacity:0}47.912%{opacity:1}}
+@keyframes v7g{0%{opacity:0}47.912%{opacity:1}}
+@keyframes v7h{0%{opacity:0}47.912%{opacity:1}}
+@keyframes v7i{0%{opacity:0}47.912%{opacity:1}}
+@keyframes v7j{0%{opacity:0}47.912%{opacity:1}}
+@keyframes v7k{0%{opacity:0}47.912%{opacity:1}}
+@keyframes v7l{0%{opacity:0}47.912%{opacity:1}}
+@keyframes v7m{0%{opacity:0}47.912%{opacity:1}}
+@keyframes v7n{0%{opacity:0}47.912%{opacity:1}}
+@keyframes v7o{0%{opacity:0}47.912%{opacity:1}}
+@keyframes v7p{0%{opacity:0}47.912%{opacity:1}}
+@keyframes v7q{0%{opacity:0}47.912%{opacity:1}}
+@keyframes v7r{0%{opacity:0}47.912%{opacity:1}}
+@keyframes v7s{0%{opacity:0}61.273%{opacity:1}62.173%{opacity:0}}
+@keyframes v7t{0%{opacity:0}19.705%{opacity:1}27.657%{opacity:0}36.514%{opacity:1}}
+@keyframes v7u{0%{opacity:0}62.173%{opacity:1}63.989%{opacity:0}}
+@keyframes v7v{0%{opacity:0}19.705%{opacity:1}27.657%{opacity:0}36.514%{opacity:1}}
+@keyframes v7w{0%{opacity:0}90.115%{opacity:1}}
+@keyframes v7x{0%{opacity:0}19.705%{opacity:1}}
+@keyframes v7y{0%{opacity:0}19.705%{opacity:1}24.985%{opacity:0}57.674%{opacity:1}}
+@keyframes v7z{0%{opacity:0}57.674%{opacity:1}72.255%{opacity:0}77.761%{opacity:1}}
+@keyframes v80{0%{opacity:0}57.674%{opacity:1}72.255%{opacity:0}77.761%{opacity:1}}
+@keyframes v81{0%{opacity:0}57.674%{opacity:1}72.255%{opacity:0}77.761%{opacity:1}}
+@keyframes v82{0%{opacity:0}90.115%{opacity:1}}
+@keyframes v84{0%{opacity:0}90.115%{opacity:1}}
+@keyframes v85{0%{opacity:0}90.115%{opacity:1}}
+@keyframes v86{0%{opacity:0}63.989%{opacity:1}90.115%{opacity:0}}
+@keyframes v87{0%{opacity:0}63.989%{opacity:1}64.861%{opacity:0}}
+@keyframes v88{0%{opacity:0}63.989%{opacity:1}64.861%{opacity:0}}
+@keyframes v89{0%{opacity:0}63.989%{opacity:1}64.861%{opacity:0}}
+@keyframes v8a{0%{opacity:0}63.989%{opacity:1}64.861%{opacity:0}}
+@keyframes v8b{0%{opacity:0}63.989%{opacity:1}64.861%{opacity:0}}
+@keyframes v8c{0%{opacity:0}63.989%{opacity:1}64.861%{opacity:0}}
+@keyframes v8d{0%{opacity:0}63.989%{opacity:1}64.861%{opacity:0}}
+@keyframes v8e{0%{opacity:0}63.989%{opacity:1}64.861%{opacity:0}}
+@keyframes v8f{0%{opacity:0}63.989%{opacity:1}64.861%{opacity:0}}
+@keyframes v8g{0%{opacity:0}63.989%{opacity:1}64.861%{opacity:0}}
+@keyframes v8h{0%{opacity:0}63.989%{opacity:1}64.861%{opacity:0}}
+@keyframes v8i{0%{opacity:0}64.861%{opacity:1}90.115%{opacity:0}}
+@keyframes v8j{0%{opacity:0}64.861%{opacity:1}90.115%{opacity:0}}
+@keyframes v8k{0%{opacity:0}64.861%{opacity:1}90.115%{opacity:0}}
+@keyframes v8l{0%{opacity:0}64.861%{opacity:1}90.115%{opacity:0}}
+@keyframes v8m{0%{opacity:0}64.861%{opacity:1}72.255%{opacity:0}}
+@keyframes v8n{0%{opacity:0}64.861%{opacity:1}72.255%{opacity:0}}
+@keyframes v8o{0%{opacity:0}64.861%{opacity:1}72.255%{opacity:0}}
+@keyframes v8p{0%{opacity:0}64.861%{opacity:1}72.255%{opacity:0}}
+@keyframes v8q{0%{opacity:0}64.861%{opacity:1}72.255%{opacity:0}}
+@keyframes v8r{0%{opacity:0}64.861%{opacity:1}72.255%{opacity:0}}
+@keyframes v8s{0%{opacity:0}64.861%{opacity:1}72.255%{opacity:0}}
+@keyframes v8t{0%{opacity:0}64.861%{opacity:1}72.255%{opacity:0}}
+@keyframes v8u{0%{opacity:0}64.861%{opacity:1}72.255%{opacity:0}}
+@keyframes v8v{0%{opacity:0}64.861%{opacity:1}72.255%{opacity:0}}
+@keyframes v8w{0%{opacity:0}64.861%{opacity:1}72.255%{opacity:0}}
+@keyframes v8x{0%{opacity:0}64.861%{opacity:1}72.255%{opacity:0}}
+@keyframes v8y{0%{opacity:0}64.861%{opacity:1}72.255%{opacity:0}}
+@keyframes v8z{0%{opacity:0}64.861%{opacity:1}72.255%{opacity:0}}
+@keyframes v90{0%{opacity:0}64.861%{opacity:1}72.255%{opacity:0}}
+@keyframes v91{0%{opacity:0}64.861%{opacity:1}72.255%{opacity:0}}
+@keyframes v92{0%{opacity:0}64.861%{opacity:1}72.255%{opacity:0}}
+@keyframes v93{0%{opacity:0}64.861%{opacity:1}72.255%{opacity:0}}
+@keyframes v94{0%{opacity:0}64.861%{opacity:1}72.255%{opacity:0}}
+@keyframes v95{0%{opacity:0}64.861%{opacity:1}72.255%{opacity:0}}
+@keyframes v96{0%{opacity:0}64.861%{opacity:1}72.255%{opacity:0}}
+@keyframes v97{0%{opacity:0}64.861%{opacity:1}72.255%{opacity:0}}
+@keyframes v98{0%{opacity:0}64.861%{opacity:1}72.255%{opacity:0}}
+@keyframes v99{0%{opacity:0}64.861%{opacity:1}72.255%{opacity:0}}
+@keyframes v9a{0%{opacity:0}64.861%{opacity:1}72.255%{opacity:0}}
+@keyframes v9b{0%{opacity:0}64.861%{opacity:1}72.255%{opacity:0}}
+@keyframes v9c{0%{opacity:0}64.861%{opacity:1}72.255%{opacity:0}}
+@keyframes v9d{0%{opacity:0}64.861%{opacity:1}72.255%{opacity:0}}
+@keyframes v9f{0%{opacity:0}64.861%{opacity:1}72.255%{opacity:0}}
+@keyframes v9g{0%{opacity:0}64.861%{opacity:1}72.255%{opacity:0}}
+@keyframes v9h{0%{opacity:0}64.861%{opacity:1}72.255%{opacity:0}}
+@keyframes v9i{0%{opacity:0}72.255%{opacity:1}77.761%{opacity:0}}
+@keyframes v9j{0%{opacity:0}72.255%{opacity:1}77.761%{opacity:0}89.243%{opacity:1}90.115%{opacity:0}}
+@keyframes v9k{0%{opacity:0}72.255%{opacity:1}77.761%{opacity:0}89.243%{opacity:1}90.115%{opacity:0}}
+@keyframes v9l{0%{opacity:0}72.255%{opacity:1}77.761%{opacity:0}89.243%{opacity:1}90.115%{opacity:0}}
+@keyframes v9m{0%{opacity:0}72.255%{opacity:1}77.761%{opacity:0}89.243%{opacity:1}90.115%{opacity:0}}
+@keyframes v9n{0%{opacity:0}72.255%{opacity:1}77.761%{opacity:0}89.243%{opacity:1}90.115%{opacity:0}}
+@keyframes v9o{0%{opacity:0}72.255%{opacity:1}77.761%{opacity:0}89.243%{opacity:1}90.115%{opacity:0}}
+@keyframes v9p{0%{opacity:0}72.255%{opacity:1}77.761%{opacity:0}89.243%{opacity:1}90.115%{opacity:0}}
+@keyframes v9q{0%{opacity:0}72.255%{opacity:1}77.761%{opacity:0}89.243%{opacity:1}90.115%{opacity:0}}
+@keyframes v9r{0%{opacity:0}72.255%{opacity:1}77.761%{opacity:0}89.243%{opacity:1}90.115%{opacity:0}}
+@keyframes v9s{0%{opacity:0}72.255%{opacity:1}77.761%{opacity:0}89.243%{opacity:1}90.115%{opacity:0}}
+@keyframes v9t{0%{opacity:0}72.255%{opacity:1}77.761%{opacity:0}89.243%{opacity:1}90.115%{opacity:0}}
+@keyframes v9u{0%{opacity:0}72.255%{opacity:1}77.761%{opacity:0}89.243%{opacity:1}90.115%{opacity:0}}
+@keyframes v9v{0%{opacity:0}72.255%{opacity:1}77.761%{opacity:0}89.243%{opacity:1}90.115%{opacity:0}}
+@keyframes v9w{0%{opacity:0}72.255%{opacity:1}77.761%{opacity:0}89.243%{opacity:1}90.115%{opacity:0}}
+@keyframes v9x{0%{opacity:0}72.255%{opacity:1}77.761%{opacity:0}89.243%{opacity:1}90.115%{opacity:0}}
+@keyframes v9y{0%{opacity:0}72.255%{opacity:1}77.761%{opacity:0}89.243%{opacity:1}90.115%{opacity:0}}
+@keyframes v9z{0%{opacity:0}72.255%{opacity:1}77.761%{opacity:0}89.243%{opacity:1}90.115%{opacity:0}}
+@keyframes va0{0%{opacity:0}72.255%{opacity:1}77.761%{opacity:0}89.243%{opacity:1}90.115%{opacity:0}}
+@keyframes va1{0%{opacity:0}72.255%{opacity:1}77.761%{opacity:0}89.243%{opacity:1}90.115%{opacity:0}}
+@keyframes va2{0%{opacity:0}72.255%{opacity:1}77.761%{opacity:0}89.243%{opacity:1}90.115%{opacity:0}}
+@keyframes va3{0%{opacity:0}72.255%{opacity:1}77.761%{opacity:0}89.243%{opacity:1}90.115%{opacity:0}}
+@keyframes va4{0%{opacity:0}72.255%{opacity:1}77.761%{opacity:0}89.243%{opacity:1}90.115%{opacity:0}}
+@keyframes va5{0%{opacity:0}72.255%{opacity:1}77.761%{opacity:0}89.243%{opacity:1}90.115%{opacity:0}}
+@keyframes va7{0%{opacity:0}72.255%{opacity:1}77.761%{opacity:0}89.243%{opacity:1}90.115%{opacity:0}}
+@keyframes va8{0%{opacity:0}72.255%{opacity:1}77.761%{opacity:0}89.243%{opacity:1}90.115%{opacity:0}}
+@keyframes va9{0%{opacity:0}72.255%{opacity:1}77.761%{opacity:0}89.243%{opacity:1}90.115%{opacity:0}}
+@keyframes vaa{0%{opacity:0}77.761%{opacity:1}89.243%{opacity:0}}
+@keyframes vab{0%{opacity:0}77.761%{opacity:1}89.243%{opacity:0}}
+@keyframes vac{0%{opacity:0}77.761%{opacity:1}89.243%{opacity:0}}
+@keyframes vad{0%{opacity:0}77.761%{opacity:1}89.243%{opacity:0}}
+@keyframes vae{0%{opacity:0}77.761%{opacity:1}89.243%{opacity:0}}
+@keyframes vaf{0%{opacity:0}77.761%{opacity:1}89.243%{opacity:0}}
+@keyframes vag{0%{opacity:0}77.761%{opacity:1}89.243%{opacity:0}}
+@keyframes vah{0%{opacity:0}77.761%{opacity:1}89.243%{opacity:0}}
+@keyframes vai{0%{opacity:0}77.761%{opacity:1}89.243%{opacity:0}}
+@keyframes vaj{0%{opacity:0}77.761%{opacity:1}89.243%{opacity:0}}
+@keyframes vak{0%{opacity:0}77.761%{opacity:1}89.243%{opacity:0}}
+@keyframes val{0%{opacity:0}77.761%{opacity:1}89.243%{opacity:0}}
+@keyframes vam{0%{opacity:0}77.761%{opacity:1}89.243%{opacity:0}}
+@keyframes van{0%{opacity:0}77.761%{opacity:1}89.243%{opacity:0}}
+@keyframes vao{0%{opacity:0}77.761%{opacity:1}89.243%{opacity:0}}
+@keyframes vap{0%{opacity:0}77.761%{opacity:1}89.243%{opacity:0}}
+@keyframes vaq{0%{opacity:0}77.761%{opacity:1}89.243%{opacity:0}}
+@keyframes var{0%{opacity:0}77.761%{opacity:1}89.243%{opacity:0}}
+@keyframes vas{0%{opacity:0}77.761%{opacity:1}89.243%{opacity:0}}
+@keyframes vat{0%{opacity:0}77.761%{opacity:1}89.243%{opacity:0}}
+@keyframes vau{0%{opacity:0}77.761%{opacity:1}89.243%{opacity:0}}
+@keyframes vav{0%{opacity:0}77.761%{opacity:1}89.243%{opacity:0}}
+@keyframes vaw{0%{opacity:0}77.761%{opacity:1}89.243%{opacity:0}}
+@keyframes vax{0%{opacity:0}77.761%{opacity:1}89.243%{opacity:0}}
+@keyframes vay{0%{opacity:0}77.761%{opacity:1}89.243%{opacity:0}}
+@keyframes vaz{0%{opacity:0}77.761%{opacity:1}89.243%{opacity:0}}
+@keyframes vb0{0%{opacity:0}77.761%{opacity:1}89.243%{opacity:0}}
+@keyframes vb1{0%{opacity:0}77.761%{opacity:1}89.243%{opacity:0}}
+@keyframes vb2{0%{opacity:0}77.761%{opacity:1}89.243%{opacity:0}}
+@keyframes vb3{0%{opacity:0}77.761%{opacity:1}89.243%{opacity:0}}
+@keyframes vb4{0%{opacity:0}89.243%{opacity:1}90.115%{opacity:0}}
+@keyframes sb5{0%{transform:translateY(21px)}}
+@keyframes vb7{0%{opacity:0}64.861%{opacity:1}90.115%{opacity:0}}
+@keyframes ptr{0%{transform:translate(669.6px,363px)}0%{transform:translate(669.6px,363px)}3.679%{transform:translate(669.6px,363px)}6.049%{transform:translate(473px,618.7px)}15.73%{transform:translate(473px,618.7px)}18.1%{transform:translate(1038px,629.5px)}32.831%{transform:translate(1038px,629.5px)}35.201%{transform:translate(494.27px,165.25px)}60.489%{transform:translate(494.27px,165.25px)}62.859%{transform:translate(864px,76.5px)}68.233%{transform:translate(864px,76.5px)}70.603%{transform:translate(248px,121.5px)}85.79%{transform:translate(248px,121.5px)}88.16%{transform:translate(143px,199.5px)}100%{transform:translate(143px,199.5px)}}
+@keyframes rb8{0%,6.716%{opacity:0;transform:scale(.2)}6.72%{opacity:.55;transform:scale(.2)}8.357%{opacity:0;transform:scale(1)}100%{opacity:0}}
+@keyframes rb9{0%,18.764%{opacity:0;transform:scale(.2)}18.768%{opacity:.55;transform:scale(.2)}20.405%{opacity:0;transform:scale(1)}100%{opacity:0}}
+@keyframes rba{0%,35.865%{opacity:0;transform:scale(.2)}35.869%{opacity:.55;transform:scale(.2)}37.506%{opacity:0;transform:scale(1)}100%{opacity:0}}
+@keyframes rbb{0%,63.522%{opacity:0;transform:scale(.2)}63.526%{opacity:.55;transform:scale(.2)}65.163%{opacity:0;transform:scale(1)}100%{opacity:0}}
+@keyframes rbc{0%,71.267%{opacity:0;transform:scale(.2)}71.271%{opacity:.55;transform:scale(.2)}72.908%{opacity:0;transform:scale(1)}100%{opacity:0}}
+@keyframes rbd{0%,88.82%{opacity:0;transform:scale(.2)}88.824%{opacity:.55;transform:scale(.2)}90.461%{opacity:0;transform:scale(1)}100%{opacity:0}}
+@media (prefers-reduced-motion:reduce){.v,.scroll,.ptr,.ring,.pulse{animation:none!important}.v{opacity:0}.v.p{opacity:1}.ptr,.ring{display:none}.sb5{transform:translateY(21px)!important}}
 </style>
 <defs><filter id="sh" x="-10%" y="-10%" width="120%" height="140%"><feGaussianBlur stdDeviation="6"/><feOffset dy="3"/></filter><filter id="wsh" x="-5%" y="-5%" width="110%" height="115%"><feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000" flood-opacity=".22"/></filter>
-<clipPath id="page"><path d="M0 0h1080v650a10 10 0 0 1-10 10h-1060a10 10 0 0 1-10-10z"/></clipPath><clipPath id="c0"><rect x="73.5" y="14" width="102.5" height="21"/></clipPath><clipPath id="c44"><rect x="280" y="50" width="800" height="145"/></clipPath><clipPath id="c9t"><rect x="280" y="134.5" width="800" height="445.5"/></clipPath><clipPath id="c9v"><rect x="844" y="531" width="222" height="39" rx="8"/></clipPath><clipPath id="cav"><rect x="117" y="230.5" width="846" height="489"/></clipPath><clipPath id="cbn"><rect x="117" y="220.5" width="846" height="489"/></clipPath><clipPath id="ccm"><rect x="101" y="21" width="878" height="618"/></clipPath></defs>
+<clipPath id="page"><path d="M0 0h1080v650a10 10 0 0 1-10 10h-1060a10 10 0 0 1-10-10z"/></clipPath><clipPath id="c0"><rect x="73.5" y="14" width="102.5" height="21"/></clipPath><clipPath id="c3p"><rect x="280" y="50" width="800" height="145"/></clipPath><clipPath id="c83"><rect x="844" y="531" width="222" height="39" rx="8"/></clipPath><clipPath id="c9e"><rect x="117" y="230.5" width="846" height="489"/></clipPath><clipPath id="ca6"><rect x="117" y="220.5" width="846" height="489"/></clipPath><clipPath id="cb6"><rect x="101" y="21" width="878" height="618"/></clipPath></defs>
 <g transform="translate(18 18)">
 <rect width="1080" height="698" rx="10" class="frame" filter="url(#wsh)"/>
 <circle cx="20" cy="19" r="6" fill="#ff5f57"/><circle cx="40" cy="19" r="6" fill="#febc2e"/><circle cx="60" cy="19" r="6" fill="#28c840"/>
@@ -506,8 +455,8 @@
 <rect x="0" y="0" width="1080" height="50" class="f1"/><rect x="0" y="49" width="1080" height="1" class="f3"/>
 <text x="14" y="30" class="s f4" font-size="14" font-weight="700" textLength="49.5">Troupe</text>
 <g clip-path="url(#c0)"><text x="73.5" y="30" class="s f5" font-size="14" textLength="102.5">shop-api (main)</text></g>
-<g class="v p" style="animation-name:v1"><rect x="186" y="14.5" width="65" height="20" rx="10" class="f6"/></g>
-<g class="v" style="animation-name:v2"><text x="195" y="28.5" class="s f5" font-size="12" textLength="47">0 个代理</text></g>
+<rect x="186" y="14.5" width="65" height="20" rx="10" class="f6"/>
+<g class="v" style="animation-name:v1"><text x="195" y="28.5" class="s f5" font-size="12" textLength="47">0 个代理</text></g>
 <rect x="849.5" y="8" width="52" height="33" rx="8" class="f1"/><rect x="850" y="8.5" width="51" height="32" rx="7.5" fill="none" class="k2" stroke-width="1"/>
 <text x="861.5" y="30" class="s f4" font-size="14" textLength="28">目标</text>
 <rect x="911.5" y="8" width="52" height="33" rx="8" class="f1"/><rect x="912" y="8.5" width="51" height="32" rx="7.5" fill="none" class="k2" stroke-width="1"/>
@@ -517,337 +466,318 @@
 <rect x="0" y="50" width="280" height="610" class="f1"/><rect x="279" y="50" width="1" height="610" class="f3"/>
 <text x="16" y="90" class="s f5" font-size="11" font-weight="700" textLength="23">代理</text>
 <text x="243.5" y="90" class="s f5" font-size="11" font-weight="700">+</text>
-<g class="v" style="animation-name:v3"><text x="16" y="130.5" class="s f5" font-size="14" textLength="242.5">还没有代理。输入 @bizos、@codex、</text></g>
-<g class="v" style="animation-name:v4"><text x="16" y="151.5" class="s f5" font-size="14" textLength="168.5">@claude… 再写任务即可。</text></g>
-<g class="v" style="animation-name:v5"><text x="16" y="182.5" class="s f5" font-size="11" font-weight="700" textLength="23">目标</text></g>
-<g class="v" style="animation-name:v6"><text x="16" y="215" class="s f5" font-size="14" textLength="68.5">+ 新建目标</text></g>
-<g class="v" style="animation-name:v7"><text x="16" y="250" class="s f5" font-size="11" font-weight="700" textLength="46.5">项目看板</text></g>
-<g class="v" style="animation-name:v8"><text x="16" y="282.5" class="s f4" font-size="14" textLength="28">看板</text></g>
-<g class="v" style="animation-name:v9"><text x="254.5" y="282.5" class="s f5" font-size="14">0</text></g>
-<g class="v" style="animation-name:va"><text x="328" y="125" class="s f4" font-size="26" font-weight="700" textLength="85">Troupe</text></g>
-<g class="v" style="animation-name:vb"><text x="328" y="165" class="s f5" font-size="14" textLength="154">多个编程代理，并肩工作</text></g>
-<g class="v" style="animation-name:vc"><text x="328" y="200" class="s f4" font-size="14" textLength="411">还没有代理。输入 @bizos、@codex、@claude… 再写任务即可。</text></g>
-<g class="v" style="animation-name:vd"><rect x="328" y="219" width="229.5" height="57" rx="8" class="f1"/><rect x="328.5" y="219.5" width="228.5" height="56" rx="7.5" fill="none" class="k2" stroke-width="1"/></g>
-<g class="v" style="animation-name:ve"><text x="339" y="244" class="s f4" font-size="14" font-weight="700" textLength="48.5">@bizos</text></g>
-<g class="v" style="animation-name:vf"><text x="339" y="262" class="s f5" font-size="12" textLength="114">BizOS Code · 未实测</text></g>
-<g class="v" style="animation-name:vg"><rect x="565.5" y="219" width="229.5" height="57" rx="8" class="f1"/><rect x="566" y="219.5" width="228.5" height="56" rx="7.5" fill="none" class="k2" stroke-width="1"/></g>
-<g class="v" style="animation-name:vh"><text x="576.5" y="244" class="s f4" font-size="14" font-weight="700" textLength="58">@claude</text></g>
-<g class="v" style="animation-name:vi"><text x="576.5" y="262" class="s f5" font-size="12" textLength="119">Claude Code · 未实测</text></g>
-<g class="v" style="animation-name:vj"><rect x="802.5" y="219" width="229.5" height="57" rx="8" class="f1"/><rect x="803" y="219.5" width="228.5" height="56" rx="7.5" fill="none" class="k2" stroke-width="1"/></g>
-<g class="v" style="animation-name:vk"><text x="813.5" y="244" class="s f4" font-size="14" font-weight="700" textLength="53.5">@codex</text></g>
-<g class="v" style="animation-name:vl"><text x="813.5" y="262" class="s f5" font-size="12" textLength="36">Codex</text></g>
-<g class="v" style="animation-name:vm"><rect x="328" y="284" width="229.5" height="57" rx="8" class="f1"/><rect x="328.5" y="284.5" width="228.5" height="56" rx="7.5" fill="none" class="k2" stroke-width="1"/></g>
-<g class="v" style="animation-name:vn"><text x="339" y="309" class="s f4" font-size="14" font-weight="700" textLength="41">@kimi</text></g>
-<g class="v" style="animation-name:vo"><text x="339" y="327" class="s f5" font-size="12" textLength="57.5">Kimi Code</text></g>
-<g class="v" style="animation-name:vp"><rect x="328" y="355" width="704" height="31" rx="8" class="f1"/><rect x="328.5" y="355.5" width="703" height="30" rx="7.5" fill="none" class="k2" stroke-width="1"/></g>
-<g class="v" style="animation-name:vq"><text x="340" y="374" class="m f4" font-size="12.5" textLength="195.5">@codex @claude review src/</text></g>
-<g class="v" style="animation-name:vr"><rect x="328" y="392" width="704" height="31" rx="8" class="f1"/><rect x="328.5" y="392.5" width="703" height="30" rx="7.5" fill="none" class="k2" stroke-width="1"/></g>
-<g class="v" style="animation-name:vs"><text x="340" y="411" class="m f4" font-size="12.5" textLength="203">@codex fix the failing test</text></g>
-<g class="v" style="animation-name:vt"><text x="550.5" y="411" class="m f4" font-size="12.5" textLength="188">@kimi add edge-case tests</text></g>
-<g class="v" style="animation-name:vu"><rect x="328" y="428.5" width="704" height="31" rx="8" class="f1"/><rect x="328.5" y="429" width="703" height="30" rx="7.5" fill="none" class="k2" stroke-width="1"/></g>
-<g class="v" style="animation-name:vv"><text x="340" y="447.5" class="m f4" font-size="12.5" textLength="353.5">@all @compare:claude which approach is simpler?</text></g>
-<g class="v" style="animation-name:vw"><rect x="280" y="580.5" width="800" height="79.5" class="f1"/><rect x="280" y="580.5" width="800" height="1" class="f3"/></g>
-<g class="v" style="animation-name:vx"><rect x="296" y="591.5" width="708" height="54.5" rx="8" class="f1"/><rect x="296.5" y="592" width="707" height="53.5" rx="7.5" fill="none" class="k2" stroke-width="1"/></g>
-<g class="v" style="animation-name:vy"><rect x="296" y="591.5" width="708" height="54.5" rx="8" class="f1"/><rect x="296.5" y="592" width="707" height="53.5" rx="7.5" fill="none" class="k8" stroke-width="1"/></g>
-<g class="v" style="animation-name:vz"><text x="307" y="614" class="s fa" font-size="14" textLength="366.5">@codex @claude 审查 src/   ·   Enter 发送 · Alt+Enter 换行</text></g>
-<g class="v p" style="animation-name:v10"><rect x="280" y="580" width="800" height="80" class="f1"/><rect x="280" y="580" width="800" height="1" class="f3"/></g>
-<g class="v" style="animation-name:v11"><rect x="296" y="591" width="708" height="55" rx="8" class="f1"/><rect x="296.5" y="591.5" width="707" height="54" rx="7.5" fill="none" class="k8" stroke-width="1"/></g>
-<g class="v" style="animation-name:v12"><text x="307" y="613.5" class="s f4" font-size="14" textLength="78.5">@bizos 修复</text></g>
-<g class="v" style="animation-name:v13"><text x="307" y="613.5" class="s f4" font-size="14" textLength="204.5">@bizos 修复解析器：文件末尾没</text></g>
-<g class="v" style="animation-name:v14"><text x="307" y="613.5" class="s f4" font-size="14" textLength="344.5">@bizos 修复解析器：文件末尾没有换行时会丢掉最后一</text></g>
-<g class="v" style="animation-name:v15"><text x="307" y="613.5" class="s f4" font-size="14" textLength="358.5">@bizos 修复解析器：文件末尾没有换行时会丢掉最后一行</text></g>
-<g class="v" style="animation-name:v16"><text x="307" y="634" class="s f4" font-size="14" textLength="69.5">@codex 给</text></g>
-<g class="v" style="animation-name:v17"><rect x="280" y="560" width="800" height="100" class="f1"/><rect x="280" y="560" width="800" height="1" class="f3"/></g>
+<g class="v" style="animation-name:v2"><text x="16" y="130.5" class="s f5" font-size="14" textLength="242.5">还没有代理。输入 @bizos、@codex、</text></g>
+<g class="v" style="animation-name:v3"><text x="16" y="151.5" class="s f5" font-size="14" textLength="168.5">@claude… 再写任务即可。</text></g>
+<g class="v" style="animation-name:v4"><text x="16" y="182.5" class="s f5" font-size="11" font-weight="700" textLength="23">目标</text></g>
+<g class="v" style="animation-name:v5"><text x="16" y="215" class="s f5" font-size="14" textLength="68.5">+ 新建目标</text></g>
+<g class="v" style="animation-name:v6"><text x="16" y="250" class="s f5" font-size="11" font-weight="700" textLength="46.5">项目看板</text></g>
+<g class="v" style="animation-name:v7"><text x="16" y="282.5" class="s f4" font-size="14" textLength="28">看板</text></g>
+<g class="v" style="animation-name:v8"><text x="254.5" y="282.5" class="s f5" font-size="14">0</text></g>
+<g class="v" style="animation-name:v9"><text x="328" y="125" class="s f4" font-size="26" font-weight="700" textLength="85">Troupe</text></g>
+<g class="v" style="animation-name:va"><text x="328" y="165" class="s f5" font-size="14" textLength="154">多个编程代理，并肩工作</text></g>
+<g class="v" style="animation-name:vb"><text x="328" y="200" class="s f4" font-size="14" textLength="411">还没有代理。输入 @bizos、@codex、@claude… 再写任务即可。</text></g>
+<g class="v" style="animation-name:vc"><rect x="328" y="219" width="229.5" height="57" rx="8" class="f1"/><rect x="328.5" y="219.5" width="228.5" height="56" rx="7.5" fill="none" class="k2" stroke-width="1"/></g>
+<g class="v" style="animation-name:vd"><text x="339" y="244" class="s f4" font-size="14" font-weight="700" textLength="48.5">@bizos</text></g>
+<g class="v" style="animation-name:ve"><text x="339" y="262" class="s f5" font-size="12" textLength="67.5">BizOS Code</text></g>
+<g class="v" style="animation-name:vf"><rect x="565.5" y="219" width="229.5" height="57" rx="8" class="f1"/><rect x="566" y="219.5" width="228.5" height="56" rx="7.5" fill="none" class="k2" stroke-width="1"/></g>
+<g class="v" style="animation-name:vg"><text x="576.5" y="244" class="s f4" font-size="14" font-weight="700" textLength="58">@claude</text></g>
+<g class="v" style="animation-name:vh"><text x="576.5" y="262" class="s f5" font-size="12" textLength="119">Claude Code · 未实测</text></g>
+<g class="v" style="animation-name:vi"><rect x="802.5" y="219" width="229.5" height="57" rx="8" class="f1"/><rect x="803" y="219.5" width="228.5" height="56" rx="7.5" fill="none" class="k2" stroke-width="1"/></g>
+<g class="v" style="animation-name:vj"><text x="813.5" y="244" class="s f4" font-size="14" font-weight="700" textLength="53.5">@codex</text></g>
+<g class="v" style="animation-name:vk"><text x="813.5" y="262" class="s f5" font-size="12" textLength="36">Codex</text></g>
+<g class="v" style="animation-name:vl"><rect x="328" y="284" width="229.5" height="57" rx="8" class="f1"/><rect x="328.5" y="284.5" width="228.5" height="56" rx="7.5" fill="none" class="k2" stroke-width="1"/></g>
+<g class="v" style="animation-name:vm"><text x="339" y="309" class="s f4" font-size="14" font-weight="700" textLength="41">@kimi</text></g>
+<g class="v" style="animation-name:vn"><text x="339" y="327" class="s f5" font-size="12" textLength="57.5">Kimi Code</text></g>
+<g class="v" style="animation-name:vo"><rect x="328" y="355" width="704" height="31" rx="8" class="f1"/><rect x="328.5" y="355.5" width="703" height="30" rx="7.5" fill="none" class="k2" stroke-width="1"/></g>
+<g class="v" style="animation-name:vp"><text x="340" y="374" class="m f4" font-size="12.5" textLength="195.5">@codex @claude review src/</text></g>
+<g class="v" style="animation-name:vq"><rect x="328" y="392" width="704" height="31" rx="8" class="f1"/><rect x="328.5" y="392.5" width="703" height="30" rx="7.5" fill="none" class="k2" stroke-width="1"/></g>
+<g class="v" style="animation-name:vr"><text x="340" y="411" class="m f4" font-size="12.5" textLength="203">@codex fix the failing test</text></g>
+<g class="v" style="animation-name:vs"><text x="550.5" y="411" class="m f4" font-size="12.5" textLength="188">@kimi add edge-case tests</text></g>
+<g class="v" style="animation-name:vt"><rect x="328" y="428.5" width="704" height="31" rx="8" class="f1"/><rect x="328.5" y="429" width="703" height="30" rx="7.5" fill="none" class="k2" stroke-width="1"/></g>
+<g class="v" style="animation-name:vu"><text x="340" y="447.5" class="m f4" font-size="12.5" textLength="353.5">@all @compare:claude which approach is simpler?</text></g>
+<g class="v" style="animation-name:vv"><rect x="280" y="580.5" width="800" height="79.5" class="f1"/><rect x="280" y="580.5" width="800" height="1" class="f3"/></g>
+<g class="v" style="animation-name:vw"><rect x="296" y="591.5" width="708" height="54.5" rx="8" class="f1"/><rect x="296.5" y="592" width="707" height="53.5" rx="7.5" fill="none" class="k2" stroke-width="1"/></g>
+<g class="v" style="animation-name:vx"><rect x="296" y="591.5" width="708" height="54.5" rx="8" class="f1"/><rect x="296.5" y="592" width="707" height="53.5" rx="7.5" fill="none" class="k8" stroke-width="1"/></g>
+<g class="v" style="animation-name:vy"><text x="307" y="614" class="s fa" font-size="14" textLength="366.5">@codex @claude 审查 src/   ·   Enter 发送 · Alt+Enter 换行</text></g>
+<g class="v p" style="animation-name:vz"><rect x="280" y="580" width="800" height="80" class="f1"/><rect x="280" y="580" width="800" height="1" class="f3"/></g>
+<g class="v" style="animation-name:v10"><rect x="296" y="591" width="708" height="55" rx="8" class="f1"/><rect x="296.5" y="591.5" width="707" height="54" rx="7.5" fill="none" class="k8" stroke-width="1"/></g>
+<g class="v" style="animation-name:v11"><text x="307" y="613.5" class="s f4" font-size="14" textLength="64.5">@bizos 修</text></g>
+<g class="v" style="animation-name:v12"><text x="307" y="613.5" class="s f4" font-size="14" textLength="204.5">@bizos 修复解析器：文件末尾没</text></g>
+<g class="v" style="animation-name:v13"><text x="307" y="613.5" class="s f4" font-size="14" textLength="344.5">@bizos 修复解析器：文件末尾没有换行时会丢掉最后一</text></g>
+<g class="v" style="animation-name:v14"><text x="307" y="613.5" class="s f4" font-size="14" textLength="358.5">@bizos 修复解析器：文件末尾没有换行时会丢掉最后一行</text></g>
+<g class="v" style="animation-name:v15"><text x="307" y="634" class="s f4" font-size="14" textLength="69.5">@codex 给</text></g>
+<g class="v" style="animation-name:v16"><rect x="280" y="560" width="800" height="100" class="f1"/><rect x="280" y="560" width="800" height="1" class="f3"/></g>
 <rect x="1012" y="613" width="52" height="33" rx="8" class="f7"/><rect x="1012.5" y="613.5" width="51" height="32" rx="7.5" fill="none" class="k8" stroke-width="1"/>
 <text x="1024" y="635" class="s f9" font-size="14" textLength="28">发送</text>
-<g class="v" style="animation-name:v18"><rect x="296" y="571" width="708" height="75" rx="8" class="f1"/><rect x="296.5" y="571.5" width="707" height="74" rx="7.5" fill="none" class="k8" stroke-width="1"/></g>
-<g class="v" style="animation-name:v19"><text x="307" y="593.5" class="s f4" font-size="14" textLength="358.5">@bizos 修复解析器：文件末尾没有换行时会丢掉最后一行</text></g>
-<g class="v" style="animation-name:v1a"><text x="307" y="614" class="s f4" font-size="14" textLength="209.5">@codex 给解析错误补充边界测试</text></g>
-<g class="v" style="animation-name:v1b"><text x="307" y="634.5" class="s f4" font-size="14">@</text></g>
-<g class="v" style="animation-name:v1c"><text x="307" y="634.5" class="s f4" font-size="14" textLength="77">@claude 在 </text></g>
-<g class="v" style="animation-name:v1d"><text x="307" y="634.5" class="s f4" font-size="14" textLength="150">@claude 在 docs/impor</text></g>
-<g class="v" style="animation-name:v1e"><text x="307" y="634.5" class="s f4" font-size="14" textLength="225">@claude 在 docs/import.md 写清楚</text></g>
+<g class="v" style="animation-name:v17"><rect x="296" y="571" width="708" height="75" rx="8" class="f1"/><rect x="296.5" y="571.5" width="707" height="74" rx="7.5" fill="none" class="k8" stroke-width="1"/></g>
+<g class="v" style="animation-name:v18"><text x="307" y="634.5" class="s f4" font-size="14">@</text></g>
+<g class="v" style="animation-name:v19"><text x="307" y="634.5" class="s f4" font-size="14" textLength="77">@claude 在 </text></g>
+<g class="v" style="animation-name:v1a"><text x="307" y="634.5" class="s f4" font-size="14" textLength="150">@claude 在 docs/impor</text></g>
+<g class="v" style="animation-name:v1b"><text x="307" y="634.5" class="s f4" font-size="14" textLength="239">@claude 在 docs/import.md 写清楚导</text></g>
+<g class="v" style="animation-name:v1c"><rect x="296" y="571" width="708" height="75" rx="8" class="f1"/><rect x="296.5" y="571.5" width="707" height="74" rx="7.5" fill="none" class="k2" stroke-width="1"/></g>
+<g class="v" style="animation-name:v1d"><text x="307" y="593.5" class="s f4" font-size="14" textLength="358.5">@bizos 修复解析器：文件末尾没有换行时会丢掉最后一行</text></g>
+<g class="v" style="animation-name:v1e"><text x="307" y="614" class="s f4" font-size="14" textLength="209.5">@codex 给解析错误补充边界测试</text></g>
 <g class="v" style="animation-name:v1f"><text x="307" y="634.5" class="s f4" font-size="14" textLength="281">@claude 在 docs/import.md 写清楚导入格式</text></g>
-<g class="v" style="animation-name:v1g"><rect x="186" y="14.5" width="64.5" height="20" rx="10" class="f6"/></g>
-<g class="v" style="animation-name:v1h"><text x="195" y="28.5" class="s f5" font-size="12" textLength="46.5">2 个代理</text></g>
-<g class="v" style="animation-name:v1i"><rect x="261" y="14.5" width="76.5" height="20" rx="10" class="fb"/></g>
-<g class="v" style="animation-name:v1j"><text x="270" y="28.5" class="s f7" font-size="12" textLength="58.5">2 个工作中</text></g>
-<g class="v p" style="animation-name:v1k"><rect x="8" y="106.5" width="263" height="57" rx="8" class="fb"/></g>
-<g class="v" style="animation-name:v1l"><rect x="17" y="120" width="10" height="10" rx="5" class="fc pulse"/></g>
-<g class="v p" style="animation-name:v1m"><text x="39" y="130.5" class="s f4" font-size="14" font-weight="700" textLength="48.5">@bizos</text></g>
-<g class="v" style="animation-name:v1n"><rect x="208" y="115" width="54" height="20" rx="10" class="fb"/></g>
-<g class="v" style="animation-name:v1o"><text x="217" y="129" class="s f7" font-size="12" textLength="36">工作中</text></g>
-<g class="v p" style="animation-name:v1p"><text x="39" y="150.5" class="s f5" font-size="12" textLength="70.5">troupe/bizos</text></g>
-<g class="v" style="animation-name:v1q"><rect x="17" y="177" width="10" height="10" rx="5" class="fd pulse"/></g>
-<g class="v" style="animation-name:v1r"><rect x="208" y="172" width="54" height="20" rx="10" class="fb"/></g>
-<g class="v" style="animation-name:v1s"><text x="217" y="186" class="s f7" font-size="12" textLength="36">工作中</text></g>
-<g class="v" style="animation-name:v1t"><text x="16" y="244.5" class="s f5" font-size="11" font-weight="700" textLength="23">目标</text></g>
-<g class="v" style="animation-name:v1u"><text x="16" y="277" class="s f5" font-size="14" textLength="68.5">+ 新建目标</text></g>
-<g class="v" style="animation-name:v1v"><text x="16" y="312" class="s f5" font-size="11" font-weight="700" textLength="46.5">项目看板</text></g>
-<g class="v" style="animation-name:v1w"><text x="16" y="344.5" class="s f4" font-size="14" textLength="28">看板</text></g>
-<g class="v" style="animation-name:v1x"><text x="254.5" y="344.5" class="s f5" font-size="14">0</text></g>
-<g class="v" style="animation-name:v1y"><rect x="280" y="50" width="800" height="84.5" class="f1"/><rect x="280" y="133.5" width="800" height="1" class="f3"/></g>
-<g class="v" style="animation-name:v1z"><rect x="296" y="66.5" width="10" height="10" rx="5" class="fc"/></g>
-<g class="v" style="animation-name:v20"><text x="314" y="77" class="s f4" font-size="15" font-weight="700" textLength="52.5">@bizos</text></g>
-<g class="v" style="animation-name:v21"><text x="374.5" y="75" class="s f5" font-size="12.5" textLength="154">BizOS Code · troupe/bizos</text></g>
-<g class="v" style="animation-name:v22"><rect x="536.5" y="61.5" width="54" height="20" rx="10" class="fe"/></g>
-<g class="v" style="animation-name:v23"><text x="545.5" y="75.5" class="s ff" font-size="12" textLength="36">未实测</text></g>
-<g class="v" style="animation-name:v24"><rect x="598.5" y="61.5" width="54" height="20" rx="10" class="fb"/></g>
-<g class="v" style="animation-name:v25"><text x="607.5" y="75.5" class="s f7" font-size="12" textLength="36">工作中</text></g>
-<g class="v" style="animation-name:v26"><rect x="296" y="90.5" width="94" height="33" rx="8" class="f1"/><rect x="296.5" y="91" width="93" height="32" rx="7.5" fill="none" class="k2" stroke-width="1"/></g>
-<g class="v" style="animation-name:v27"><text x="307" y="112.5" class="s f4" font-size="14" textLength="42">工作区</text></g>
-<g class="v" style="animation-name:v28"><path d="M372 104l4 4 4-4" fill="none" class="kg" stroke-width="1.5"/></g>
-<g class="v" style="animation-name:v29"><rect x="396" y="90.5" width="52" height="33" rx="8" class="f1"/><rect x="396.5" y="91" width="51" height="32" rx="7.5" fill="none" class="k2" stroke-width="1"/></g>
-<g class="v" style="animation-name:v2a"><text x="408" y="112.5" class="s fh" font-size="14" textLength="28">停止</text></g>
-<g class="v" style="animation-name:v2b"><rect x="454" y="90.5" width="52" height="33" rx="8" class="f1"/><rect x="454.5" y="91" width="51" height="32" rx="7.5" fill="none" class="k2" stroke-width="1"/></g>
-<g class="v" style="animation-name:v2c"><text x="466" y="112.5" class="s f4" font-size="14" textLength="28">改动</text></g>
-<g class="v" style="animation-name:v2d"><rect x="512" y="90.5" width="52" height="33" rx="8" class="f1"/><rect x="512.5" y="91" width="51" height="32" rx="7.5" fill="none" class="k2" stroke-width="1"/></g>
-<g class="v" style="animation-name:v2e"><text x="524" y="112.5" class="s f4" font-size="14" textLength="28">合并</text></g>
-<g class="v" style="animation-name:v2f"><rect x="570" y="90.5" width="52" height="33" rx="8" class="f1"/><rect x="570.5" y="91" width="51" height="32" rx="7.5" fill="none" class="k2" stroke-width="1"/></g>
-<g class="v" style="animation-name:v2g"><text x="582" y="112.5" class="s f4" font-size="14" textLength="28">重发</text></g>
-<g class="v" style="animation-name:v2h"><rect x="628" y="90.5" width="52" height="33" rx="8" class="f1"/><rect x="628.5" y="91" width="51" height="32" rx="7.5" fill="none" class="k2" stroke-width="1"/></g>
-<g class="v" style="animation-name:v2i"><text x="640" y="112.5" class="s f4" font-size="14" textLength="28">改名</text></g>
-<g class="v" style="animation-name:v2j"><rect x="686" y="90.5" width="52" height="33" rx="8" class="f1"/><rect x="686.5" y="91" width="51" height="32" rx="7.5" fill="none" class="k2" stroke-width="1"/></g>
-<g class="v" style="animation-name:v2k"><text x="698" y="112.5" class="s fh" font-size="14" textLength="28">归档</text></g>
-<g class="v" style="animation-name:v2l"><text x="296" y="161.5" class="s f5" font-size="12.5" textLength="308">· Working on branch troupe/bizos in its own worktree</text></g>
-<g class="v" style="animation-name:v2m"><text x="296" y="197.5" class="s f4" font-size="13" font-weight="700">你</text></g>
-<g class="v" style="animation-name:v2n"><text x="317" y="197.5" class="s f5" font-size="12" textLength="50.5">15:43:33</text></g>
-<g class="v" style="animation-name:v2o"><rect x="296" y="206" width="332" height="43" rx="10" class="fb"/></g>
-<g class="v" style="animation-name:v2p"><text x="308" y="230" class="s f4" font-size="14" textLength="308">修复解析器：文件末尾没有换行时会丢掉最后一行</text></g>
-<g class="v" style="animation-name:v2q"><rect x="296" y="265" width="3" height="76.5" class="f7"/></g>
-<g class="v" style="animation-name:v2r"><text x="311" y="318.5" class="s f4" font-size="14" textLength="154">先用一个测试复现问题。</text></g>
-<g class="v p" style="animation-name:v2s"><rect x="296" y="591" width="708" height="55" rx="8" class="f1"/><rect x="296.5" y="591.5" width="707" height="54" rx="7.5" fill="none" class="k2" stroke-width="1"/></g>
-<g class="v p" style="animation-name:v2t"><text x="307" y="613.5" class="s fa" font-size="14" textLength="289.5">发给 @bizos，或以 @代理 开头   ·   Enter 发送</text></g>
-<g class="v p" style="animation-name:v2u"><text x="195" y="28.5" class="s f5" font-size="12" textLength="47">3 个代理</text></g>
-<g class="v" style="animation-name:v2v"><rect x="261" y="14.5" width="77" height="20" rx="10" class="fb"/></g>
-<g class="v" style="animation-name:v2w"><text x="270" y="28.5" class="s f7" font-size="12" textLength="59">3 个工作中</text></g>
-<g class="v" style="animation-name:v2x"><rect x="17" y="234" width="10" height="10" rx="5" class="fi pulse"/></g>
-<g class="v p" style="animation-name:v2y"><text x="39" y="244.5" class="s f4" font-size="14" font-weight="700" textLength="58">@claude</text></g>
-<g class="v" style="animation-name:v2z"><rect x="208" y="229" width="54" height="20" rx="10" class="fb"/></g>
-<g class="v" style="animation-name:v30"><text x="217" y="243" class="s f7" font-size="12" textLength="36">工作中</text></g>
-<g class="v p" style="animation-name:v31"><text x="39" y="264.5" class="s f5" font-size="12" textLength="78.5">troupe/claude</text></g>
-<g class="v p" style="animation-name:v32"><text x="16" y="301.5" class="s f5" font-size="11" font-weight="700" textLength="23">目标</text></g>
-<g class="v p" style="animation-name:v33"><text x="16" y="334" class="s f5" font-size="14" textLength="68.5">+ 新建目标</text></g>
-<g class="v p" style="animation-name:v34"><text x="16" y="369" class="s f5" font-size="11" font-weight="700" textLength="46.5">项目看板</text></g>
-<g class="v p" style="animation-name:v35"><text x="16" y="401.5" class="s f4" font-size="14" textLength="28">看板</text></g>
-<g class="v p" style="animation-name:v36"><text x="254.5" y="401.5" class="s f5" font-size="14">0</text></g>
-<g class="v" style="animation-name:v37"><rect x="296" y="265" width="3" height="98.5" class="f7"/></g>
-<g class="v" style="animation-name:v38"><text x="311" y="283" class="s f7" font-size="13" font-weight="700" textLength="122.5">● @bizos 已工作 0s</text></g>
-<g class="v" style="animation-name:v39"><text x="311" y="304.5" class="s f7" font-size="14">●</text></g>
-<g class="v" style="animation-name:v3a"><text x="330" y="304.5" class="m f4" font-size="12.5" textLength="83">coding_read</text></g>
-<g class="v" style="animation-name:v3b"><text x="418.5" y="304.5" class="m f5" font-size="12.5" textLength="98">src/parser.js</text></g>
-<g class="v" style="animation-name:v3c"><text x="311" y="340" class="s f4" font-size="14" textLength="154">先用一个测试复现问题。</text></g>
-<g class="v" style="animation-name:v3d"><rect x="296" y="265" width="3" height="120" class="f7"/></g>
-<g class="v" style="animation-name:v3e"><text x="311" y="283" class="s f7" font-size="13" font-weight="700" textLength="120.5">● @bizos 已工作 1s</text></g>
-<g class="v" style="animation-name:v3f"><text x="311" y="326" class="s f7" font-size="14">●</text></g>
-<g class="v" style="animation-name:v3g"><text x="330" y="326" class="m f4" font-size="12.5" textLength="83">coding_read</text></g>
-<g class="v" style="animation-name:v3h"><text x="418.5" y="326" class="m f5" font-size="12.5" textLength="143">test/parser.test.js</text></g>
-<g class="v" style="animation-name:v3i"><text x="311" y="362" class="s f4" font-size="14" textLength="154">先用一个测试复现问题。</text></g>
-<g class="v" style="animation-name:v3j"><text x="39" y="150.5" class="s f5" font-size="12" textLength="71">coding_read</text></g>
-<g class="v" style="animation-name:v3k"><rect x="148" y="172" width="114" height="20" rx="10" class="fb"/></g>
-<g class="v" style="animation-name:v3l"><text x="157" y="186" class="s f7" font-size="12" textLength="96">等待 @bizos 回答</text></g>
-<g class="v" style="animation-name:v3m"><text x="39" y="207.5" class="s f5" font-size="12" textLength="142.5">troupe.troupe_ask_agent</text></g>
-<g class="v" style="animation-name:v3n"><rect x="296" y="265" width="3" height="142" class="f7"/></g>
-<g class="v" style="animation-name:v3o"><text x="311" y="283" class="s f7" font-size="13" font-weight="700" textLength="122">● @bizos 已工作 2s</text></g>
-<g class="v" style="animation-name:v3p"><text x="311" y="348" class="s f7" font-size="14">●</text></g>
-<g class="v" style="animation-name:v3q"><text x="330" y="348" class="m f4" font-size="12.5" textLength="128">coding_multi_edit</text></g>
-<g class="v" style="animation-name:v3r"><text x="311" y="383.5" class="s f4" font-size="14" textLength="154">先用一个测试复现问题。</text></g>
-<g class="v" style="animation-name:v3s"><rect x="348" y="14.5" width="87" height="20" rx="10" class="fe"/></g>
-<g class="v" style="animation-name:v3t"><text x="357" y="28.5" class="s ff" font-size="12" textLength="69">1 项待你处理</text></g>
-<g class="v" style="animation-name:v3u"><rect x="231.5" y="115" width="30.5" height="20" rx="10" class="fe"/></g>
-<g class="v" style="animation-name:v3v"><text x="240.5" y="129" class="s ff" font-size="12" textLength="12.5">! 1</text></g>
-<g class="v" style="animation-name:v3w"><text x="39" y="150.5" class="s f5" font-size="12" textLength="48.5">排队 1 条</text></g>
-<g class="v" style="animation-name:v3x"><text x="16" y="301.5" class="s f5" font-size="11" font-weight="700" textLength="67">等你处理 (1)</text></g>
-<g class="v" style="animation-name:v3y"><text x="16" y="327" class="s f5" font-size="12" textLength="98">@bizos: npm test</text></g>
-<g class="v" style="animation-name:v3z"><text x="16" y="358" class="s f5" font-size="11" font-weight="700" textLength="23">目标</text></g>
-<g class="v" style="animation-name:v40"><text x="16" y="390.5" class="s f5" font-size="14" textLength="68.5">+ 新建目标</text></g>
-<g class="v" style="animation-name:v41"><text x="16" y="425.5" class="s f5" font-size="11" font-weight="700" textLength="46.5">项目看板</text></g>
-<g class="v" style="animation-name:v42"><text x="16" y="458" class="s f4" font-size="14" textLength="28">看板</text></g>
-<g class="v" style="animation-name:v43"><text x="254.5" y="458" class="s f5" font-size="14">0</text></g>
-<g class="v" style="animation-name:v45"><g clip-path="url(#c44)"><rect x="296" y="60" width="768" height="135" rx="10" filter="url(#sh)" class="shadow"/><rect x="296" y="60" width="768" height="135" rx="10" class="f1"/><rect x="296.5" y="60.5" width="767" height="134" rx="9.5" fill="none" class="kk" stroke-width="1"/></g></g>
-<g class="v" style="animation-name:v46"><rect x="311" y="78.5" width="10" height="10" rx="5" class="fc"/></g>
-<g class="v" style="animation-name:v47"><text x="329" y="89" class="s f4" font-size="14" font-weight="700" textLength="49.5">@bizos</text></g>
-<g class="v" style="animation-name:v48"><rect x="386.5" y="73.5" width="66" height="20" rx="10" class="fe"/></g>
-<g class="v" style="animation-name:v49"><text x="395.5" y="87.5" class="s ff" font-size="12" textLength="48">运行命令</text></g>
-<g class="v" style="animation-name:v4a"><text x="460.5" y="89" class="s f5" font-size="14" textLength="70">需要你批准</text></g>
-<g class="v" style="animation-name:v4b"><rect x="311" y="100" width="738" height="39" rx="8" class="fl"/></g>
-<g class="v" style="animation-name:v4c"><text x="323" y="123" class="m f4" font-size="12.5" textLength="60">npm test</text></g>
-<g class="v" style="animation-name:v4d"><rect x="311" y="149" width="80" height="33" rx="8" class="f7"/><rect x="311.5" y="149.5" width="79" height="32" rx="7.5" fill="none" class="k8" stroke-width="1"/></g>
-<g class="v" style="animation-name:v4e"><text x="323" y="171" class="s f9" font-size="14" textLength="56">允许一次</text></g>
-<g class="v" style="animation-name:v4f"><rect x="399" y="149" width="190.5" height="33" rx="8" class="f1"/><rect x="399.5" y="149.5" width="189.5" height="32" rx="7.5" fill="none" class="k2" stroke-width="1"/></g>
-<g class="v" style="animation-name:v4g"><rect x="597.5" y="149" width="52" height="33" rx="8" class="f1"/><rect x="598" y="149.5" width="51" height="32" rx="7.5" fill="none" class="k2" stroke-width="1"/></g>
-<g class="v" style="animation-name:v4h"><text x="609.5" y="171" class="s fh" font-size="14" textLength="28">拒绝</text></g>
-<g class="v" style="animation-name:v4i"><rect x="280" y="195" width="800" height="84.5" class="f1"/><rect x="280" y="278.5" width="800" height="1" class="f3"/></g>
-<g class="v" style="animation-name:v4j"><rect x="296" y="211" width="10" height="10" rx="5" class="fc"/></g>
-<g class="v" style="animation-name:v4k"><text x="314" y="222" class="s f4" font-size="15" font-weight="700" textLength="52.5">@bizos</text></g>
-<g class="v" style="animation-name:v4l"><text x="374.5" y="219.5" class="s f5" font-size="12.5" textLength="154">BizOS Code · troupe/bizos</text></g>
-<g class="v" style="animation-name:v4m"><rect x="536.5" y="206" width="54" height="20" rx="10" class="fe"/></g>
-<g class="v" style="animation-name:v4n"><text x="545.5" y="220" class="s ff" font-size="12" textLength="36">未实测</text></g>
-<g class="v" style="animation-name:v4o"><rect x="598.5" y="206" width="30.5" height="20" rx="10" class="fe"/></g>
-<g class="v" style="animation-name:v4p"><text x="607.5" y="220" class="s ff" font-size="12" textLength="12.5">! 1</text></g>
-<g class="v" style="animation-name:v4q"><rect x="296" y="235.5" width="94" height="33" rx="8" class="f1"/><rect x="296.5" y="236" width="93" height="32" rx="7.5" fill="none" class="k2" stroke-width="1"/></g>
-<g class="v" style="animation-name:v4r"><text x="307" y="257.5" class="s f4" font-size="14" textLength="42">工作区</text></g>
-<g class="v" style="animation-name:v4s"><path d="M372 249l4 4 4-4" fill="none" class="kg" stroke-width="1.5"/></g>
-<g class="v" style="animation-name:v4t"><rect x="396" y="235.5" width="52" height="33" rx="8" class="f1"/><rect x="396.5" y="236" width="51" height="32" rx="7.5" fill="none" class="k2" stroke-width="1"/></g>
-<g class="v" style="animation-name:v4u"><text x="408" y="257.5" class="s fh" font-size="14" textLength="28">停止</text></g>
-<g class="v" style="animation-name:v4v"><rect x="454" y="235.5" width="52" height="33" rx="8" class="f1"/><rect x="454.5" y="236" width="51" height="32" rx="7.5" fill="none" class="k2" stroke-width="1"/></g>
-<g class="v" style="animation-name:v4w"><text x="466" y="257.5" class="s f4" font-size="14" textLength="28">改动</text></g>
-<g class="v" style="animation-name:v4x"><rect x="512" y="235.5" width="52" height="33" rx="8" class="f1"/><rect x="512.5" y="236" width="51" height="32" rx="7.5" fill="none" class="k2" stroke-width="1"/></g>
-<g class="v" style="animation-name:v4y"><text x="524" y="257.5" class="s f4" font-size="14" textLength="28">合并</text></g>
-<g class="v" style="animation-name:v4z"><rect x="570" y="235.5" width="52" height="33" rx="8" class="f1"/><rect x="570.5" y="236" width="51" height="32" rx="7.5" fill="none" class="k2" stroke-width="1"/></g>
-<g class="v" style="animation-name:v50"><text x="582" y="257.5" class="s f4" font-size="14" textLength="28">重发</text></g>
-<g class="v" style="animation-name:v51"><rect x="628" y="235.5" width="52" height="33" rx="8" class="f1"/><rect x="628.5" y="236" width="51" height="32" rx="7.5" fill="none" class="k2" stroke-width="1"/></g>
-<g class="v" style="animation-name:v52"><text x="640" y="257.5" class="s f4" font-size="14" textLength="28">改名</text></g>
-<g class="v" style="animation-name:v53"><rect x="686" y="235.5" width="52" height="33" rx="8" class="f1"/><rect x="686.5" y="236" width="51" height="32" rx="7.5" fill="none" class="k2" stroke-width="1"/></g>
-<g class="v" style="animation-name:v54"><text x="698" y="257.5" class="s fh" font-size="14" textLength="28">归档</text></g>
-<g class="v" style="animation-name:v55"><text x="296" y="306.5" class="s f5" font-size="12.5" textLength="308">· Working on branch troupe/bizos in its own worktree</text></g>
-<g class="v" style="animation-name:v56"><text x="296" y="342" class="s f4" font-size="13" font-weight="700">你</text></g>
-<g class="v" style="animation-name:v57"><text x="317" y="342" class="s f5" font-size="12" textLength="50.5">15:43:33</text></g>
-<g class="v" style="animation-name:v58"><rect x="296" y="350.5" width="332" height="43" rx="10" class="fb"/></g>
-<g class="v" style="animation-name:v59"><text x="308" y="374.5" class="s f4" font-size="14" textLength="308">修复解析器：文件末尾没有换行时会丢掉最后一行</text></g>
-<g class="v" style="animation-name:v5a"><rect x="296" y="409.5" width="3" height="142" class="f7"/></g>
-<g class="v" style="animation-name:v5b"><text x="311" y="427.5" class="s f7" font-size="13" font-weight="700" textLength="122">● @bizos 已工作 2s</text></g>
-<g class="v" style="animation-name:v5c"><text x="311" y="449" class="s fj" font-size="14">✓</text></g>
-<g class="v" style="animation-name:v5d"><text x="329" y="449" class="m f4" font-size="12.5" textLength="83">coding_read</text></g>
-<g class="v" style="animation-name:v5e"><text x="418" y="449" class="m f5" font-size="12.5" textLength="98">src/parser.js</text></g>
-<g class="v" style="animation-name:v5f"><text x="311" y="471" class="s fj" font-size="14">✓</text></g>
-<g class="v" style="animation-name:v5g"><text x="329" y="471" class="m f4" font-size="12.5" textLength="83">coding_read</text></g>
-<g class="v" style="animation-name:v5h"><text x="418" y="471" class="m f5" font-size="12.5" textLength="143">test/parser.test.js</text></g>
-<g class="v" style="animation-name:v5i"><text x="311" y="492.5" class="s fj" font-size="14">✓</text></g>
-<g class="v" style="animation-name:v5j"><text x="329" y="492.5" class="m f4" font-size="12.5" textLength="128">coding_multi_edit</text></g>
-<g class="v" style="animation-name:v5k"><text x="311" y="528.5" class="s f4" font-size="14" textLength="154">先用一个测试复现问题。</text></g>
-<g class="v" style="animation-name:v5l"><text x="311" y="427.5" class="s f7" font-size="13" font-weight="700" textLength="122.5">● @bizos 已工作 3s</text></g>
-<g class="v" style="animation-name:v5m"><text x="311" y="427.5" class="s f7" font-size="13" font-weight="700" textLength="122.5">● @bizos 已工作 4s</text></g>
-<g class="v p" style="animation-name:v5n"><rect x="17" y="234" width="10" height="10" rx="5" class="fi"/></g>
-<g class="v p" style="animation-name:v5o"><rect x="220" y="229" width="42" height="20" rx="10" class="fm"/></g>
-<g class="v p" style="animation-name:v5p"><text x="229" y="243" class="s fj" font-size="12" textLength="24">空闲</text></g>
-<g class="v" style="animation-name:v5q"><rect x="399" y="149" width="190.5" height="33" rx="8" class="f1"/><rect x="399.5" y="149.5" width="189.5" height="32" rx="7.5" fill="none" class="k8" stroke-width="1"/></g>
-<g class="v" style="animation-name:v5r"><text x="411" y="171" class="s fj" font-size="14" textLength="166.5">以后都允许 @bizos 这样做</text></g>
-<g class="v" style="animation-name:v5s"><rect x="296" y="265" width="3" height="163.5" class="f7"/></g>
-<g class="v" style="animation-name:v5t"><text x="311" y="283" class="s f7" font-size="13" font-weight="700" textLength="122.5">● @bizos 已工作 5s</text></g>
-<g class="v" style="animation-name:v5u"><text x="311" y="369.5" class="s f7" font-size="14">●</text></g>
-<g class="v" style="animation-name:v5v"><text x="330" y="369.5" class="m f4" font-size="12.5" textLength="150.5">coding_command_start</text></g>
-<g class="v" style="animation-name:v5w"><text x="486.5" y="369.5" class="m f5" font-size="12.5" textLength="60">npm test</text></g>
-<g class="v" style="animation-name:v5x"><text x="311" y="405.5" class="s f4" font-size="14" textLength="154">先用一个测试复现问题。</text></g>
-<g class="v" style="animation-name:v5y"><rect x="296" y="265" width="3" height="185.5" class="f7"/></g>
-<g class="v" style="animation-name:v5z"><text x="311" y="391.5" class="s f7" font-size="14">●</text></g>
-<g class="v" style="animation-name:v60"><text x="330" y="391.5" class="m f4" font-size="12.5" textLength="128">coding_multi_edit</text></g>
-<g class="v" style="animation-name:v61"><text x="311" y="427" class="s f4" font-size="14" textLength="154">先用一个测试复现问题。</text></g>
-<g class="v" style="animation-name:v62"><rect x="296" y="265" width="3" height="207" class="f7"/></g>
-<g class="v" style="animation-name:v63"><text x="311" y="304.5" class="s fj" font-size="14">✓</text></g>
-<g class="v" style="animation-name:v64"><text x="329" y="304.5" class="m f4" font-size="12.5" textLength="83">coding_read</text></g>
-<g class="v" style="animation-name:v65"><text x="418" y="304.5" class="m f5" font-size="12.5" textLength="98">src/parser.js</text></g>
-<g class="v" style="animation-name:v66"><text x="311" y="326" class="s fj" font-size="14">✓</text></g>
-<g class="v" style="animation-name:v67"><text x="329" y="326" class="m f4" font-size="12.5" textLength="83">coding_read</text></g>
-<g class="v" style="animation-name:v68"><text x="418" y="326" class="m f5" font-size="12.5" textLength="143">test/parser.test.js</text></g>
-<g class="v" style="animation-name:v69"><text x="311" y="348" class="s fj" font-size="14">✓</text></g>
-<g class="v" style="animation-name:v6a"><text x="329" y="348" class="m f4" font-size="12.5" textLength="128">coding_multi_edit</text></g>
-<g class="v" style="animation-name:v6b"><text x="311" y="369.5" class="s fj" font-size="14">✓</text></g>
-<g class="v" style="animation-name:v6c"><text x="329" y="369.5" class="m f4" font-size="12.5" textLength="150.5">coding_command_start</text></g>
-<g class="v" style="animation-name:v6d"><text x="485.5" y="369.5" class="m f5" font-size="12.5" textLength="60">npm test</text></g>
-<g class="v" style="animation-name:v6e"><text x="311" y="283" class="s f7" font-size="13" font-weight="700" textLength="122.5">● @bizos 已工作 6s</text></g>
-<g class="v" style="animation-name:v6f"><text x="311" y="391.5" class="s fj" font-size="14">✓</text></g>
-<g class="v" style="animation-name:v6g"><text x="329" y="391.5" class="m f4" font-size="12.5" textLength="128">coding_multi_edit</text></g>
-<g class="v" style="animation-name:v6h"><text x="311" y="413" class="s f7" font-size="14">●</text></g>
-<g class="v" style="animation-name:v6i"><text x="330" y="413" class="m f4" font-size="12.5" textLength="150.5">coding_command_start</text></g>
-<g class="v" style="animation-name:v6j"><text x="486.5" y="413" class="m f5" font-size="12.5" textLength="60">npm test</text></g>
-<g class="v" style="animation-name:v6k"><text x="311" y="449" class="s f4" font-size="14" textLength="154">先用一个测试复现问题。</text></g>
-<g class="v" style="animation-name:v6l"><text x="296" y="279" class="s fc" font-size="13" font-weight="700" textLength="46.5">@bizos</text></g>
-<g class="v" style="animation-name:v6m"><text x="350.5" y="279" class="s f5" font-size="12" textLength="73.5">7s · 15:43:40</text></g>
-<g class="v" style="animation-name:v6n"><text x="296" y="303.5" class="s f4" font-size="14" textLength="154">先用一个测试复现问题。</text></g>
-<g class="v" style="animation-name:v6o"><text x="296" y="330.5" class="s f4" font-size="14" textLength="56">已修复。</text></g>
-<g class="v" style="animation-name:v6p"><rect x="352" y="317.5" width="60.5" height="17" rx="4" class="fl"/></g>
-<g class="v" style="animation-name:v6q"><text x="356" y="330.5" class="m f4" font-size="12.5" textLength="52.5">parse()</text></g>
-<g class="v" style="animation-name:v6r"><text x="416.5" y="330.5" class="s f4" font-size="14" textLength="644">只处理到最后一个换行符，所以文件末尾没有换行时最后一条订单会丢失。现在换行符之后的文本也会解</text></g>
-<g class="v" style="animation-name:v6s"><text x="296" y="352" class="s f4" font-size="14" textLength="112">析，行号也正确。</text></g>
-<g class="v" style="animation-name:v6t"><text x="296" y="379" class="s f4" font-size="14" textLength="126">补了一个回归测试；</text></g>
-<g class="v" style="animation-name:v6u"><rect x="422" y="366" width="68" height="17" rx="4" class="fl"/></g>
-<g class="v" style="animation-name:v6v"><text x="426" y="379" class="m f4" font-size="12.5" textLength="60">npm test</text></g>
-<g class="v" style="animation-name:v6w"><text x="490" y="379" class="s f4" font-size="14" textLength="87">：4 passed。</text></g>
-<g class="v" style="animation-name:v6x"><text x="296" y="404.5" class="s f5" font-size="12.5">▸</text></g>
-<g class="v" style="animation-name:v6y"><text x="309.5" y="404" class="s f5" font-size="12.5" textLength="49">6 个步骤</text></g>
-<g class="v" style="animation-name:v6z"><text x="296" y="439.5" class="s fn" font-size="13" font-weight="700" textLength="80">@codex 提问</text></g>
-<g class="v" style="animation-name:v70"><text x="384" y="439.5" class="s f5" font-size="12" textLength="50.5">15:43:40</text></g>
-<g class="v" style="animation-name:v71"><text x="296" y="464" class="s f4" font-size="14" textLength="571.5">parse() 之后还会抛出带 {line, column} 的 ParseError 吗？我的测试会同时检查这两个字段。</text></g>
-<g class="v" style="animation-name:v72"><rect x="296" y="485" width="3" height="27.5" class="f7"/></g>
-<g class="v" style="animation-name:v73"><text x="311" y="503" class="s f7" font-size="13" font-weight="700" textLength="122.5">● @bizos 已工作 0s</text></g>
-<g class="v" style="animation-name:v74"><rect x="261" y="14.5" width="75" height="20" rx="10" class="fb"/></g>
-<g class="v" style="animation-name:v75"><text x="270" y="28.5" class="s f7" font-size="12" textLength="57">1 个工作中</text></g>
-<g class="v p" style="animation-name:v76"><rect x="17" y="120" width="10" height="10" rx="5" class="fc"/></g>
-<g class="v p" style="animation-name:v77"><rect x="220" y="115" width="42" height="20" rx="10" class="fm"/></g>
-<g class="v p" style="animation-name:v78"><text x="229" y="129" class="s fj" font-size="12" textLength="24">空闲</text></g>
-<g class="v p" style="animation-name:v79"><rect x="280" y="50" width="800" height="54" class="f1"/><rect x="280" y="103" width="800" height="1" class="f3"/></g>
-<g class="v p" style="animation-name:v7a"><rect x="296" y="71.5" width="10" height="10" rx="5" class="fc"/></g>
-<g class="v p" style="animation-name:v7b"><text x="314" y="82.5" class="s f4" font-size="15" font-weight="700" textLength="52.5">@bizos</text></g>
-<g class="v p" style="animation-name:v7c"><text x="374.5" y="80" class="s f5" font-size="12.5" textLength="154">BizOS Code · troupe/bizos</text></g>
-<g class="v p" style="animation-name:v7d"><rect x="536.5" y="66.5" width="54" height="20" rx="10" class="fe"/></g>
-<g class="v p" style="animation-name:v7e"><text x="545.5" y="80.5" class="s ff" font-size="12" textLength="36">未实测</text></g>
-<g class="v p" style="animation-name:v7f"><rect x="598.5" y="66.5" width="42" height="20" rx="10" class="fm"/></g>
-<g class="v p" style="animation-name:v7g"><text x="607.5" y="80.5" class="s fj" font-size="12" textLength="24">空闲</text></g>
-<g class="v p" style="animation-name:v7h"><rect x="680" y="60" width="94" height="33" rx="8" class="f1"/><rect x="680.5" y="60.5" width="93" height="32" rx="7.5" fill="none" class="k2" stroke-width="1"/></g>
-<g class="v p" style="animation-name:v7i"><text x="691" y="82" class="s f4" font-size="14" textLength="42">工作区</text></g>
-<g class="v p" style="animation-name:v7j"><path d="M756 73.5l4 4 4-4" fill="none" class="kg" stroke-width="1.5"/></g>
-<g class="v p" style="animation-name:v7k"><rect x="780" y="60" width="52" height="33" rx="8" class="f1"/><rect x="780.5" y="60.5" width="51" height="32" rx="7.5" fill="none" class="k2" stroke-width="1"/></g>
-<g class="v p" style="animation-name:v7l"><text x="792" y="82" class="s f4" font-size="14" textLength="28">改动</text></g>
-<g class="v p" style="animation-name:v7m"><rect x="838" y="60" width="52" height="33" rx="8" class="f1"/><rect x="838.5" y="60.5" width="51" height="32" rx="7.5" fill="none" class="k2" stroke-width="1"/></g>
-<g class="v p" style="animation-name:v7n"><rect x="896" y="60" width="52" height="33" rx="8" class="f1"/><rect x="896.5" y="60.5" width="51" height="32" rx="7.5" fill="none" class="k2" stroke-width="1"/></g>
-<g class="v p" style="animation-name:v7o"><text x="908" y="82" class="s f4" font-size="14" textLength="28">重发</text></g>
-<g class="v p" style="animation-name:v7p"><rect x="954" y="60" width="52" height="33" rx="8" class="f1"/><rect x="954.5" y="60.5" width="51" height="32" rx="7.5" fill="none" class="k2" stroke-width="1"/></g>
-<g class="v p" style="animation-name:v7q"><text x="966" y="82" class="s f4" font-size="14" textLength="28">改名</text></g>
-<g class="v p" style="animation-name:v7r"><rect x="1012" y="60" width="52" height="33" rx="8" class="f1"/><rect x="1012.5" y="60.5" width="51" height="32" rx="7.5" fill="none" class="k2" stroke-width="1"/></g>
-<g class="v p" style="animation-name:v7s"><text x="1024" y="82" class="s fh" font-size="14" textLength="28">归档</text></g>
-<g class="v p" style="animation-name:v7t"><text x="296" y="131" class="s f5" font-size="12.5" textLength="308">· Working on branch troupe/bizos in its own worktree</text></g>
-<g class="v p" style="animation-name:v7u"><text x="296" y="167" class="s f4" font-size="13" font-weight="700">你</text></g>
-<g class="v p" style="animation-name:v7v"><text x="317" y="167" class="s f5" font-size="12" textLength="50.5">15:43:33</text></g>
-<g class="v p" style="animation-name:v7w"><rect x="296" y="175.5" width="332" height="43" rx="10" class="fb"/></g>
-<g class="v p" style="animation-name:v7x"><text x="308" y="199.5" class="s f4" font-size="14" textLength="308">修复解析器：文件末尾没有换行时会丢掉最后一行</text></g>
-<g class="v p" style="animation-name:v7y"><text x="296" y="248.5" class="s fc" font-size="13" font-weight="700" textLength="46.5">@bizos</text></g>
-<g class="v p" style="animation-name:v7z"><text x="350.5" y="248.5" class="s f5" font-size="12" textLength="73.5">7s · 15:43:40</text></g>
-<g class="v p" style="animation-name:v80"><text x="296" y="273" class="s f4" font-size="14" textLength="154">先用一个测试复现问题。</text></g>
-<g class="v p" style="animation-name:v81"><text x="296" y="300" class="s f4" font-size="14" textLength="56">已修复。</text></g>
-<g class="v p" style="animation-name:v82"><rect x="352" y="287" width="60.5" height="17" rx="4" class="fl"/></g>
-<g class="v p" style="animation-name:v83"><text x="356" y="300" class="m f4" font-size="12.5" textLength="52.5">parse()</text></g>
-<g class="v p" style="animation-name:v84"><text x="416.5" y="300" class="s f4" font-size="14" textLength="644">只处理到最后一个换行符，所以文件末尾没有换行时最后一条订单会丢失。现在换行符之后的文本也会解</text></g>
-<g class="v p" style="animation-name:v85"><text x="296" y="321.5" class="s f4" font-size="14" textLength="112">析，行号也正确。</text></g>
-<g class="v p" style="animation-name:v86"><text x="296" y="348.5" class="s f4" font-size="14" textLength="126">补了一个回归测试；</text></g>
-<g class="v p" style="animation-name:v87"><rect x="422" y="335.5" width="68" height="17" rx="4" class="fl"/></g>
-<g class="v p" style="animation-name:v88"><text x="426" y="348.5" class="m f4" font-size="12.5" textLength="60">npm test</text></g>
-<g class="v p" style="animation-name:v89"><text x="490" y="348.5" class="s f4" font-size="14" textLength="87">：4 passed。</text></g>
-<g class="v p" style="animation-name:v8a"><text x="296" y="374" class="s f5" font-size="12.5">▸</text></g>
-<g class="v p" style="animation-name:v8b"><text x="309.5" y="373.5" class="s f5" font-size="12.5" textLength="49">6 个步骤</text></g>
-<g class="v p" style="animation-name:v8c"><text x="296" y="409" class="s fn" font-size="13" font-weight="700" textLength="80">@codex 提问</text></g>
-<g class="v p" style="animation-name:v8d"><text x="384" y="409" class="s f5" font-size="12" textLength="50.5">15:43:40</text></g>
-<g class="v p" style="animation-name:v8e"><text x="296" y="433.5" class="s f4" font-size="14" textLength="571.5">parse() 之后还会抛出带 {line, column} 的 ParseError 吗？我的测试会同时检查这两个字段。</text></g>
-<g class="v p" style="animation-name:v8f"><text x="296" y="468.5" class="s fc" font-size="13" font-weight="700" textLength="46.5">@bizos</text></g>
-<g class="v p" style="animation-name:v8g"><text x="350.5" y="468.5" class="s f5" font-size="12" textLength="70.5">1s · 15:43:41</text></g>
-<g class="v p" style="animation-name:v8h"><text x="296" y="493" class="s f4" font-size="14" textLength="225.5">会。错误格式不变：ParseError 保留</text></g>
-<g class="v p" style="animation-name:v8i"><rect x="525.5" y="480" width="38" height="17" rx="4" class="fl"/></g>
-<g class="v p" style="animation-name:v8j"><text x="529.5" y="493" class="m f4" font-size="12.5" textLength="30">line</text></g>
-<g class="v p" style="animation-name:v8k"><text x="567.5" y="493" class="s f4" font-size="14">和</text></g>
-<g class="v p" style="animation-name:v8l"><rect x="585" y="480" width="53" height="17" rx="4" class="fl"/></g>
-<g class="v p" style="animation-name:v8m"><text x="589" y="493" class="m f4" font-size="12.5" textLength="45">column</text></g>
-<g class="v p" style="animation-name:v8n"><text x="638.5" y="493" class="s f4" font-size="14" textLength="126">，都从 1 开始计数。</text></g>
-<g class="v" style="animation-name:v8o"><rect x="838" y="60" width="52" height="33" rx="8" class="f1"/><rect x="838.5" y="60.5" width="51" height="32" rx="7.5" fill="none" class="k8" stroke-width="1"/></g>
-<g class="v p" style="animation-name:v8p"><text x="850" y="82" class="s f4" font-size="14" textLength="28">合并</text></g>
-<g class="v p" style="animation-name:v8q"><rect x="8.5" y="164" width="262" height="56" rx="7.5" fill="none" class="k8" stroke-width="1"/></g>
-<g class="v p" style="animation-name:v8r"><text x="39" y="187.5" class="s f4" font-size="14" font-weight="700" textLength="53.5">@codex</text></g>
-<g class="v p" style="animation-name:v8s"><text x="39" y="207.5" class="s f5" font-size="12" textLength="75">troupe/codex</text></g>
-<g class="v p" style="animation-name:v8t"><rect x="17" y="177" width="10" height="10" rx="5" class="fd"/></g>
-<g class="v p" style="animation-name:v8u"><rect x="220" y="172" width="42" height="20" rx="10" class="fm"/></g>
-<g class="v p" style="animation-name:v8v"><text x="229" y="186" class="s fj" font-size="12" textLength="24">空闲</text></g>
-<g class="v p" style="animation-name:v8w"><text x="296" y="528" class="s f5" font-size="12.5" textLength="251.5">· Merged troupe/bizos into main (1 commit)</text></g>
-<g class="v" style="animation-name:v9u"><g clip-path="url(#c9t)"><g class="scroll s9s" style="animation-name:s9s;transform:translateY(130.5px)"><g class="v" style="animation-name:v8x"><text x="296" y="27" class="s f5" font-size="12.5" textLength="308">· Working on branch troupe/bizos in its own worktree</text></g><g class="v" style="animation-name:v8y"><text x="296" y="63" class="s f4" font-size="13" font-weight="700">你</text></g><g class="v" style="animation-name:v8z"><text x="317" y="63" class="s f5" font-size="12" textLength="50.5">15:43:33</text></g><g class="v" style="animation-name:v90"><rect x="296" y="71.5" width="332" height="43" rx="10" class="fb"/></g><g class="v" style="animation-name:v91"><text x="308" y="95.5" class="s f4" font-size="14" textLength="308">修复解析器：文件末尾没有换行时会丢掉最后一行</text></g><g class="v" style="animation-name:v92"><text x="296" y="144.5" class="s fc" font-size="13" font-weight="700" textLength="46.5">@bizos</text></g><g class="v" style="animation-name:v93"><text x="350.5" y="144.5" class="s f5" font-size="12" textLength="73.5">7s · 15:43:40</text></g><g class="v" style="animation-name:v94"><text x="296" y="169" class="s f4" font-size="14" textLength="154">先用一个测试复现问题。</text></g><g class="v" style="animation-name:v95"><text x="296" y="196" class="s f4" font-size="14" textLength="56">已修复。</text></g><g class="v" style="animation-name:v96"><rect x="352" y="183" width="60.5" height="17" rx="4" class="fl"/></g><g class="v" style="animation-name:v97"><text x="356" y="196" class="m f4" font-size="12.5" textLength="52.5">parse()</text></g><g class="v" style="animation-name:v98"><text x="416.5" y="196" class="s f4" font-size="14" textLength="644">只处理到最后一个换行符，所以文件末尾没有换行时最后一条订单会丢失。现在换行符之后的文本也会解</text></g><g class="v" style="animation-name:v99"><text x="296" y="217.5" class="s f4" font-size="14" textLength="112">析，行号也正确。</text></g><g class="v" style="animation-name:v9a"><text x="296" y="244.5" class="s f4" font-size="14" textLength="126">补了一个回归测试；</text></g><g class="v" style="animation-name:v9b"><rect x="422" y="231.5" width="68" height="17" rx="4" class="fl"/></g><g class="v" style="animation-name:v9c"><text x="426" y="244.5" class="m f4" font-size="12.5" textLength="60">npm test</text></g><g class="v" style="animation-name:v9d"><text x="490" y="244.5" class="s f4" font-size="14" textLength="87">：4 passed。</text></g><g class="v" style="animation-name:v9e"><text x="296" y="270" class="s f5" font-size="12.5">▸</text></g><g class="v" style="animation-name:v9f"><text x="309.5" y="269.5" class="s f5" font-size="12.5" textLength="49">6 个步骤</text></g><g class="v" style="animation-name:v9g"><text x="296" y="305" class="s fn" font-size="13" font-weight="700" textLength="80">@codex 提问</text></g><g class="v" style="animation-name:v9h"><text x="384" y="305" class="s f5" font-size="12" textLength="50.5">15:43:40</text></g><g class="v" style="animation-name:v9i"><text x="296" y="329.5" class="s f4" font-size="14" textLength="571.5">parse() 之后还会抛出带 {line, column} 的 ParseError 吗？我的测试会同时检查这两个字段。</text></g><g class="v" style="animation-name:v9j"><rect x="296" y="350.5" width="3" height="77.5" class="f7"/></g><g class="v" style="animation-name:v9k"><text x="311" y="368.5" class="s f7" font-size="13" font-weight="700" textLength="120.5">● @bizos 已工作 1s</text></g><g class="v" style="animation-name:v9l"><text x="311" y="404" class="s f4" font-size="14" textLength="225.5">会。错误格式不变：ParseError 保留</text></g><g class="v" style="animation-name:v9m"><rect x="540.5" y="391" width="38" height="17" rx="4" class="fl"/></g><g class="v" style="animation-name:v9n"><text x="544.5" y="404" class="m f4" font-size="12.5" textLength="30">line</text></g><g class="v" style="animation-name:v9o"><text x="582.5" y="404" class="s f4" font-size="14">和</text></g><g class="v" style="animation-name:v9p"><rect x="600" y="391" width="53" height="17" rx="4" class="fl"/></g><g class="v" style="animation-name:v9q"><text x="604" y="404" class="m f4" font-size="12.5" textLength="45">column</text></g><g class="v" style="animation-name:v9r"><text x="653.5" y="404" class="s f4" font-size="14" textLength="126">，都从 1 开始计数。</text></g></g></g></g>
-<g class="v p" style="animation-name:v9w"><rect x="844" y="531" width="222" height="39" rx="8" filter="url(#sh)" class="shadow"/><rect x="844" y="531" width="222" height="39" rx="8" class="f1"/><g clip-path="url(#c9v)"><rect x="844" y="531" width="222" height="1" class="f3"/><rect x="1065" y="531" width="1" height="39" class="f3"/><rect x="844" y="569" width="222" height="1" class="f3"/><rect x="844" y="531" width="4" height="39" class="fj"/></g></g>
-<g class="v p" style="animation-name:v9x"><text x="860" y="556" class="s f4" font-size="14" textLength="193">已把 troupe/bizos 合并到 main</text></g>
-<g class="v" style="animation-name:v9y"><rect x="0" y="0" width="1080" height="660" class="fo"/></g>
-<g class="v" style="animation-name:v9z"><rect x="100" y="20" width="880" height="620" rx="14" filter="url(#sh)" class="shadow"/><rect x="100" y="20" width="880" height="620" rx="14" class="f1"/><rect x="100.5" y="20.5" width="879" height="619" rx="13.5" fill="none" class="k2" stroke-width="1"/></g>
-<g class="v" style="animation-name:vcn"><g clip-path="url(#ccm)"><g class="scroll scl" style="animation-name:scl;transform:translateY(21px)"><g class="v" style="animation-name:va0"><rect x="101" y="0" width="878" height="58" class="f1"/><rect x="101" y="57" width="878" height="1" class="f3"/></g><g class="v" style="animation-name:va1"><text x="117" y="34.5" class="s f4" font-size="15" font-weight="700" textLength="159">把 @bizos 合并到 main</text></g><g class="v" style="animation-name:va2"><text x="940.5" y="34" class="s f4" font-size="14">✕</text></g><g class="v" style="animation-name:va3"><rect x="117" y="84" width="262" height="33" rx="8" class="f7"/><rect x="117.5" y="84.5" width="261" height="32" rx="7.5" fill="none" class="k8" stroke-width="1"/></g><g class="v" style="animation-name:va4"><text x="129" y="106" class="s f9" font-size="14" textLength="238">先让另一个代理审查，再决定（推荐）</text></g><g class="v" style="animation-name:va5"><rect x="387" y="84" width="136" height="33" rx="8" class="f1"/><rect x="387.5" y="84.5" width="135" height="32" rx="7.5" fill="none" class="k2" stroke-width="1"/></g><g class="v" style="animation-name:va6"><text x="399" y="106" class="s f4" font-size="14" textLength="112">直接合并，不审查</text></g><g class="v" style="animation-name:va7"><text x="543" y="106" class="s f4" font-size="14" textLength="28">取消</text></g><g class="v" style="animation-name:va8"><rect x="117" y="131" width="846" height="1" class="f3"/></g><g class="v" style="animation-name:va9"><text x="117" y="162" class="s f5" font-size="14" textLength="255.5">troupe/bizos → main · 包含未提交的改动</text></g><g class="v" style="animation-name:vaa"><text x="117" y="194" class="m ff" font-size="12.5" textLength="158">~ src/parser.js  2+ 0-</text></g><g class="v" style="animation-name:vab"><text x="117" y="215" class="m ff" font-size="12.5" textLength="203">~ test/parser.test.js  4+ 0-</text></g><g class="v" style="animation-name:vac"><rect x="117" y="230.5" width="846" height="489" rx="8" class="fl"/></g><g class="v" style="animation-name:vad"><text x="129" y="253.5" class="m f4" font-size="12.5" font-weight="700" textLength="316">diff --git a/src/parser.js b/src/parser.js</text></g><g class="v" style="animation-name:vae"><text x="129" y="272.5" class="m f4" font-size="12.5" font-weight="700" textLength="218.5">index 78691ac..c70e472 100644</text></g><g class="v" style="animation-name:vaf"><text x="129" y="291" class="m f4" font-size="12.5" font-weight="700" textLength="143">--- a/src/parser.js</text></g><g class="v" style="animation-name:vag"><text x="129" y="310" class="m f4" font-size="12.5" font-weight="700" textLength="143">+++ b/src/parser.js</text></g><g class="v" style="animation-name:vah"><text x="129" y="328.5" class="m f7" font-size="12.5" textLength="353.5">@@ -28,5 +28,7 @@ export function parse(text) {</text></g><g class="v" style="animation-name:vai"><text x="166.5" y="347.5" class="m f4" font-size="12.5" textLength="105.5">start = i + 1;</text></g><g class="v" style="animation-name:vaj"><text x="166.5" y="366" class="m f4" font-size="12.5" textLength="52.5">line++;</text></g><g class="v" style="animation-name:vak"><text x="151.5" y="385" class="m f4" font-size="12.5">}</text></g><g class="v" style="animation-name:val"><text x="129" y="403.5" class="m fj" font-size="12.5" textLength="399">+  const last = text.slice(start).replace(/\r$/, '');</text></g><g class="v" style="animation-name:vam"><text x="129" y="422.5" class="m fj" font-size="12.5" textLength="391.5">+  if (last.trim()) rows.push(parseRow(last, line));</text></g><g class="v" style="animation-name:van"><text x="151.5" y="441" class="m f4" font-size="12.5" textLength="90.5">return rows;</text></g><g class="v" style="animation-name:vao"><text x="136.5" y="460" class="m f4" font-size="12.5">}</text></g><g class="v" style="animation-name:vap"><text x="129" y="478.5" class="m f4" font-size="12.5" font-weight="700" textLength="406.5">diff --git a/test/parser.test.js b/test/parser.test.js</text></g><g class="v" style="animation-name:vaq"><text x="129" y="497.5" class="m f4" font-size="12.5" font-weight="700" textLength="218.5">index 831adf6..8292b63 100644</text></g><g class="v" style="animation-name:var"><text x="129" y="516" class="m f4" font-size="12.5" font-weight="700" textLength="188">--- a/test/parser.test.js</text></g><g class="v" style="animation-name:vas"><text x="129" y="535" class="m f4" font-size="12.5" font-weight="700" textLength="188">+++ b/test/parser.test.js</text></g><g class="v" style="animation-name:vat"><text x="129" y="553.5" class="m f7" font-size="12.5" textLength="384">@@ -16,3 +16,7 @@ test('skips blank lines', () =&gt; {</text></g><g class="v" style="animation-name:vau"><text x="136.5" y="572.5" class="m f4" font-size="12.5" textLength="376.5">test('reports the line of a bad quantity', () =&gt; {</text></g><g class="v" style="animation-name:vaw"><g clip-path="url(#cav)"><text x="151.5" y="591" class="m f4" font-size="12.5" textLength="888">assert.throws(() =&gt; parse('A-100,2,9.50\nB-200,two,4\n'), (error) =&gt; error instanceof ParseError &amp;&amp; error.line === 2);</text></g></g><g class="v" style="animation-name:vax"><text x="136.5" y="610" class="m f4" font-size="12.5" textLength="22.5">});</text></g><g class="v" style="animation-name:vay"><text x="129" y="628.5" class="m fj" font-size="12.5">+</text></g><g class="v" style="animation-name:vaz"><text x="117" y="102" class="s f4" font-size="14" textLength="94.5">@… 正在审查…</text></g><g class="v" style="animation-name:vb0"><rect x="117" y="121" width="846" height="1" class="f3"/></g><g class="v" style="animation-name:vb1"><text x="117" y="152" class="s f5" font-size="14" textLength="255.5">troupe/bizos → main · 包含未提交的改动</text></g><g class="v" style="animation-name:vb2"><text x="117" y="184" class="m ff" font-size="12.5" textLength="158">~ src/parser.js  2+ 0-</text></g><g class="v" style="animation-name:vb3"><text x="117" y="205" class="m ff" font-size="12.5" textLength="203">~ test/parser.test.js  4+ 0-</text></g><g class="v" style="animation-name:vb4"><rect x="117" y="220.5" width="846" height="489" rx="8" class="fl"/></g><g class="v" style="animation-name:vb5"><text x="129" y="243.5" class="m f4" font-size="12.5" font-weight="700" textLength="316">diff --git a/src/parser.js b/src/parser.js</text></g><g class="v" style="animation-name:vb6"><text x="129" y="262.5" class="m f4" font-size="12.5" font-weight="700" textLength="218.5">index 78691ac..c70e472 100644</text></g><g class="v" style="animation-name:vb7"><text x="129" y="281" class="m f4" font-size="12.5" font-weight="700" textLength="143">--- a/src/parser.js</text></g><g class="v" style="animation-name:vb8"><text x="129" y="300" class="m f4" font-size="12.5" font-weight="700" textLength="143">+++ b/src/parser.js</text></g><g class="v" style="animation-name:vb9"><text x="129" y="318.5" class="m f7" font-size="12.5" textLength="353.5">@@ -28,5 +28,7 @@ export function parse(text) {</text></g><g class="v" style="animation-name:vba"><text x="166.5" y="337.5" class="m f4" font-size="12.5" textLength="105.5">start = i + 1;</text></g><g class="v" style="animation-name:vbb"><text x="166.5" y="356" class="m f4" font-size="12.5" textLength="52.5">line++;</text></g><g class="v" style="animation-name:vbc"><text x="151.5" y="375" class="m f4" font-size="12.5">}</text></g><g class="v" style="animation-name:vbd"><text x="129" y="393.5" class="m fj" font-size="12.5" textLength="399">+  const last = text.slice(start).replace(/\r$/, '');</text></g><g class="v" style="animation-name:vbe"><text x="129" y="412.5" class="m fj" font-size="12.5" textLength="391.5">+  if (last.trim()) rows.push(parseRow(last, line));</text></g><g class="v" style="animation-name:vbf"><text x="151.5" y="431" class="m f4" font-size="12.5" textLength="90.5">return rows;</text></g><g class="v" style="animation-name:vbg"><text x="136.5" y="450" class="m f4" font-size="12.5">}</text></g><g class="v" style="animation-name:vbh"><text x="129" y="468.5" class="m f4" font-size="12.5" font-weight="700" textLength="406.5">diff --git a/test/parser.test.js b/test/parser.test.js</text></g><g class="v" style="animation-name:vbi"><text x="129" y="487.5" class="m f4" font-size="12.5" font-weight="700" textLength="218.5">index 831adf6..8292b63 100644</text></g><g class="v" style="animation-name:vbj"><text x="129" y="506" class="m f4" font-size="12.5" font-weight="700" textLength="188">--- a/test/parser.test.js</text></g><g class="v" style="animation-name:vbk"><text x="129" y="525" class="m f4" font-size="12.5" font-weight="700" textLength="188">+++ b/test/parser.test.js</text></g><g class="v" style="animation-name:vbl"><text x="129" y="543.5" class="m f7" font-size="12.5" textLength="384">@@ -16,3 +16,7 @@ test('skips blank lines', () =&gt; {</text></g><g class="v" style="animation-name:vbm"><text x="136.5" y="562.5" class="m f4" font-size="12.5" textLength="376.5">test('reports the line of a bad quantity', () =&gt; {</text></g><g class="v" style="animation-name:vbo"><g clip-path="url(#cbn)"><text x="151.5" y="581" class="m f4" font-size="12.5" textLength="888">assert.throws(() =&gt; parse('A-100,2,9.50\nB-200,two,4\n'), (error) =&gt; error instanceof ParseError &amp;&amp; error.line === 2);</text></g></g><g class="v" style="animation-name:vbp"><text x="136.5" y="600" class="m f4" font-size="12.5" textLength="22.5">});</text></g><g class="v" style="animation-name:vbq"><text x="129" y="618.5" class="m fj" font-size="12.5">+</text></g><g class="v" style="animation-name:vbr"><rect x="117" y="82" width="846" height="37" rx="8" class="fm"/></g><g class="v" style="animation-name:vbs"><text x="129" y="106" class="s fj" font-size="14" font-weight="700" textLength="105.5">@codex：PASS</text></g><g class="v" style="animation-name:vbt"><text x="238.5" y="106" class="s fj" font-size="14">—</text></g><g class="v" style="animation-name:vbu"><text x="254.5" y="106" class="s fj" font-size="14" textLength="92.5">reviewer: pass</text></g><g class="v" style="animation-name:vbv"><text x="117" y="145" class="s f4" font-size="14">▸</text></g><g class="v" style="animation-name:vbw"><text x="132" y="145" class="s f4" font-size="14" textLength="51.5">@codex</text></g><g class="v" style="animation-name:vbx"><rect x="117" y="162" width="52" height="33" rx="8" class="f7"/><rect x="117.5" y="162.5" width="51" height="32" rx="7.5" fill="none" class="k8" stroke-width="1"/></g><g class="v" style="animation-name:vby"><text x="129" y="184" class="s f9" font-size="14" textLength="28">合并</text></g><g class="v" style="animation-name:vbz"><text x="189" y="184" class="s f4" font-size="14" textLength="28">取消</text></g><g class="v" style="animation-name:vc0"><rect x="117" y="209" width="846" height="1" class="f3"/></g><g class="v" style="animation-name:vc1"><text x="117" y="240" class="s f5" font-size="14" textLength="255.5">troupe/bizos → main · 包含未提交的改动</text></g><g class="v" style="animation-name:vc2"><text x="117" y="272" class="m ff" font-size="12.5" textLength="158">~ src/parser.js  2+ 0-</text></g><g class="v" style="animation-name:vc3"><text x="117" y="293" class="m ff" font-size="12.5" textLength="203">~ test/parser.test.js  4+ 0-</text></g><g class="v" style="animation-name:vc4"><rect x="117" y="308.5" width="846" height="489" rx="8" class="fl"/></g><g class="v" style="animation-name:vc5"><text x="129" y="331.5" class="m f4" font-size="12.5" font-weight="700" textLength="316">diff --git a/src/parser.js b/src/parser.js</text></g><g class="v" style="animation-name:vc6"><text x="129" y="350.5" class="m f4" font-size="12.5" font-weight="700" textLength="218.5">index 78691ac..c70e472 100644</text></g><g class="v" style="animation-name:vc7"><text x="129" y="369" class="m f4" font-size="12.5" font-weight="700" textLength="143">--- a/src/parser.js</text></g><g class="v" style="animation-name:vc8"><text x="129" y="388" class="m f4" font-size="12.5" font-weight="700" textLength="143">+++ b/src/parser.js</text></g><g class="v" style="animation-name:vc9"><text x="129" y="406.5" class="m f7" font-size="12.5" textLength="353.5">@@ -28,5 +28,7 @@ export function parse(text) {</text></g><g class="v" style="animation-name:vca"><text x="166.5" y="425.5" class="m f4" font-size="12.5" textLength="105.5">start = i + 1;</text></g><g class="v" style="animation-name:vcb"><text x="166.5" y="444" class="m f4" font-size="12.5" textLength="52.5">line++;</text></g><g class="v" style="animation-name:vcc"><text x="151.5" y="463" class="m f4" font-size="12.5">}</text></g><g class="v" style="animation-name:vcd"><text x="129" y="481.5" class="m fj" font-size="12.5" textLength="399">+  const last = text.slice(start).replace(/\r$/, '');</text></g><g class="v" style="animation-name:vce"><text x="129" y="500.5" class="m fj" font-size="12.5" textLength="391.5">+  if (last.trim()) rows.push(parseRow(last, line));</text></g><g class="v" style="animation-name:vcf"><text x="151.5" y="519" class="m f4" font-size="12.5" textLength="90.5">return rows;</text></g><g class="v" style="animation-name:vcg"><text x="136.5" y="538" class="m f4" font-size="12.5">}</text></g><g class="v" style="animation-name:vch"><text x="129" y="556.5" class="m f4" font-size="12.5" font-weight="700" textLength="406.5">diff --git a/test/parser.test.js b/test/parser.test.js</text></g><g class="v" style="animation-name:vci"><text x="129" y="575.5" class="m f4" font-size="12.5" font-weight="700" textLength="218.5">index 831adf6..8292b63 100644</text></g><g class="v" style="animation-name:vcj"><text x="129" y="594" class="m f4" font-size="12.5" font-weight="700" textLength="188">--- a/test/parser.test.js</text></g><g class="v" style="animation-name:vck"><text x="129" y="613" class="m f4" font-size="12.5" font-weight="700" textLength="188">+++ b/test/parser.test.js</text></g></g></g></g>
-<circle cx="473" cy="618.7" r="16" class="ring" style="animation-name:rco;transform-origin:473px 618.7px"/>
-<circle cx="1038" cy="629.5" r="16" class="ring" style="animation-name:rcp;transform-origin:1038px 629.5px"/>
-<circle cx="494.27" cy="165.25" r="16" class="ring" style="animation-name:rcq;transform-origin:494.27px 165.25px"/>
-<circle cx="864" cy="76.5" r="16" class="ring" style="animation-name:rcr;transform-origin:864px 76.5px"/>
-<circle cx="248" cy="121.5" r="16" class="ring" style="animation-name:rcs;transform-origin:248px 121.5px"/>
-<circle cx="143" cy="199.5" r="16" class="ring" style="animation-name:rct;transform-origin:143px 199.5px"/>
+<g class="v p" style="animation-name:v1g"><text x="195" y="28.5" class="s f5" font-size="12" textLength="47">3 个代理</text></g>
+<g class="v" style="animation-name:v1h"><rect x="261" y="14.5" width="77" height="20" rx="10" class="fb"/></g>
+<g class="v" style="animation-name:v1i"><text x="270" y="28.5" class="s f7" font-size="12" textLength="59">3 个工作中</text></g>
+<g class="v p" style="animation-name:v1j"><rect x="8" y="106.5" width="263" height="57" rx="8" class="fb"/></g>
+<g class="v" style="animation-name:v1k"><rect x="17" y="120" width="10" height="10" rx="5" class="fc pulse"/></g>
+<g class="v p" style="animation-name:v1l"><text x="39" y="130.5" class="s f4" font-size="14" font-weight="700" textLength="48.5">@bizos</text></g>
+<g class="v" style="animation-name:v1m"><rect x="208" y="115" width="54" height="20" rx="10" class="fb"/></g>
+<g class="v" style="animation-name:v1n"><text x="217" y="129" class="s f7" font-size="12" textLength="36">工作中</text></g>
+<g class="v p" style="animation-name:v1o"><text x="39" y="150.5" class="s f5" font-size="12" textLength="70.5">troupe/bizos</text></g>
+<g class="v" style="animation-name:v1p"><rect x="17" y="177" width="10" height="10" rx="5" class="fd pulse"/></g>
+<g class="v" style="animation-name:v1q"><rect x="208" y="172" width="54" height="20" rx="10" class="fb"/></g>
+<g class="v" style="animation-name:v1r"><text x="217" y="186" class="s f7" font-size="12" textLength="36">工作中</text></g>
+<g class="v" style="animation-name:v1s"><rect x="17" y="234" width="10" height="10" rx="5" class="fe pulse"/></g>
+<g class="v p" style="animation-name:v1t"><text x="39" y="244.5" class="s f4" font-size="14" font-weight="700" textLength="58">@claude</text></g>
+<g class="v" style="animation-name:v1u"><rect x="208" y="229" width="54" height="20" rx="10" class="fb"/></g>
+<g class="v" style="animation-name:v1v"><text x="217" y="243" class="s f7" font-size="12" textLength="36">工作中</text></g>
+<g class="v p" style="animation-name:v1w"><text x="39" y="264.5" class="s f5" font-size="12" textLength="78.5">troupe/claude</text></g>
+<g class="v p" style="animation-name:v1x"><text x="16" y="301.5" class="s f5" font-size="11" font-weight="700" textLength="23">目标</text></g>
+<g class="v p" style="animation-name:v1y"><text x="16" y="334" class="s f5" font-size="14" textLength="68.5">+ 新建目标</text></g>
+<g class="v p" style="animation-name:v1z"><text x="16" y="369" class="s f5" font-size="11" font-weight="700" textLength="46.5">项目看板</text></g>
+<g class="v p" style="animation-name:v20"><text x="16" y="401.5" class="s f4" font-size="14" textLength="28">看板</text></g>
+<g class="v p" style="animation-name:v21"><text x="254.5" y="401.5" class="s f5" font-size="14">0</text></g>
+<g class="v p" style="animation-name:v22"><rect x="280" y="50" width="800" height="54" class="f1"/><rect x="280" y="103" width="800" height="1" class="f3"/></g>
+<g class="v p" style="animation-name:v23"><rect x="296" y="71.5" width="10" height="10" rx="5" class="fc"/></g>
+<g class="v p" style="animation-name:v24"><text x="314" y="82.5" class="s f4" font-size="15" font-weight="700" textLength="52.5">@bizos</text></g>
+<g class="v p" style="animation-name:v25"><text x="374.5" y="80" class="s f5" font-size="12.5" textLength="154">BizOS Code · troupe/bizos</text></g>
+<g class="v" style="animation-name:v26"><rect x="536.5" y="66.5" width="54" height="20" rx="10" class="fb"/></g>
+<g class="v" style="animation-name:v27"><text x="545.5" y="80.5" class="s f7" font-size="12" textLength="36">工作中</text></g>
+<g class="v" style="animation-name:v28"><rect x="622" y="60" width="94" height="33" rx="8" class="f1"/><rect x="622.5" y="60.5" width="93" height="32" rx="7.5" fill="none" class="k2" stroke-width="1"/></g>
+<g class="v" style="animation-name:v29"><text x="633" y="82" class="s f4" font-size="14" textLength="42">工作区</text></g>
+<g class="v" style="animation-name:v2a"><path d="M698 73.5l4 4 4-4" fill="none" class="kf" stroke-width="1.5"/></g>
+<g class="v" style="animation-name:v2b"><rect x="722" y="60" width="52" height="33" rx="8" class="f1"/><rect x="722.5" y="60.5" width="51" height="32" rx="7.5" fill="none" class="k2" stroke-width="1"/></g>
+<g class="v" style="animation-name:v2c"><text x="734" y="82" class="s fg" font-size="14" textLength="28">停止</text></g>
+<g class="v p" style="animation-name:v2d"><rect x="780" y="60" width="52" height="33" rx="8" class="f1"/><rect x="780.5" y="60.5" width="51" height="32" rx="7.5" fill="none" class="k2" stroke-width="1"/></g>
+<g class="v p" style="animation-name:v2e"><rect x="838" y="60" width="52" height="33" rx="8" class="f1"/><rect x="838.5" y="60.5" width="51" height="32" rx="7.5" fill="none" class="k2" stroke-width="1"/></g>
+<g class="v p" style="animation-name:v2f"><rect x="896" y="60" width="52" height="33" rx="8" class="f1"/><rect x="896.5" y="60.5" width="51" height="32" rx="7.5" fill="none" class="k2" stroke-width="1"/></g>
+<g class="v p" style="animation-name:v2g"><text x="908" y="82" class="s f4" font-size="14" textLength="28">重发</text></g>
+<g class="v p" style="animation-name:v2h"><rect x="954" y="60" width="52" height="33" rx="8" class="f1"/><rect x="954.5" y="60.5" width="51" height="32" rx="7.5" fill="none" class="k2" stroke-width="1"/></g>
+<g class="v p" style="animation-name:v2i"><text x="966" y="82" class="s f4" font-size="14" textLength="28">改名</text></g>
+<g class="v p" style="animation-name:v2j"><rect x="1012" y="60" width="52" height="33" rx="8" class="f1"/><rect x="1012.5" y="60.5" width="51" height="32" rx="7.5" fill="none" class="k2" stroke-width="1"/></g>
+<g class="v p" style="animation-name:v2k"><text x="1024" y="82" class="s fg" font-size="14" textLength="28">归档</text></g>
+<g class="v p" style="animation-name:v2l"><text x="296" y="131" class="s f5" font-size="12.5" textLength="267.5">· 在自己的 worktree 里工作，分支 troupe/bizos</text></g>
+<g class="v p" style="animation-name:v2m"><text x="296" y="167" class="s f4" font-size="13" font-weight="700">你</text></g>
+<g class="v p" style="animation-name:v2n"><text x="317" y="167" class="s f5" font-size="12" textLength="50.5">13:04:42</text></g>
+<g class="v p" style="animation-name:v2o"><rect x="296" y="175.5" width="332" height="43" rx="10" class="fb"/></g>
+<g class="v p" style="animation-name:v2p"><text x="308" y="199.5" class="s f4" font-size="14" textLength="308">修复解析器：文件末尾没有换行时会丢掉最后一行</text></g>
+<g class="v" style="animation-name:v2q"><rect x="296" y="234.5" width="3" height="98.5" class="f7"/></g>
+<g class="v" style="animation-name:v2r"><text x="311" y="252.5" class="s f7" font-size="13" font-weight="700" textLength="122.5">● @bizos 已工作 0s</text></g>
+<g class="v" style="animation-name:v2s"><text x="311" y="274" class="s f7" font-size="14">●</text></g>
+<g class="v" style="animation-name:v2t"><text x="330" y="274" class="m f4" font-size="12.5" textLength="83">coding_read</text></g>
+<g class="v" style="animation-name:v2u"><text x="418.5" y="274" class="m f5" font-size="12.5" textLength="98">src/parser.js</text></g>
+<g class="v" style="animation-name:v2v"><text x="311" y="309.5" class="s f4" font-size="14" textLength="154">先用一个测试复现问题。</text></g>
+<g class="v p" style="animation-name:v2w"><rect x="296" y="591" width="708" height="55" rx="8" class="f1"/><rect x="296.5" y="591.5" width="707" height="54" rx="7.5" fill="none" class="k2" stroke-width="1"/></g>
+<g class="v p" style="animation-name:v2x"><text x="307" y="613.5" class="s fa" font-size="14" textLength="289.5">发给 @bizos，或以 @代理 开头   ·   Enter 发送</text></g>
+<g class="v" style="animation-name:v2y"><rect x="296" y="234.5" width="3" height="120" class="f7"/></g>
+<g class="v" style="animation-name:v2z"><text x="311" y="252.5" class="s f7" font-size="13" font-weight="700" textLength="120.5">● @bizos 已工作 1s</text></g>
+<g class="v" style="animation-name:v30"><text x="311" y="295.5" class="s f7" font-size="14">●</text></g>
+<g class="v" style="animation-name:v31"><text x="330" y="295.5" class="m f4" font-size="12.5" textLength="83">coding_read</text></g>
+<g class="v" style="animation-name:v32"><text x="418.5" y="295.5" class="m f5" font-size="12.5" textLength="143">test/parser.test.js</text></g>
+<g class="v" style="animation-name:v33"><text x="311" y="331.5" class="s f4" font-size="14" textLength="154">先用一个测试复现问题。</text></g>
+<g class="v" style="animation-name:v34"><text x="39" y="150.5" class="s f5" font-size="12" textLength="71">coding_read</text></g>
+<g class="v" style="animation-name:v35"><rect x="148" y="172" width="114" height="20" rx="10" class="fb"/></g>
+<g class="v" style="animation-name:v36"><text x="157" y="186" class="s f7" font-size="12" textLength="96">等待 @bizos 回答</text></g>
+<g class="v" style="animation-name:v37"><text x="39" y="207.5" class="s f5" font-size="12" textLength="142.5">troupe.troupe_ask_agent</text></g>
+<g class="v" style="animation-name:v38"><rect x="296" y="234.5" width="3" height="142" class="f7"/></g>
+<g class="v" style="animation-name:v39"><text x="311" y="252.5" class="s f7" font-size="13" font-weight="700" textLength="122">● @bizos 已工作 2s</text></g>
+<g class="v" style="animation-name:v3a"><text x="311" y="317.5" class="s f7" font-size="14">●</text></g>
+<g class="v" style="animation-name:v3b"><text x="330" y="317.5" class="m f4" font-size="12.5" textLength="128">coding_multi_edit</text></g>
+<g class="v" style="animation-name:v3c"><text x="311" y="353" class="s f4" font-size="14" textLength="154">先用一个测试复现问题。</text></g>
+<g class="v" style="animation-name:v3d"><rect x="348" y="14.5" width="87" height="20" rx="10" class="fi"/></g>
+<g class="v" style="animation-name:v3e"><text x="357" y="28.5" class="s fj" font-size="12" textLength="69">1 项待你处理</text></g>
+<g class="v" style="animation-name:v3f"><rect x="231.5" y="115" width="30.5" height="20" rx="10" class="fi"/></g>
+<g class="v" style="animation-name:v3g"><text x="240.5" y="129" class="s fj" font-size="12" textLength="12.5">! 1</text></g>
+<g class="v" style="animation-name:v3h"><text x="39" y="150.5" class="s f5" font-size="12" textLength="48.5">排队 1 条</text></g>
+<g class="v" style="animation-name:v3i"><text x="16" y="301.5" class="s f5" font-size="11" font-weight="700" textLength="67">等你处理 (1)</text></g>
+<g class="v" style="animation-name:v3j"><text x="16" y="327" class="s f5" font-size="12" textLength="98">@bizos: npm test</text></g>
+<g class="v" style="animation-name:v3k"><text x="16" y="358" class="s f5" font-size="11" font-weight="700" textLength="23">目标</text></g>
+<g class="v" style="animation-name:v3l"><text x="16" y="390.5" class="s f5" font-size="14" textLength="68.5">+ 新建目标</text></g>
+<g class="v" style="animation-name:v3m"><text x="16" y="425.5" class="s f5" font-size="11" font-weight="700" textLength="46.5">项目看板</text></g>
+<g class="v" style="animation-name:v3n"><text x="16" y="458" class="s f4" font-size="14" textLength="28">看板</text></g>
+<g class="v" style="animation-name:v3o"><text x="254.5" y="458" class="s f5" font-size="14">0</text></g>
+<g class="v" style="animation-name:v3q"><g clip-path="url(#c3p)"><rect x="296" y="60" width="768" height="135" rx="10" filter="url(#sh)" class="shadow"/><rect x="296" y="60" width="768" height="135" rx="10" class="f1"/><rect x="296.5" y="60.5" width="767" height="134" rx="9.5" fill="none" class="kk" stroke-width="1"/></g></g>
+<g class="v" style="animation-name:v3r"><rect x="311" y="78.5" width="10" height="10" rx="5" class="fc"/></g>
+<g class="v" style="animation-name:v3s"><text x="329" y="89" class="s f4" font-size="14" font-weight="700" textLength="49.5">@bizos</text></g>
+<g class="v" style="animation-name:v3t"><rect x="386.5" y="73.5" width="66" height="20" rx="10" class="fi"/></g>
+<g class="v" style="animation-name:v3u"><text x="395.5" y="87.5" class="s fj" font-size="12" textLength="48">运行命令</text></g>
+<g class="v" style="animation-name:v3v"><text x="460.5" y="89" class="s f5" font-size="14" textLength="70">需要你批准</text></g>
+<g class="v" style="animation-name:v3w"><rect x="311" y="100" width="738" height="39" rx="8" class="fl"/></g>
+<g class="v" style="animation-name:v3x"><text x="323" y="123" class="m f4" font-size="12.5" textLength="60">npm test</text></g>
+<g class="v" style="animation-name:v3y"><rect x="311" y="149" width="80" height="33" rx="8" class="f7"/><rect x="311.5" y="149.5" width="79" height="32" rx="7.5" fill="none" class="k8" stroke-width="1"/></g>
+<g class="v" style="animation-name:v3z"><text x="323" y="171" class="s f9" font-size="14" textLength="56">允许一次</text></g>
+<g class="v" style="animation-name:v40"><rect x="399" y="149" width="190.5" height="33" rx="8" class="f1"/><rect x="399.5" y="149.5" width="189.5" height="32" rx="7.5" fill="none" class="k2" stroke-width="1"/></g>
+<g class="v" style="animation-name:v41"><rect x="597.5" y="149" width="52" height="33" rx="8" class="f1"/><rect x="598" y="149.5" width="51" height="32" rx="7.5" fill="none" class="k2" stroke-width="1"/></g>
+<g class="v" style="animation-name:v42"><text x="609.5" y="171" class="s fg" font-size="14" textLength="28">拒绝</text></g>
+<g class="v" style="animation-name:v43"><rect x="280" y="195" width="800" height="54" class="f1"/><rect x="280" y="248" width="800" height="1" class="f3"/></g>
+<g class="v" style="animation-name:v44"><rect x="296" y="216.5" width="10" height="10" rx="5" class="fc"/></g>
+<g class="v" style="animation-name:v45"><text x="314" y="227" class="s f4" font-size="15" font-weight="700" textLength="52.5">@bizos</text></g>
+<g class="v" style="animation-name:v46"><text x="374.5" y="225" class="s f5" font-size="12.5" textLength="154">BizOS Code · troupe/bizos</text></g>
+<g class="v" style="animation-name:v47"><rect x="536.5" y="211.5" width="30.5" height="20" rx="10" class="fi"/></g>
+<g class="v" style="animation-name:v48"><text x="545.5" y="225.5" class="s fj" font-size="12" textLength="12.5">! 1</text></g>
+<g class="v" style="animation-name:v49"><rect x="622" y="205" width="94" height="33" rx="8" class="f1"/><rect x="622.5" y="205.5" width="93" height="32" rx="7.5" fill="none" class="k2" stroke-width="1"/></g>
+<g class="v" style="animation-name:v4a"><text x="633" y="227" class="s f4" font-size="14" textLength="42">工作区</text></g>
+<g class="v" style="animation-name:v4b"><path d="M698 218.5l4 4 4-4" fill="none" class="kf" stroke-width="1.5"/></g>
+<g class="v" style="animation-name:v4c"><rect x="722" y="205" width="52" height="33" rx="8" class="f1"/><rect x="722.5" y="205.5" width="51" height="32" rx="7.5" fill="none" class="k2" stroke-width="1"/></g>
+<g class="v" style="animation-name:v4d"><text x="734" y="227" class="s fg" font-size="14" textLength="28">停止</text></g>
+<g class="v" style="animation-name:v4e"><rect x="780" y="205" width="52" height="33" rx="8" class="f1"/><rect x="780.5" y="205.5" width="51" height="32" rx="7.5" fill="none" class="k2" stroke-width="1"/></g>
+<g class="v" style="animation-name:v4f"><text x="792" y="227" class="s f4" font-size="14" textLength="28">改动</text></g>
+<g class="v" style="animation-name:v4g"><rect x="838" y="205" width="52" height="33" rx="8" class="f1"/><rect x="838.5" y="205.5" width="51" height="32" rx="7.5" fill="none" class="k2" stroke-width="1"/></g>
+<g class="v" style="animation-name:v4h"><text x="850" y="227" class="s f4" font-size="14" textLength="28">合并</text></g>
+<g class="v" style="animation-name:v4i"><rect x="896" y="205" width="52" height="33" rx="8" class="f1"/><rect x="896.5" y="205.5" width="51" height="32" rx="7.5" fill="none" class="k2" stroke-width="1"/></g>
+<g class="v" style="animation-name:v4j"><text x="908" y="227" class="s f4" font-size="14" textLength="28">重发</text></g>
+<g class="v" style="animation-name:v4k"><rect x="954" y="205" width="52" height="33" rx="8" class="f1"/><rect x="954.5" y="205.5" width="51" height="32" rx="7.5" fill="none" class="k2" stroke-width="1"/></g>
+<g class="v" style="animation-name:v4l"><text x="966" y="227" class="s f4" font-size="14" textLength="28">改名</text></g>
+<g class="v" style="animation-name:v4m"><rect x="1012" y="205" width="52" height="33" rx="8" class="f1"/><rect x="1012.5" y="205.5" width="51" height="32" rx="7.5" fill="none" class="k2" stroke-width="1"/></g>
+<g class="v" style="animation-name:v4n"><text x="1024" y="227" class="s fg" font-size="14" textLength="28">归档</text></g>
+<g class="v" style="animation-name:v4o"><text x="296" y="276" class="s f5" font-size="12.5" textLength="267.5">· 在自己的 worktree 里工作，分支 troupe/bizos</text></g>
+<g class="v" style="animation-name:v4p"><text x="296" y="311.5" class="s f4" font-size="13" font-weight="700">你</text></g>
+<g class="v" style="animation-name:v4q"><text x="317" y="311.5" class="s f5" font-size="12" textLength="50.5">13:04:42</text></g>
+<g class="v" style="animation-name:v4r"><rect x="296" y="320" width="332" height="43" rx="10" class="fb"/></g>
+<g class="v" style="animation-name:v4s"><text x="308" y="344" class="s f4" font-size="14" textLength="308">修复解析器：文件末尾没有换行时会丢掉最后一行</text></g>
+<g class="v" style="animation-name:v4t"><rect x="296" y="379" width="3" height="142" class="f7"/></g>
+<g class="v" style="animation-name:v4u"><text x="311" y="397" class="s f7" font-size="13" font-weight="700" textLength="122">● @bizos 已工作 2s</text></g>
+<g class="v" style="animation-name:v4v"><text x="311" y="418.5" class="s fh" font-size="14">✓</text></g>
+<g class="v" style="animation-name:v4w"><text x="329" y="418.5" class="m f4" font-size="12.5" textLength="83">coding_read</text></g>
+<g class="v" style="animation-name:v4x"><text x="418" y="418.5" class="m f5" font-size="12.5" textLength="98">src/parser.js</text></g>
+<g class="v" style="animation-name:v4y"><text x="311" y="440.5" class="s fh" font-size="14">✓</text></g>
+<g class="v" style="animation-name:v4z"><text x="329" y="440.5" class="m f4" font-size="12.5" textLength="83">coding_read</text></g>
+<g class="v" style="animation-name:v50"><text x="418" y="440.5" class="m f5" font-size="12.5" textLength="143">test/parser.test.js</text></g>
+<g class="v" style="animation-name:v51"><text x="311" y="462" class="s fh" font-size="14">✓</text></g>
+<g class="v" style="animation-name:v52"><text x="329" y="462" class="m f4" font-size="12.5" textLength="128">coding_multi_edit</text></g>
+<g class="v" style="animation-name:v53"><text x="311" y="498" class="s f4" font-size="14" textLength="154">先用一个测试复现问题。</text></g>
+<g class="v" style="animation-name:v54"><text x="311" y="397" class="s f7" font-size="13" font-weight="700" textLength="122.5">● @bizos 已工作 3s</text></g>
+<g class="v" style="animation-name:v55"><text x="311" y="397" class="s f7" font-size="13" font-weight="700" textLength="122.5">● @bizos 已工作 4s</text></g>
+<g class="v" style="animation-name:v56"><rect x="261" y="14.5" width="76.5" height="20" rx="10" class="fb"/></g>
+<g class="v" style="animation-name:v57"><text x="270" y="28.5" class="s f7" font-size="12" textLength="58.5">2 个工作中</text></g>
+<g class="v p" style="animation-name:v58"><rect x="17" y="234" width="10" height="10" rx="5" class="fe"/></g>
+<g class="v p" style="animation-name:v59"><rect x="220" y="229" width="42" height="20" rx="10" class="fm"/></g>
+<g class="v p" style="animation-name:v5a"><text x="229" y="243" class="s fh" font-size="12" textLength="24">空闲</text></g>
+<g class="v" style="animation-name:v5b"><rect x="399" y="149" width="190.5" height="33" rx="8" class="f1"/><rect x="399.5" y="149.5" width="189.5" height="32" rx="7.5" fill="none" class="k8" stroke-width="1"/></g>
+<g class="v" style="animation-name:v5c"><text x="411" y="171" class="s fh" font-size="14" textLength="166.5">以后都允许 @bizos 这样做</text></g>
+<g class="v" style="animation-name:v5d"><rect x="296" y="234.5" width="3" height="163.5" class="f7"/></g>
+<g class="v" style="animation-name:v5e"><text x="311" y="252.5" class="s f7" font-size="13" font-weight="700" textLength="122.5">● @bizos 已工作 5s</text></g>
+<g class="v" style="animation-name:v5f"><text x="311" y="339" class="s f7" font-size="14">●</text></g>
+<g class="v" style="animation-name:v5g"><text x="330" y="339" class="m f4" font-size="12.5" textLength="150.5">coding_command_start</text></g>
+<g class="v" style="animation-name:v5h"><text x="486.5" y="339" class="m f5" font-size="12.5" textLength="60">npm test</text></g>
+<g class="v" style="animation-name:v5i"><text x="311" y="375" class="s f4" font-size="14" textLength="154">先用一个测试复现问题。</text></g>
+<g class="v" style="animation-name:v5j"><rect x="296" y="234.5" width="3" height="185.5" class="f7"/></g>
+<g class="v" style="animation-name:v5k"><text x="311" y="361" class="s f7" font-size="14">●</text></g>
+<g class="v" style="animation-name:v5l"><text x="330" y="361" class="m f4" font-size="12.5" textLength="128">coding_multi_edit</text></g>
+<g class="v" style="animation-name:v5m"><text x="311" y="396.5" class="s f4" font-size="14" textLength="154">先用一个测试复现问题。</text></g>
+<g class="v" style="animation-name:v5n"><rect x="296" y="234.5" width="3" height="207" class="f7"/></g>
+<g class="v" style="animation-name:v5o"><text x="311" y="252.5" class="s f7" font-size="13" font-weight="700" textLength="122.5">● @bizos 已工作 6s</text></g>
+<g class="v" style="animation-name:v5p"><text x="311" y="382.5" class="s f7" font-size="14">●</text></g>
+<g class="v" style="animation-name:v5q"><text x="330" y="382.5" class="m f4" font-size="12.5" textLength="150.5">coding_command_start</text></g>
+<g class="v" style="animation-name:v5r"><text x="486.5" y="382.5" class="m f5" font-size="12.5" textLength="60">npm test</text></g>
+<g class="v" style="animation-name:v5s"><rect x="296" y="234.5" width="3" height="299.5" class="f7"/></g>
+<g class="v" style="animation-name:v5t"><text x="311" y="274" class="s fh" font-size="14">✓</text></g>
+<g class="v" style="animation-name:v5u"><text x="329" y="274" class="m f4" font-size="12.5" textLength="83">coding_read</text></g>
+<g class="v" style="animation-name:v5v"><text x="418" y="274" class="m f5" font-size="12.5" textLength="98">src/parser.js</text></g>
+<g class="v" style="animation-name:v5w"><text x="311" y="295.5" class="s fh" font-size="14">✓</text></g>
+<g class="v" style="animation-name:v5x"><text x="329" y="295.5" class="m f4" font-size="12.5" textLength="83">coding_read</text></g>
+<g class="v" style="animation-name:v5y"><text x="418" y="295.5" class="m f5" font-size="12.5" textLength="143">test/parser.test.js</text></g>
+<g class="v" style="animation-name:v5z"><text x="311" y="317.5" class="s fh" font-size="14">✓</text></g>
+<g class="v" style="animation-name:v60"><text x="329" y="317.5" class="m f4" font-size="12.5" textLength="128">coding_multi_edit</text></g>
+<g class="v" style="animation-name:v61"><text x="311" y="339" class="s fh" font-size="14">✓</text></g>
+<g class="v" style="animation-name:v62"><text x="329" y="339" class="m f4" font-size="12.5" textLength="150.5">coding_command_start</text></g>
+<g class="v" style="animation-name:v63"><text x="485.5" y="339" class="m f5" font-size="12.5" textLength="60">npm test</text></g>
+<g class="v" style="animation-name:v64"><text x="311" y="361" class="s fh" font-size="14">✓</text></g>
+<g class="v" style="animation-name:v65"><text x="329" y="361" class="m f4" font-size="12.5" textLength="128">coding_multi_edit</text></g>
+<g class="v" style="animation-name:v66"><text x="311" y="418.5" class="s f4" font-size="14" textLength="154">先用一个测试复现问题。</text></g>
+<g class="v" style="animation-name:v67"><text x="311" y="252.5" class="s f7" font-size="13" font-weight="700" textLength="121.5">● @bizos 已工作 7s</text></g>
+<g class="v" style="animation-name:v68"><text x="311" y="382.5" class="s fh" font-size="14">✓</text></g>
+<g class="v" style="animation-name:v69"><text x="329" y="382.5" class="m f4" font-size="12.5" textLength="150.5">coding_command_start</text></g>
+<g class="v" style="animation-name:v6a"><text x="485.5" y="382.5" class="m f5" font-size="12.5" textLength="60">npm test</text></g>
+<g class="v" style="animation-name:v6b"><text x="311" y="453.5" class="s f4" font-size="14" textLength="56">已修复。</text></g>
+<g class="v" style="animation-name:v6c"><rect x="367" y="440.5" width="60.5" height="17" rx="4" class="fl"/></g>
+<g class="v" style="animation-name:v6d"><text x="371" y="453.5" class="m f4" font-size="12.5" textLength="52.5">parse()</text></g>
+<g class="v" style="animation-name:v6e"><text x="431.5" y="453.5" class="s f4" font-size="14" textLength="630">只处理到最后一个换行符，所以文件末尾没有换行时最后一条订单会丢失。现在换行符之后的文本也会</text></g>
+<g class="v" style="animation-name:v6f"><text x="311" y="475" class="s f4" font-size="14" textLength="126">解析，行号也正确。</text></g>
+<g class="v" style="animation-name:v6g"><text x="311" y="510" class="s f4" font-size="14" textLength="126">补了一个回归测试；</text></g>
+<g class="v" style="animation-name:v6h"><rect x="437" y="497" width="68" height="17" rx="4" class="fl"/></g>
+<g class="v" style="animation-name:v6i"><text x="441" y="510" class="m f4" font-size="12.5" textLength="60">npm test</text></g>
+<g class="v" style="animation-name:v6j"><text x="505" y="510" class="s f4" font-size="14" textLength="87">：4 passed。</text></g>
+<g class="v p" style="animation-name:v6k"><text x="296" y="248.5" class="s fc" font-size="13" font-weight="700" textLength="46.5">@bizos</text></g>
+<g class="v p" style="animation-name:v6l"><text x="350.5" y="248.5" class="s f5" font-size="12" textLength="74">7s · 13:04:48</text></g>
+<g class="v p" style="animation-name:v6m"><text x="296" y="273" class="s f4" font-size="14" textLength="154">先用一个测试复现问题。</text></g>
+<g class="v p" style="animation-name:v6n"><text x="296" y="300" class="s f4" font-size="14" textLength="56">已修复。</text></g>
+<g class="v p" style="animation-name:v6o"><rect x="352" y="287" width="60.5" height="17" rx="4" class="fl"/></g>
+<g class="v p" style="animation-name:v6p"><text x="356" y="300" class="m f4" font-size="12.5" textLength="52.5">parse()</text></g>
+<g class="v p" style="animation-name:v6q"><text x="416.5" y="300" class="s f4" font-size="14" textLength="644">只处理到最后一个换行符，所以文件末尾没有换行时最后一条订单会丢失。现在换行符之后的文本也会解</text></g>
+<g class="v p" style="animation-name:v6r"><text x="296" y="321.5" class="s f4" font-size="14" textLength="112">析，行号也正确。</text></g>
+<g class="v p" style="animation-name:v6s"><text x="296" y="348.5" class="s f4" font-size="14" textLength="126">补了一个回归测试；</text></g>
+<g class="v p" style="animation-name:v6t"><rect x="422" y="335.5" width="68" height="17" rx="4" class="fl"/></g>
+<g class="v p" style="animation-name:v6u"><text x="426" y="348.5" class="m f4" font-size="12.5" textLength="60">npm test</text></g>
+<g class="v p" style="animation-name:v6v"><text x="490" y="348.5" class="s f4" font-size="14" textLength="87">：4 passed。</text></g>
+<g class="v p" style="animation-name:v6w"><text x="296" y="374" class="s f5" font-size="12.5">▸</text></g>
+<g class="v p" style="animation-name:v6x"><text x="309.5" y="373.5" class="s f5" font-size="12.5" textLength="49">6 个步骤</text></g>
+<g class="v p" style="animation-name:v6y"><text x="296" y="409" class="s fn" font-size="13" font-weight="700" textLength="80">@codex 提问</text></g>
+<g class="v p" style="animation-name:v6z"><text x="384" y="409" class="s f5" font-size="12" textLength="51">13:04:48</text></g>
+<g class="v p" style="animation-name:v70"><text x="296" y="433.5" class="s f4" font-size="14" textLength="571.5">parse() 之后还会抛出带 {line, column} 的 ParseError 吗？我的测试会同时检查这两个字段。</text></g>
+<g class="v" style="animation-name:v71"><rect x="296" y="454.5" width="3" height="27.5" class="f7"/></g>
+<g class="v" style="animation-name:v72"><text x="311" y="472.5" class="s f7" font-size="13" font-weight="700" textLength="122.5">● @bizos 已工作 0s</text></g>
+<g class="v" style="animation-name:v73"><rect x="296" y="454.5" width="3" height="77.5" class="f7"/></g>
+<g class="v" style="animation-name:v74"><text x="311" y="472.5" class="s f7" font-size="13" font-weight="700" textLength="120.5">● @bizos 已工作 1s</text></g>
+<g class="v" style="animation-name:v75"><text x="311" y="508" class="s f4" font-size="14" textLength="225.5">会。错误格式不变：ParseError 保留</text></g>
+<g class="v" style="animation-name:v76"><rect x="540.5" y="495" width="38" height="17" rx="4" class="fl"/></g>
+<g class="v" style="animation-name:v77"><text x="544.5" y="508" class="m f4" font-size="12.5" textLength="30">line</text></g>
+<g class="v" style="animation-name:v78"><text x="582.5" y="508" class="s f4" font-size="14">和</text></g>
+<g class="v" style="animation-name:v79"><rect x="261" y="14.5" width="75" height="20" rx="10" class="fb"/></g>
+<g class="v" style="animation-name:v7a"><text x="270" y="28.5" class="s f7" font-size="12" textLength="57">1 个工作中</text></g>
+<g class="v p" style="animation-name:v7b"><rect x="17" y="120" width="10" height="10" rx="5" class="fc"/></g>
+<g class="v p" style="animation-name:v7c"><rect x="220" y="115" width="42" height="20" rx="10" class="fm"/></g>
+<g class="v p" style="animation-name:v7d"><text x="229" y="129" class="s fh" font-size="12" textLength="24">空闲</text></g>
+<g class="v p" style="animation-name:v7e"><rect x="536.5" y="66.5" width="42" height="20" rx="10" class="fm"/></g>
+<g class="v p" style="animation-name:v7f"><text x="545.5" y="80.5" class="s fh" font-size="12" textLength="24">空闲</text></g>
+<g class="v p" style="animation-name:v7g"><rect x="680" y="60" width="94" height="33" rx="8" class="f1"/><rect x="680.5" y="60.5" width="93" height="32" rx="7.5" fill="none" class="k2" stroke-width="1"/></g>
+<g class="v p" style="animation-name:v7h"><text x="691" y="82" class="s f4" font-size="14" textLength="42">工作区</text></g>
+<g class="v p" style="animation-name:v7i"><path d="M756 73.5l4 4 4-4" fill="none" class="kf" stroke-width="1.5"/></g>
+<g class="v p" style="animation-name:v7j"><text x="296" y="468.5" class="s fc" font-size="13" font-weight="700" textLength="46.5">@bizos</text></g>
+<g class="v p" style="animation-name:v7k"><text x="350.5" y="468.5" class="s f5" font-size="12" textLength="73">1s · 13:04:49</text></g>
+<g class="v p" style="animation-name:v7l"><text x="296" y="493" class="s f4" font-size="14" textLength="225.5">会。错误格式不变：ParseError 保留</text></g>
+<g class="v p" style="animation-name:v7m"><rect x="525.5" y="480" width="38" height="17" rx="4" class="fl"/></g>
+<g class="v p" style="animation-name:v7n"><text x="529.5" y="493" class="m f4" font-size="12.5" textLength="30">line</text></g>
+<g class="v p" style="animation-name:v7o"><text x="567.5" y="493" class="s f4" font-size="14">和</text></g>
+<g class="v p" style="animation-name:v7p"><rect x="585" y="480" width="53" height="17" rx="4" class="fl"/></g>
+<g class="v p" style="animation-name:v7q"><text x="589" y="493" class="m f4" font-size="12.5" textLength="45">column</text></g>
+<g class="v p" style="animation-name:v7r"><text x="638.5" y="493" class="s f4" font-size="14" textLength="126">，都从 1 开始计数。</text></g>
+<g class="v" style="animation-name:v7s"><rect x="780" y="60" width="52" height="33" rx="8" class="f1"/><rect x="780.5" y="60.5" width="51" height="32" rx="7.5" fill="none" class="k8" stroke-width="1"/></g>
+<g class="v p" style="animation-name:v7t"><text x="792" y="82" class="s f4" font-size="14" textLength="28">改动</text></g>
+<g class="v" style="animation-name:v7u"><rect x="838" y="60" width="52" height="33" rx="8" class="f1"/><rect x="838.5" y="60.5" width="51" height="32" rx="7.5" fill="none" class="k8" stroke-width="1"/></g>
+<g class="v p" style="animation-name:v7v"><text x="850" y="82" class="s f4" font-size="14" textLength="28">合并</text></g>
+<g class="v p" style="animation-name:v7w"><rect x="8.5" y="164" width="262" height="56" rx="7.5" fill="none" class="k8" stroke-width="1"/></g>
+<g class="v p" style="animation-name:v7x"><text x="39" y="187.5" class="s f4" font-size="14" font-weight="700" textLength="53.5">@codex</text></g>
+<g class="v p" style="animation-name:v7y"><text x="39" y="207.5" class="s f5" font-size="12" textLength="75">troupe/codex</text></g>
+<g class="v p" style="animation-name:v7z"><rect x="17" y="177" width="10" height="10" rx="5" class="fd"/></g>
+<g class="v p" style="animation-name:v80"><rect x="220" y="172" width="42" height="20" rx="10" class="fm"/></g>
+<g class="v p" style="animation-name:v81"><text x="229" y="186" class="s fh" font-size="12" textLength="24">空闲</text></g>
+<g class="v p" style="animation-name:v82"><text x="296" y="528" class="s f5" font-size="12.5" textLength="253">· 已将 troupe/bizos 合并到 main（1 个提交）</text></g>
+<g class="v p" style="animation-name:v84"><rect x="844" y="531" width="222" height="39" rx="8" filter="url(#sh)" class="shadow"/><rect x="844" y="531" width="222" height="39" rx="8" class="f1"/><g clip-path="url(#c83)"><rect x="844" y="531" width="222" height="1" class="f3"/><rect x="1065" y="531" width="1" height="39" class="f3"/><rect x="844" y="569" width="222" height="1" class="f3"/><rect x="844" y="531" width="4" height="39" class="fh"/></g></g>
+<g class="v p" style="animation-name:v85"><text x="860" y="556" class="s f4" font-size="14" textLength="193">已把 troupe/bizos 合并到 main</text></g>
+<g class="v" style="animation-name:v86"><rect x="0" y="0" width="1080" height="660" class="fo"/></g>
+<g class="v" style="animation-name:v87"><rect x="100" y="229.5" width="880" height="201" rx="14" filter="url(#sh)" class="shadow"/><rect x="100" y="229.5" width="880" height="201" rx="14" class="f1"/><rect x="100.5" y="230" width="879" height="200" rx="13.5" fill="none" class="k2" stroke-width="1"/></g>
+<g class="v" style="animation-name:v88"><rect x="101" y="230.5" width="878" height="58" class="f1"/><rect x="101" y="287.5" width="878" height="1" class="f3"/></g>
+<g class="v" style="animation-name:v89"><text x="117" y="265" class="s f4" font-size="15" font-weight="700" textLength="159">把 @bizos 合并到 main</text></g>
+<g class="v" style="animation-name:v8a"><text x="940.5" y="264.5" class="s f4" font-size="14">✕</text></g>
+<g class="v" style="animation-name:v8b"><rect x="117" y="314.5" width="262" height="33" rx="8" class="f7"/><rect x="117.5" y="315" width="261" height="32" rx="7.5" fill="none" class="k8" stroke-width="1"/></g>
+<g class="v" style="animation-name:v8c"><text x="129" y="336.5" class="s f9" font-size="14" textLength="238">先让另一个代理审查，再决定（推荐）</text></g>
+<g class="v" style="animation-name:v8d"><rect x="387" y="314.5" width="136" height="33" rx="8" class="f1"/><rect x="387.5" y="315" width="135" height="32" rx="7.5" fill="none" class="k2" stroke-width="1"/></g>
+<g class="v" style="animation-name:v8e"><text x="399" y="336.5" class="s f4" font-size="14" textLength="112">直接合并，不审查</text></g>
+<g class="v" style="animation-name:v8f"><text x="543" y="336.5" class="s f4" font-size="14" textLength="28">取消</text></g>
+<g class="v" style="animation-name:v8g"><rect x="117" y="361.5" width="846" height="1" class="f3"/></g>
+<g class="v" style="animation-name:v8h"><text x="117" y="392.5" class="s f5" font-size="14">…</text></g>
+<g class="v" style="animation-name:v8i"><rect x="100" y="20" width="880" height="620" rx="14" filter="url(#sh)" class="shadow"/><rect x="100" y="20" width="880" height="620" rx="14" class="f1"/><rect x="100.5" y="20.5" width="879" height="619" rx="13.5" fill="none" class="k2" stroke-width="1"/></g>
+<g class="v" style="animation-name:vb7"><g clip-path="url(#cb6)"><g class="scroll sb5" style="animation-name:sb5;transform:translateY(21px)"><g class="v" style="animation-name:v8j"><rect x="101" y="0" width="878" height="58" class="f1"/><rect x="101" y="57" width="878" height="1" class="f3"/></g><g class="v" style="animation-name:v8k"><text x="117" y="34.5" class="s f4" font-size="15" font-weight="700" textLength="159">把 @bizos 合并到 main</text></g><g class="v" style="animation-name:v8l"><text x="940.5" y="34" class="s f4" font-size="14">✕</text></g><g class="v" style="animation-name:v8m"><rect x="117" y="84" width="262" height="33" rx="8" class="f7"/><rect x="117.5" y="84.5" width="261" height="32" rx="7.5" fill="none" class="k8" stroke-width="1"/></g><g class="v" style="animation-name:v8n"><text x="129" y="106" class="s f9" font-size="14" textLength="238">先让另一个代理审查，再决定（推荐）</text></g><g class="v" style="animation-name:v8o"><rect x="387" y="84" width="136" height="33" rx="8" class="f1"/><rect x="387.5" y="84.5" width="135" height="32" rx="7.5" fill="none" class="k2" stroke-width="1"/></g><g class="v" style="animation-name:v8p"><text x="399" y="106" class="s f4" font-size="14" textLength="112">直接合并，不审查</text></g><g class="v" style="animation-name:v8q"><text x="543" y="106" class="s f4" font-size="14" textLength="28">取消</text></g><g class="v" style="animation-name:v8r"><rect x="117" y="131" width="846" height="1" class="f3"/></g><g class="v" style="animation-name:v8s"><text x="117" y="162" class="s f5" font-size="14" textLength="255.5">troupe/bizos → main · 包含未提交的改动</text></g><g class="v" style="animation-name:v8t"><text x="117" y="194" class="m fj" font-size="12.5" textLength="158">~ src/parser.js  2+ 0-</text></g><g class="v" style="animation-name:v8u"><text x="117" y="215" class="m fj" font-size="12.5" textLength="203">~ test/parser.test.js  4+ 0-</text></g><g class="v" style="animation-name:v8v"><rect x="117" y="230.5" width="846" height="489" rx="8" class="fl"/></g><g class="v" style="animation-name:v8w"><text x="129" y="253.5" class="m f4" font-size="12.5" font-weight="700" textLength="316">diff --git a/src/parser.js b/src/parser.js</text></g><g class="v" style="animation-name:v8x"><text x="129" y="272.5" class="m f4" font-size="12.5" font-weight="700" textLength="218.5">index 78691ac..c70e472 100644</text></g><g class="v" style="animation-name:v8y"><text x="129" y="291" class="m f4" font-size="12.5" font-weight="700" textLength="143">--- a/src/parser.js</text></g><g class="v" style="animation-name:v8z"><text x="129" y="310" class="m f4" font-size="12.5" font-weight="700" textLength="143">+++ b/src/parser.js</text></g><g class="v" style="animation-name:v90"><text x="129" y="328.5" class="m f7" font-size="12.5" textLength="353.5">@@ -28,5 +28,7 @@ export function parse(text) {</text></g><g class="v" style="animation-name:v91"><text x="166.5" y="347.5" class="m f4" font-size="12.5" textLength="105.5">start = i + 1;</text></g><g class="v" style="animation-name:v92"><text x="166.5" y="366" class="m f4" font-size="12.5" textLength="52.5">line++;</text></g><g class="v" style="animation-name:v93"><text x="151.5" y="385" class="m f4" font-size="12.5">}</text></g><g class="v" style="animation-name:v94"><text x="129" y="403.5" class="m fh" font-size="12.5" textLength="399">+  const last = text.slice(start).replace(/\r$/, '');</text></g><g class="v" style="animation-name:v95"><text x="129" y="422.5" class="m fh" font-size="12.5" textLength="391.5">+  if (last.trim()) rows.push(parseRow(last, line));</text></g><g class="v" style="animation-name:v96"><text x="151.5" y="441" class="m f4" font-size="12.5" textLength="90.5">return rows;</text></g><g class="v" style="animation-name:v97"><text x="136.5" y="460" class="m f4" font-size="12.5">}</text></g><g class="v" style="animation-name:v98"><text x="129" y="478.5" class="m f4" font-size="12.5" font-weight="700" textLength="406.5">diff --git a/test/parser.test.js b/test/parser.test.js</text></g><g class="v" style="animation-name:v99"><text x="129" y="497.5" class="m f4" font-size="12.5" font-weight="700" textLength="218.5">index 831adf6..8292b63 100644</text></g><g class="v" style="animation-name:v9a"><text x="129" y="516" class="m f4" font-size="12.5" font-weight="700" textLength="188">--- a/test/parser.test.js</text></g><g class="v" style="animation-name:v9b"><text x="129" y="535" class="m f4" font-size="12.5" font-weight="700" textLength="188">+++ b/test/parser.test.js</text></g><g class="v" style="animation-name:v9c"><text x="129" y="553.5" class="m f7" font-size="12.5" textLength="384">@@ -16,3 +16,7 @@ test('skips blank lines', () =&gt; {</text></g><g class="v" style="animation-name:v9d"><text x="136.5" y="572.5" class="m f4" font-size="12.5" textLength="376.5">test('reports the line of a bad quantity', () =&gt; {</text></g><g class="v" style="animation-name:v9f"><g clip-path="url(#c9e)"><text x="151.5" y="591" class="m f4" font-size="12.5" textLength="888">assert.throws(() =&gt; parse('A-100,2,9.50\nB-200,two,4\n'), (error) =&gt; error instanceof ParseError &amp;&amp; error.line === 2);</text></g></g><g class="v" style="animation-name:v9g"><text x="136.5" y="610" class="m f4" font-size="12.5" textLength="22.5">});</text></g><g class="v" style="animation-name:v9h"><text x="129" y="628.5" class="m fh" font-size="12.5">+</text></g><g class="v" style="animation-name:v9i"><text x="117" y="102" class="s f4" font-size="14" textLength="122.5">@codex 正在审查…</text></g><g class="v" style="animation-name:v9j"><rect x="117" y="121" width="846" height="1" class="f3"/></g><g class="v" style="animation-name:v9k"><text x="117" y="152" class="s f5" font-size="14" textLength="255.5">troupe/bizos → main · 包含未提交的改动</text></g><g class="v" style="animation-name:v9l"><text x="117" y="184" class="m fj" font-size="12.5" textLength="158">~ src/parser.js  2+ 0-</text></g><g class="v" style="animation-name:v9m"><text x="117" y="205" class="m fj" font-size="12.5" textLength="203">~ test/parser.test.js  4+ 0-</text></g><g class="v" style="animation-name:v9n"><rect x="117" y="220.5" width="846" height="489" rx="8" class="fl"/></g><g class="v" style="animation-name:v9o"><text x="129" y="243.5" class="m f4" font-size="12.5" font-weight="700" textLength="316">diff --git a/src/parser.js b/src/parser.js</text></g><g class="v" style="animation-name:v9p"><text x="129" y="262.5" class="m f4" font-size="12.5" font-weight="700" textLength="218.5">index 78691ac..c70e472 100644</text></g><g class="v" style="animation-name:v9q"><text x="129" y="281" class="m f4" font-size="12.5" font-weight="700" textLength="143">--- a/src/parser.js</text></g><g class="v" style="animation-name:v9r"><text x="129" y="300" class="m f4" font-size="12.5" font-weight="700" textLength="143">+++ b/src/parser.js</text></g><g class="v" style="animation-name:v9s"><text x="129" y="318.5" class="m f7" font-size="12.5" textLength="353.5">@@ -28,5 +28,7 @@ export function parse(text) {</text></g><g class="v" style="animation-name:v9t"><text x="166.5" y="337.5" class="m f4" font-size="12.5" textLength="105.5">start = i + 1;</text></g><g class="v" style="animation-name:v9u"><text x="166.5" y="356" class="m f4" font-size="12.5" textLength="52.5">line++;</text></g><g class="v" style="animation-name:v9v"><text x="151.5" y="375" class="m f4" font-size="12.5">}</text></g><g class="v" style="animation-name:v9w"><text x="129" y="393.5" class="m fh" font-size="12.5" textLength="399">+  const last = text.slice(start).replace(/\r$/, '');</text></g><g class="v" style="animation-name:v9x"><text x="129" y="412.5" class="m fh" font-size="12.5" textLength="391.5">+  if (last.trim()) rows.push(parseRow(last, line));</text></g><g class="v" style="animation-name:v9y"><text x="151.5" y="431" class="m f4" font-size="12.5" textLength="90.5">return rows;</text></g><g class="v" style="animation-name:v9z"><text x="136.5" y="450" class="m f4" font-size="12.5">}</text></g><g class="v" style="animation-name:va0"><text x="129" y="468.5" class="m f4" font-size="12.5" font-weight="700" textLength="406.5">diff --git a/test/parser.test.js b/test/parser.test.js</text></g><g class="v" style="animation-name:va1"><text x="129" y="487.5" class="m f4" font-size="12.5" font-weight="700" textLength="218.5">index 831adf6..8292b63 100644</text></g><g class="v" style="animation-name:va2"><text x="129" y="506" class="m f4" font-size="12.5" font-weight="700" textLength="188">--- a/test/parser.test.js</text></g><g class="v" style="animation-name:va3"><text x="129" y="525" class="m f4" font-size="12.5" font-weight="700" textLength="188">+++ b/test/parser.test.js</text></g><g class="v" style="animation-name:va4"><text x="129" y="543.5" class="m f7" font-size="12.5" textLength="384">@@ -16,3 +16,7 @@ test('skips blank lines', () =&gt; {</text></g><g class="v" style="animation-name:va5"><text x="136.5" y="562.5" class="m f4" font-size="12.5" textLength="376.5">test('reports the line of a bad quantity', () =&gt; {</text></g><g class="v" style="animation-name:va7"><g clip-path="url(#ca6)"><text x="151.5" y="581" class="m f4" font-size="12.5" textLength="888">assert.throws(() =&gt; parse('A-100,2,9.50\nB-200,two,4\n'), (error) =&gt; error instanceof ParseError &amp;&amp; error.line === 2);</text></g></g><g class="v" style="animation-name:va8"><text x="136.5" y="600" class="m f4" font-size="12.5" textLength="22.5">});</text></g><g class="v" style="animation-name:va9"><text x="129" y="618.5" class="m fh" font-size="12.5">+</text></g><g class="v" style="animation-name:vaa"><rect x="117" y="82" width="846" height="37" rx="8" class="fm"/></g><g class="v" style="animation-name:vab"><text x="129" y="106" class="s fh" font-size="14" font-weight="700" textLength="105.5">@codex：PASS</text></g><g class="v" style="animation-name:vac"><text x="238.5" y="106" class="s fh" font-size="14">—</text></g><g class="v" style="animation-name:vad"><text x="254.5" y="106" class="s fh" font-size="14" textLength="92.5">reviewer: pass</text></g><g class="v" style="animation-name:vae"><text x="117" y="145" class="s f4" font-size="14">▸</text></g><g class="v" style="animation-name:vaf"><text x="132" y="145" class="s f4" font-size="14" textLength="51.5">@codex</text></g><g class="v" style="animation-name:vag"><rect x="117" y="162" width="52" height="33" rx="8" class="f7"/><rect x="117.5" y="162.5" width="51" height="32" rx="7.5" fill="none" class="k8" stroke-width="1"/></g><g class="v" style="animation-name:vah"><text x="129" y="184" class="s f9" font-size="14" textLength="28">合并</text></g><g class="v" style="animation-name:vai"><text x="189" y="184" class="s f4" font-size="14" textLength="28">取消</text></g><g class="v" style="animation-name:vaj"><rect x="117" y="209" width="846" height="1" class="f3"/></g><g class="v" style="animation-name:vak"><text x="117" y="240" class="s f5" font-size="14" textLength="255.5">troupe/bizos → main · 包含未提交的改动</text></g><g class="v" style="animation-name:val"><text x="117" y="272" class="m fj" font-size="12.5" textLength="158">~ src/parser.js  2+ 0-</text></g><g class="v" style="animation-name:vam"><text x="117" y="293" class="m fj" font-size="12.5" textLength="203">~ test/parser.test.js  4+ 0-</text></g><g class="v" style="animation-name:van"><rect x="117" y="308.5" width="846" height="489" rx="8" class="fl"/></g><g class="v" style="animation-name:vao"><text x="129" y="331.5" class="m f4" font-size="12.5" font-weight="700" textLength="316">diff --git a/src/parser.js b/src/parser.js</text></g><g class="v" style="animation-name:vap"><text x="129" y="350.5" class="m f4" font-size="12.5" font-weight="700" textLength="218.5">index 78691ac..c70e472 100644</text></g><g class="v" style="animation-name:vaq"><text x="129" y="369" class="m f4" font-size="12.5" font-weight="700" textLength="143">--- a/src/parser.js</text></g><g class="v" style="animation-name:var"><text x="129" y="388" class="m f4" font-size="12.5" font-weight="700" textLength="143">+++ b/src/parser.js</text></g><g class="v" style="animation-name:vas"><text x="129" y="406.5" class="m f7" font-size="12.5" textLength="353.5">@@ -28,5 +28,7 @@ export function parse(text) {</text></g><g class="v" style="animation-name:vat"><text x="166.5" y="425.5" class="m f4" font-size="12.5" textLength="105.5">start = i + 1;</text></g><g class="v" style="animation-name:vau"><text x="166.5" y="444" class="m f4" font-size="12.5" textLength="52.5">line++;</text></g><g class="v" style="animation-name:vav"><text x="151.5" y="463" class="m f4" font-size="12.5">}</text></g><g class="v" style="animation-name:vaw"><text x="129" y="481.5" class="m fh" font-size="12.5" textLength="399">+  const last = text.slice(start).replace(/\r$/, '');</text></g><g class="v" style="animation-name:vax"><text x="129" y="500.5" class="m fh" font-size="12.5" textLength="391.5">+  if (last.trim()) rows.push(parseRow(last, line));</text></g><g class="v" style="animation-name:vay"><text x="151.5" y="519" class="m f4" font-size="12.5" textLength="90.5">return rows;</text></g><g class="v" style="animation-name:vaz"><text x="136.5" y="538" class="m f4" font-size="12.5">}</text></g><g class="v" style="animation-name:vb0"><text x="129" y="556.5" class="m f4" font-size="12.5" font-weight="700" textLength="406.5">diff --git a/test/parser.test.js b/test/parser.test.js</text></g><g class="v" style="animation-name:vb1"><text x="129" y="575.5" class="m f4" font-size="12.5" font-weight="700" textLength="218.5">index 831adf6..8292b63 100644</text></g><g class="v" style="animation-name:vb2"><text x="129" y="594" class="m f4" font-size="12.5" font-weight="700" textLength="188">--- a/test/parser.test.js</text></g><g class="v" style="animation-name:vb3"><text x="129" y="613" class="m f4" font-size="12.5" font-weight="700" textLength="188">+++ b/test/parser.test.js</text></g><g class="v" style="animation-name:vb4"><text x="117" y="102" class="s f4" font-size="14" textLength="72.5">git merge…</text></g></g></g></g>
+<circle cx="473" cy="618.7" r="16" class="ring" style="animation-name:rb8;transform-origin:473px 618.7px"/>
+<circle cx="1038" cy="629.5" r="16" class="ring" style="animation-name:rb9;transform-origin:1038px 629.5px"/>
+<circle cx="494.27" cy="165.25" r="16" class="ring" style="animation-name:rba;transform-origin:494.27px 165.25px"/>
+<circle cx="864" cy="76.5" r="16" class="ring" style="animation-name:rbb;transform-origin:864px 76.5px"/>
+<circle cx="248" cy="121.5" r="16" class="ring" style="animation-name:rbc;transform-origin:248px 121.5px"/>
+<circle cx="143" cy="199.5" r="16" class="ring" style="animation-name:rbd;transform-origin:143px 199.5px"/>
 <g class="ptr"><path d="M0 0v17l4.4-4.2 2.9 6.6 2.9-1.3-2.9-6.4h6z" fill="#111" stroke="#fff" stroke-width="1.2" stroke-linejoin="round"/></g>
 </g>
 <path d="M0 38h1080" class="edge"/>

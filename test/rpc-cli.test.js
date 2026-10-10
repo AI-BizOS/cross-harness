@@ -76,7 +76,8 @@ test('troupe detect, agents, help and version', (t) => {
   const list = execFileSync(NODE, [BIN, 'agents', '--cwd', repo.dir], { env, encoding: 'utf8', timeout: 30_000 });
   assert.match(list, /No agents yet/);
   assert.match(execFileSync(NODE, [BIN, '--help'], { env, encoding: 'utf8' }), /troupe run/);
-  assert.match(execFileSync(NODE, [BIN, '--version'], { env, encoding: 'utf8' }), /troupe 0\.1\.0 \(troupe\/1\)/);
+  const { version } = JSON.parse(fs.readFileSync(path.join(ROOT, 'package.json'), 'utf8'));
+  assert.equal(execFileSync(NODE, [BIN, '--version'], { env, encoding: 'utf8' }), `troupe ${version} (troupe/1)\n`);
   const bad = spawnSync(NODE, [BIN, '--bogus'], { env, encoding: 'utf8' });
   assert.equal(bad.status, 2);
   const tui = spawnSync(NODE, [BIN, '--cwd', repo.dir], { env, encoding: 'utf8', input: '' });

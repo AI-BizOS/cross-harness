@@ -10,6 +10,7 @@ import { loadConfig, troupeHome } from '../config.js';
 import { starPromptFor } from '../star.js';
 import { openUrl } from '../util/open.js';
 import { pickLang, setLang, t } from '../i18n/index.js';
+import { engineText } from '../i18n/strings.js';
 import { formatCount, oneLine, sanitize } from '../util/text.js';
 import { parseArgs } from './args.js';
 
@@ -196,7 +197,7 @@ async function runOnce(flags, positionals) {
       client.call('approve', { id: a.id, choice }).catch(() => {});
     }
     if (event.type === 'decision.requested') say(`  ? @${event.decision.agentName} asks you: ${oneLine(event.decision.question, 160)} (answer it in troupe or troupe gui)`);
-    if (event.type === 'notice') say(`  ${event.level === 'error' ? '✖' : '·'} ${oneLine(event.text, 160)}`);
+    if (event.type === 'notice') say(`  ${event.level === 'error' ? '✖' : '·'} ${oneLine(engineText(event, t), 160)}`);
   });
   try {
     const result = await client.call('send', { text: message });

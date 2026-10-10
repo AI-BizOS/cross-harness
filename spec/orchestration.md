@@ -119,7 +119,7 @@ Over a byte stream it is newline-delimited JSON-RPC 2.0:
 
 ```
 → {"jsonrpc":"2.0","id":1,"method":"initialize","params":{"client":"troupe"}}
-← {"jsonrpc":"2.0","id":1,"result":{"protocol":"troupe/1","version":"0.1.0","snapshot":{…}}}
+← {"jsonrpc":"2.0","id":1,"result":{"protocol":"troupe/1","version":"0.1.1","snapshot":{…}}}
 → {"jsonrpc":"2.0","id":2,"method":"call","params":{"method":"send","params":{"text":"@codex hi"}}}
 ← {"jsonrpc":"2.0","method":"event","params":{"event":{"seq":42,"type":"agent.updated",…}}}
 ```
@@ -148,7 +148,7 @@ reflects; clients ignore events with a lower `seq`.
 | --- | --- |
 | `agent.updated` | `agent` (full public view) |
 | `agent.removed` | `agentId` |
-| `agent.message` | `agentId`, `entry {id, at, role, text, kind?, from?, activities?, durationMs?, code?, gate?}` |
+| `agent.message` | `agentId`, `entry {id, at, role, text, kind?, from?, activities?, durationMs?, code?, key?, params?, gate?}` |
 | `agent.text` | `agentId`, `text` (answer so far) |
 | `agent.activity` | `agentId`, `activity {id, kind, title, status, detail}` |
 | `agent.plan` | `agentId`, `entries` |
@@ -158,11 +158,17 @@ reflects; clients ignore events with a lower `seq`.
 | `goal.updated` | `goal` (or `{id, deleted:true}`) |
 | `gate.result` | `goalId`, `gate` |
 | `merge.result` | `agentId`, `ok`, `result` or `error` |
-| `notice` | `level` (`info`, `success`, `warn`, `error`), `text`, `agentId?` |
+| `review.started` | `agentId` (the author), `reviewer`, `reviewerId` |
+| `notice` | `level` (`info`, `success`, `warn`, `error`), `text`, `agentId?`, `code?`, `key?`, `params?` |
 | `project.updated` | `project`, `providers?` |
 
 Transcript roles: `user`, `assistant`, `question`, `feedback`, `review`, `compare`,
 `draft`, `system`, `error`, `gate`.
+
+Messages Troupe writes itself (system entries, notices, the requests it sends on your
+behalf) carry `params`, with `code` or `key` naming the message, so that interfaces can
+show them in their own language; `text` is the English form, for logs and for
+interfaces that do not know the message.
 
 ## Error codes
 

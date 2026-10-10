@@ -6,7 +6,7 @@ import { PERMISSION_MODES } from '../protocol/index.js';
 import { clip, oneLine } from '../util/text.js';
 
 export const TEXT_INTERVAL_MS = 75;
-export const CLIENT_INFO = Object.freeze({ name: 'troupe', title: 'Troupe', version: '0.1.0' });
+export const CLIENT_INFO = Object.freeze({ name: 'troupe', title: 'Troupe', version: '0.1.1' });
 
 /** Wraps a listener so a failing UI can never break a vendor turn. */
 export function safeEmitter(listener) {

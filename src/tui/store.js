@@ -132,6 +132,8 @@ export function createStore() {
         case 'merge.result':
           state.lastMerge = event;
           break;
+        case 'review.started':
+          break;
         case 'notice':
           notice(event.level, event.text, { agentId: event.agentId || null });
           break;

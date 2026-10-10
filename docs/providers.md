@@ -8,7 +8,7 @@ including closed-source runners, in `~/.troupe/config.json`.
 
 | Id | Harness | Started as | Protocol | Modes | Checked |
 | --- | --- | --- | --- | --- | --- |
-| `bizos` | BizOS Code | `bizos acp` | `acp` | all | adapter checked |
+| `bizos` | BizOS Code | `bizos acp` | `acp` | all | real install |
 | `claude` | Claude Code | `claude -p --input-format stream-json …` | `claude-stream` | all | documented |
 | `codex` | Codex | `codex app-server` | `codex-app` | all | handshake |
 | `opencode` | OpenCode | `opencode acp` | `acp` | all | handshake |
@@ -31,12 +31,12 @@ The rank (the order of this table) decides which harnesses `@auto` and `@all` pi
   opening handshake: ACP `initialize` (protocol version 1) for OpenCode, Kimi Code and
   DeepSeek Harness, and `initialize` for `codex app-server` 0.159.1. No session was
   created and no model was called.
-- **adapter checked** — BizOS Code. Troupe's engine and ACP adapter were run against
-  BizOS Code's own `bizos acp` adapter (0.3.05) with the BizOS service replaced by a
-  stand-in: initialization, a session in a worktree with Troupe's MCP server, all four
-  permission modes, an approval answered with "always allow", the streamed answer and a
-  second turn. It has not yet been run against a full install, so `verified` stays `false`
-  and the interfaces label it "untested".
+- **real install** — BizOS Code, `verified: true`. Troupe's engine and ACP adapter were
+  first run against BizOS Code's own `bizos acp` adapter (0.3.05) with the BizOS service
+  replaced by a stand-in: initialization, a session in a worktree with Troupe's MCP
+  server, all four permission modes, an approval answered with "always allow", the
+  streamed answer and a second turn. On 2026-10-10 the BizOS team confirmed the
+  integration with a signed-in BizOS Code install.
 - **documented** — the definition has `verified: false` and the interfaces label it
   "untested". The integration follows the vendor's published documentation but has not
   been run by Troupe against a real install. Claude Code is in this group for this

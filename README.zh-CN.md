@@ -92,10 +92,10 @@ Troupe 是 BizOS CLI 团队开源的跨 Harness 协议，本仓库是它的参�
 
 需要 Node.js 20.11 或更高版本、git，以及至少一个已安装并登录的编程代理（例如 `claude`、`codex`、`opencode`、`kimi`）。
 
-从发布页安装 0.1.0 预览版（内置的 `@bizos` 和星标提示是 0.1.0 之后加入的，下一个版本发布前，想用它们请从源码安装）：
+从发布页安装 0.1.1 预览版：
 
 ```sh
-npm install -g https://github.com/AI-BizOS/troupe/releases/download/v0.1.0/bizos-ai-troupe-0.1.0.tgz
+npm install -g https://github.com/AI-BizOS/troupe/releases/download/v0.1.1/bizos-ai-troupe-0.1.1.tgz
 troupe detect           # 查看 Troupe 找到了哪些代理
 ```
 
@@ -214,7 +214,7 @@ troupe gui --ssh dev@buildbox --cwd src/shop-api
 
 | 代理 | 命令 | 协议 | 核验情况 |
 | --- | --- | --- | --- |
-| BizOS CLI（BizOS Code） | `bizos acp` | ACP | 适配器已验证 |
+| BizOS CLI（BizOS Code） | `bizos acp` | ACP | 实机已验证 |
 | Claude Code | `claude` | stream-json | 按文档接入 |
 | Codex | `codex` | app-server | 真实编码已验证 |
 | OpenCode | `opencode acp` | ACP | 握手已验证 |
@@ -228,7 +228,7 @@ troupe gui --ssh dev@buildbox --cwd src/shop-api
 | Amp | `amp -x` | 单次运行 | 按文档接入 |
 | Aider | `aider --message` | 单次运行 | 按文档接入 |
 
-"握手已验证"表示 Troupe 的适配器已与该 CLI 的真实安装完成协议握手（2026-10-09：codex 0.159.1、opencode、kimi、dsh）。"真实编码已验证"表示在此基础上，0.1.0 发布前还有一个真实的 Codex 会话通过 `troupe run` 完成了编码任务，结果经过独立核查。"适配器已验证"表示 Troupe 已与 BizOS Code 自己的 ACP 适配器（0.3.05）对接运行过，其中 BizOS 后台服务用替身代替，尚未在完整安装上运行。"按文档接入"的按厂商文档实现。这两类在界面上都标注"未实测"。Troupe 的自动化测试用模拟代理覆盖每种协议，不调用真实模型。详见 [docs/providers.md](docs/providers.md)。
+"握手已验证"表示 Troupe 的适配器已与该 CLI 的真实安装完成协议握手（2026-10-09：codex 0.159.1、opencode、kimi、dsh）。"真实编码已验证"表示在此基础上，0.1.0 发布前还有一个真实的 Codex 会话通过 `troupe run` 完成了编码任务，结果经过独立核查。"实机已验证"表示 Troupe 先与 BizOS Code 自己的 ACP 适配器（0.3.05）对接运行（BizOS 后台服务用替身代替），并于 2026-10-10 由 BizOS 团队在已登录的真实安装上确认。"按文档接入"的按厂商文档实现，在界面上标注"未实测"。Troupe 的自动化测试用模拟代理覆盖每种协议，不调用真实模型。详见 [docs/providers.md](docs/providers.md)。
 
 ## BizOS CLI
 

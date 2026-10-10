@@ -4,6 +4,35 @@
 export const STRINGS = {
   en: {
     'app.tagline': 'coding agents, side by side',
+    'engine.interrupted': 'Troupe exited while this agent was working. Check its changes before continuing.',
+    'engine.created': 'Working on branch {branch} in its own worktree',
+    'engine.created.shared': 'Working directly in the project directory',
+    'engine.created.plain': 'Working directly in the project directory (not a git repository, so no isolation)',
+    'engine.mode-raised': '{harness} cannot run in {mode} mode, so this agent runs in {final} mode',
+    'engine.mode-raised.full': '{harness} cannot run in {mode} mode, so this agent runs in {final} mode and acts without asking',
+    'engine.mode-raised.agent': '@{name}: {harness} cannot run in {mode} mode, so this agent runs in {final} mode',
+    'engine.mode-raised.full.agent': '@{name}: {harness} cannot run in {mode} mode, so this agent runs in {final} mode and acts without asking',
+    'engine.renamed': 'Renamed from @{before} to @{next}',
+    'engine.mode': 'Permission mode: {mode}',
+    'engine.merged': 'Merged {branch} into {target} ({commits} commits)',
+    'engine.merged.one': 'Merged {branch} into {target} (1 commit)',
+    'engine.session-resumed': 'Resumed the previous session',
+    'engine.session-new': '{harness} no longer had the previous session; started a new one',
+    'engine.stopped': 'Stopped',
+    'engine.state-save-failed': 'Could not save Troupe state: {error}',
+    'engine.detect-failed': 'Could not check installed agents: {error}',
+    'engine.compare-failed': 'Compare failed: {error}',
+    'engine.denied': 'Denied for @{name} ({mode} mode): {title}',
+    'engine.goal-met': 'Goal met: {title}',
+    'engine.goal-stuck': 'Goal "{title}" still fails after {n} checks; it needs you',
+    'engine.transcript-save-failed': "Could not save @{name}'s transcript: {error}",
+    'engine.after-turn-failed': "After @{name}'s turn: {error}",
+    'engine.compare': 'Compare {n} answers',
+    'engine.review': "Review @{name}'s changes before merging",
+    'engine.goal': 'Goal: {title}',
+    'engine.draft': 'Draft a goal: {text}',
+    'engine.feedback': 'Check {i}/{max}: {n} criteria not met',
+    'engine.gate-review': "Review @{name}'s work: {criterion}",
     'header.agents': '{n} agents',
     'header.working': '{n} working',
     'header.needsYou': '{n} need you',
@@ -157,6 +186,35 @@ export const STRINGS = {
   },
   zh: {
     'app.tagline': '多个编程代理，并肩工作',
+    'engine.interrupted': '这个代理工作时 Troupe 退出了。继续之前请先检查它的改动。',
+    'engine.created': '在自己的 worktree 里工作，分支 {branch}',
+    'engine.created.shared': '直接在项目目录里工作',
+    'engine.created.plain': '直接在项目目录里工作（不是 git 仓库，无法隔离）',
+    'engine.mode-raised': '{harness} 不能以“{mode}”模式运行，所以这个代理以“{final}”模式运行',
+    'engine.mode-raised.full': '{harness} 不能以“{mode}”模式运行，所以这个代理以“{final}”模式运行，不经询问直接执行',
+    'engine.mode-raised.agent': '@{name}：{harness} 不能以“{mode}”模式运行，所以这个代理以“{final}”模式运行',
+    'engine.mode-raised.full.agent': '@{name}：{harness} 不能以“{mode}”模式运行，所以这个代理以“{final}”模式运行，不经询问直接执行',
+    'engine.renamed': '已从 @{before} 改名为 @{next}',
+    'engine.mode': '权限模式：{mode}',
+    'engine.merged': '已将 {branch} 合并到 {target}（{commits} 个提交）',
+    'engine.merged.one': '已将 {branch} 合并到 {target}（1 个提交）',
+    'engine.session-resumed': '已接上之前的会话',
+    'engine.session-new': '{harness} 已没有之前的会话，已开始新会话',
+    'engine.stopped': '已停止',
+    'engine.state-save-failed': '无法保存 Troupe 状态：{error}',
+    'engine.detect-failed': '无法检查已安装的代理：{error}',
+    'engine.compare-failed': '比较失败：{error}',
+    'engine.denied': '已拒绝 @{name} 的请求（“{mode}”模式）：{title}',
+    'engine.goal-met': '目标达成：{title}',
+    'engine.goal-stuck': '目标“{title}”核查 {n} 次仍未通过，需要你来处理',
+    'engine.transcript-save-failed': '无法保存 @{name} 的对话记录：{error}',
+    'engine.after-turn-failed': '@{name} 这一轮结束后出错：{error}',
+    'engine.compare': '比较 {n} 个回答',
+    'engine.review': '合并前审查 @{name} 的改动',
+    'engine.goal': '目标：{title}',
+    'engine.draft': '起草一个目标：{text}',
+    'engine.feedback': '第 {i}/{max} 次核查：{n} 项标准未达成',
+    'engine.gate-review': '审查 @{name} 的成果：{criterion}',
     'header.agents': '{n} 个代理',
     'header.working': '{n} 个工作中',
     'header.needsYou': '{n} 项待你处理',
@@ -314,4 +372,19 @@ export function translate(lang, key, params = {}) {
   const table = STRINGS[lang] || STRINGS.en;
   const template = table[key] ?? STRINGS.en[key] ?? key;
   return template.replace(/\{(\w+)\}/g, (_, name) => (params[name] !== undefined ? String(params[name]) : `{${name}}`));
+}
+
+/**
+ * A message Troupe wrote itself (a system entry, a notice, a request it sent on your
+ * behalf) in the interface's language. Such messages carry params and a code or key;
+ * anything else, or a message this version does not know, keeps the engine's text.
+ * @param {{text?:string, code?:string, key?:string, params?:object}} message
+ * @param {(key:string, params?:object)=>string} t the interface's translate function
+ */
+export function engineText(message, t) {
+  const key = message?.params && `engine.${message.key || message.code}`;
+  if (!key || !(key in STRINGS.en)) return message?.text ?? '';
+  const params = { ...message.params };
+  for (const name of ['mode', 'final']) if (`mode.${params[name]}` in STRINGS.en) params[name] = t(`mode.${params[name]}`);
+  return t(key, params);
 }

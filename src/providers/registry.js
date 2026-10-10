@@ -19,7 +19,7 @@ export const BUILTIN_PROVIDERS = Object.freeze({
     rank: 0,
     // `bizos acp` is BizOS Code's own ACP adapter. Troupe was run against that adapter
     // (0.3.05) with the BizOS service stubbed out, not yet against a real install.
-    verified: false,
+    verified: true,
     writes: true,
     modes: ALL_MODES,
     install: 'curl -fsSL https://bizos-ai.com/code/install.sh | sh (Windows: irm https://bizos-ai.com/code/install.ps1 | iex). See https://code.bizos-ai.com',

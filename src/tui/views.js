@@ -4,6 +4,7 @@ import { formatCount, formatDuration, oneLine, wrap } from '../util/text.js';
 import { clusterWidth, displayWidth, graphemes } from '../util/width.js';
 import { fitSpans, plain, renderLine, span, spansWidth } from './screen.js';
 import { lastGate } from './store.js';
+import { engineText } from '../i18n/strings.js';
 
 export const SPINNER = ['⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏'];
 const AGENT_COLORS = ['cyan', 'magenta', 'yellow', 'green', 'blue', 'brightCyan', 'brightMagenta', 'brightGreen'];
@@ -182,6 +183,7 @@ function activityLines(activities, width, { limit = 4, frame = 0 } = {}) {
 
 function entryLines(entry, agent, width, t) {
   const lines = [];
+  if (entry.params) entry = { ...entry, text: engineText(entry, t) };
   if (entry.role === 'system') {
     for (const line of wrap(`· ${entry.text}`, width)) lines.push([span(line, 'dim')]);
     if (entry.activities?.length) lines.push(...activityLines(entry.activities, width));

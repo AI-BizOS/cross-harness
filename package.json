@@ -1,6 +1,6 @@
 {
   "name": "@bizos-ai/troupe",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Run BizOS Code, Claude Code, Codex, OpenCode, Gemini CLI, Kimi and other coding agents side by side: one open cross-harness protocol, live sessions, agent-to-agent Q&A, approvals, isolated worktrees, goal gates and review-before-merge, in a TUI or a local web GUI.",
   "license": "Apache-2.0",
   "type": "module",

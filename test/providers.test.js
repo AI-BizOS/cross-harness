@@ -23,7 +23,7 @@ test('BizOS Code is built in and started as an ACP agent', () => {
   assert.equal(bizos.command, 'bizos');
   assert.equal(bizos.protocol, 'acp');
   assert.deepEqual(bizos.args, ['acp']);
-  assert.equal(bizos.verified, false);
+  assert.equal(bizos.verified, true);
   assert.match(bizos.install, /code\.bizos-ai\.com/);
   assert.match(bizos.signIn, /bizos login/);
 });

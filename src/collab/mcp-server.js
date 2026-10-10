@@ -89,7 +89,7 @@ async function handle(method, params, env, pollMs) {
     return {
       protocolVersion: typeof params?.protocolVersion === 'string' ? params.protocolVersion : '2025-06-18',
       capabilities: { tools: {} },
-      serverInfo: { name: SERVER_NAME, version: '0.1.0', title: `Troupe collaboration (${PROTOCOL_VERSION})` },
+      serverInfo: { name: SERVER_NAME, version: '0.1.1', title: `Troupe collaboration (${PROTOCOL_VERSION})` },
       instructions: INSTRUCTIONS,
     };
   }

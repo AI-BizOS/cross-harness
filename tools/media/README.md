@@ -26,7 +26,7 @@ hand. This directory holds the tools that make them; the results are in
   [story.js](story.js). What they say is written in advance; the files they edit are
   written to their worktrees, and their `npm test` runs for real. They keep the real
   harnesses' names and "verified" labels, so the interface shows what it would show for
-  the real ones, including "untested" for the BizOS CLI and Claude Code.
+  the real ones, including "untested" for Claude Code.
 
 ## How a recording becomes an SVG
 

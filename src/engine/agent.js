@@ -126,7 +126,7 @@ export class Agent {
     try {
       appendJsonl(this.transcriptFile, full);
     } catch (error) {
-      this.engine.notice('warn', `Could not save @${this.name}'s transcript: ${error.message}`, { agentId: this.id });
+      this.engine.notice('warn', `Could not save @${this.name}'s transcript: ${error.message}`, { agentId: this.id, code: 'transcript-save-failed', params: { name: this.name, error: error.message } });
     }
     this.engine.emit('agent.message', { agentId: this.id, entry: full });
     return full;
@@ -207,8 +207,8 @@ export class Agent {
     }
     this.sessionId = started.sessionId || session.sessionId || this.sessionId;
     this.session = session;
-    if (previous && started.resumed) this.record({ role: 'system', text: 'Resumed the previous session', code: 'session-resumed' });
-    else if (previous && !started.resumed) this.record({ role: 'system', text: `${provider.name} no longer had the previous session; started a new one`, code: 'session-new' });
+    if (previous && started.resumed) this.record({ role: 'system', text: 'Resumed the previous session', code: 'session-resumed', params: {} });
+    else if (previous && !started.resumed) this.record({ role: 'system', text: `${provider.name} no longer had the previous session; started a new one`, code: 'session-new', params: { harness: provider.name } });
     this.engine.saveSoon();
     return session;
   }
@@ -275,6 +275,7 @@ export class Agent {
     this.record({
       role: input.kind === 'task' ? 'user' : input.kind,
       text: input.display ?? input.text,
+      ...(input.displayKey ? { key: input.displayKey, params: input.displayParams || {} } : {}),
       kind: input.kind,
       from: input.from,
     });
@@ -313,7 +314,7 @@ export class Agent {
       input.resolve?.({ status: 'answered', answer: text });
     } else if (isCancelled(error)) {
       this.state = 'stopped';
-      this.record({ role: 'system', text: turn.stopReason || 'Stopped', code: 'stopped', activities, durationMs, ...(turn.text ? { partial: turn.text } : {}) });
+      this.record({ role: 'system', text: turn.stopReason || 'Stopped', code: 'stopped', ...(turn.stopReason ? {} : { params: {} }), activities, durationMs, ...(turn.text ? { partial: turn.text } : {}) });
       input.resolve?.({ status: 'failed', error: 'the turn was stopped before it answered' });
     } else {
       this.state = 'failed';
@@ -329,7 +330,7 @@ export class Agent {
     this.plan = [];
     this.changed();
     this.engine.releaseSlot(this);
-    if (!error && !this.archived) await this.engine.afterTurn(this, input).catch((cause) => this.engine.notice('error', `After @${this.name}'s turn: ${cause.message}`, { agentId: this.id }));
+    if (!error && !this.archived) await this.engine.afterTurn(this, input).catch((cause) => this.engine.notice('error', `After @${this.name}'s turn: ${cause.message}`, { agentId: this.id, code: 'after-turn-failed', params: { name: this.name, error: cause.message } }));
     void this.runNext();
   }
 
