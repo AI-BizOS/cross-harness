@@ -8,6 +8,7 @@ import path from 'node:path';
 import { randomUUID } from 'node:crypto';
 import { LIMITS, PROTOCOL_VERSION } from '../protocol/index.js';
 import { FORMAT, INSTRUCTIONS, SERVER_NAME, TOOLS, TOOL_BY_NAME } from './tools.js';
+import { VERSION } from '../version.js';
 
 const MAX_LINE = 4 * 1024 * 1024;
 const UNCLAIMED_MS = 10_000;
@@ -89,7 +90,7 @@ async function handle(method, params, env, pollMs) {
     return {
       protocolVersion: typeof params?.protocolVersion === 'string' ? params.protocolVersion : '2025-06-18',
       capabilities: { tools: {} },
-      serverInfo: { name: SERVER_NAME, version: '0.1.1', title: `Troupe collaboration (${PROTOCOL_VERSION})` },
+      serverInfo: { name: SERVER_NAME, version: VERSION, title: `Troupe collaboration (${PROTOCOL_VERSION})` },
       instructions: INSTRUCTIONS,
     };
   }

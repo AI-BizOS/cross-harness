@@ -331,6 +331,23 @@ test('the TUI drives a real engine: send, approve, view the diff, merge, quit', 
   assert.equal(term.started, false);
 });
 
+test('the TUI mentions a newer release once and keeps it in the header', async (t2) => {
+  setLang('en');
+  const home = tempDir(t2, 'troupe-home-');
+  const repo = gitRepo(t2);
+  const env = { ...gitEnv(), TROUPE_HOME: home };
+  const engine = await new Engine({ root: repo.dir, env, builtins: false, providers: mockProviders(), config: { providers: {}, defaults: { mode: 'ask', isolation: 'worktree', maxPerProvider: 3, idleMinutes: 15, gateTimeoutSec: 60, maxIterations: 5 }, lang: null } }).open();
+  t2.after(() => engine.close());
+  const term = new FakeTerminal(120, 30);
+  const update = { check: async () => ({ current: '0.1.3', latest: '0.2.0' }) };
+  const done = runTui({ client: localClient(engine), lang: 'en', terminal: term, env: { ...env, NO_COLOR: '' }, update });
+  await until(() => term.text().includes('Troupe 0.2.0 is available (you have 0.1.3). Run `troupe update` to install it.'), { label: 'update notice' });
+  assert.match(term.text().split('\n')[0], /↑ Troupe 0\.2\.0/);
+  term.press('escape');
+  term.type('q');
+  await done;
+});
+
 test('the TUI asks once for a GitHub star, opens the page on Enter and remembers it', async (t2) => {
   setLang('en');
   const home = tempDir(t2, 'troupe-home-');

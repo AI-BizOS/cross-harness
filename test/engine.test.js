@@ -196,6 +196,25 @@ test('the review names its reviewer before the verdict and messages carry their 
   assert.deepEqual([request.key, request.params], ['review', { name: 'mock-acp' }]);
 });
 
+test('new agents are created together, each with its own name and branch', async (t) => {
+  const { engine } = await open(t);
+  const result = await engine.call('send', { text: '@mock-acp @mock-codex @mock-claude @mock-codex say hello' });
+  assert.deepEqual(
+    result.dispatched.map((d) => [d.agent, d.created]),
+    [
+      ['mock-acp', true],
+      ['mock-codex', true],
+      ['mock-claude', true],
+    ],
+  );
+  // Two agents of one harness created at the same moment never share a name.
+  const [a, b] = await Promise.all([engine.call('createAgent', { provider: 'mock-acp' }), engine.call('createAgent', { provider: 'mock-acp' })]);
+  assert.deepEqual([a.name, b.name].sort(), ['mock-acp-2', 'mock-acp-3']);
+  const branches = [...engine.agents.values()].map((agent) => agent.worktree.branch);
+  assert.equal(new Set(branches).size, 5);
+  assert.equal(engine.reservedNames.size, 0, 'names are released once the agents exist');
+});
+
 test('a project opened through a symbolic link gives agents their worktree', async (t) => {
   const repo = gitRepo(t);
   const link = path.join(tempDir(t, 'troupe-link-'), 'project');

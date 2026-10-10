@@ -16,11 +16,12 @@ import { approveGoal, armProblems, DRAFT_INSTRUCTIONS, goalBrief, normalizeGoal,
 import { evaluateGate, feedbackPrompt, parseVerdict, reviewPrompt } from '../goals/gate.js';
 import { appendJsonl, ensureDir, readJson, removeQuietly, writeJsonAtomic } from '../util/fsx.js';
 import { clip, oneLine } from '../util/text.js';
+import { VERSION } from '../version.js';
 import { Agent } from './agent.js';
 import { completions, looksLikeReview, parseDispatch, SPECIAL } from './dispatch.js';
 import { capMode, decide, ruleFor } from './policy.js';
 
-export const VERSION = '0.1.2';
+export { VERSION };
 const BIN = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..', 'bin', 'troupe.js');
 const NAME = /^[a-z][a-z0-9_-]{0,31}$/;
 const KEY = /^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$/;
@@ -86,6 +87,7 @@ export class Engine {
     this.spawnProcess = spawnProcess;
     this.collabEnabled = collab;
     this.agents = new Map();
+    this.reservedNames = new Set();
     this.approvals = new Map();
     this.decisions = new Map();
     this.decisionWaiters = new Map();
@@ -313,7 +315,7 @@ export class Engine {
   }
 
   nextName(providerId) {
-    const used = new Set([...this.agents.values()].map((a) => a.name));
+    const used = new Set([...this.agents.values()].map((a) => a.name).concat([...this.reservedNames]));
     if (!used.has(providerId)) return providerId;
     for (let n = 2; ; n++) if (!used.has(`${providerId}-${n}`)) return `${providerId}-${n}`;
   }
@@ -323,7 +325,7 @@ export class Engine {
     if (!NAME.test(value)) throw fail(CODES.NAME_INVALID, 'Names start with a letter and use lowercase letters, digits, - or _ (max 32)');
     if (SPECIAL.includes(value)) throw fail(CODES.NAME_INVALID, `@${value} is reserved`);
     const owner = this.agentByName(value);
-    if (owner && owner !== except) throw fail(CODES.AGENT_EXISTS, `@${value} already exists`);
+    if ((owner && owner !== except) || this.reservedNames.has(value)) throw fail(CODES.AGENT_EXISTS, `@${value} already exists`);
     if (this.registry[value] && (!except || except.providerId !== value)) throw fail(CODES.NAME_INVALID, `@${value} names a harness; pick another name`);
     return value;
   }
@@ -340,46 +342,52 @@ export class Engine {
     if (!finalMode && !mode) finalMode = modes.filter((m) => MODE_RANK[m] <= MODE_RANK[chosenMode]).at(-1) || modes[0];
     if (!finalMode) throw fail(CODES.PLAN_DENIED, `${definition.name} only runs in ${modes.join(' or ')} mode`);
     const agentName = name ? this.validateName(name) : this.nextName(definition.id);
-    const id = randomUUID();
-    let wantIsolation = isolation || this.defaults.isolation;
-    if (definition.writes === false) wantIsolation = 'shared';
-    let worktree = null;
-    let cwd = this.project.gitRoot || this.root;
-    if (wantIsolation === 'worktree' && this.project.isGit && this.project.head) {
-      const part = safeBranchPart(agentName);
-      let branch = `troupe/${part}`;
-      const exists = (await git(['rev-parse', '--verify', '--quiet', `refs/heads/${branch}`], { cwd: this.project.gitRoot, env: this.env, allowFail: true })).code === 0;
-      if (exists) branch = `troupe/${part}-${id.slice(0, 6)}`;
-      const dir = path.join(this.worktreeRoot, `${part}-${id.slice(0, 6)}`);
-      const base = this.project.branch || this.project.head;
-      worktree = await createWorktree({ root: this.project.gitRoot, dir, branch, base, env: this.env });
-      // A sub-directory project keeps its relative position inside the worktree. Git
-      // reports its root with symbolic links resolved, so the project path is resolved too.
-      cwd = path.join(worktree.path, path.relative(this.project.gitRoot, fs.realpathSync(this.root)));
-    } else {
-      wantIsolation = 'shared';
+    // Agents are created concurrently; the name is taken until the agent exists.
+    this.reservedNames.add(agentName);
+    try {
+      const id = randomUUID();
+      let wantIsolation = isolation || this.defaults.isolation;
+      if (definition.writes === false) wantIsolation = 'shared';
+      let worktree = null;
+      let cwd = this.project.gitRoot || this.root;
+      if (wantIsolation === 'worktree' && this.project.isGit && this.project.head) {
+        const part = safeBranchPart(agentName);
+        let branch = `troupe/${part}`;
+        const exists = (await git(['rev-parse', '--verify', '--quiet', `refs/heads/${branch}`], { cwd: this.project.gitRoot, env: this.env, allowFail: true })).code === 0;
+        if (exists) branch = `troupe/${part}-${id.slice(0, 6)}`;
+        const dir = path.join(this.worktreeRoot, `${part}-${id.slice(0, 6)}`);
+        const base = this.project.branch || this.project.head;
+        worktree = await createWorktree({ root: this.project.gitRoot, dir, branch, base, env: this.env });
+        // A sub-directory project keeps its relative position inside the worktree. Git
+        // reports its root with symbolic links resolved, so the project path is resolved too.
+        cwd = path.join(worktree.path, path.relative(this.project.gitRoot, fs.realpathSync(this.root)));
+      } else {
+        wantIsolation = 'shared';
+      }
+      const agent = new Agent(this, { id, name: agentName, provider: definition.id, mode: finalMode, model, isolation: wantIsolation, worktree, cwd, state: 'idle' });
+      agent.state = 'idle';
+      this.agents.set(agent.id, agent);
+      agent.record(
+        worktree
+          ? { role: 'system', code: 'created', params: { branch: worktree.branch }, text: `Working on branch ${worktree.branch} in its own worktree` }
+          : this.project.isGit
+            ? { role: 'system', code: 'created', key: 'created.shared', params: {}, text: 'Working directly in the project directory' }
+            : { role: 'system', code: 'created', key: 'created.plain', params: {}, text: 'Working directly in the project directory (not a git repository, so no isolation)' },
+      );
+      if (MODE_RANK[finalMode] > MODE_RANK[chosenMode]) {
+        const key = finalMode === 'full' ? 'mode-raised.full' : 'mode-raised';
+        const params = { harness: definition.name, mode: chosenMode, final: finalMode };
+        const text = `${definition.name} cannot run in ${chosenMode} mode, so this agent runs in ${finalMode} mode${finalMode === 'full' ? ' and acts without asking' : ''}`;
+        agent.record({ role: 'system', code: 'mode-raised', key, params, text });
+        this.notice('warn', `@${agent.name}: ${text}`, { agentId: agent.id, code: 'mode-raised', key: `${key}.agent`, params: { ...params, name: agent.name } });
+      }
+      this.audit('agent.created', { agent: agent.name, provider: definition.id, mode: finalMode, isolation: wantIsolation, branch: worktree?.branch || null });
+      this.agentChanged(agent);
+      this.save();
+      return agent.view();
+    } finally {
+      this.reservedNames.delete(agentName);
     }
-    const agent = new Agent(this, { id, name: agentName, provider: definition.id, mode: finalMode, model, isolation: wantIsolation, worktree, cwd, state: 'idle' });
-    agent.state = 'idle';
-    this.agents.set(agent.id, agent);
-    agent.record(
-      worktree
-        ? { role: 'system', code: 'created', params: { branch: worktree.branch }, text: `Working on branch ${worktree.branch} in its own worktree` }
-        : this.project.isGit
-          ? { role: 'system', code: 'created', key: 'created.shared', params: {}, text: 'Working directly in the project directory' }
-          : { role: 'system', code: 'created', key: 'created.plain', params: {}, text: 'Working directly in the project directory (not a git repository, so no isolation)' },
-    );
-    if (MODE_RANK[finalMode] > MODE_RANK[chosenMode]) {
-      const key = finalMode === 'full' ? 'mode-raised.full' : 'mode-raised';
-      const params = { harness: definition.name, mode: chosenMode, final: finalMode };
-      const text = `${definition.name} cannot run in ${chosenMode} mode, so this agent runs in ${finalMode} mode${finalMode === 'full' ? ' and acts without asking' : ''}`;
-      agent.record({ role: 'system', code: 'mode-raised', key, params, text });
-      this.notice('warn', `@${agent.name}: ${text}`, { agentId: agent.id, code: 'mode-raised', key: `${key}.agent`, params: { ...params, name: agent.name } });
-    }
-    this.audit('agent.created', { agent: agent.name, provider: definition.id, mode: finalMode, isolation: wantIsolation, branch: worktree?.branch || null });
-    this.agentChanged(agent);
-    this.save();
-    return agent.view();
   }
 
   /** Every non-archived agent's environment: the user's plus the harness's own entries. */
@@ -550,10 +558,17 @@ export class Engine {
   }
 
   async expandTargets(targets, text, skipped) {
-    const out = [];
+    // New agents are created together: each needs its own worktree, and in a large
+    // repository creating them one after another is what the user waits for. Slots keep
+    // the order of the mentions; a second plain mention of a harness shares its new agent.
+    const slots = [];
+    const chosen = new Set();
     const add = (agent, created = false) => {
-      if (!out.some((o) => o.agent === agent)) out.push({ agent, created });
+      chosen.add(agent);
+      slots.push({ agent, created });
     };
+    const later = (creation) => slots.push(creation.then((agent) => (agent ? { agent, created: true } : null)));
+    const creating = new Map();
     const statusOf = async (providerId) => this.detector.detect(providerId).catch(() => null);
     const createFor = async (providerId, label) => {
       const status = await statusOf(providerId);
@@ -578,10 +593,7 @@ export class Engine {
         else {
           const available = (await this.refreshProviders()).filter((p) => p.available).slice(0, 4);
           if (!available.length) skipped.push({ target: label, reason: 'no harness is installed' });
-          for (const p of available) {
-            const agent = await createFor(p.id, `@${p.id}`);
-            if (agent) add(agent, true);
-          }
+          for (const p of available) later(createFor(p.id, `@${p.id}`));
         }
         continue;
       }
@@ -591,7 +603,7 @@ export class Engine {
         const picked = [];
         for (const p of available) {
           if (picked.length >= want) break;
-          const idle = live().find((a) => a.providerId === p.id && !a.busy && !out.some((o) => o.agent === a));
+          const idle = live().find((a) => a.providerId === p.id && !a.busy && !chosen.has(a));
           if (idle) picked.push({ agent: idle, created: false });
           else {
             const agent = await createFor(p.id, `@auto (${p.id})`);
@@ -621,10 +633,17 @@ export class Engine {
           add(existing[0]);
           continue;
         }
+        if (creating.has(providerId)) {
+          later(creating.get(providerId));
+          continue;
+        }
       }
-      const agent = await createFor(providerId, label);
-      if (agent) add(agent, true);
+      const creation = createFor(providerId, label);
+      if (!target.fresh) creating.set(providerId, creation);
+      later(creation);
     }
+    const out = [];
+    for (const slot of await Promise.all(slots)) if (slot && !out.some((o) => o.agent === slot.agent)) out.push(slot);
     return out;
   }
 

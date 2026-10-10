@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
+import { execFileSync } from 'node:child_process';
 import { changes, commitAll, createWorktree, mergeBranch, removeWorktree, repoInfo, safeBranchPart, workingTree } from '../src/git/worktree.js';
 import { CODES } from '../src/protocol/errors.js';
 import { gitEnv, gitRepo, tempDir } from './helpers.js';
@@ -42,6 +43,33 @@ test('an agent works in its own worktree and its changes are reported', async (t
   // Reusing the same directory for the same branch is fine.
   const again = await createWorktree({ root: dir, dir: wt.path, branch: 'troupe/codex', base: 'main', env });
   assert.equal(again.created, false);
+  // Once everything is committed nothing is pending; staged work alone still is, and the
+  // agent's index (copied for the snapshot) keeps what it staged.
+  const git = (...args) => execFileSync('git', args, { cwd: wt.path, env, stdio: 'pipe' }).toString();
+  git('add', '-A');
+  git('commit', '-q', '-m', 'agent work');
+  const committed = await changes({ dir: wt.path, base: 'main', env });
+  assert.deepEqual([committed.uncommitted, committed.commits, committed.files.length], [false, 1, 2]);
+  fs.writeFileSync(path.join(wt.path, 'staged.txt'), 'staged\n');
+  git('add', 'staged.txt');
+  const staged = await changes({ dir: wt.path, base: 'main', env });
+  assert.equal(staged.uncommitted, true);
+  assert.ok(staged.files.some((f) => f.path === 'staged.txt' && f.status === 'added'));
+  assert.match(git('diff', '--cached', '--name-only'), /staged\.txt/);
+});
+
+test('a file changed right after checkout, keeping its size, is never missed', async (t) => {
+  // The snapshot starts from a copy of the agent's index; git must not take that copy's
+  // newer time as proof that a just-written file is unchanged ("racy git").
+  const env = gitEnv();
+  const { dir } = gitRepo(t, { 'a.js': 'export const a = 1;\n' });
+  const home = tempDir(t);
+  for (let i = 0; i < 20; i++) {
+    const wt = await createWorktree({ root: dir, dir: path.join(home, `wt${i}`), branch: `troupe/racy-${i}`, base: 'main', env });
+    fs.writeFileSync(path.join(wt.path, 'a.js'), 'export const a = 2;\n');
+    const diff = await changes({ dir: wt.path, base: 'main', env });
+    assert.deepEqual(diff.files.map((f) => f.path), ['a.js'], `attempt ${i + 1}`);
+  }
 });
 
 test('merge commits pending work, merges with --no-ff and keeps the branch', async (t) => {

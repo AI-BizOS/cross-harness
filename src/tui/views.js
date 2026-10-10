@@ -87,7 +87,9 @@ function header({ store, ui, t }, width) {
   if (counts.waiting) left.push(span('  ·  ', 'dim'), span(t('header.needsYou', { n: counts.waiting }), 'bold', 'brightYellow'));
   const goal = store.activeGoal();
   if (goal) left.push(span('  ·  ', 'dim'), span(`◆ ${goal.title} · ${t(`goal.status.${goal.status}`)}`, GOAL_COLORS[goal.status]));
-  const right = ui.remote ? [span(`${t('header.remote')} `, 'magenta')] : [];
+  const right = [];
+  if (ui.update) right.push(span(`${t('update.badge', ui.update)} `, 'green'));
+  if (ui.remote) right.push(span(`${t('header.remote')} `, 'magenta'));
   return spaced(left, right, width);
 }
 

@@ -21,6 +21,7 @@
   <a href="README.zh-CN.md">中文</a> ·
   <a href="#install">Install</a> ·
   <a href="#quick-start">Quick start</a> ·
+  <a href="docs/guide/README.md">User guide</a> ·
   <a href="spec/README.md">Protocol</a> ·
   <a href="docs/architecture.md">Architecture</a> ·
   <a href="docs/providers.md">Providers</a> ·
@@ -92,10 +93,10 @@ One engine serves one project. Every interface talks to it through the same smal
 
 Requirements: Node.js 20.11 or newer, git, and at least one coding agent installed and signed in (for example `claude`, `codex`, `opencode`, `kimi`).
 
-Install the 0.1.2 preview from its release:
+Install the 0.1.3 preview from its release:
 
 ```sh
-npm install -g https://github.com/AI-BizOS/troupe/releases/download/v0.1.2/bizos-ai-troupe-0.1.2.tgz
+npm install -g https://github.com/AI-BizOS/troupe/releases/download/v0.1.3/bizos-ai-troupe-0.1.3.tgz
 troupe detect           # shows which agents Troupe found
 ```
 
@@ -106,6 +107,8 @@ git clone https://github.com/AI-BizOS/troupe.git
 cd troupe
 npm install -g .        # installs the `troupe` command; there are no dependencies
 ```
+
+Update with `troupe update` (`--check` only reports a newer release); a source checkout is updated with `git pull`. The terminal UI and the web UI also mention a newer release, after checking GitHub at most once a day. The [user guide](docs/guide/README.md) covers installing, everyday use and troubleshooting step by step.
 
 ## Quick start
 
@@ -230,6 +233,8 @@ Before it can start, the goal needs an independent check (a command or a review 
 
 All 13 built-in integrations have passed end-to-end checks with real agent installations. Windows workflows have also passed end-to-end checks. The deterministic automated suite uses mock agents to exercise protocol and engine behavior separately from those real-agent checks. See [docs/providers.md](docs/providers.md).
 
+`troupe detect` finds an agent on your `PATH`, in its installer's own folder (Kimi Code's `~/.kimi-code/bin`), or where npm, nvm, pnpm, volta, bun, Homebrew and other managers put commands, and it runs DeepSeek Harness from its desktop app when no `dsh` command is registered. If an agent you installed is missing, see [the guide](docs/guide/agents.md#when-an-agent-is-not-found).
+
 ## BizOS CLI
 
 The BizOS CLI, [BizOS Code](https://code.bizos-ai.com/en/), is built in as `@bizos`. Troupe starts it in its Agent Client Protocol mode (`bizos acp`), so it takes tasks, asks and answers other agents, and goes through the same approvals, reviews and goal checks as every other agent, while the runner behind it stays closed source.
@@ -277,9 +282,12 @@ Only this user-level file can name commands to run. A repository cannot make Tro
 
 Once, after your first merge or the third time you open it, the terminal UI or the web UI asks whether you would like to star Troupe on GitHub; it opens the page only if you choose to and sends nothing. "Later" asks again in two weeks; "Star on GitHub" and "Don't ask again" are final. `"starPrompt": false` in this file, or `TROUPE_NO_STAR_PROMPT=1`, turns it off; `troupe run` and CI never ask.
 
+At most once a day, the terminal UI and the web UI read this repository's release tags (`git ls-remote`, so git's proxy settings apply) and mention a newer release. `"updateCheck": false`, or `TROUPE_NO_UPDATE_CHECK=1`, turns that off; `troupe run` and CI never check.
+
 ## Security model
 
 - Agents run as you, with your credentials; Troupe adds no privileges. Use the permission modes and each harness's own sandbox to limit them.
+- The only network request Troupe makes by itself is the daily release check above, which reads public tags and sends nothing about you or your projects.
 - In workspace mode an agent's edits are automatic only inside its own worktree; edits anywhere else, or inside `.git`, are asked. "Always allow" for a command covers that command, never one chained, piped or redirected after it.
 - Output from agents is treated as untrusted text: terminal escape sequences are stripped and the web UI never inserts it as HTML.
 - The web UI listens only on this machine (127.0.0.1 unless you choose `::1` or `localhost`), requires a random token, checks `Host` and `Origin`, and sends a strict Content-Security-Policy.

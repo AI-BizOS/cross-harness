@@ -147,6 +147,17 @@ test('gui: the star prompt is answered through the local server, never the engin
   assert.equal((await request(off, { url: '/api/star?moment=merged', headers: auth })).json.result.due, false);
 });
 
+test('gui: a newer release is reported by the local server', async (t) => {
+  const { engine } = await setup(t);
+  const update = { check: async () => ({ current: '0.1.3', latest: '0.2.0' }) };
+  const handler = createGuiHandler({ client: localClient(engine), token: TOKEN, port: () => PORT, update });
+  assert.equal((await request(handler, { url: '/api/update' })).status, 401);
+  assert.deepEqual((await request(handler, { url: '/api/update', headers: auth })).json.result, { current: '0.1.3', latest: '0.2.0' });
+  // Turned off (or nothing newer): no result.
+  const off = createGuiHandler({ client: localClient(engine), token: TOKEN, port: () => PORT });
+  assert.equal((await request(off, { url: '/api/update', headers: auth })).json.result, null);
+});
+
 test('gui: the event stream starts with a snapshot and follows the engine', async (t) => {
   const { engine, handler } = await setup(t);
   const stream = request(handler, { url: '/api/events', headers: auth, keepOpen: 2500 });

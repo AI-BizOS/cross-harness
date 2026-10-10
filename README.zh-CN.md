@@ -21,6 +21,7 @@
   <a href="README.md">English</a> ·
   <a href="#安装">安装</a> ·
   <a href="#快速开始">快速开始</a> ·
+  <a href="docs/guide/README.zh-CN.md">用户指南</a> ·
   <a href="spec/README.md">协议</a> ·
   <a href="docs/architecture.md">架构</a> ·
   <a href="docs/providers.md">代理接入</a> ·
@@ -92,10 +93,10 @@ Troupe 是 BizOS CLI 团队开源的跨 Harness 协议，本仓库是它的参�
 
 需要 Node.js 20.11 或更高版本、git，以及至少一个已安装并登录的编程代理（例如 `claude`、`codex`、`opencode`、`kimi`）。
 
-从发布页安装 0.1.2 预览版：
+从发布页安装 0.1.3 预览版：
 
 ```sh
-npm install -g https://github.com/AI-BizOS/troupe/releases/download/v0.1.2/bizos-ai-troupe-0.1.2.tgz
+npm install -g https://github.com/AI-BizOS/troupe/releases/download/v0.1.3/bizos-ai-troupe-0.1.3.tgz
 troupe detect           # 查看 Troupe 找到了哪些代理
 ```
 
@@ -106,6 +107,8 @@ git clone https://github.com/AI-BizOS/troupe.git
 cd troupe
 npm install -g .        # 安装 troupe 命令；没有任何依赖
 ```
+
+用 `troupe update` 升级（`--check` 只报告有没有新版本）；源码安装用 `git pull` 更新。终端界面和网页界面每天最多检查一次 GitHub，有新版本时也会提示。[用户指南](docs/guide/README.zh-CN.md)一步步介绍安装、日常使用和常见问题。
 
 ## 快速开始
 
@@ -230,6 +233,8 @@ troupe gui --ssh dev@buildbox --cwd src/shop-api
 
 全部 13 种预置代理接入均已通过真实代理安装下的端到端实测，Windows 完整流程也已通过端到端实测。自动化测试使用模拟代理，独立覆盖协议与引擎行为；它们与真实代理的端到端核验是两类检查。详见 [docs/providers.md](docs/providers.md)。
 
+`troupe detect` 会在 `PATH`、代理安装器自己的目录（Kimi Code 的 `~/.kimi-code/bin`）以及 npm、nvm、pnpm、volta、bun、Homebrew 等工具放命令的位置查找代理；没有注册 `dsh` 命令时，也会通过桌面版运行 DeepSeek Harness。装了却没找到时，请看[指南](docs/guide/agents.zh-CN.md#找不到代理时)。
+
 ## BizOS CLI
 
 BizOS CLI 即 [BizOS Code](https://code.bizos-ai.com/zh/)，已内置为 `@bizos`。Troupe 以它的 Agent Client Protocol 模式（`bizos acp`）启动它：它可以接任务、向其他代理提问和回答，成果走和其他代理一样的审批、审查和目标核查，背后的运行器保持闭源。
@@ -277,9 +282,12 @@ BizOS Code 在操作系统沙箱里运行它的代理，只能读写你允许过
 
 终端界面或网页界面会在你第一次合并之后、或第三次打开时，询问一次是否愿意在 GitHub 上给 Troupe 点星标；只有你选择时才会打开页面，不发送任何数据。选“以后再说”会在两周后再问；选“去 GitHub 点星标”或“不再提示”后不再询问。在这个文件里设置 `"starPrompt": false`，或设置环境变量 `TROUPE_NO_STAR_PROMPT=1`，即可关闭；`troupe run` 和 CI 中从不询问。
 
+终端界面和网页界面每天最多一次读取本仓库的发布标签（通过 `git ls-remote`，git 的代理设置同样生效），有新版本时提示。设置 `"updateCheck": false` 或 `TROUPE_NO_UPDATE_CHECK=1` 即可关闭；`troupe run` 和 CI 中从不检查。
+
 ## 安全模型
 
 - 代理以你的身份、用你的凭据运行；Troupe 不额外提权。请用权限模式和各代理自己的沙箱来约束它们。
+- Troupe 自己发出的网络请求只有上面那个每日版本检查：它只读取公开的标签，不发送任何关于你或你项目的信息。
 - 工作区模式下，只有在代理自己的 worktree 里改文件才会自动放行；改其他位置或 `.git` 里的文件都会询问你。对某条命令选"以后都允许"，只覆盖这条命令本身，不覆盖用 `;`、`&&`、管道或重定向接在它后面的命令。
 - 代理的输出一律视为不可信文本：终端转义序列会被去除，网页界面从不把它当作 HTML 插入。
 - 网页界面只监听本机（默认 127.0.0.1，也可选 `::1` 或 `localhost`），需要随机令牌，校验 `Host` 和 `Origin`，并下发严格的内容安全策略。

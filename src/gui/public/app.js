@@ -55,6 +55,18 @@ async function starRequest(method, value) {
   return body.result;
 }
 
+// The local server checks for a newer Troupe at most once a day (src/update.js).
+async function checkUpdate() {
+  if (ui.updateChecked) return;
+  ui.updateChecked = true;
+  const response = await fetch('/api/update', { headers: { Authorization: `Bearer ${token}` } }).catch(() => null);
+  const body = await response?.json().catch(() => null);
+  if (!body?.ok || !body.result) return;
+  ui.update = body.result;
+  toast(t('update.notice', ui.update), 'info');
+  invalidate('top');
+}
+
 // Once per page at most, and only when the server says it is a good moment.
 async function askForStar(moment) {
   if (ui.starAsked) return;
@@ -127,6 +139,7 @@ function handleBlock(block) {
     updatePlaceholder();
     invalidate('all');
     void askForStar('launch');
+    void checkUpdate();
     return;
   }
   if (type === 'failure') return toast(payload.error?.message || 'failure', 'error');
@@ -366,6 +379,7 @@ function renderTop() {
     counts.waiting ? h('span', { class: 'pill warn' }, t('header.needsYou', { n: counts.waiting })) : null,
     goal ? h('button', { class: 'pill hide-narrow', onclick: () => openDialog({ type: 'goals', goalId: goal.id }) }, `◆ ${goal.title} · ${t(`goal.status.${goal.status}`)}`) : null,
     h('span', { class: 'spacer' }),
+    ui.update ? h('button', { class: 'pill accent', title: t('update.notice', ui.update), onclick: () => toast(t('update.notice', ui.update), 'info') }, t('update.badge', ui.update)) : null,
     h('button', { onclick: () => openDialog({ type: 'goals' }) }, t('gui.goals')),
     h('button', { class: 'hide-narrow', onclick: () => openDialog({ type: 'board' }) }, t('gui.board')),
     h('button', { class: 'primary', onclick: () => openDialog({ type: 'new' }) }, `+ ${t('gui.newAgent')}`),

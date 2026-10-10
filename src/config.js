@@ -38,6 +38,7 @@ export function loadConfig(env = process.env) {
     lang: typeof raw.lang === 'string' ? raw.lang : null,
     // false turns off the one-time question about starring Troupe on GitHub.
     starPrompt: raw.starPrompt !== false,
+    updateCheck: raw.updateCheck !== false,
   };
 }
 

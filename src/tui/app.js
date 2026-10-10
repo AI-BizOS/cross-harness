@@ -34,11 +34,12 @@ const GOAL_TEMPLATE = {
 };
 
 /**
- * @param {{client:{call:Function, subscribe:Function, remote?:boolean}, lang?:string, terminal?:object, env?:NodeJS.ProcessEnv, now?:()=>number, editJson?:Function, star?:object|null, openUrl?:Function|null}} options
- *   `star` is the GitHub star prompt (src/star.js); `openUrl` opens its link in a browser.
+ * @param {{client:{call:Function, subscribe:Function, remote?:boolean}, lang?:string, terminal?:object, env?:NodeJS.ProcessEnv, now?:()=>number, editJson?:Function, star?:object|null, update?:object|null, openUrl?:Function|null}} options
+ *   `star` is the GitHub star prompt (src/star.js); `openUrl` opens its link in a browser;
+ *   `update` checks for a newer release (src/update.js).
  * @returns {Promise<void>} resolves when the user quits
  */
-export async function runTui({ client, lang = 'en', terminal = null, env = process.env, now = () => Date.now(), editJson = null, star = null, openUrl = null }) {
+export async function runTui({ client, lang = 'en', terminal = null, env = process.env, now = () => Date.now(), editJson = null, star = null, update = null, openUrl = null }) {
   setLang(lang);
   const term = terminal || new Terminal({ env });
   const screen = new Screen(term);
@@ -847,5 +848,11 @@ export async function runTui({ client, lang = 'en', terminal = null, env = proce
   render();
   if (store.waiting().length) openWaiting();
   else askForStar('launch');
+  // In the background: a newer release is mentioned once and stays in the header.
+  void update?.check().then((found) => {
+    if (!found || closed) return;
+    ui.update = found;
+    notice('info', t('update.notice', found));
+  });
   return done;
 }

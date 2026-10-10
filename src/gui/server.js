@@ -66,7 +66,7 @@ function readBody(req) {
  * @param {{client:{call:Function, subscribe:Function}, token:string, lang:string, port:()=>number, star?:object|null}} options
  *   `star` is the GitHub star prompt (src/star.js), local to this machine like the page.
  */
-export function createGuiHandler({ client, token, lang = 'en', port, star = null }) {
+export function createGuiHandler({ client, token, lang = 'en', port, star = null, update = null }) {
   const tokenBuffer = Buffer.from(token);
   const authorized = (req) => {
     const header = String(req.headers.authorization || '');
@@ -148,6 +148,10 @@ export function createGuiHandler({ client, token, lang = 'en', port, star = null
         }
         return send(res, 200, { ok: true, result: { due, url: star?.url || null } });
       }
+      if (req.method === 'GET' && url.pathname === '/api/update') {
+        // The server checks at most once a day (src/update.js); the page only shows the result.
+        return send(res, 200, { ok: true, result: (await update?.check()) || null });
+      }
       if (req.method === 'POST' && url.pathname === '/api/star') {
         if (!String(req.headers['content-type'] || '').startsWith('application/json')) return send(res, 415, errorBody({ code: 'TROUPE_ARGUMENT_INVALID', message: 'Send JSON' }));
         let body;
@@ -187,11 +191,11 @@ export function createGuiHandler({ client, token, lang = 'en', port, star = null
 }
 
 /** Starts the GUI server on a loopback address and resolves once it listens. */
-export async function startGui({ client, port = 0, host = '127.0.0.1', lang = 'en', token = randomBytes(24).toString('hex'), star = null }) {
+export async function startGui({ client, port = 0, host = '127.0.0.1', lang = 'en', token = randomBytes(24).toString('hex'), star = null, update = null }) {
   // The token travels in plain HTTP, so the server must not be reachable from other machines.
   if (!LOOPBACK.includes(host)) throw fail(CODES.ARGUMENT_INVALID, `troupe gui only listens on this machine (${LOOPBACK.join(', ')}), not ${host}`);
   let actualPort = port;
-  const handler = createGuiHandler({ client, token, lang, port: () => actualPort, star });
+  const handler = createGuiHandler({ client, token, lang, port: () => actualPort, star, update });
   try {
     star?.opened();
   } catch {

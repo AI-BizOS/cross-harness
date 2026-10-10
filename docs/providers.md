@@ -41,15 +41,29 @@ arguments or one-shot invocation clears its verified status unless the user expl
 `troupe detect` (or `troupe detect --json`) lists every known harness and whether it can
 run here.
 
-- The command is looked up on `PATH`, then in common install directories that a GUI-started
-  process may not have on its `PATH`: `~/.local/bin`, `~/.npm-global/bin`, `~/.bun/bin`,
-  `~/.cargo/bin`, `~/.volta/bin`, `/opt/homebrew/bin`, `/usr/local/bin` and, on Windows,
-  `%APPDATA%\npm`.
+- The command is looked up on `PATH`; then in the harness installer's own directory
+  (Kimi Code: `$KIMI_CODE_HOME/bin`, by default `~/.kimi-code/bin`); then where package
+  and version managers put commands, which a shell or GUI-started process may not have on
+  its `PATH`: `~/.local/bin`, `~/.npm-global/bin`, the `npm_config_prefix` and
+  `PNPM_HOME` directories, every nvm Node version (newest first), volta, fnm, asdf, mise,
+  bun, pnpm, yarn, cargo, go, Homebrew (`/opt/homebrew/bin`, `/usr/local/bin`),
+  `~/.opencode/bin`, `~/.claude/local` and, on Windows, `%APPDATA%\npm`,
+  `%LOCALAPPDATA%\npm`, `%LOCALAPPDATA%\pnpm`, `Program Files\nodejs` and scoop shims.
+- DeepSeek Harness can be installed as a desktop app without registering `dsh`. Troupe
+  then uses the CLI inside the app: on macOS its Node script with the app's own Node, on
+  Windows the app's `dsh.cmd`.
+- On Windows, `.cmd` and `.bat` wrappers are not run through `cmd.exe`: Troupe reads npm's
+  wrapper (or DeepSeek Harness desktop's) and starts the program it names directly, so
+  arguments are never interpreted by a shell. A wrapper it cannot read is reported as the
+  reason the harness failed to start.
 - Troupe runs `<command> --version` (or the definition's `versionArgs`) with a 10-second
-  limit and reads the version from the output.
-- Results are cached for 30 seconds and re-checked when the executable changes.
+  limit and reads the version from the output. A harness that does not answer in time is
+  still reported as available, with a note; one whose version command fails is not.
+- Results are cached for ten minutes and re-checked at once when the executable is
+  installed, upgraded or removed (the cache key includes its path and modification time);
+  `troupe detect --refresh` checks again.
 - A harness that is not available is reported with a reason (`not-installed`,
-  `probe-timeout`, `probe-failed`) and a fix: the install command, or what went wrong.
+  `probe-failed`, `launch-failed`) and a fix: the install command, or what went wrong.
 
 ## Permission modes
 

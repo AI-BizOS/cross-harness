@@ -119,7 +119,7 @@ Over a byte stream it is newline-delimited JSON-RPC 2.0:
 
 ```
 → {"jsonrpc":"2.0","id":1,"method":"initialize","params":{"client":"troupe"}}
-← {"jsonrpc":"2.0","id":1,"result":{"protocol":"troupe/1","version":"0.1.1","snapshot":{…}}}
+← {"jsonrpc":"2.0","id":1,"result":{"protocol":"troupe/1","version":"0.1.3","snapshot":{…}}}
 → {"jsonrpc":"2.0","id":2,"method":"call","params":{"method":"send","params":{"text":"@codex hi"}}}
 ← {"jsonrpc":"2.0","method":"event","params":{"event":{"seq":42,"type":"agent.updated",…}}}
 ```

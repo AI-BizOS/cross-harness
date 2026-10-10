@@ -86,7 +86,19 @@ async function withScratchIndex(dir, env, work) {
   const index = path.join(os.tmpdir(), `troupe-index-${randomUUID()}`);
   const scratch = { ...env, GIT_INDEX_FILE: index };
   try {
-    await git(['read-tree', 'HEAD'], { cwd: dir, env: scratch });
+    // A copy of the worktree's own index keeps the size and time of every file, so git
+    // reads only what changed; an index built from HEAD would make it read the whole tree.
+    const own = path.resolve(dir, (await git(['rev-parse', '--git-path', 'index'], { cwd: dir, env })).trim());
+    if (fs.existsSync(own)) {
+      fs.copyFileSync(own, index);
+      // Git trusts a file's recorded size and time only when the file is older than the
+      // index ("racy git"). The copy must not look newer than the original, or a file
+      // changed just after the original was written would pass as unchanged.
+      const { atime, mtime } = fs.statSync(own);
+      fs.utimesSync(index, atime, new Date(mtime.getTime() - 1000));
+    } else {
+      await git(['read-tree', 'HEAD'], { cwd: dir, env: scratch });
+    }
     await git(['add', '-A'], { cwd: dir, env: scratch, timeoutMs: 120_000 });
     return await work(scratch);
   } finally {
@@ -104,12 +116,17 @@ export async function workingTree(dir, env) {
  * @returns {Promise<{base:string, mergeBase:string, files:{path:string,status:string,added:number|null,removed:number|null}[], commits:number, uncommitted:boolean, patch:string, truncated:boolean, tree:string}>}
  */
 export async function changes({ dir, base, env }) {
-  const mergeBase = (await git(['merge-base', base, 'HEAD'], { cwd: dir, env })).trim();
-  const commits = Number((await git(['rev-list', '--count', `${mergeBase}..HEAD`], { cwd: dir, env })).trim()) || 0;
-  const status = (await git(['status', '--porcelain'], { cwd: dir, env })).trim();
+  const [mergeBase, headTree] = await Promise.all([git(['merge-base', base, 'HEAD'], { cwd: dir, env }), git(['rev-parse', 'HEAD^{tree}'], { cwd: dir, env })].map((run) => run.then((out) => out.trim())));
   return withScratchIndex(dir, env, async (scratch) => {
-    const names = (await git(['diff', '--cached', '--no-color', '--no-renames', '--name-status', mergeBase], { cwd: dir, env: scratch })).trim();
-    const counts = (await git(['diff', '--cached', '--no-color', '--no-renames', '--numstat', mergeBase], { cwd: dir, env: scratch })).trim();
+    // The snapshot is complete once `add -A` has run; everything else only reads it.
+    const diff = (...args) => git(['diff', '--cached', '--no-color', '--no-renames', ...args, mergeBase], { cwd: dir, env: scratch });
+    const [names, counts, fullPatch, tree, count] = await Promise.all([
+      diff('--name-status').then((out) => out.trim()),
+      diff('--numstat').then((out) => out.trim()),
+      diff(),
+      git(['write-tree'], { cwd: dir, env: scratch }).then((out) => out.trim()),
+      git(['rev-list', '--count', `${mergeBase}..HEAD`], { cwd: dir, env }),
+    ]);
     const stat = new Map(
       counts
         .split('\n')
@@ -127,11 +144,10 @@ export async function changes({ dir, base, env }) {
         const file = rest.join('\t');
         return { path: file, status: { A: 'added', D: 'deleted', M: 'modified', T: 'modified' }[code[0]] || 'modified', ...(stat.get(file) || { added: null, removed: null }) };
       });
-    let patch = await git(['diff', '--cached', '--no-color', '--no-renames', mergeBase], { cwd: dir, env: scratch });
-    const truncated = patch.length > MAX_PATCH;
-    if (truncated) patch = patch.slice(0, MAX_PATCH);
-    const tree = (await git(['write-tree'], { cwd: dir, env: scratch })).trim();
-    return { base, mergeBase, files, commits, uncommitted: status.length > 0, patch, truncated, tree };
+    const truncated = fullPatch.length > MAX_PATCH;
+    const patch = truncated ? fullPatch.slice(0, MAX_PATCH) : fullPatch;
+    // Anything staged, changed or untracked (and not ignored) makes the snapshot differ from HEAD.
+    return { base, mergeBase, files, commits: Number(count.trim()) || 0, uncommitted: tree !== headTree, patch, truncated, tree };
   });
 }
 

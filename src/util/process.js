@@ -1,6 +1,7 @@
 // Child process helpers. Agents run in their own process group on POSIX so that
 // stopping an agent also stops the commands it started (test runners, dev servers).
 import { spawn as nodeSpawn, spawnSync } from 'node:child_process';
+import { launchCommand } from '../providers/launch.js';
 
 const IS_WINDOWS = process.platform === 'win32';
 
@@ -11,9 +12,10 @@ const IS_WINDOWS = process.platform === 'win32';
  * @param {{cwd?:string, env?:NodeJS.ProcessEnv, spawnProcess?:typeof nodeSpawn}} options
  */
 export function spawnAgent(binary, args, { cwd, env, spawnProcess = nodeSpawn } = {}) {
-  return spawnProcess(binary, args, {
+  const launch = launchCommand(binary, args, env);
+  return spawnProcess(launch.binary, launch.args, {
     cwd,
-    env,
+    env: launch.env,
     stdio: ['pipe', 'pipe', 'pipe'],
     detached: !IS_WINDOWS,
     windowsHide: true,

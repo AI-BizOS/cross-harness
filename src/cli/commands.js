@@ -3,18 +3,20 @@
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
+import { spawnSync } from 'node:child_process';
 import { Engine, VERSION } from '../engine/engine.js';
 import { connectRemote, localClient, serveEngine, sshCommand } from '../engine/rpc.js';
 import { PERMISSION_MODES, PROTOCOL_VERSION } from '../protocol/index.js';
 import { loadConfig, troupeHome } from '../config.js';
 import { starPromptFor } from '../star.js';
+import { compareVersions, installKind, latestRelease, PACKAGE_ROOT, releaseUrl, updateCheckFor } from '../update.js';
 import { openUrl } from '../util/open.js';
 import { pickLang, setLang, t } from '../i18n/index.js';
 import { engineText } from '../i18n/strings.js';
 import { formatCount, oneLine, sanitize } from '../util/text.js';
 import { parseArgs } from './args.js';
 
-const COMMON = { boolean: ['help', 'version', 'shared', 'json', 'refresh', 'no-open', 'stdio', 'yes', 'force'], string: ['cwd', 'ssh', 'mode', 'lang', 'port', 'timeout', 'remote-command', 'host'], alias: { h: 'help', v: 'version', C: 'cwd' } };
+const COMMON = { boolean: ['help', 'version', 'shared', 'json', 'refresh', 'no-open', 'stdio', 'yes', 'force', 'check'], string: ['cwd', 'ssh', 'mode', 'lang', 'port', 'timeout', 'remote-command', 'host'], alias: { h: 'help', v: 'version', C: 'cwd' } };
 
 export const HELP = `Troupe ${VERSION} — run coding agents side by side (${PROTOCOL_VERSION})
 
@@ -24,6 +26,7 @@ Usage
   troupe run "<message>" [dir]    send a message, wait for the answers, print them
   troupe agents [dir]             list the agents on a project
   troupe detect                   list the coding agents installed on this machine
+  troupe update [--check]         install the newest Troupe release (--check: only report it)
   troupe serve --stdio [dir]      serve a project over stdio (used for --ssh)
   troupe mcp                      collaboration tools (started by agents, not by you)
 
@@ -86,7 +89,7 @@ export async function openClient(flags, positionals) {
 export async function run(argv) {
   let parsed;
   const [command, ...rest] = argv;
-  const known = ['gui', 'run', 'agents', 'detect', 'serve', 'help', 'version'];
+  const known = ['gui', 'run', 'agents', 'detect', 'serve', 'update', 'help', 'version'];
   const sub = known.includes(command) ? command : null;
   try {
     parsed = parseArgs(sub ? rest : argv, COMMON);
@@ -109,6 +112,8 @@ export async function run(argv) {
       return serve(flags, positionals);
     case 'detect':
       return detect(flags);
+    case 'update':
+      return update(flags);
     case 'agents':
       return agents(flags, positionals);
     case 'run':
@@ -141,9 +146,41 @@ async function detect(flags) {
   }
   for (const p of list) {
     const mark = p.available ? '✓' : '·';
-    const detail = p.available ? `${p.version || ''}${p.verified ? '' : `  (${t('provider.untested')})`}` : p.fix || p.reason;
+    const detail = p.available ? `${p.version || p.note || ''}${p.verified ? '' : `  (${t('provider.untested')})`}` : p.fix || p.reason;
     process.stdout.write(`${mark} ${p.id.padEnd(10)} ${p.name.padEnd(18)} ${p.protocol.padEnd(14)} ${detail}\n`);
   }
+  return 0;
+}
+
+/** Installs the newest release the way the README does, or says how to update a checkout. */
+async function update(flags) {
+  let latest;
+  try {
+    latest = await latestRelease();
+  } catch (error) {
+    process.stderr.write(`${t('update.failed', { error: error.message })}\n`);
+    return 1;
+  }
+  if (!latest || compareVersions(latest, VERSION) <= 0) {
+    const ahead = latest && compareVersions(latest, VERSION) < 0;
+    process.stdout.write(`${t(ahead ? 'update.ahead' : 'update.current', { version: VERSION, latest })}\n`);
+    return 0;
+  }
+  process.stdout.write(`${t('update.available', { latest, current: VERSION })}\n`);
+  if (flags.check) return 0;
+  if (installKind() === 'source') {
+    process.stdout.write(`${t('update.source', { dir: PACKAGE_ROOT })}\n`);
+    return 0;
+  }
+  const command = `npm install -g ${releaseUrl(latest)}`;
+  process.stdout.write(`${t('update.installing', { command })}\n`);
+  // npm is a .cmd on Windows; the command line holds only a release URL Troupe built.
+  const result = spawnSync('npm', ['install', '-g', releaseUrl(latest)], { stdio: 'inherit', shell: process.platform === 'win32' });
+  if (result.status !== 0) {
+    process.stderr.write(`${t('update.installFailed', { command })}\n`);
+    return result.status || 1;
+  }
+  process.stdout.write(`${t('update.done', { version: latest })}\n`);
   return 0;
 }
 
@@ -237,7 +274,8 @@ async function gui(flags, positionals) {
   const client = await openClient(flags, positionals);
   const config = loadConfig();
   const star = starPromptFor({ home: troupeHome(), config });
-  const server = await startGui({ client, port: flags.port ? Number(flags.port) : 0, host: flags.host || '127.0.0.1', lang: pickLang(flags.lang || config.lang), star });
+  const updates = updateCheckFor({ home: troupeHome(), config, current: VERSION });
+  const server = await startGui({ client, port: flags.port ? Number(flags.port) : 0, host: flags.host || '127.0.0.1', lang: pickLang(flags.lang || config.lang), star, update: updates });
   process.stdout.write(`${t('gui.listening', { url: server.url })}\n`);
   if (!flags['no-open']) server.openBrowser();
   await new Promise((resolve) => {
@@ -259,7 +297,7 @@ async function tui(flags, positionals) {
   const client = await openClient(flags, positionals);
   try {
     const config = loadConfig();
-    await runTui({ client, lang: pickLang(flags.lang || config.lang), star: starPromptFor({ home: troupeHome(), config }), openUrl });
+    await runTui({ client, lang: pickLang(flags.lang || config.lang), star: starPromptFor({ home: troupeHome(), config }), update: updateCheckFor({ home: troupeHome(), config, current: VERSION }), openUrl });
   } finally {
     await client.close();
   }
