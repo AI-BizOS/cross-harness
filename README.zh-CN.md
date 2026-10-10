@@ -25,7 +25,6 @@
   <a href="spec/README.md">协议</a> ·
   <a href="docs/architecture.md">架构</a> ·
   <a href="docs/providers.md">代理接入</a> ·
-  <a href="docs/comparison.md">对比</a> ·
   <a href="https://code.bizos-ai.com/zh/">BizOS Code ↗</a>
 </p>
 
@@ -299,7 +298,7 @@ BizOS Code 在操作系统沙箱里运行它的代理，只能读写你允许过
 - Troupe 通过代理自己的协议驱动它们。没有会话协议的代理只能单次运行（没有在线会话、审批和协作工具）。
 - 预置接入均已通过端到端实测。自定义接入或修改过的命令仍需单独核验，厂商升级后可能需要调整参数。
 - Windows 完整流程已通过端到端实测；仍需在本机安装并登录所选代理。
-- 没有内置编辑器、终端、Pull Request 集成或用量计费；见 [docs/comparison.md](docs/comparison.md)。
+- 没有内置编辑器、终端、Pull Request 集成或用量计费。
 
 ## 开发
 

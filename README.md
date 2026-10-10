@@ -25,7 +25,6 @@
   <a href="spec/README.md">Protocol</a> ·
   <a href="docs/architecture.md">Architecture</a> ·
   <a href="docs/providers.md">Providers</a> ·
-  <a href="docs/comparison.md">Comparison</a> ·
   <a href="https://code.bizos-ai.com/en/">BizOS Code ↗</a>
 </p>
 
@@ -299,7 +298,7 @@ At most once a day, the terminal UI and the web UI read this repository's releas
 - Troupe drives agents through their protocols. Agents without one run one-shot (no live session, no approvals, no collaboration tools).
 - The built-in integrations are end-to-end tested. New custom definitions or changed commands still need their own checks; vendor updates may require argument adjustments.
 - Windows workflows have passed end-to-end checks. The selected agents must still be installed and signed in on that machine.
-- There is no built-in editor, terminal, pull-request integration or usage billing; see [docs/comparison.md](docs/comparison.md).
+- There is no built-in editor, terminal, pull-request integration or usage billing.
 
 ## Development
 
