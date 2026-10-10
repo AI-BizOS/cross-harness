@@ -275,7 +275,7 @@ Any other closed-source agent runtime can join the same way without publishing i
 
 Only this user-level file can name commands to run. A repository cannot make Troupe execute anything by itself; goal checks run only after you approve the goal.
 
-Once, after your first merge or the third time you open it, the terminal UI or the web UI asks whether you would like to star Troupe on GitHub; it opens the page only if you choose to, sends nothing, and never asks again after you answer. `"starPrompt": false` in this file, or `TROUPE_NO_STAR_PROMPT=1`, turns it off; `troupe run` and CI never ask.
+Once, after your first merge or the third time you open it, the terminal UI or the web UI asks whether you would like to star Troupe on GitHub; it opens the page only if you choose to and sends nothing. "Later" asks again in two weeks; "Star on GitHub" and "Don't ask again" are final. `"starPrompt": false` in this file, or `TROUPE_NO_STAR_PROMPT=1`, turns it off; `troupe run` and CI never ask.
 
 ## Security model
 
