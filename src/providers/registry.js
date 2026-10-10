@@ -9,6 +9,22 @@ import { PERMISSION_MODES, SESSION_PROTOCOLS } from '../protocol/index.js';
 const ALL_MODES = PERMISSION_MODES;
 
 export const BUILTIN_PROVIDERS = Object.freeze({
+  bizos: {
+    id: 'bizos',
+    name: 'BizOS Code',
+    vendor: 'BizOS',
+    command: 'bizos',
+    protocol: 'acp',
+    args: ['acp'],
+    rank: 0,
+    // `bizos acp` is BizOS Code's own ACP adapter. Troupe was run against that adapter
+    // (0.3.05) with the BizOS service stubbed out, not yet against a real install.
+    verified: false,
+    writes: true,
+    modes: ALL_MODES,
+    install: 'curl -fsSL https://bizos-ai.com/code/install.sh | sh (Windows: irm https://bizos-ai.com/code/install.ps1 | iex). See https://code.bizos-ai.com',
+    signIn: 'Run `bizos login` once',
+  },
   claude: {
     id: 'claude',
     name: 'Claude Code',

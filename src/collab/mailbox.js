@@ -25,11 +25,13 @@ const sameToken = (value, token) => {
 
 export class MailboxHub {
   /**
-   * @param {{dir:string, handle:(agentId:string, op:string, params:object)=>Promise<any>, pollMs?:number}} options
+   * @param {{dir:string, tokensFile?:string, handle:(agentId:string, op:string, params:object)=>Promise<any>, pollMs?:number}} options
+   *   `tokensFile` keeps the token registry out of `dir`, which agents can write.
    */
-  constructor({ dir, handle, pollMs = POLL_MS }) {
+  constructor({ dir, tokensFile = path.join(dir, 'tokens.json'), handle, pollMs = POLL_MS }) {
     this.dir = ensureDir(dir);
     this.realDir = fs.realpathSync(this.dir);
+    this.tokensPath = tokensFile;
     this.handle = handle;
     this.watchers = new Map();
     this.disposed = false;
@@ -42,7 +44,7 @@ export class MailboxHub {
   }
 
   tokensFile() {
-    return path.join(this.dir, 'tokens.json');
+    return this.tokensPath;
   }
 
   save() {

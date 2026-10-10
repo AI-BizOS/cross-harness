@@ -115,6 +115,19 @@ test('plan mode denies commands without asking', async (t) => {
   assert.equal(events.filter((e) => e.type === 'approval.requested').length, 0);
 });
 
+test('what an agent writes, its worktree and its mailbox, is under one directory', async (t) => {
+  const { engine } = await open(t);
+  const view = await engine.call('createAgent', { provider: 'mock-codex' });
+  const agent = engine.agents.get(view.id);
+  const [server] = engine.collabServers(agent);
+  const inside = (file) => file.startsWith(engine.worktreeRoot + path.sep);
+  assert.ok(inside(agent.worktree.path), agent.worktree.path);
+  assert.ok(inside(server.env.TROUPE_MAILBOX), server.env.TROUPE_MAILBOX);
+  // The token registry stays with Troupe's own state, out of the agents' reach.
+  assert.ok(fs.existsSync(path.join(engine.stateDir, 'mailbox-tokens.json')));
+  assert.equal(fs.existsSync(path.join(engine.worktreeRoot, '.mailbox', 'tokens.json')), false);
+});
+
 test('agents ask each other through the collaboration tools', async (t) => {
   const { engine } = await open(t);
   await engine.call('createAgent', { provider: 'mock-codex' });

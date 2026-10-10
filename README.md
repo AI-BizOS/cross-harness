@@ -1,7 +1,7 @@
 <h1 align="center">Troupe</h1>
 
 <p align="center">
-  <b>Run Claude Code, Codex, Kimi Code, OpenCode, Gemini CLI and other coding agents side by side — as one team.</b>
+  <b>Run BizOS Code, Claude Code, Codex, Kimi Code, OpenCode, Gemini CLI and other coding agents side by side — as one team.</b>
 </p>
 
 <p align="center">
@@ -46,7 +46,7 @@ Troupe puts them on one stage. It starts each agent through the protocol its ven
 Troupe is the open cross-harness protocol from the team behind [BizOS Code](https://code.bizos-ai.com/en/), with this reference implementation: a terminal UI, a local web UI and a command for scripts, in plain Node.js with no dependencies.
 
 > [!TIP]
-> **Want it ready-made?** [BizOS Code](https://code.bizos-ai.com/en/) is the BizOS team's coding CLI: one terminal, every coding agent, orchestrated. It turns one request into a dependency-aware workflow and hands each step to a native BizOS agent or a coding CLI already on your computer — Claude Code, Codex, Kimi Code, DeepSeek and more. Independent steps run in parallel, writers take turns with the workspace, and every result comes back to one conversation. Install it from [code.bizos-ai.com](https://code.bizos-ai.com/en/).
+> **Want it ready-made?** [BizOS Code](https://code.bizos-ai.com/en/) is the BizOS team's coding CLI: one terminal, every coding agent, orchestrated. It turns one request into a dependency-aware workflow and hands each step to a native BizOS agent or a coding CLI already on your computer — Claude Code, Codex, Kimi Code, DeepSeek and more. Independent steps run in parallel, writers take turns with the workspace, and every result comes back to one conversation. Install it from [code.bizos-ai.com](https://code.bizos-ai.com/en/); Troupe has it built in as `@bizos` ([setup](#bizos-code)).
 
 ## What it does
 
@@ -211,6 +211,7 @@ Before it can start, the goal needs an independent check (a command or a review 
 
 | Agent | Command | Protocol | Checked |
 | --- | --- | --- | --- |
+| BizOS Code | `bizos acp` | ACP | adapter checked |
 | Claude Code | `claude` | stream-json | documented |
 | Codex | `codex` | app-server | coding run |
 | OpenCode | `opencode acp` | ACP | handshake |
@@ -224,21 +225,38 @@ Before it can start, the goal needs an independent check (a command or a review 
 | Amp | `amp -x` | one-shot | documented |
 | Aider | `aider --message` | one-shot | documented |
 
-"Handshake" means Troupe's adapter completed the protocol handshake with a real install of that CLI (codex 0.159.1, opencode, kimi, dsh on 2026-10-09). "Coding run" means that, in addition, a real Codex session completed a coding task through `troupe run` before the 0.1.0 release, and the result was checked independently. "Documented" integrations follow the vendor's documentation and are labelled "untested" in the interface. Troupe's automated tests exercise every protocol with mock agents, not real models. See [docs/providers.md](docs/providers.md).
+"Handshake" means Troupe's adapter completed the protocol handshake with a real install of that CLI (codex 0.159.1, opencode, kimi, dsh on 2026-10-09). "Coding run" means that, in addition, a real Codex session completed a coding task through `troupe run` before the 0.1.0 release, and the result was checked independently. "Adapter checked" means Troupe was run against BizOS Code's own ACP adapter (0.3.05) with the BizOS service stubbed out, but not yet against a full install. "Documented" integrations follow the vendor's documentation. Both are labelled "untested" in the interface. Troupe's automated tests exercise every protocol with mock agents, not real models. See [docs/providers.md](docs/providers.md).
+
+## BizOS Code
+
+[BizOS Code](https://code.bizos-ai.com/en/) is built in as `@bizos`. Troupe starts it in its Agent Client Protocol mode (`bizos acp`), so it takes tasks, asks and answers other agents, and goes through the same approvals, reviews and goal checks as every other agent, while the runner behind it stays closed source.
+
+```sh
+curl -fsSL https://bizos-ai.com/code/install.sh | sh    # Windows: irm https://bizos-ai.com/code/install.ps1 | iex
+bizos login
+mkdir -p ~/.troupe/worktrees && bizos sandbox grant-write ~/.troupe/worktrees
+```
+
+BizOS Code runs its agent in an operating-system sandbox that reads and writes only where you allowed it. The last line, run once while BizOS Code is idle, lets it work in the worktrees Troupe gives it and reach the other agents through its mailbox, which Troupe keeps in the same directory; Troupe's own configuration, goals and transcripts stay outside. With `--shared`, also grant the project directory. If Troupe runs from a source checkout instead of an installed package, let BizOS Code read the checkout too (`bizos sandbox grant-read <dir>`), so it can start Troupe's collaboration tools.
+
+```
+@bizos fix the failing test in src/parser
+@bizos @codex review the last commit
+```
 
 ## Bring your own runner
 
-A closed-source agent runtime can join without publishing its code. Make it speak a session protocol — the [Agent Client Protocol](https://agentclientprotocol.com) is the simplest — and register it in `~/.troupe/config.json`:
+Any other closed-source agent runtime can join the same way without publishing its code. Make it speak a session protocol — the [Agent Client Protocol](https://agentclientprotocol.com) is the simplest — and register it in `~/.troupe/config.json`:
 
 ```json
 {
   "providers": {
-    "bizos": { "name": "BizOS", "command": "bizos", "args": ["acp"], "protocol": "acp" }
+    "acme": { "name": "Acme Agent", "command": "acme-agent", "args": ["--acp"], "protocol": "acp" }
   }
 }
 ```
 
-`@bizos` then works like any other agent: it takes tasks, asks and answers other agents, and its work goes through the same approvals, reviews and goal checks. The runner behind [BizOS Code](https://code.bizos-ai.com/en/) is designed to join Troupe this way and stays closed source; the command above is an example, so use whatever starts your runner as an ACP agent. See [docs/providers.md](docs/providers.md#bring-your-own-runner).
+`@acme` then works like any other agent. See [docs/providers.md](docs/providers.md#bring-your-own-runner).
 
 ## Configuration
 

@@ -123,6 +123,39 @@ test('acp: permission modes select the agent mode', async (t) => {
   }
 });
 
+test('acp: BizOS Code modes and its two approval options map onto Troupe', async (t) => {
+  // The modes and options `bizos acp` offers (BizOS Code 0.3.05).
+  const { dir, env, read } = setup(t, {
+    MOCK_MODES: JSON.stringify([
+      { id: 'ask', name: 'Build' },
+      { id: 'plan', name: 'Plan' },
+      { id: 'workspace', name: 'Accept edits' },
+      { id: 'full', name: 'YOLO' },
+    ]),
+    MOCK_OPTIONS: JSON.stringify([
+      { optionId: 'allow', name: 'Allow once', kind: 'allow_once' },
+      { optionId: 'reject', name: 'Reject', kind: 'reject_once' },
+    ]),
+  });
+  for (const [mode, expected] of [
+    ['plan', 'plan'],
+    ['ask', undefined],
+    ['workspace', 'workspace'],
+    ['full', 'full'],
+  ]) {
+    const before = read().length;
+    const session = createAcpSession({ binary: NODE, args: [fixture('mock-acp-agent.js')], cwd: dir, env });
+    await session.start({ permissionMode: mode });
+    await session.close();
+    assert.equal(read().slice(before).find((entry) => entry.method === 'session/set_mode')?.modeId, expected, mode);
+  }
+  // "Always allow" is remembered by Troupe; the agent, which has no such option, gets "allow once".
+  const session = createAcpSession({ binary: NODE, args: [fixture('mock-acp-agent.js')], cwd: dir, env });
+  t.after(() => session.close());
+  await session.start({ permissionMode: 'ask', onEvent: (event) => event.type === 'approval' && event.respond('allow_always') });
+  assert.match((await session.prompt('run it [approve]')).text, /npm test allow\)/);
+});
+
 test('acp: an unauthenticated agent is reported as needing sign-in', async (t) => {
   const { dir, env } = setup(t, { MOCK_AUTH_FAIL: '1' });
   const session = createAcpSession({ binary: NODE, args: [fixture('mock-acp-agent.js')], cwd: dir, env });

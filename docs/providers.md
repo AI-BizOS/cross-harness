@@ -8,6 +8,7 @@ including closed-source runners, in `~/.troupe/config.json`.
 
 | Id | Harness | Started as | Protocol | Modes | Checked |
 | --- | --- | --- | --- | --- | --- |
+| `bizos` | BizOS Code | `bizos acp` | `acp` | all | adapter checked |
 | `claude` | Claude Code | `claude -p --input-format stream-json …` | `claude-stream` | all | documented |
 | `codex` | Codex | `codex app-server` | `codex-app` | all | handshake |
 | `opencode` | OpenCode | `opencode acp` | `acp` | all | handshake |
@@ -30,6 +31,12 @@ The rank (the order of this table) decides which harnesses `@auto` and `@all` pi
   opening handshake: ACP `initialize` (protocol version 1) for OpenCode, Kimi Code and
   DeepSeek Harness, and `initialize` for `codex app-server` 0.159.1. No session was
   created and no model was called.
+- **adapter checked** — BizOS Code. Troupe's engine and ACP adapter were run against
+  BizOS Code's own `bizos acp` adapter (0.3.05) with the BizOS service replaced by a
+  stand-in: initialization, a session in a worktree with Troupe's MCP server, all four
+  permission modes, an approval answered with "always allow", the streamed answer and a
+  second turn. It has not yet been run against a full install, so `verified` stays `false`
+  and the interfaces label it "untested".
 - **documented** — the definition has `verified: false` and the interfaces label it
   "untested". The integration follows the vendor's published documentation but has not
   been run by Troupe against a real install. Claude Code is in this group for this
@@ -126,6 +133,38 @@ A one-shot example:
 
 `mytool` may then run in `plan` (with `--dry-run`) and `full`.
 
+## BizOS Code
+
+`@bizos` is [BizOS Code](https://code.bizos-ai.com), the BizOS team's coding CLI, started in
+its ACP mode (`bizos acp`). Its runner is closed source and joins through the protocol alone.
+
+```sh
+curl -fsSL https://bizos-ai.com/code/install.sh | sh    # mainland China: https://bizos-ai.cn/code/install.sh
+bizos login
+mkdir -p ~/.troupe/worktrees && bizos sandbox grant-write ~/.troupe/worktrees
+```
+
+BizOS Code runs its agent, and the MCP servers it starts, in an operating-system sandbox
+that reads and writes only the directories you granted. Troupe keeps everything an agent
+writes under `$TROUPE_HOME/worktrees/<project-id>/`: each agent's worktree and, in
+`.mailbox/`, the mailboxes its collaboration tools use. One grant of
+`$TROUPE_HOME/worktrees` therefore covers every project, while Troupe's configuration,
+goals, transcripts and mailbox tokens stay outside the sandbox's reach. A grant takes
+effect when BizOS Code is idle. With `--shared`, also grant the project directory. The
+collaboration tools are started from Troupe's own installation; if that is a source
+checkout outside the usual package directories, grant BizOS Code read access to it.
+
+| Troupe mode | BizOS Code mode |
+| --- | --- |
+| `plan` | Plan |
+| `ask` | Build (its default) |
+| `workspace` | Accept edits |
+| `full` | YOLO |
+
+BizOS Code asks with two options, allow once and reject. "Always allow" in Troupe is kept
+as a Troupe rule for that agent and answered as allow once, so later matching requests are
+approved by Troupe without asking.
+
 ## Bring your own runner
 
 A closed-source agent runtime joins Troupe without publishing anything: it speaks the
@@ -141,8 +180,8 @@ registers it:
 ```
 
 `@acme` then takes tasks, asks and answers other agents, and goes through the same
-approvals, reviews and goal checks as every other agent. BizOS's own runner is designed to
-join this way.
+approvals, reviews and goal checks as every other agent. BizOS Code joins exactly this way
+and is built in; see [BizOS Code](#bizos-code).
 
 What Troupe needs from an ACP runner:
 

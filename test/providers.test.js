@@ -11,18 +11,30 @@ import { NODE, tempDir } from './helpers.js';
 test('built-in providers are valid and ranked', () => {
   for (const provider of Object.values(BUILTIN_PROVIDERS)) validateProvider({ ...provider });
   const list = providerList(buildRegistry());
-  assert.equal(list[0].id, 'claude');
+  assert.equal(list[0].id, 'bizos');
+  assert.equal(list[1].id, 'claude');
   assert.ok(list.find((p) => p.id === 'codex').verified);
   assert.equal(list.find((p) => p.id === 'gemini').verified, false);
 });
 
+test('BizOS Code is built in and started as an ACP agent', () => {
+  const bizos = buildRegistry().bizos;
+  assert.equal(bizos.name, 'BizOS Code');
+  assert.equal(bizos.command, 'bizos');
+  assert.equal(bizos.protocol, 'acp');
+  assert.deepEqual(bizos.args, ['acp']);
+  assert.equal(bizos.verified, false);
+  assert.match(bizos.install, /code\.bizos-ai\.com/);
+  assert.match(bizos.signIn, /bizos login/);
+});
+
 test('user config can add a closed runner and override built-in fields', () => {
   const registry = buildRegistry({
-    bizos: { name: 'BizOS', command: 'bizos', protocol: 'acp', args: ['acp'] },
+    acme: { name: 'Acme Agent', command: 'acme-agent', protocol: 'acp', args: ['--acp'] },
     codex: { args: ['-c', 'model_reasoning_effort=high'] },
   });
-  assert.equal(registry.bizos.custom, true);
-  assert.equal(registry.bizos.protocol, 'acp');
+  assert.equal(registry.acme.custom, true);
+  assert.equal(registry.acme.protocol, 'acp');
   assert.deepEqual(registry.codex.args, ['-c', 'model_reasoning_effort=high']);
   assert.equal(registry.codex.protocol, 'codex-app');
   assert.throws(() => buildRegistry({ broken: { name: 'x', command: 'x', protocol: 'telepathy' } }), (error) => error.code === CODES.ARGUMENT_INVALID);

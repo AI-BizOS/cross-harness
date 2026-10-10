@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 // A scriptable ACP agent for tests (protocol version 1). See mock-common.js for the
 // prompt directives. MOCK_NAME names it in answers; MOCK_STATE keeps sessions for
-// session/load; MOCK_AUTH_FAIL makes session/new fail as unauthenticated.
+// session/load; MOCK_AUTH_FAIL makes session/new fail as unauthenticated; MOCK_MODES and
+// MOCK_OPTIONS (JSON) replace the modes and permission options it offers.
 import fs from 'node:fs';
 import path from 'node:path';
 import { randomUUID } from 'node:crypto';
@@ -11,12 +12,21 @@ const name = process.env.MOCK_NAME || 'mock-acp';
 const sessions = new Map();
 const pending = new Map();
 let nextId = 1000;
-const MODES = [
-  { id: 'default', name: 'Default' },
-  { id: 'acceptEdits', name: 'Accept Edits' },
-  { id: 'plan', name: 'Plan' },
-  { id: 'bypassPermissions', name: 'Bypass Permissions' },
-];
+const MODES = process.env.MOCK_MODES
+  ? JSON.parse(process.env.MOCK_MODES)
+  : [
+      { id: 'default', name: 'Default' },
+      { id: 'acceptEdits', name: 'Accept Edits' },
+      { id: 'plan', name: 'Plan' },
+      { id: 'bypassPermissions', name: 'Bypass Permissions' },
+    ];
+const OPTIONS = process.env.MOCK_OPTIONS
+  ? JSON.parse(process.env.MOCK_OPTIONS)
+  : [
+      { optionId: 'allow-once', name: 'Allow once', kind: 'allow_once' },
+      { optionId: 'allow-always', name: 'Always allow', kind: 'allow_always' },
+      { optionId: 'reject', name: 'Reject', kind: 'reject_once' },
+    ];
 const stateFile = process.env.MOCK_STATE ? path.join(process.env.MOCK_STATE, `${name}-sessions.json`) : null;
 const known = () => (stateFile && fs.existsSync(stateFile) ? JSON.parse(fs.readFileSync(stateFile, 'utf8')) : []);
 const remember = (id) => {
@@ -48,15 +58,7 @@ async function prompt(id, params) {
   if (d.approve) {
     const toolCall = { toolCallId: 'cmd-1', title: 'npm test', kind: 'execute', status: 'pending', rawInput: { command: 'npm test' } };
     update(session.id, { sessionUpdate: 'tool_call', ...toolCall });
-    const answer = await request('session/request_permission', {
-      sessionId: session.id,
-      toolCall,
-      options: [
-        { optionId: 'allow-once', name: 'Allow once', kind: 'allow_once' },
-        { optionId: 'allow-always', name: 'Always allow', kind: 'allow_always' },
-        { optionId: 'reject', name: 'Reject', kind: 'reject_once' },
-      ],
-    });
+    const answer = await request('session/request_permission', { sessionId: session.id, toolCall, options: OPTIONS });
     const outcome = answer.result?.outcome;
     if (outcome?.outcome === 'cancelled') return reply(id, { stopReason: 'cancelled' });
     note = outcome?.optionId === 'reject' ? ' (npm test denied)' : ` (npm test ${outcome?.optionId})`;
@@ -126,7 +128,7 @@ lines(async (message) => {
     sessions.set(sessionId, { id: sessionId, cwd: params.cwd, mcpServers: params.mcpServers || [], mode: 'default', cancelled: false });
     remember(sessionId);
     log({ agent: name, method, sessionId, cwd: params.cwd });
-    return reply(id, { ...(method === 'session/new' ? { sessionId } : {}), modes: { currentModeId: 'default', availableModes: MODES } });
+    return reply(id, { ...(method === 'session/new' ? { sessionId } : {}), modes: { currentModeId: MODES[0].id, availableModes: MODES } });
   }
   if (method === 'session/set_mode') {
     const session = sessions.get(params.sessionId);

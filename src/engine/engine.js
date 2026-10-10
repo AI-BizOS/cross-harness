@@ -132,7 +132,12 @@ export class Engine {
       }
     }
     if (this.collabEnabled) {
-      this.hub = new MailboxHub({ dir: path.join(this.stateDir, 'mailbox'), handle: (agentId, op, params) => this.collab(agentId, op, params) });
+      // Everything an agent writes, its worktree and its mailbox, is under one directory,
+      // so a harness that sandboxes its tools (BizOS Code) needs a single write grant, and
+      // Troupe's own state, including the mailbox tokens, stays outside it. 0.1.0 kept the
+      // mailboxes in the project state; that copy is removed.
+      fs.rmSync(path.join(this.stateDir, 'mailbox'), { recursive: true, force: true });
+      this.hub = new MailboxHub({ dir: path.join(this.worktreeRoot, '.mailbox'), tokensFile: path.join(this.stateDir, 'mailbox-tokens.json'), handle: (agentId, op, params) => this.collab(agentId, op, params) });
       this.hub.retain([...this.agents.values()].filter((a) => !a.archived).map((a) => a.id));
     }
     this.opened = true;

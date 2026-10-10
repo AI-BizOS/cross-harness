@@ -56,9 +56,14 @@ sockets but may write files. The mailbox needs only that.
 The engine gives each agent a token (64 hex characters) and a directory:
 
 ```
-<state>/mailbox/<token>/requests/<uuid>.json      written by troupe mcp
-<state>/mailbox/<token>/responses/<uuid>.json     written by the engine
+<mailboxes>/<token>/requests/<uuid>.json      written by troupe mcp
+<mailboxes>/<token>/responses/<uuid>.json     written by the engine
 ```
+
+The reference implementation keeps `<mailboxes>` next to the agents' worktrees, in
+`$TROUPE_HOME/worktrees/<project-id>/.mailbox/`, and the token registry with its own
+state, so a harness that sandboxes its tools needs write access to one directory for
+everything its agent writes.
 
 The harness starts `troupe mcp` with the environment variables `TROUPE_MAILBOX` (the
 directory) and `TROUPE_TOKEN`.

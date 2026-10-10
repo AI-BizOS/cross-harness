@@ -143,7 +143,10 @@ same store and the same strings, so they show the same state in the same words.
 
 Everything lives under `TROUPE_HOME` (default `~/.troupe`), never in the project:
 configuration, one directory per project (agents, transcripts as JSON lines, board,
-decisions, goals, an append-only audit log, the mailbox and a lock) and the worktrees.
+decisions, goals, an append-only audit log, the mailbox tokens and a lock) and, under
+`worktrees/<project-id>/`, everything agents write: their worktrees and, in `.mailbox/`,
+their mailboxes. A harness that sandboxes its tools, such as BizOS Code, then needs one
+write grant, and Troupe's own state stays out of its reach.
 JSON files are written atomically (temporary file, then rename). The layout is listed in
 [orchestration.md §State on disk](../spec/orchestration.md#state-on-disk).
 

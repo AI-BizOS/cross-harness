@@ -1,7 +1,7 @@
 <h1 align="center">Troupe</h1>
 
 <p align="center">
-  <b>让 Claude Code、Codex、Kimi Code、OpenCode、Gemini CLI 等编程代理并肩工作，像一个团队一样协作。</b>
+  <b>让 BizOS Code、Claude Code、Codex、Kimi Code、OpenCode、Gemini CLI 等编程代理并肩工作，像一个团队一样协作。</b>
 </p>
 
 <p align="center">
@@ -46,7 +46,7 @@ Troupe 把它们放到同一个舞台上。它通过各厂商自己提供的协�
 Troupe 是 [BizOS Code](https://code.bizos-ai.com/zh/) 团队开源的跨 Harness 协议，本仓库是它的参考实现：终端界面、本地网页界面和供脚本使用的命令，纯 Node.js 编写，零依赖。
 
 > [!TIP]
-> **想要开箱即用？** [BizOS Code](https://code.bizos-ai.com/zh/) 是 BizOS 团队的编码 CLI：一个终端，调度你所有的编码 Agent。它把一句话拆成带依赖的工作流，分派给 BizOS 原生 Agent 和你本机的 Claude Code、Codex、Kimi Code、DeepSeek 等编码 CLI：互不依赖的步骤并行跑，要写代码的依次拿工作区，结果汇总回同一个对话。安装方法见 [code.bizos-ai.com](https://code.bizos-ai.com/zh/)。
+> **想要开箱即用？** [BizOS Code](https://code.bizos-ai.com/zh/) 是 BizOS 团队的编码 CLI：一个终端，调度你所有的编码 Agent。它把一句话拆成带依赖的工作流，分派给 BizOS 原生 Agent 和你本机的 Claude Code、Codex、Kimi Code、DeepSeek 等编码 CLI：互不依赖的步骤并行跑，要写代码的依次拿工作区，结果汇总回同一个对话。安装方法见 [code.bizos-ai.com](https://code.bizos-ai.com/zh/)；Troupe 已内置，直接用 `@bizos`（[设置方法](#bizos-code)）。
 
 ## 能做什么
 
@@ -211,6 +211,7 @@ troupe gui --ssh dev@buildbox --cwd src/shop-api
 
 | 代理 | 命令 | 协议 | 核验情况 |
 | --- | --- | --- | --- |
+| BizOS Code | `bizos acp` | ACP | 适配器已验证 |
 | Claude Code | `claude` | stream-json | 按文档接入 |
 | Codex | `codex` | app-server | 真实编码已验证 |
 | OpenCode | `opencode acp` | ACP | 握手已验证 |
@@ -224,21 +225,38 @@ troupe gui --ssh dev@buildbox --cwd src/shop-api
 | Amp | `amp -x` | 单次运行 | 按文档接入 |
 | Aider | `aider --message` | 单次运行 | 按文档接入 |
 
-"握手已验证"表示 Troupe 的适配器已与该 CLI 的真实安装完成协议握手（2026-10-09：codex 0.159.1、opencode、kimi、dsh）。"真实编码已验证"表示在此基础上，0.1.0 发布前还有一个真实的 Codex 会话通过 `troupe run` 完成了编码任务，结果经过独立核查。"按文档接入"的按厂商文档实现，界面上标注"未实测"。Troupe 的自动化测试用模拟代理覆盖每种协议，不调用真实模型。详见 [docs/providers.md](docs/providers.md)。
+"握手已验证"表示 Troupe 的适配器已与该 CLI 的真实安装完成协议握手（2026-10-09：codex 0.159.1、opencode、kimi、dsh）。"真实编码已验证"表示在此基础上，0.1.0 发布前还有一个真实的 Codex 会话通过 `troupe run` 完成了编码任务，结果经过独立核查。"适配器已验证"表示 Troupe 已与 BizOS Code 自己的 ACP 适配器（0.3.05）对接运行过，其中 BizOS 后台服务用替身代替，尚未在完整安装上运行。"按文档接入"的按厂商文档实现。这两类在界面上都标注"未实测"。Troupe 的自动化测试用模拟代理覆盖每种协议，不调用真实模型。详见 [docs/providers.md](docs/providers.md)。
+
+## BizOS Code
+
+[BizOS Code](https://code.bizos-ai.com/zh/) 已内置为 `@bizos`。Troupe 以它的 Agent Client Protocol 模式（`bizos acp`）启动它：它可以接任务、向其他代理提问和回答，成果走和其他代理一样的审批、审查和目标核查，背后的运行器保持闭源。
+
+```sh
+curl -fsSL https://bizos-ai.cn/code/install.sh | sh    # Windows：irm https://bizos-ai.cn/code/install.ps1 | iex
+bizos login
+mkdir -p ~/.troupe/worktrees && bizos sandbox grant-write ~/.troupe/worktrees
+```
+
+BizOS Code 在操作系统沙箱里运行它的代理，只能读写你允许过的目录。最后一行只需在 BizOS Code 空闲时运行一次：它允许 BizOS Code 在 Troupe 分给它的 worktree 里工作，并通过同一目录下的信箱与其他代理协作；Troupe 自己的配置、目标和对话记录都在这个目录之外。使用 `--shared` 时，还要授权项目目录本身。如果 Troupe 是从源码目录运行而不是安装包，还要允许 BizOS Code 读取该目录（`bizos sandbox grant-read <目录>`），它才能启动 Troupe 的协作工具。
+
+```
+@bizos 修复 src/parser 里失败的测试
+@bizos @codex 审查最近一次提交
+```
 
 ## 接入你自己的运行器
 
-闭源的代理运行时不必公开代码也能加入：让它支持一种会话协议——最简单的是 [Agent Client Protocol](https://agentclientprotocol.com)——然后在 `~/.troupe/config.json` 里登记：
+其他闭源的代理运行时也可以用同样的方式加入，不必公开代码：让它支持一种会话协议——最简单的是 [Agent Client Protocol](https://agentclientprotocol.com)——然后在 `~/.troupe/config.json` 里登记：
 
 ```json
 {
   "providers": {
-    "bizos": { "name": "BizOS", "command": "bizos", "args": ["acp"], "protocol": "acp" }
+    "acme": { "name": "Acme Agent", "command": "acme-agent", "args": ["--acp"], "protocol": "acp" }
   }
 }
 ```
 
-之后 `@bizos` 就和其他代理一样：接任务、向其他代理提问和回答，它的成果走同样的审批、审查和目标核查。[BizOS Code](https://code.bizos-ai.com/zh/) 背后的运行器按这种方式接入 Troupe，并保持闭源；上面的命令只是示例，换成能以 ACP 方式启动你的运行器的命令即可。详见 [docs/providers.md](docs/providers.md#bring-your-own-runner)。
+之后 `@acme` 就和其他代理一样工作。详见 [docs/providers.md](docs/providers.md#bring-your-own-runner)。
 
 ## 配置
 

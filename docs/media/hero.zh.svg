@@ -2,269 +2,268 @@
 <title>Troupe 终端界面：一条消息同时启动 Codex、Claude Code 和 Kimi Code；Claude 向 Codex 提问，你批准一条命令，每个代理在自己的分支上完成工作。</title>
 <style>
 text{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Monaco,Consolas,"Liberation Mono","DejaVu Sans Mono",monospace;font-size:14px;white-space:pre}
-.screen g{opacity:0;animation-duration:26.22s;animation-iteration-count:infinite;animation-timing-function:step-end}
+.screen g{opacity:0;animation-duration:26.20s;animation-iteration-count:infinite;animation-timing-function:step-end}
 .screen path{fill:none;stroke-width:1}
 .s{opacity:0;animation:sp 1s step-end infinite}@keyframes sp{0%{opacity:1}10%{opacity:0}}
-.cursor{opacity:0;animation:cur 26.22s step-end infinite}
+.cursor{opacity:0;animation:cur 26.20s step-end infinite}
 .bar-title{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;font-size:12.5px;fill:#8b949e}
-.chapter{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;font-size:13px;font-weight:600;fill:#8b949e;animation-duration:26.22s;animation-iteration-count:infinite;animation-timing-function:step-end}
-.track{fill:#8b949e;opacity:.25}.fill{fill:#2f81f7;transform:scaleX(0);animation-duration:26.22s;animation-iteration-count:infinite;animation-timing-function:linear}
-@keyframes k0{0%{opacity:0}0.008%{opacity:1}21.144%{opacity:0}}
-@keyframes k1{0%{opacity:0}21.144%{opacity:1}21.392%{opacity:0}}
-@keyframes k2{0%{opacity:0}21.392%{opacity:1}21.521%{opacity:0}}
-@keyframes k3{0%{opacity:0}21.521%{opacity:1}53.177%{opacity:0}}
-@keyframes k4{0%{opacity:0}53.177%{opacity:1}57.789%{opacity:0}}
-@keyframes k5{0%{opacity:0}57.789%{opacity:1}65.201%{opacity:0}74.447%{opacity:1}77.464%{opacity:0}}
-@keyframes k6{0%{opacity:0}65.201%{opacity:1}74.447%{opacity:0}}
-@keyframes k7{0%{opacity:0}77.464%{opacity:1}}
-@keyframes k8{0%{opacity:0}0.008%{opacity:1}21.144%{opacity:0}}
-@keyframes k9{0%{opacity:0}21.144%{opacity:1}21.266%{opacity:0}}
-@keyframes ka{0%{opacity:0}21.266%{opacity:1}51.369%{opacity:0}}
-@keyframes kb{0%{opacity:0}51.369%{opacity:1}57.789%{opacity:0}}
-@keyframes kc{0%{opacity:0}57.789%{opacity:1}83.987%{opacity:0}}
-@keyframes kd{0%{opacity:0}83.987%{opacity:1}}
-@keyframes ke{0%{opacity:0}0.008%{opacity:1}21.144%{opacity:0}}
-@keyframes kf{0%{opacity:0}21.144%{opacity:1}21.266%{opacity:0}}
-@keyframes kg{0%{opacity:0}21.266%{opacity:1}57.789%{opacity:0}}
-@keyframes kh{0%{opacity:0}57.789%{opacity:1}83.987%{opacity:0}}
-@keyframes ki{0%{opacity:0}83.987%{opacity:1}}
-@keyframes kj{0%{opacity:0}0.008%{opacity:1}21.144%{opacity:0}}
-@keyframes kk{0%{opacity:0}21.144%{opacity:1}31.385%{opacity:0}51.369%{opacity:1}83.987%{opacity:0}}
-@keyframes kl{0%{opacity:0}31.385%{opacity:1}51.369%{opacity:0}}
-@keyframes km{0%{opacity:0}83.987%{opacity:1}}
-@keyframes kn{0%{opacity:0}0.008%{opacity:1}21.144%{opacity:0}}
-@keyframes ko{0%{opacity:0}21.144%{opacity:1}21.392%{opacity:0}}
-@keyframes kp{0%{opacity:0}21.392%{opacity:1}31.385%{opacity:0}57.789%{opacity:1}65.201%{opacity:0}74.447%{opacity:1}77.464%{opacity:0}}
-@keyframes kq{0%{opacity:0}31.385%{opacity:1}57.789%{opacity:0}}
-@keyframes kr{0%{opacity:0}65.201%{opacity:1}74.447%{opacity:0}}
-@keyframes ks{0%{opacity:0}77.464%{opacity:1}83.987%{opacity:0}}
-@keyframes kt{0%{opacity:0}83.987%{opacity:1}}
-@keyframes ku{0%{opacity:0}0.008%{opacity:1}21.144%{opacity:0}}
-@keyframes kv{0%{opacity:0}21.144%{opacity:1}21.392%{opacity:0}}
-@keyframes kw{0%{opacity:0}21.392%{opacity:1}31.385%{opacity:0}77.464%{opacity:1}}
-@keyframes kx{0%{opacity:0}31.385%{opacity:1}65.201%{opacity:0}}
-@keyframes ky{0%{opacity:0}65.201%{opacity:1}77.464%{opacity:0}}
-@keyframes kz{0%{opacity:0}0.008%{opacity:1}21.144%{opacity:0}}
-@keyframes k10{0%{opacity:0}21.144%{opacity:1}21.521%{opacity:0}}
-@keyframes k11{0%{opacity:0}21.521%{opacity:1}21.647%{opacity:0}}
-@keyframes k12{0%{opacity:0}21.647%{opacity:1}53.177%{opacity:0}}
-@keyframes k13{0%{opacity:0}53.177%{opacity:1}83.987%{opacity:0}}
-@keyframes k14{0%{opacity:0}83.987%{opacity:1}}
-@keyframes k15{0%{opacity:0}0.008%{opacity:1}21.144%{opacity:0}}
-@keyframes k16{0%{opacity:0}21.144%{opacity:1}21.392%{opacity:0}}
-@keyframes k17{0%{opacity:0}21.392%{opacity:1}21.521%{opacity:0}}
-@keyframes k18{0%{opacity:0}21.521%{opacity:1}}
-@keyframes k19{0%{opacity:0}0.008%{opacity:1}21.144%{opacity:0}}
-@keyframes k1a{0%{opacity:0}21.144%{opacity:1}23.066%{opacity:0}}
-@keyframes k1b{0%{opacity:0}23.066%{opacity:1}26.911%{opacity:0}}
-@keyframes k1c{0%{opacity:0}26.911%{opacity:1}30.752%{opacity:0}}
-@keyframes k1d{0%{opacity:0}30.752%{opacity:1}34.593%{opacity:0}}
-@keyframes k1e{0%{opacity:0}34.593%{opacity:1}38.438%{opacity:0}}
-@keyframes k1f{0%{opacity:0}38.438%{opacity:1}42.287%{opacity:0}}
-@keyframes k1g{0%{opacity:0}42.287%{opacity:1}46.136%{opacity:0}}
-@keyframes k1h{0%{opacity:0}46.136%{opacity:1}49.973%{opacity:0}}
-@keyframes k1i{0%{opacity:0}49.973%{opacity:1}51.369%{opacity:0}}
-@keyframes k1j{0%{opacity:0}51.369%{opacity:1}65.201%{opacity:0}74.447%{opacity:1}83.987%{opacity:0}}
-@keyframes k1k{0%{opacity:0}65.201%{opacity:1}74.447%{opacity:0}}
-@keyframes k1l{0%{opacity:0}83.987%{opacity:1}}
-@keyframes k1m{0%{opacity:0}0.008%{opacity:1}21.521%{opacity:0}}
-@keyframes k1n{0%{opacity:0}21.521%{opacity:1}26.728%{opacity:0}}
-@keyframes k1o{0%{opacity:0}26.728%{opacity:1}28.311%{opacity:0}}
-@keyframes k1p{0%{opacity:0}28.311%{opacity:1}51.369%{opacity:0}}
-@keyframes k1q{0%{opacity:0}51.369%{opacity:1}55.909%{opacity:0}}
-@keyframes k1r{0%{opacity:0}55.909%{opacity:1}65.201%{opacity:0}74.447%{opacity:1}83.987%{opacity:0}}
-@keyframes k1s{0%{opacity:0}65.201%{opacity:1}74.447%{opacity:0}}
-@keyframes k1t{0%{opacity:0}83.987%{opacity:1}}
-@keyframes k1u{0%{opacity:0}0.008%{opacity:1}21.144%{opacity:0}}
-@keyframes k1v{0%{opacity:0}21.144%{opacity:1}31.385%{opacity:0}}
-@keyframes k1w{0%{opacity:0}31.385%{opacity:1}33.575%{opacity:0}}
-@keyframes k1x{0%{opacity:0}33.575%{opacity:1}51.369%{opacity:0}}
-@keyframes k1y{0%{opacity:0}51.369%{opacity:1}65.201%{opacity:0}74.447%{opacity:1}83.987%{opacity:0}}
-@keyframes k1z{0%{opacity:0}65.201%{opacity:1}74.447%{opacity:0}}
-@keyframes k20{0%{opacity:0}83.987%{opacity:1}}
-@keyframes k21{0%{opacity:0}0.008%{opacity:1}21.144%{opacity:0}}
-@keyframes k22{0%{opacity:0}21.144%{opacity:1}35.356%{opacity:0}51.369%{opacity:1}65.201%{opacity:0}74.447%{opacity:1}}
-@keyframes k23{0%{opacity:0}35.356%{opacity:1}37.416%{opacity:0}}
-@keyframes k24{0%{opacity:0}37.416%{opacity:1}37.634%{opacity:0}}
-@keyframes k25{0%{opacity:0}37.634%{opacity:1}51.369%{opacity:0}}
-@keyframes k26{0%{opacity:0}65.201%{opacity:1}74.447%{opacity:0}}
-@keyframes k27{0%{opacity:0}0.008%{opacity:1}21.144%{opacity:0}}
-@keyframes k28{0%{opacity:0}21.144%{opacity:1}44.358%{opacity:0}}
-@keyframes k29{0%{opacity:0}44.358%{opacity:1}46.498%{opacity:0}}
-@keyframes k2a{0%{opacity:0}46.498%{opacity:1}51.369%{opacity:0}}
-@keyframes k2b{0%{opacity:0}51.369%{opacity:1}65.201%{opacity:0}74.447%{opacity:1}83.987%{opacity:0}}
-@keyframes k2c{0%{opacity:0}65.201%{opacity:1}74.447%{opacity:0}}
-@keyframes k2d{0%{opacity:0}83.987%{opacity:1}}
-@keyframes k2e{0%{opacity:0}0.008%{opacity:1}21.144%{opacity:0}}
-@keyframes k2f{0%{opacity:0}21.144%{opacity:1}48.337%{opacity:0}}
-@keyframes k2g{0%{opacity:0}48.337%{opacity:1}50.256%{opacity:0}}
-@keyframes k2h{0%{opacity:0}50.256%{opacity:1}50.515%{opacity:0}}
-@keyframes k2i{0%{opacity:0}50.515%{opacity:1}51.369%{opacity:0}}
-@keyframes k2j{0%{opacity:0}51.369%{opacity:1}65.201%{opacity:0}74.447%{opacity:1}}
-@keyframes k2k{0%{opacity:0}65.201%{opacity:1}74.447%{opacity:0}}
-@keyframes k2l{0%{opacity:0}0.008%{opacity:1}50.515%{opacity:0}}
-@keyframes k2m{0%{opacity:0}50.515%{opacity:1}51.369%{opacity:0}}
-@keyframes k2n{0%{opacity:0}51.369%{opacity:1}65.201%{opacity:0}74.447%{opacity:1}83.987%{opacity:0}}
-@keyframes k2o{0%{opacity:0}65.201%{opacity:1}74.447%{opacity:0}}
-@keyframes k2p{0%{opacity:0}83.987%{opacity:1}}
-@keyframes k2q{0%{opacity:0}0.008%{opacity:1}50.515%{opacity:0}}
-@keyframes k2r{0%{opacity:0}50.515%{opacity:1}51.369%{opacity:0}}
-@keyframes k2s{0%{opacity:0}51.369%{opacity:1}65.201%{opacity:0}74.447%{opacity:1}83.987%{opacity:0}}
-@keyframes k2t{0%{opacity:0}65.201%{opacity:1}74.447%{opacity:0}}
-@keyframes k2u{0%{opacity:0}83.987%{opacity:1}}
-@keyframes k2v{0%{opacity:0}0.008%{opacity:1}51.369%{opacity:0}}
-@keyframes k2w{0%{opacity:0}51.369%{opacity:1}65.201%{opacity:0}74.447%{opacity:1}83.987%{opacity:0}}
-@keyframes k2x{0%{opacity:0}65.201%{opacity:1}74.447%{opacity:0}}
-@keyframes k2y{0%{opacity:0}83.987%{opacity:1}}
-@keyframes k2z{0%{opacity:0}0.008%{opacity:1}50.515%{opacity:0}}
-@keyframes k30{0%{opacity:0}50.515%{opacity:1}50.938%{opacity:0}}
-@keyframes k31{0%{opacity:0}50.938%{opacity:1}51.369%{opacity:0}}
-@keyframes k32{0%{opacity:0}51.369%{opacity:1}65.201%{opacity:0}74.447%{opacity:1}83.987%{opacity:0}}
-@keyframes k33{0%{opacity:0}65.201%{opacity:1}74.447%{opacity:0}}
-@keyframes k34{0%{opacity:0}83.987%{opacity:1}}
-@keyframes k35{0%{opacity:0}0.008%{opacity:1}65.201%{opacity:0}74.447%{opacity:1}}
-@keyframes k36{0%{opacity:0}65.201%{opacity:1}74.447%{opacity:0}}
-@keyframes k37{0%{opacity:0}0.008%{opacity:1}14.205%{opacity:0}14.335%{opacity:1}51.369%{opacity:0}83.987%{opacity:1}}
-@keyframes k38{0%{opacity:0}14.205%{opacity:1}14.335%{opacity:0}}
-@keyframes k39{0%{opacity:0}51.369%{opacity:1}65.201%{opacity:0}74.447%{opacity:1}83.987%{opacity:0}}
-@keyframes k3a{0%{opacity:0}65.201%{opacity:1}74.447%{opacity:0}}
-@keyframes k3b{0%{opacity:0}0.008%{opacity:1}11.996%{opacity:0}12.122%{opacity:1}14.205%{opacity:0}14.335%{opacity:1}51.369%{opacity:0}83.987%{opacity:1}}
-@keyframes k3c{0%{opacity:0}11.996%{opacity:1}12.122%{opacity:0}}
-@keyframes k3d{0%{opacity:0}14.205%{opacity:1}14.335%{opacity:0}}
-@keyframes k3e{0%{opacity:0}51.369%{opacity:1}83.987%{opacity:0}}
-@keyframes k3f{0%{opacity:0}0.008%{opacity:1}4.986%{opacity:0}8.499%{opacity:1}11.996%{opacity:0}12.122%{opacity:1}14.205%{opacity:0}14.335%{opacity:1}51.369%{opacity:0}83.987%{opacity:1}}
-@keyframes k3g{0%{opacity:0}4.986%{opacity:1}8.499%{opacity:0}}
-@keyframes k3h{0%{opacity:0}11.996%{opacity:1}12.122%{opacity:0}}
-@keyframes k3i{0%{opacity:0}14.205%{opacity:1}14.335%{opacity:0}}
-@keyframes k3j{0%{opacity:0}51.369%{opacity:1}83.987%{opacity:0}}
-@keyframes k3k{0%{opacity:0}0.008%{opacity:1}4.986%{opacity:0}8.499%{opacity:1}11.996%{opacity:0}12.122%{opacity:1}14.205%{opacity:0}14.335%{opacity:1}}
-@keyframes k3l{0%{opacity:0}4.986%{opacity:1}8.499%{opacity:0}}
-@keyframes k3m{0%{opacity:0}11.996%{opacity:1}12.122%{opacity:0}}
-@keyframes k3n{0%{opacity:0}14.205%{opacity:1}14.335%{opacity:0}}
-@keyframes k3o{0%{opacity:0}0.008%{opacity:1}4.986%{opacity:0}8.499%{opacity:1}11.996%{opacity:0}12.252%{opacity:1}14.205%{opacity:0}14.335%{opacity:1}51.369%{opacity:0}83.987%{opacity:1}}
-@keyframes k3p{0%{opacity:0}4.986%{opacity:1}8.499%{opacity:0}}
-@keyframes k3q{0%{opacity:0}11.996%{opacity:1}12.122%{opacity:0}}
-@keyframes k3r{0%{opacity:0}12.122%{opacity:1}12.252%{opacity:0}}
-@keyframes k3s{0%{opacity:0}14.205%{opacity:1}14.335%{opacity:0}}
-@keyframes k3t{0%{opacity:0}51.369%{opacity:1}53.437%{opacity:0}}
-@keyframes k3u{0%{opacity:0}53.437%{opacity:1}57.255%{opacity:0}}
-@keyframes k3v{0%{opacity:0}57.255%{opacity:1}57.789%{opacity:0}}
-@keyframes k3w{0%{opacity:0}57.789%{opacity:1}83.987%{opacity:0}}
-@keyframes k3x{0%{opacity:0}0.008%{opacity:1}4.986%{opacity:0}8.644%{opacity:1}11.996%{opacity:0}12.252%{opacity:1}14.205%{opacity:0}14.716%{opacity:1}55.653%{opacity:0}83.987%{opacity:1}}
-@keyframes k3y{0%{opacity:0}4.986%{opacity:1}8.499%{opacity:0}}
-@keyframes k3z{0%{opacity:0}8.499%{opacity:1}8.644%{opacity:0}}
-@keyframes k40{0%{opacity:0}11.996%{opacity:1}12.122%{opacity:0}}
-@keyframes k41{0%{opacity:0}12.122%{opacity:1}12.252%{opacity:0}}
-@keyframes k42{0%{opacity:0}14.205%{opacity:1}14.335%{opacity:0}}
-@keyframes k43{0%{opacity:0}14.335%{opacity:1}14.716%{opacity:0}}
-@keyframes k44{0%{opacity:0}55.653%{opacity:1}56.397%{opacity:0}}
-@keyframes k45{0%{opacity:0}56.397%{opacity:1}57.789%{opacity:0}}
-@keyframes k46{0%{opacity:0}57.789%{opacity:1}83.987%{opacity:0}}
-@keyframes k47{0%{opacity:0}0.008%{opacity:1}4.986%{opacity:0}8.773%{opacity:1}11.996%{opacity:0}12.775%{opacity:1}14.205%{opacity:0}21.144%{opacity:1}56.397%{opacity:0}83.987%{opacity:1}}
-@keyframes k48{0%{opacity:0}4.986%{opacity:1}8.499%{opacity:0}}
-@keyframes k49{0%{opacity:0}8.499%{opacity:1}8.644%{opacity:0}}
-@keyframes k4a{0%{opacity:0}8.644%{opacity:1}8.773%{opacity:0}}
-@keyframes k4b{0%{opacity:0}11.996%{opacity:1}12.252%{opacity:0}}
-@keyframes k4c{0%{opacity:0}12.252%{opacity:1}12.775%{opacity:0}}
-@keyframes k4d{0%{opacity:0}14.205%{opacity:1}21.144%{opacity:0}}
-@keyframes k4e{0%{opacity:0}56.397%{opacity:1}56.824%{opacity:0}}
-@keyframes k4f{0%{opacity:0}56.824%{opacity:1}57.789%{opacity:0}}
-@keyframes k4g{0%{opacity:0}57.789%{opacity:1}83.987%{opacity:0}}
-@keyframes k4h{0%{opacity:0}0.008%{opacity:1}4.986%{opacity:0}9.159%{opacity:1}11.996%{opacity:0}21.144%{opacity:1}56.824%{opacity:0}83.987%{opacity:1}}
-@keyframes k4i{0%{opacity:0}4.986%{opacity:1}8.773%{opacity:0}}
-@keyframes k4j{0%{opacity:0}8.773%{opacity:1}9.159%{opacity:0}}
-@keyframes k4k{0%{opacity:0}11.996%{opacity:1}14.205%{opacity:0}}
-@keyframes k4l{0%{opacity:0}14.205%{opacity:1}21.144%{opacity:0}}
-@keyframes k4m{0%{opacity:0}56.824%{opacity:1}57.255%{opacity:0}}
-@keyframes k4n{0%{opacity:0}57.255%{opacity:1}57.789%{opacity:0}}
-@keyframes k4o{0%{opacity:0}57.789%{opacity:1}83.987%{opacity:0}}
-@keyframes k4p{0%{opacity:0}0.008%{opacity:1}11.996%{opacity:0}21.144%{opacity:1}}
-@keyframes k4q{0%{opacity:0}11.996%{opacity:1}14.205%{opacity:0}}
-@keyframes k4r{0%{opacity:0}14.205%{opacity:1}21.144%{opacity:0}}
-@keyframes k4s{0%{opacity:0}0.008%{opacity:1}4.986%{opacity:0}}
-@keyframes k4t{0%{opacity:0}4.986%{opacity:1}8.499%{opacity:0}}
-@keyframes k4u{0%{opacity:0}8.499%{opacity:1}8.644%{opacity:0}}
-@keyframes k4v{0%{opacity:0}8.644%{opacity:1}8.773%{opacity:0}}
-@keyframes k4w{0%{opacity:0}8.773%{opacity:1}8.903%{opacity:0}}
-@keyframes k4x{0%{opacity:0}8.903%{opacity:1}9.033%{opacity:0}}
-@keyframes k4y{0%{opacity:0}9.033%{opacity:1}9.292%{opacity:0}}
-@keyframes k4z{0%{opacity:0}9.292%{opacity:1}9.422%{opacity:0}}
-@keyframes k50{0%{opacity:0}9.422%{opacity:1}9.548%{opacity:0}}
-@keyframes k51{0%{opacity:0}9.548%{opacity:1}9.677%{opacity:0}}
-@keyframes k52{0%{opacity:0}9.677%{opacity:1}9.811%{opacity:0}}
-@keyframes k53{0%{opacity:0}9.811%{opacity:1}9.933%{opacity:0}}
-@keyframes k54{0%{opacity:0}9.933%{opacity:1}10.063%{opacity:0}}
-@keyframes k55{0%{opacity:0}10.063%{opacity:1}10.188%{opacity:0}}
-@keyframes k56{0%{opacity:0}10.188%{opacity:1}10.318%{opacity:0}}
-@keyframes k57{0%{opacity:0}10.318%{opacity:1}10.448%{opacity:0}}
-@keyframes k58{0%{opacity:0}10.448%{opacity:1}10.578%{opacity:0}}
-@keyframes k59{0%{opacity:0}10.578%{opacity:1}10.7%{opacity:0}}
-@keyframes k5a{0%{opacity:0}10.7%{opacity:1}10.829%{opacity:0}}
-@keyframes k5b{0%{opacity:0}10.829%{opacity:1}10.959%{opacity:0}}
-@keyframes k5c{0%{opacity:0}10.959%{opacity:1}11.089%{opacity:0}}
-@keyframes k5d{0%{opacity:0}11.089%{opacity:1}11.222%{opacity:0}}
-@keyframes k5e{0%{opacity:0}11.222%{opacity:1}11.352%{opacity:0}}
-@keyframes k5f{0%{opacity:0}11.352%{opacity:1}11.478%{opacity:0}}
-@keyframes k5g{0%{opacity:0}11.478%{opacity:1}11.604%{opacity:0}}
-@keyframes k5h{0%{opacity:0}11.604%{opacity:1}11.733%{opacity:0}}
-@keyframes k5i{0%{opacity:0}11.733%{opacity:1}11.863%{opacity:0}}
-@keyframes k5j{0%{opacity:0}11.863%{opacity:1}11.996%{opacity:0}}
-@keyframes k5k{0%{opacity:0}11.996%{opacity:1}12.122%{opacity:0}14.205%{opacity:1}14.335%{opacity:0}}
-@keyframes k5l{0%{opacity:0}12.122%{opacity:1}12.252%{opacity:0}}
-@keyframes k5m{0%{opacity:0}12.252%{opacity:1}12.378%{opacity:0}}
-@keyframes k5n{0%{opacity:0}12.378%{opacity:1}12.508%{opacity:0}}
-@keyframes k5o{0%{opacity:0}12.508%{opacity:1}12.641%{opacity:0}}
-@keyframes k5p{0%{opacity:0}12.641%{opacity:1}12.901%{opacity:0}}
-@keyframes k5q{0%{opacity:0}12.901%{opacity:1}13.034%{opacity:0}}
-@keyframes k5r{0%{opacity:0}13.034%{opacity:1}13.168%{opacity:0}}
-@keyframes k5s{0%{opacity:0}13.168%{opacity:1}13.297%{opacity:0}}
-@keyframes k5t{0%{opacity:0}13.297%{opacity:1}13.423%{opacity:0}}
-@keyframes k5u{0%{opacity:0}13.423%{opacity:1}13.557%{opacity:0}}
-@keyframes k5v{0%{opacity:0}13.557%{opacity:1}13.686%{opacity:0}}
-@keyframes k5w{0%{opacity:0}13.686%{opacity:1}13.816%{opacity:0}}
-@keyframes k5x{0%{opacity:0}13.816%{opacity:1}13.942%{opacity:0}}
-@keyframes k5y{0%{opacity:0}13.942%{opacity:1}14.075%{opacity:0}}
-@keyframes k5z{0%{opacity:0}14.075%{opacity:1}14.205%{opacity:0}}
-@keyframes k60{0%{opacity:0}14.335%{opacity:1}14.464%{opacity:0}}
-@keyframes k61{0%{opacity:0}14.464%{opacity:1}14.59%{opacity:0}}
-@keyframes k62{0%{opacity:0}14.59%{opacity:1}14.884%{opacity:0}}
-@keyframes k63{0%{opacity:0}14.884%{opacity:1}15.155%{opacity:0}}
-@keyframes k64{0%{opacity:0}15.155%{opacity:1}15.285%{opacity:0}}
-@keyframes k65{0%{opacity:0}15.285%{opacity:1}15.41%{opacity:0}}
-@keyframes k66{0%{opacity:0}15.41%{opacity:1}15.54%{opacity:0}}
-@keyframes k67{0%{opacity:0}15.54%{opacity:1}15.662%{opacity:0}}
-@keyframes k68{0%{opacity:0}15.662%{opacity:1}15.796%{opacity:0}}
-@keyframes k69{0%{opacity:0}15.796%{opacity:1}15.922%{opacity:0}}
-@keyframes k6a{0%{opacity:0}15.922%{opacity:1}16.044%{opacity:0}}
-@keyframes k6b{0%{opacity:0}16.044%{opacity:1}16.17%{opacity:0}}
-@keyframes k6c{0%{opacity:0}16.17%{opacity:1}16.299%{opacity:0}}
-@keyframes k6d{0%{opacity:0}16.299%{opacity:1}16.425%{opacity:0}}
-@keyframes k6e{0%{opacity:0}16.425%{opacity:1}16.551%{opacity:0}}
-@keyframes k6f{0%{opacity:0}16.551%{opacity:1}16.681%{opacity:0}}
-@keyframes k6g{0%{opacity:0}16.681%{opacity:1}16.94%{opacity:0}}
-@keyframes k6h{0%{opacity:0}16.94%{opacity:1}17.074%{opacity:0}}
-@keyframes k6i{0%{opacity:0}17.074%{opacity:1}17.218%{opacity:0}}
-@keyframes k6j{0%{opacity:0}17.218%{opacity:1}17.348%{opacity:0}}
-@keyframes k6k{0%{opacity:0}17.348%{opacity:1}17.47%{opacity:0}}
-@keyframes k6l{0%{opacity:0}17.47%{opacity:1}17.6%{opacity:0}}
-@keyframes k6m{0%{opacity:0}17.6%{opacity:1}17.726%{opacity:0}}
-@keyframes k6n{0%{opacity:0}17.726%{opacity:1}21.144%{opacity:0}}
-@keyframes k6o{0%{opacity:0}21.144%{opacity:1}65.201%{opacity:0}74.447%{opacity:1}81.431%{opacity:0}}
-@keyframes k6p{0%{opacity:0}65.201%{opacity:1}74.447%{opacity:0}81.431%{opacity:1}83.987%{opacity:0}}
-@keyframes k6q{0%{opacity:0}83.987%{opacity:1}}
-@keyframes k6r{0%{opacity:0}0.008%{opacity:1}21.521%{opacity:0}44.591%{opacity:1}65.201%{opacity:0}74.447%{opacity:1}81.431%{opacity:0}}
-@keyframes k6s{0%{opacity:0}21.521%{opacity:1}44.591%{opacity:0}}
-@keyframes k6t{0%{opacity:0}65.201%{opacity:1}74.447%{opacity:0}}
-@keyframes k6u{0%{opacity:0}81.431%{opacity:1}}
-@keyframes cur{0.008%{transform:translate(16.8px,504px);opacity:1}4.986%{transform:translate(25.2px,504px);opacity:1}8.499%{transform:translate(33.6px,504px);opacity:1}8.644%{transform:translate(42px,504px);opacity:1}8.773%{transform:translate(50.4px,504px);opacity:1}8.903%{transform:translate(58.8px,504px);opacity:1}9.033%{transform:translate(67.2px,504px);opacity:1}9.159%{transform:translate(75.6px,504px);opacity:1}9.292%{transform:translate(92.4px,504px);opacity:1}9.422%{transform:translate(109.2px,504px);opacity:1}9.548%{transform:translate(126px,504px);opacity:1}9.677%{transform:translate(142.8px,504px);opacity:1}9.811%{transform:translate(159.6px,504px);opacity:1}9.933%{transform:translate(176.4px,504px);opacity:1}10.063%{transform:translate(193.2px,504px);opacity:1}10.188%{transform:translate(210px,504px);opacity:1}10.318%{transform:translate(226.8px,504px);opacity:1}10.448%{transform:translate(243.6px,504px);opacity:1}10.578%{transform:translate(277.2px,504px);opacity:1}10.7%{transform:translate(294px,504px);opacity:1}10.829%{transform:translate(310.8px,504px);opacity:1}10.959%{transform:translate(327.6px,504px);opacity:1}11.089%{transform:translate(344.4px,504px);opacity:1}11.222%{transform:translate(361.2px,504px);opacity:1}11.352%{transform:translate(378px,504px);opacity:1}11.478%{transform:translate(394.8px,504px);opacity:1}11.604%{transform:translate(411.6px,504px);opacity:1}11.733%{transform:translate(428.4px,504px);opacity:1}11.863%{transform:translate(445.2px,504px);opacity:1}11.996%{transform:translate(25.2px,504px);opacity:1}12.122%{transform:translate(33.6px,504px);opacity:1}12.252%{transform:translate(42px,504px);opacity:1}12.378%{transform:translate(50.4px,504px);opacity:1}12.508%{transform:translate(58.8px,504px);opacity:1}12.641%{transform:translate(75.6px,504px);opacity:1}12.775%{transform:translate(84px,504px);opacity:1}12.901%{transform:translate(100.8px,504px);opacity:1}13.034%{transform:translate(117.6px,504px);opacity:1}13.168%{transform:translate(134.4px,504px);opacity:1}13.297%{transform:translate(151.2px,504px);opacity:1}13.423%{transform:translate(168px,504px);opacity:1}13.557%{transform:translate(184.8px,504px);opacity:1}13.686%{transform:translate(201.6px,504px);opacity:1}13.816%{transform:translate(235.2px,504px);opacity:1}13.942%{transform:translate(252px,504px);opacity:1}14.075%{transform:translate(268.8px,504px);opacity:1}14.205%{transform:translate(25.2px,504px);opacity:1}14.335%{transform:translate(33.6px,504px);opacity:1}14.464%{transform:translate(50.4px,504px);opacity:1}14.59%{transform:translate(58.8px,504px);opacity:1}14.716%{transform:translate(67.2px,504px);opacity:1}14.884%{transform:translate(84px,504px);opacity:1}15.01%{transform:translate(92.4px,504px);opacity:1}15.155%{transform:translate(100.8px,504px);opacity:1}15.285%{transform:translate(109.2px,504px);opacity:1}15.41%{transform:translate(117.6px,504px);opacity:1}15.54%{transform:translate(126px,504px);opacity:1}15.662%{transform:translate(142.8px,504px);opacity:1}15.796%{transform:translate(151.2px,504px);opacity:1}15.922%{transform:translate(159.6px,504px);opacity:1}16.044%{transform:translate(168px,504px);opacity:1}16.17%{transform:translate(176.4px,504px);opacity:1}16.299%{transform:translate(184.8px,504px);opacity:1}16.425%{transform:translate(193.2px,504px);opacity:1}16.551%{transform:translate(201.6px,504px);opacity:1}16.681%{transform:translate(210px,504px);opacity:1}16.81%{transform:translate(218.4px,504px);opacity:1}16.94%{transform:translate(235.2px,504px);opacity:1}17.074%{transform:translate(252px,504px);opacity:1}17.218%{transform:translate(268.8px,504px);opacity:1}17.348%{transform:translate(285.6px,504px);opacity:1}17.47%{transform:translate(302.4px,504px);opacity:1}17.6%{transform:translate(319.2px,504px);opacity:1}17.726%{transform:translate(336px,504px);opacity:1}21.144%{transform:translate(16.8px,504px);opacity:1}65.201%{opacity:0}74.447%{transform:translate(16.8px,504px);opacity:1}81.431%{opacity:0}}
-@keyframes c0{0%{fill:#8b949e}0%{fill:#2f81f7}51.411%{fill:#8b949e}}
-@keyframes f0{0%{transform:scaleX(0)}0%{transform:scaleX(0)}51.411%{transform:scaleX(1)}51.415%{transform:scaleX(0)}}
-@keyframes c1{0%{fill:#8b949e}51.411%{fill:#2f81f7}65.277%{fill:#8b949e}}
-@keyframes f1{0%{transform:scaleX(0)}51.411%{transform:scaleX(0)}65.277%{transform:scaleX(1)}65.281%{transform:scaleX(0)}}
-@keyframes c2{0%{fill:#8b949e}65.277%{fill:#2f81f7}81.301%{fill:#8b949e}}
-@keyframes f2{0%{transform:scaleX(0)}65.277%{transform:scaleX(0)}81.301%{transform:scaleX(1)}81.305%{transform:scaleX(0)}}
-@keyframes c3{0%{fill:#8b949e}81.301%{fill:#2f81f7}}
-@keyframes f3{0%{transform:scaleX(0)}81.301%{transform:scaleX(0)}100%{transform:scaleX(1)}}
+.chapter{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;font-size:13px;font-weight:600;fill:#8b949e;animation-duration:26.20s;animation-iteration-count:infinite;animation-timing-function:step-end}
+.track{fill:#8b949e;opacity:.25}.fill{fill:#2f81f7;transform:scaleX(0);animation-duration:26.20s;animation-iteration-count:infinite;animation-timing-function:linear}
+@keyframes k0{0%{opacity:0}0.008%{opacity:1}21.102%{opacity:0}}
+@keyframes k1{0%{opacity:0}21.102%{opacity:1}21.35%{opacity:0}}
+@keyframes k2{0%{opacity:0}21.35%{opacity:1}21.606%{opacity:0}}
+@keyframes k3{0%{opacity:0}21.606%{opacity:1}53.216%{opacity:0}}
+@keyframes k4{0%{opacity:0}53.216%{opacity:1}57.525%{opacity:0}}
+@keyframes k5{0%{opacity:0}57.525%{opacity:1}65.169%{opacity:0}74.417%{opacity:1}77.447%{opacity:0}}
+@keyframes k6{0%{opacity:0}65.169%{opacity:1}74.417%{opacity:0}}
+@keyframes k7{0%{opacity:0}77.447%{opacity:1}}
+@keyframes k8{0%{opacity:0}0.008%{opacity:1}21.102%{opacity:0}}
+@keyframes k9{0%{opacity:0}21.102%{opacity:1}21.224%{opacity:0}}
+@keyframes ka{0%{opacity:0}21.224%{opacity:1}51.296%{opacity:0}}
+@keyframes kb{0%{opacity:0}51.296%{opacity:1}57.525%{opacity:0}}
+@keyframes kc{0%{opacity:0}57.525%{opacity:1}83.966%{opacity:0}}
+@keyframes kd{0%{opacity:0}83.966%{opacity:1}}
+@keyframes ke{0%{opacity:0}0.008%{opacity:1}21.102%{opacity:0}}
+@keyframes kf{0%{opacity:0}21.102%{opacity:1}21.224%{opacity:0}}
+@keyframes kg{0%{opacity:0}21.224%{opacity:1}57.525%{opacity:0}}
+@keyframes kh{0%{opacity:0}57.525%{opacity:1}83.966%{opacity:0}}
+@keyframes ki{0%{opacity:0}83.966%{opacity:1}}
+@keyframes kj{0%{opacity:0}0.008%{opacity:1}21.102%{opacity:0}}
+@keyframes kk{0%{opacity:0}21.102%{opacity:1}31.434%{opacity:0}51.296%{opacity:1}83.966%{opacity:0}}
+@keyframes kl{0%{opacity:0}31.434%{opacity:1}51.296%{opacity:0}}
+@keyframes km{0%{opacity:0}83.966%{opacity:1}}
+@keyframes kn{0%{opacity:0}0.008%{opacity:1}21.102%{opacity:0}}
+@keyframes ko{0%{opacity:0}21.102%{opacity:1}21.35%{opacity:0}}
+@keyframes kp{0%{opacity:0}21.35%{opacity:1}31.434%{opacity:0}57.525%{opacity:1}65.169%{opacity:0}74.417%{opacity:1}77.447%{opacity:0}}
+@keyframes kq{0%{opacity:0}31.434%{opacity:1}57.525%{opacity:0}}
+@keyframes kr{0%{opacity:0}65.169%{opacity:1}74.417%{opacity:0}}
+@keyframes ks{0%{opacity:0}77.447%{opacity:1}83.966%{opacity:0}}
+@keyframes kt{0%{opacity:0}83.966%{opacity:1}}
+@keyframes ku{0%{opacity:0}0.008%{opacity:1}21.102%{opacity:0}}
+@keyframes kv{0%{opacity:0}21.102%{opacity:1}21.35%{opacity:0}}
+@keyframes kw{0%{opacity:0}21.35%{opacity:1}31.434%{opacity:0}77.447%{opacity:1}}
+@keyframes kx{0%{opacity:0}31.434%{opacity:1}65.169%{opacity:0}}
+@keyframes ky{0%{opacity:0}65.169%{opacity:1}77.447%{opacity:0}}
+@keyframes kz{0%{opacity:0}0.008%{opacity:1}21.102%{opacity:0}}
+@keyframes k10{0%{opacity:0}21.102%{opacity:1}21.606%{opacity:0}}
+@keyframes k11{0%{opacity:0}21.606%{opacity:1}53.216%{opacity:0}}
+@keyframes k12{0%{opacity:0}53.216%{opacity:1}83.966%{opacity:0}}
+@keyframes k13{0%{opacity:0}83.966%{opacity:1}}
+@keyframes k14{0%{opacity:0}0.008%{opacity:1}21.102%{opacity:0}}
+@keyframes k15{0%{opacity:0}21.102%{opacity:1}21.35%{opacity:0}}
+@keyframes k16{0%{opacity:0}21.35%{opacity:1}21.606%{opacity:0}}
+@keyframes k17{0%{opacity:0}21.606%{opacity:1}}
+@keyframes k18{0%{opacity:0}0.008%{opacity:1}21.102%{opacity:0}}
+@keyframes k19{0%{opacity:0}21.102%{opacity:1}23.102%{opacity:0}}
+@keyframes k1a{0%{opacity:0}23.102%{opacity:1}26.946%{opacity:0}}
+@keyframes k1b{0%{opacity:0}26.946%{opacity:1}30.789%{opacity:0}}
+@keyframes k1c{0%{opacity:0}30.789%{opacity:1}34.632%{opacity:0}}
+@keyframes k1d{0%{opacity:0}34.632%{opacity:1}38.483%{opacity:0}}
+@keyframes k1e{0%{opacity:0}38.483%{opacity:1}42.33%{opacity:0}}
+@keyframes k1f{0%{opacity:0}42.33%{opacity:1}46.174%{opacity:0}}
+@keyframes k1g{0%{opacity:0}46.174%{opacity:1}49.761%{opacity:0}}
+@keyframes k1h{0%{opacity:0}49.761%{opacity:1}51.296%{opacity:0}}
+@keyframes k1i{0%{opacity:0}51.296%{opacity:1}65.169%{opacity:0}74.417%{opacity:1}83.966%{opacity:0}}
+@keyframes k1j{0%{opacity:0}65.169%{opacity:1}74.417%{opacity:0}}
+@keyframes k1k{0%{opacity:0}83.966%{opacity:1}}
+@keyframes k1l{0%{opacity:0}0.008%{opacity:1}21.606%{opacity:0}}
+@keyframes k1m{0%{opacity:0}21.606%{opacity:1}26.709%{opacity:0}}
+@keyframes k1n{0%{opacity:0}26.709%{opacity:1}28.27%{opacity:0}}
+@keyframes k1o{0%{opacity:0}28.27%{opacity:1}51.296%{opacity:0}}
+@keyframes k1p{0%{opacity:0}51.296%{opacity:1}55.696%{opacity:0}}
+@keyframes k1q{0%{opacity:0}55.696%{opacity:1}65.169%{opacity:0}74.417%{opacity:1}83.966%{opacity:0}}
+@keyframes k1r{0%{opacity:0}65.169%{opacity:1}74.417%{opacity:0}}
+@keyframes k1s{0%{opacity:0}83.966%{opacity:1}}
+@keyframes k1t{0%{opacity:0}0.008%{opacity:1}21.102%{opacity:0}}
+@keyframes k1u{0%{opacity:0}21.102%{opacity:1}31.434%{opacity:0}}
+@keyframes k1v{0%{opacity:0}31.434%{opacity:1}33.48%{opacity:0}}
+@keyframes k1w{0%{opacity:0}33.48%{opacity:1}51.296%{opacity:0}}
+@keyframes k1x{0%{opacity:0}51.296%{opacity:1}65.169%{opacity:0}74.417%{opacity:1}83.966%{opacity:0}}
+@keyframes k1y{0%{opacity:0}65.169%{opacity:1}74.417%{opacity:0}}
+@keyframes k1z{0%{opacity:0}83.966%{opacity:1}}
+@keyframes k20{0%{opacity:0}0.008%{opacity:1}21.102%{opacity:0}}
+@keyframes k21{0%{opacity:0}21.102%{opacity:1}35.315%{opacity:0}51.296%{opacity:1}65.169%{opacity:0}74.417%{opacity:1}}
+@keyframes k22{0%{opacity:0}35.315%{opacity:1}37.262%{opacity:0}}
+@keyframes k23{0%{opacity:0}37.262%{opacity:1}37.537%{opacity:0}}
+@keyframes k24{0%{opacity:0}37.537%{opacity:1}51.296%{opacity:0}}
+@keyframes k25{0%{opacity:0}65.169%{opacity:1}74.417%{opacity:0}}
+@keyframes k26{0%{opacity:0}0.008%{opacity:1}21.102%{opacity:0}}
+@keyframes k27{0%{opacity:0}21.102%{opacity:1}44.365%{opacity:0}}
+@keyframes k28{0%{opacity:0}44.365%{opacity:1}46.403%{opacity:0}}
+@keyframes k29{0%{opacity:0}46.403%{opacity:1}51.296%{opacity:0}}
+@keyframes k2a{0%{opacity:0}51.296%{opacity:1}65.169%{opacity:0}74.417%{opacity:1}83.966%{opacity:0}}
+@keyframes k2b{0%{opacity:0}65.169%{opacity:1}74.417%{opacity:0}}
+@keyframes k2c{0%{opacity:0}83.966%{opacity:1}}
+@keyframes k2d{0%{opacity:0}0.008%{opacity:1}21.102%{opacity:0}}
+@keyframes k2e{0%{opacity:0}21.102%{opacity:1}48.239%{opacity:0}}
+@keyframes k2f{0%{opacity:0}48.239%{opacity:1}50.139%{opacity:0}}
+@keyframes k2g{0%{opacity:0}50.139%{opacity:1}50.395%{opacity:0}}
+@keyframes k2h{0%{opacity:0}50.395%{opacity:1}51.296%{opacity:0}}
+@keyframes k2i{0%{opacity:0}51.296%{opacity:1}65.169%{opacity:0}74.417%{opacity:1}}
+@keyframes k2j{0%{opacity:0}65.169%{opacity:1}74.417%{opacity:0}}
+@keyframes k2k{0%{opacity:0}0.008%{opacity:1}50.529%{opacity:0}}
+@keyframes k2l{0%{opacity:0}50.529%{opacity:1}51.296%{opacity:0}}
+@keyframes k2m{0%{opacity:0}51.296%{opacity:1}65.169%{opacity:0}74.417%{opacity:1}83.966%{opacity:0}}
+@keyframes k2n{0%{opacity:0}65.169%{opacity:1}74.417%{opacity:0}}
+@keyframes k2o{0%{opacity:0}83.966%{opacity:1}}
+@keyframes k2p{0%{opacity:0}0.008%{opacity:1}50.529%{opacity:0}}
+@keyframes k2q{0%{opacity:0}50.529%{opacity:1}51.296%{opacity:0}}
+@keyframes k2r{0%{opacity:0}51.296%{opacity:1}65.169%{opacity:0}74.417%{opacity:1}83.966%{opacity:0}}
+@keyframes k2s{0%{opacity:0}65.169%{opacity:1}74.417%{opacity:0}}
+@keyframes k2t{0%{opacity:0}83.966%{opacity:1}}
+@keyframes k2u{0%{opacity:0}0.008%{opacity:1}51.296%{opacity:0}}
+@keyframes k2v{0%{opacity:0}51.296%{opacity:1}65.169%{opacity:0}74.417%{opacity:1}83.966%{opacity:0}}
+@keyframes k2w{0%{opacity:0}65.169%{opacity:1}74.417%{opacity:0}}
+@keyframes k2x{0%{opacity:0}83.966%{opacity:1}}
+@keyframes k2y{0%{opacity:0}0.008%{opacity:1}50.529%{opacity:0}}
+@keyframes k2z{0%{opacity:0}50.529%{opacity:1}50.914%{opacity:0}}
+@keyframes k30{0%{opacity:0}50.914%{opacity:1}51.296%{opacity:0}}
+@keyframes k31{0%{opacity:0}51.296%{opacity:1}65.169%{opacity:0}74.417%{opacity:1}83.966%{opacity:0}}
+@keyframes k32{0%{opacity:0}65.169%{opacity:1}74.417%{opacity:0}}
+@keyframes k33{0%{opacity:0}83.966%{opacity:1}}
+@keyframes k34{0%{opacity:0}0.008%{opacity:1}65.169%{opacity:0}74.417%{opacity:1}}
+@keyframes k35{0%{opacity:0}65.169%{opacity:1}74.417%{opacity:0}}
+@keyframes k36{0%{opacity:0}0.008%{opacity:1}14.202%{opacity:0}14.332%{opacity:1}51.296%{opacity:0}83.966%{opacity:1}}
+@keyframes k37{0%{opacity:0}14.202%{opacity:1}14.332%{opacity:0}}
+@keyframes k38{0%{opacity:0}51.296%{opacity:1}65.169%{opacity:0}74.417%{opacity:1}83.966%{opacity:0}}
+@keyframes k39{0%{opacity:0}65.169%{opacity:1}74.417%{opacity:0}}
+@keyframes k3a{0%{opacity:0}0.008%{opacity:1}11.992%{opacity:0}12.118%{opacity:1}14.202%{opacity:0}14.332%{opacity:1}51.296%{opacity:0}83.966%{opacity:1}}
+@keyframes k3b{0%{opacity:0}11.992%{opacity:1}12.118%{opacity:0}}
+@keyframes k3c{0%{opacity:0}14.202%{opacity:1}14.332%{opacity:0}}
+@keyframes k3d{0%{opacity:0}51.296%{opacity:1}83.966%{opacity:0}}
+@keyframes k3e{0%{opacity:0}0.008%{opacity:1}4.981%{opacity:0}8.496%{opacity:1}11.992%{opacity:0}12.118%{opacity:1}14.202%{opacity:0}14.332%{opacity:1}51.296%{opacity:0}83.966%{opacity:1}}
+@keyframes k3f{0%{opacity:0}4.981%{opacity:1}8.496%{opacity:0}}
+@keyframes k3g{0%{opacity:0}11.992%{opacity:1}12.118%{opacity:0}}
+@keyframes k3h{0%{opacity:0}14.202%{opacity:1}14.332%{opacity:0}}
+@keyframes k3i{0%{opacity:0}51.296%{opacity:1}83.966%{opacity:0}}
+@keyframes k3j{0%{opacity:0}0.008%{opacity:1}4.981%{opacity:0}8.496%{opacity:1}11.992%{opacity:0}12.118%{opacity:1}14.202%{opacity:0}14.332%{opacity:1}}
+@keyframes k3k{0%{opacity:0}4.981%{opacity:1}8.496%{opacity:0}}
+@keyframes k3l{0%{opacity:0}11.992%{opacity:1}12.118%{opacity:0}}
+@keyframes k3m{0%{opacity:0}14.202%{opacity:1}14.332%{opacity:0}}
+@keyframes k3n{0%{opacity:0}0.008%{opacity:1}4.981%{opacity:0}8.496%{opacity:1}11.992%{opacity:0}12.251%{opacity:1}14.202%{opacity:0}14.332%{opacity:1}51.296%{opacity:0}83.966%{opacity:1}}
+@keyframes k3o{0%{opacity:0}4.981%{opacity:1}8.496%{opacity:0}}
+@keyframes k3p{0%{opacity:0}11.992%{opacity:1}12.118%{opacity:0}}
+@keyframes k3q{0%{opacity:0}12.118%{opacity:1}12.251%{opacity:0}}
+@keyframes k3r{0%{opacity:0}14.202%{opacity:1}14.332%{opacity:0}}
+@keyframes k3s{0%{opacity:0}51.296%{opacity:1}53.216%{opacity:0}}
+@keyframes k3t{0%{opacity:0}53.216%{opacity:1}57.089%{opacity:0}}
+@keyframes k3u{0%{opacity:0}57.089%{opacity:1}57.525%{opacity:0}}
+@keyframes k3v{0%{opacity:0}57.525%{opacity:1}83.966%{opacity:0}}
+@keyframes k3w{0%{opacity:0}0.008%{opacity:1}4.981%{opacity:0}8.641%{opacity:1}11.992%{opacity:0}12.251%{opacity:1}14.202%{opacity:0}14.709%{opacity:1}55.547%{opacity:0}83.966%{opacity:1}}
+@keyframes k3x{0%{opacity:0}4.981%{opacity:1}8.496%{opacity:0}}
+@keyframes k3y{0%{opacity:0}8.496%{opacity:1}8.641%{opacity:0}}
+@keyframes k3z{0%{opacity:0}11.992%{opacity:1}12.118%{opacity:0}}
+@keyframes k40{0%{opacity:0}12.118%{opacity:1}12.251%{opacity:0}}
+@keyframes k41{0%{opacity:0}14.202%{opacity:1}14.332%{opacity:0}}
+@keyframes k42{0%{opacity:0}14.332%{opacity:1}14.709%{opacity:0}}
+@keyframes k43{0%{opacity:0}55.547%{opacity:1}56.284%{opacity:0}}
+@keyframes k44{0%{opacity:0}56.284%{opacity:1}57.525%{opacity:0}}
+@keyframes k45{0%{opacity:0}57.525%{opacity:1}83.966%{opacity:0}}
+@keyframes k46{0%{opacity:0}0.008%{opacity:1}4.981%{opacity:0}8.774%{opacity:1}11.992%{opacity:0}12.755%{opacity:1}14.202%{opacity:0}21.102%{opacity:1}56.284%{opacity:0}83.966%{opacity:1}}
+@keyframes k47{0%{opacity:0}4.981%{opacity:1}8.496%{opacity:0}}
+@keyframes k48{0%{opacity:0}8.496%{opacity:1}8.641%{opacity:0}}
+@keyframes k49{0%{opacity:0}8.641%{opacity:1}8.774%{opacity:0}}
+@keyframes k4a{0%{opacity:0}11.992%{opacity:1}12.251%{opacity:0}}
+@keyframes k4b{0%{opacity:0}12.251%{opacity:1}12.755%{opacity:0}}
+@keyframes k4c{0%{opacity:0}14.202%{opacity:1}21.102%{opacity:0}}
+@keyframes k4d{0%{opacity:0}56.284%{opacity:1}56.666%{opacity:0}}
+@keyframes k4e{0%{opacity:0}56.666%{opacity:1}57.525%{opacity:0}}
+@keyframes k4f{0%{opacity:0}57.525%{opacity:1}83.966%{opacity:0}}
+@keyframes k4g{0%{opacity:0}0.008%{opacity:1}4.981%{opacity:0}9.164%{opacity:1}11.992%{opacity:0}21.102%{opacity:1}56.666%{opacity:0}83.966%{opacity:1}}
+@keyframes k4h{0%{opacity:0}4.981%{opacity:1}8.774%{opacity:0}}
+@keyframes k4i{0%{opacity:0}8.774%{opacity:1}9.164%{opacity:0}}
+@keyframes k4j{0%{opacity:0}11.992%{opacity:1}14.202%{opacity:0}}
+@keyframes k4k{0%{opacity:0}14.202%{opacity:1}21.102%{opacity:0}}
+@keyframes k4l{0%{opacity:0}56.666%{opacity:1}57.089%{opacity:0}}
+@keyframes k4m{0%{opacity:0}57.089%{opacity:1}57.525%{opacity:0}}
+@keyframes k4n{0%{opacity:0}57.525%{opacity:1}83.966%{opacity:0}}
+@keyframes k4o{0%{opacity:0}0.008%{opacity:1}11.992%{opacity:0}21.102%{opacity:1}}
+@keyframes k4p{0%{opacity:0}11.992%{opacity:1}14.202%{opacity:0}}
+@keyframes k4q{0%{opacity:0}14.202%{opacity:1}21.102%{opacity:0}}
+@keyframes k4r{0%{opacity:0}0.008%{opacity:1}4.981%{opacity:0}}
+@keyframes k4s{0%{opacity:0}4.981%{opacity:1}8.496%{opacity:0}}
+@keyframes k4t{0%{opacity:0}8.496%{opacity:1}8.641%{opacity:0}}
+@keyframes k4u{0%{opacity:0}8.641%{opacity:1}8.774%{opacity:0}}
+@keyframes k4v{0%{opacity:0}8.774%{opacity:1}8.904%{opacity:0}}
+@keyframes k4w{0%{opacity:0}8.904%{opacity:1}9.034%{opacity:0}}
+@keyframes k4x{0%{opacity:0}9.034%{opacity:1}9.294%{opacity:0}}
+@keyframes k4y{0%{opacity:0}9.294%{opacity:1}9.423%{opacity:0}}
+@keyframes k4z{0%{opacity:0}9.423%{opacity:1}9.553%{opacity:0}}
+@keyframes k50{0%{opacity:0}9.553%{opacity:1}9.683%{opacity:0}}
+@keyframes k51{0%{opacity:0}9.683%{opacity:1}9.809%{opacity:0}}
+@keyframes k52{0%{opacity:0}9.809%{opacity:1}9.939%{opacity:0}}
+@keyframes k53{0%{opacity:0}9.939%{opacity:1}10.068%{opacity:0}}
+@keyframes k54{0%{opacity:0}10.068%{opacity:1}10.194%{opacity:0}}
+@keyframes k55{0%{opacity:0}10.194%{opacity:1}10.32%{opacity:0}}
+@keyframes k56{0%{opacity:0}10.32%{opacity:1}10.45%{opacity:0}}
+@keyframes k57{0%{opacity:0}10.45%{opacity:1}10.584%{opacity:0}}
+@keyframes k58{0%{opacity:0}10.584%{opacity:1}10.71%{opacity:0}}
+@keyframes k59{0%{opacity:0}10.71%{opacity:1}10.835%{opacity:0}}
+@keyframes k5a{0%{opacity:0}10.835%{opacity:1}10.965%{opacity:0}}
+@keyframes k5b{0%{opacity:0}10.965%{opacity:1}11.095%{opacity:0}}
+@keyframes k5c{0%{opacity:0}11.095%{opacity:1}11.221%{opacity:0}}
+@keyframes k5d{0%{opacity:0}11.221%{opacity:1}11.355%{opacity:0}}
+@keyframes k5e{0%{opacity:0}11.355%{opacity:1}11.484%{opacity:0}}
+@keyframes k5f{0%{opacity:0}11.484%{opacity:1}11.61%{opacity:0}}
+@keyframes k5g{0%{opacity:0}11.61%{opacity:1}11.732%{opacity:0}}
+@keyframes k5h{0%{opacity:0}11.732%{opacity:1}11.862%{opacity:0}}
+@keyframes k5i{0%{opacity:0}11.862%{opacity:1}11.992%{opacity:0}}
+@keyframes k5j{0%{opacity:0}11.992%{opacity:1}12.118%{opacity:0}14.202%{opacity:1}14.332%{opacity:0}}
+@keyframes k5k{0%{opacity:0}12.118%{opacity:1}12.251%{opacity:0}}
+@keyframes k5l{0%{opacity:0}12.251%{opacity:1}12.377%{opacity:0}}
+@keyframes k5m{0%{opacity:0}12.377%{opacity:1}12.507%{opacity:0}}
+@keyframes k5n{0%{opacity:0}12.507%{opacity:1}12.633%{opacity:0}}
+@keyframes k5o{0%{opacity:0}12.633%{opacity:1}12.908%{opacity:0}}
+@keyframes k5p{0%{opacity:0}12.908%{opacity:1}13.034%{opacity:0}}
+@keyframes k5q{0%{opacity:0}13.034%{opacity:1}13.164%{opacity:0}}
+@keyframes k5r{0%{opacity:0}13.164%{opacity:1}13.29%{opacity:0}}
+@keyframes k5s{0%{opacity:0}13.29%{opacity:1}13.419%{opacity:0}}
+@keyframes k5t{0%{opacity:0}13.419%{opacity:1}13.553%{opacity:0}}
+@keyframes k5u{0%{opacity:0}13.553%{opacity:1}13.679%{opacity:0}}
+@keyframes k5v{0%{opacity:0}13.679%{opacity:1}13.812%{opacity:0}}
+@keyframes k5w{0%{opacity:0}13.812%{opacity:1}13.942%{opacity:0}}
+@keyframes k5x{0%{opacity:0}13.942%{opacity:1}14.072%{opacity:0}}
+@keyframes k5y{0%{opacity:0}14.072%{opacity:1}14.202%{opacity:0}}
+@keyframes k5z{0%{opacity:0}14.332%{opacity:1}14.457%{opacity:0}}
+@keyframes k60{0%{opacity:0}14.457%{opacity:1}14.583%{opacity:0}}
+@keyframes k61{0%{opacity:0}14.583%{opacity:1}14.919%{opacity:0}}
+@keyframes k62{0%{opacity:0}14.919%{opacity:1}15.19%{opacity:0}}
+@keyframes k63{0%{opacity:0}15.19%{opacity:1}15.32%{opacity:0}}
+@keyframes k64{0%{opacity:0}15.32%{opacity:1}15.446%{opacity:0}}
+@keyframes k65{0%{opacity:0}15.446%{opacity:1}15.58%{opacity:0}}
+@keyframes k66{0%{opacity:0}15.58%{opacity:1}15.706%{opacity:0}}
+@keyframes k67{0%{opacity:0}15.706%{opacity:1}15.835%{opacity:0}}
+@keyframes k68{0%{opacity:0}15.835%{opacity:1}15.965%{opacity:0}}
+@keyframes k69{0%{opacity:0}15.965%{opacity:1}16.095%{opacity:0}}
+@keyframes k6a{0%{opacity:0}16.095%{opacity:1}16.221%{opacity:0}}
+@keyframes k6b{0%{opacity:0}16.221%{opacity:1}16.351%{opacity:0}}
+@keyframes k6c{0%{opacity:0}16.351%{opacity:1}16.476%{opacity:0}}
+@keyframes k6d{0%{opacity:0}16.476%{opacity:1}16.61%{opacity:0}}
+@keyframes k6e{0%{opacity:0}16.61%{opacity:1}16.736%{opacity:0}}
+@keyframes k6f{0%{opacity:0}16.736%{opacity:1}16.988%{opacity:0}}
+@keyframes k6g{0%{opacity:0}16.988%{opacity:1}17.114%{opacity:0}}
+@keyframes k6h{0%{opacity:0}17.114%{opacity:1}17.255%{opacity:0}}
+@keyframes k6i{0%{opacity:0}17.255%{opacity:1}17.381%{opacity:0}}
+@keyframes k6j{0%{opacity:0}17.381%{opacity:1}17.515%{opacity:0}}
+@keyframes k6k{0%{opacity:0}17.515%{opacity:1}17.644%{opacity:0}}
+@keyframes k6l{0%{opacity:0}17.644%{opacity:1}17.77%{opacity:0}}
+@keyframes k6m{0%{opacity:0}17.77%{opacity:1}21.102%{opacity:0}}
+@keyframes k6n{0%{opacity:0}21.102%{opacity:1}65.169%{opacity:0}74.417%{opacity:1}81.401%{opacity:0}}
+@keyframes k6o{0%{opacity:0}65.169%{opacity:1}74.417%{opacity:0}81.401%{opacity:1}83.966%{opacity:0}}
+@keyframes k6p{0%{opacity:0}83.966%{opacity:1}}
+@keyframes k6q{0%{opacity:0}0.008%{opacity:1}21.606%{opacity:0}44.628%{opacity:1}65.169%{opacity:0}74.417%{opacity:1}81.401%{opacity:0}}
+@keyframes k6r{0%{opacity:0}21.606%{opacity:1}44.628%{opacity:0}}
+@keyframes k6s{0%{opacity:0}65.169%{opacity:1}74.417%{opacity:0}}
+@keyframes k6t{0%{opacity:0}81.401%{opacity:1}}
+@keyframes cur{0.008%{transform:translate(16.8px,504px);opacity:1}4.981%{transform:translate(25.2px,504px);opacity:1}8.496%{transform:translate(33.6px,504px);opacity:1}8.641%{transform:translate(42px,504px);opacity:1}8.774%{transform:translate(50.4px,504px);opacity:1}8.904%{transform:translate(58.8px,504px);opacity:1}9.034%{transform:translate(67.2px,504px);opacity:1}9.164%{transform:translate(75.6px,504px);opacity:1}9.294%{transform:translate(92.4px,504px);opacity:1}9.423%{transform:translate(109.2px,504px);opacity:1}9.553%{transform:translate(126px,504px);opacity:1}9.683%{transform:translate(142.8px,504px);opacity:1}9.809%{transform:translate(159.6px,504px);opacity:1}9.939%{transform:translate(176.4px,504px);opacity:1}10.068%{transform:translate(193.2px,504px);opacity:1}10.194%{transform:translate(210px,504px);opacity:1}10.32%{transform:translate(226.8px,504px);opacity:1}10.45%{transform:translate(243.6px,504px);opacity:1}10.584%{transform:translate(277.2px,504px);opacity:1}10.71%{transform:translate(294px,504px);opacity:1}10.835%{transform:translate(310.8px,504px);opacity:1}10.965%{transform:translate(327.6px,504px);opacity:1}11.095%{transform:translate(344.4px,504px);opacity:1}11.221%{transform:translate(361.2px,504px);opacity:1}11.355%{transform:translate(378px,504px);opacity:1}11.484%{transform:translate(394.8px,504px);opacity:1}11.61%{transform:translate(411.6px,504px);opacity:1}11.732%{transform:translate(428.4px,504px);opacity:1}11.862%{transform:translate(445.2px,504px);opacity:1}11.992%{transform:translate(25.2px,504px);opacity:1}12.118%{transform:translate(33.6px,504px);opacity:1}12.251%{transform:translate(42px,504px);opacity:1}12.377%{transform:translate(50.4px,504px);opacity:1}12.507%{transform:translate(58.8px,504px);opacity:1}12.633%{transform:translate(75.6px,504px);opacity:1}12.755%{transform:translate(84px,504px);opacity:1}12.908%{transform:translate(100.8px,504px);opacity:1}13.034%{transform:translate(117.6px,504px);opacity:1}13.164%{transform:translate(134.4px,504px);opacity:1}13.29%{transform:translate(151.2px,504px);opacity:1}13.419%{transform:translate(168px,504px);opacity:1}13.553%{transform:translate(184.8px,504px);opacity:1}13.679%{transform:translate(201.6px,504px);opacity:1}13.812%{transform:translate(218.4px,504px);opacity:1}13.942%{transform:translate(235.2px,504px);opacity:1}14.072%{transform:translate(268.8px,504px);opacity:1}14.202%{transform:translate(25.2px,504px);opacity:1}14.332%{transform:translate(33.6px,504px);opacity:1}14.457%{transform:translate(42px,504px);opacity:1}14.583%{transform:translate(58.8px,504px);opacity:1}14.709%{transform:translate(67.2px,504px);opacity:1}14.919%{transform:translate(84px,504px);opacity:1}15.045%{transform:translate(92.4px,504px);opacity:1}15.19%{transform:translate(100.8px,504px);opacity:1}15.32%{transform:translate(109.2px,504px);opacity:1}15.446%{transform:translate(117.6px,504px);opacity:1}15.58%{transform:translate(126px,504px);opacity:1}15.706%{transform:translate(142.8px,504px);opacity:1}15.835%{transform:translate(151.2px,504px);opacity:1}15.965%{transform:translate(159.6px,504px);opacity:1}16.095%{transform:translate(168px,504px);opacity:1}16.221%{transform:translate(176.4px,504px);opacity:1}16.351%{transform:translate(184.8px,504px);opacity:1}16.476%{transform:translate(193.2px,504px);opacity:1}16.61%{transform:translate(201.6px,504px);opacity:1}16.736%{transform:translate(210px,504px);opacity:1}16.862%{transform:translate(218.4px,504px);opacity:1}16.988%{transform:translate(235.2px,504px);opacity:1}17.114%{transform:translate(252px,504px);opacity:1}17.255%{transform:translate(268.8px,504px);opacity:1}17.381%{transform:translate(285.6px,504px);opacity:1}17.515%{transform:translate(302.4px,504px);opacity:1}17.644%{transform:translate(319.2px,504px);opacity:1}17.77%{transform:translate(336px,504px);opacity:1}21.102%{transform:translate(16.8px,504px);opacity:1}65.169%{opacity:0}74.417%{transform:translate(16.8px,504px);opacity:1}81.401%{opacity:0}}
+@keyframes c0{0%{fill:#8b949e}0%{fill:#2f81f7}51.322%{fill:#8b949e}}
+@keyframes f0{0%{transform:scaleX(0)}0%{transform:scaleX(0)}51.322%{transform:scaleX(1)}51.326%{transform:scaleX(0)}}
+@keyframes c1{0%{fill:#8b949e}51.322%{fill:#2f81f7}65.242%{fill:#8b949e}}
+@keyframes f1{0%{transform:scaleX(0)}51.322%{transform:scaleX(0)}65.242%{transform:scaleX(1)}65.246%{transform:scaleX(0)}}
+@keyframes c2{0%{fill:#8b949e}65.242%{fill:#2f81f7}81.279%{fill:#8b949e}}
+@keyframes f2{0%{transform:scaleX(0)}65.242%{transform:scaleX(0)}81.279%{transform:scaleX(1)}81.283%{transform:scaleX(0)}}
+@keyframes c3{0%{fill:#8b949e}81.279%{fill:#2f81f7}}
+@keyframes f3{0%{transform:scaleX(0)}81.279%{transform:scaleX(0)}100%{transform:scaleX(1)}}
 </style>
 <defs><g id="spin"><text class="s" style="animation-delay:-1s">⠋</text><text class="s" style="animation-delay:-0.9s">⠙</text><text class="s" style="animation-delay:-0.8s">⠹</text><text class="s" style="animation-delay:-0.7s">⠸</text><text class="s" style="animation-delay:-0.6s">⠼</text><text class="s" style="animation-delay:-0.5s">⠴</text><text class="s" style="animation-delay:-0.4s">⠦</text><text class="s" style="animation-delay:-0.3s">⠧</text><text class="s" style="animation-delay:-0.2s">⠇</text><text class="s" style="animation-delay:-0.1s">⠏</text></g><filter id="shadow" x="-5%" y="-5%" width="110%" height="115%"><feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000" flood-opacity=".28"/></filter></defs>
 <g transform="translate(18 18)">
@@ -297,7 +296,7 @@ text{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Monaco,Consolas,"Li
 <g style="animation-name:kk"><text x="33.6" y="66.96" textLength="100.8" fill="#c9d1d9" fill-opacity="0.58">troupe/codex</text><path d="M256.2 54V72" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="268.8" y="66.96" textLength="436.8" fill="#c9d1d9" fill-opacity="0.58">· Working on branch troupe/codex in its own worktree</text></g>
 <g style="animation-name:kl"><text x="33.6" y="66.96" textLength="176.4" fill="#c9d1d9" fill-opacity="0.58">✎ test/parser.test.js</text><path d="M256.2 54V72" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="268.8" y="66.96" textLength="436.8" fill="#c9d1d9" fill-opacity="0.58">· Working on branch troupe/codex in its own worktree</text></g>
 <g style="animation-name:km"><text x="33.6" y="66.96" textLength="100.8" fill="#c9d1d9" fill-opacity="0.58">troupe/codex</text><path d="M256.2 54V72" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="268.8" y="66.96" textLength="445.2" fill="#c9d1d9" fill-opacity="0.58">· Working on branch troupe/claude in its own worktree</text></g>
-<g style="animation-name:kn"><text x="8.4" y="84.96" textLength="100.8" fill="#c9d1d9" font-weight="700" fill-opacity="0.58">项目看板 (0)</text><path d="M256.2 72V90" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="277.2" y="84.96" textLength="495.6" fill="#c9d1d9">还没有代理。输入 @codex、@claude、@opencode… 再写任务即可。</text></g>
+<g style="animation-name:kn"><text x="8.4" y="84.96" textLength="100.8" fill="#c9d1d9" font-weight="700" fill-opacity="0.58">项目看板 (0)</text><path d="M256.2 72V90" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="277.2" y="84.96" textLength="470.4" fill="#c9d1d9">还没有代理。输入 @bizos、@codex、@claude… 再写任务即可。</text></g>
 <g style="animation-name:ko"><path d="M256.2 72V90" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
 <g style="animation-name:kp"><use href="#spin" x="8.4" y="84.96" fill="#39c5cf"/><text x="25.2" y="84.96" textLength="58.8" fill="#d2a8ff" font-weight="700">@claude</text><text x="193.2" y="84.96" textLength="50.4" fill="#39c5cf">工作中</text><path d="M256.2 72V90" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
 <g style="animation-name:kq"><use href="#spin" x="8.4" y="84.96" fill="#39c5cf"/><text x="25.2" y="84.96" textLength="58.8" fill="#d2a8ff" font-weight="700">@claude</text><text x="109.2" y="84.96" textLength="134.4" fill="#bc8cff">等待 @codex 回答</text><path d="M256.2 72V90" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
@@ -311,216 +310,215 @@ text{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Monaco,Consolas,"Li
 <g style="animation-name:ky"><text x="33.6" y="102.96" textLength="134.4" fill="#c9d1d9" fill-opacity="0.58">$ Bash: npm test</text><path d="M256.2 90V108" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="268.8" y="102.96" textLength="16.8" fill="#58a6ff" font-weight="700">你</text><text x="294" y="102.96" fill="#c9d1d9" fill-opacity="0.58">›</text></g>
 <g style="animation-name:kz"><path d="M256.2 108V126" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="294" y="120.96" textLength="58.8" fill="#d2a8ff" font-weight="700">@claude</text><text x="394.8" y="120.96" textLength="92.4" fill="#c9d1d9" fill-opacity="0.58">Claude Code</text><text x="504" y="120.96" textLength="50.4" fill="#d29922">未实测</text></g>
 <g style="animation-name:k10"><path d="M256.2 108V126" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="120.96" textLength="369.6" fill="#c9d1d9">修复解析器：文件末尾没有换行时会丢掉最后一行</text></g>
-<g style="animation-name:k11"><use href="#spin" x="8.4" y="120.96" fill="#39c5cf"/><text x="25.2" y="120.96" textLength="42" fill="#d29922" font-weight="700">@kimi</text><text x="193.2" y="120.96" textLength="50.4" fill="#39c5cf">启动中</text><path d="M256.2 108V126" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="120.96" textLength="369.6" fill="#c9d1d9">修复解析器：文件末尾没有换行时会丢掉最后一行</text></g>
-<g style="animation-name:k12"><use href="#spin" x="8.4" y="120.96" fill="#39c5cf"/><text x="25.2" y="120.96" textLength="42" fill="#d29922" font-weight="700">@kimi</text><text x="193.2" y="120.96" textLength="50.4" fill="#39c5cf">工作中</text><path d="M256.2 108V126" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="120.96" textLength="369.6" fill="#c9d1d9">修复解析器：文件末尾没有换行时会丢掉最后一行</text></g>
-<g style="animation-name:k13"><text x="8.4" y="120.96" fill="#3fb950">○</text><text x="25.2" y="120.96" textLength="42" fill="#d29922" font-weight="700">@kimi</text><text x="210" y="120.96" textLength="33.6" fill="#3fb950">空闲</text><path d="M256.2 108V126" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="120.96" textLength="369.6" fill="#c9d1d9">修复解析器：文件末尾没有换行时会丢掉最后一行</text></g>
-<g style="animation-name:k14"><text x="8.4" y="120.96" fill="#3fb950">○</text><text x="25.2" y="120.96" textLength="42" fill="#d29922" font-weight="700">@kimi</text><text x="210" y="120.96" textLength="33.6" fill="#3fb950">空闲</text><path d="M256.2 108V126" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="120.96" textLength="184.8" fill="#c9d1d9">给解析错误补充边界测试</text></g>
-<g style="animation-name:k15"><path d="M256.2 126V144" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="294" y="138.96" textLength="50.4" fill="#3fb950" font-weight="700">@codex</text><text x="394.8" y="138.96" textLength="42" fill="#c9d1d9" fill-opacity="0.58">Codex</text></g>
-<g style="animation-name:k16"><path d="M256.2 126V144" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
-<g style="animation-name:k17"><text x="8.4" y="138.96" textLength="100.8" fill="#c9d1d9" font-weight="700" fill-opacity="0.58">项目看板 (0)</text><path d="M256.2 126V144" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
-<g style="animation-name:k18"><text x="33.6" y="138.96" textLength="92.4" fill="#c9d1d9" fill-opacity="0.58">troupe/kimi</text><path d="M256.2 126V144" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
-<g style="animation-name:k19"><path d="M256.2 144V162" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="294" y="156.96" textLength="42" fill="#d29922" font-weight="700">@kimi</text><text x="394.8" y="156.96" textLength="75.6" fill="#c9d1d9" fill-opacity="0.58">Kimi Code</text></g>
-<g style="animation-name:k1a"><path d="M256.2 144V162" stroke="#c9d1d9" stroke-opacity="0.45"/><use href="#spin" x="268.8" y="156.96" fill="#39c5cf"/><text x="285.6" y="156.96" textLength="50.4" fill="#3fb950" font-weight="700">@codex</text><text x="344.4" y="156.96" textLength="75.6" fill="#c9d1d9" fill-opacity="0.58">已工作 0s</text></g>
-<g style="animation-name:k1b"><path d="M256.2 144V162" stroke="#c9d1d9" stroke-opacity="0.45"/><use href="#spin" x="268.8" y="156.96" fill="#39c5cf"/><text x="285.6" y="156.96" textLength="50.4" fill="#3fb950" font-weight="700">@codex</text><text x="344.4" y="156.96" textLength="75.6" fill="#c9d1d9" fill-opacity="0.58">已工作 1s</text></g>
-<g style="animation-name:k1c"><path d="M256.2 144V162" stroke="#c9d1d9" stroke-opacity="0.45"/><use href="#spin" x="268.8" y="156.96" fill="#39c5cf"/><text x="285.6" y="156.96" textLength="50.4" fill="#3fb950" font-weight="700">@codex</text><text x="344.4" y="156.96" textLength="75.6" fill="#c9d1d9" fill-opacity="0.58">已工作 2s</text></g>
-<g style="animation-name:k1d"><path d="M256.2 144V162" stroke="#c9d1d9" stroke-opacity="0.45"/><use href="#spin" x="268.8" y="156.96" fill="#39c5cf"/><text x="285.6" y="156.96" textLength="50.4" fill="#3fb950" font-weight="700">@codex</text><text x="344.4" y="156.96" textLength="75.6" fill="#c9d1d9" fill-opacity="0.58">已工作 3s</text></g>
-<g style="animation-name:k1e"><path d="M256.2 144V162" stroke="#c9d1d9" stroke-opacity="0.45"/><use href="#spin" x="268.8" y="156.96" fill="#39c5cf"/><text x="285.6" y="156.96" textLength="50.4" fill="#3fb950" font-weight="700">@codex</text><text x="344.4" y="156.96" textLength="75.6" fill="#c9d1d9" fill-opacity="0.58">已工作 4s</text></g>
-<g style="animation-name:k1f"><path d="M256.2 144V162" stroke="#c9d1d9" stroke-opacity="0.45"/><use href="#spin" x="268.8" y="156.96" fill="#39c5cf"/><text x="285.6" y="156.96" textLength="50.4" fill="#3fb950" font-weight="700">@codex</text><text x="344.4" y="156.96" textLength="75.6" fill="#c9d1d9" fill-opacity="0.58">已工作 5s</text></g>
-<g style="animation-name:k1g"><path d="M256.2 144V162" stroke="#c9d1d9" stroke-opacity="0.45"/><use href="#spin" x="268.8" y="156.96" fill="#39c5cf"/><text x="285.6" y="156.96" textLength="50.4" fill="#3fb950" font-weight="700">@codex</text><text x="344.4" y="156.96" textLength="75.6" fill="#c9d1d9" fill-opacity="0.58">已工作 6s</text></g>
-<g style="animation-name:k1h"><path d="M256.2 144V162" stroke="#c9d1d9" stroke-opacity="0.45"/><use href="#spin" x="268.8" y="156.96" fill="#39c5cf"/><text x="285.6" y="156.96" textLength="50.4" fill="#3fb950" font-weight="700">@codex</text><text x="344.4" y="156.96" textLength="75.6" fill="#c9d1d9" fill-opacity="0.58">已工作 7s</text></g>
-<g style="animation-name:k1i"><path d="M256.2 144V162" stroke="#c9d1d9" stroke-opacity="0.45"/><use href="#spin" x="268.8" y="156.96" fill="#39c5cf"/><text x="285.6" y="156.96" textLength="50.4" fill="#3fb950" font-weight="700">@codex</text><text x="344.4" y="156.96" textLength="75.6" fill="#c9d1d9" fill-opacity="0.58">已工作 8s</text></g>
-<g style="animation-name:k1j"><path d="M256.2 144V162" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="268.8" y="156.96" textLength="50.4" fill="#3fb950" font-weight="700">@codex</text><text x="327.6" y="156.96" fill="#c9d1d9" fill-opacity="0.58">›</text><text x="352.8" y="156.96" textLength="16.8" fill="#c9d1d9" fill-opacity="0.58">8s</text></g>
-<g style="animation-name:k1k"><path d="M147 153H151.2M147 153V162M151.2 153H159.6" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="168" y="156.96" textLength="84" fill="#c9d1d9" font-weight="700">需要你批准</text><path d="M260.4 153H268.8M268.8 153H277.2M277.2 153H285.6M285.6 153H294M294 153H302.4M302.4 153H310.8M310.8 153H319.2M319.2 153H327.6M327.6 153H336M336 153H344.4M344.4 153H352.8M352.8 153H361.2M361.2 153H369.6M369.6 153H378M378 153H386.4M386.4 153H394.8M394.8 153H403.2M403.2 153H411.6M411.6 153H420M420 153H428.4M428.4 153H436.8M436.8 153H445.2M445.2 153H453.6M453.6 153H462M462 153H470.4M470.4 153H478.8M478.8 153H487.2M487.2 153H495.6M495.6 153H504M504 153H512.4M512.4 153H520.8M520.8 153H529.2M529.2 153H537.6M537.6 153H546M546 153H554.4M554.4 153H562.8M562.8 153H571.2M571.2 153H579.6M579.6 153H588M588 153H596.4M596.4 153H604.8M604.8 153H613.2M613.2 153H621.6M621.6 153H630M630 153H638.4" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="646.8" y="156.96" textLength="134.4" fill="#c9d1d9" fill-opacity="0.58">第 1 项，共 1 项</text><path d="M789.6 153H793.8M793.8 153V162" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
-<g style="animation-name:k1l"><path d="M256.2 144V162" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="268.8" y="156.96" textLength="58.8" fill="#d2a8ff" font-weight="700">@claude</text><text x="336" y="156.96" fill="#c9d1d9" fill-opacity="0.58">›</text><text x="361.2" y="156.96" textLength="25.2" fill="#c9d1d9" fill-opacity="0.58">15s</text></g>
-<g style="animation-name:k1m"><path d="M256.2 162V180" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
-<g style="animation-name:k1n"><text x="8.4" y="174.96" textLength="100.8" fill="#c9d1d9" font-weight="700" fill-opacity="0.58">项目看板 (0)</text><path d="M256.2 162V180" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
-<g style="animation-name:k1o"><text x="8.4" y="174.96" textLength="100.8" fill="#c9d1d9" font-weight="700" fill-opacity="0.58">项目看板 (0)</text><path d="M256.2 162V180" stroke="#c9d1d9" stroke-opacity="0.45"/><use href="#spin" x="285.6" y="174.96" fill="#39c5cf"/><text x="302.4" y="174.96" fill="#c9d1d9" fill-opacity="0.58">$</text><text x="319.2" y="174.96" textLength="378" fill="#c9d1d9" fill-opacity="0.58">grep -n &quot;export function parse&quot; src/parser.js</text></g>
-<g style="animation-name:k1p"><text x="8.4" y="174.96" textLength="100.8" fill="#c9d1d9" font-weight="700" fill-opacity="0.58">项目看板 (0)</text><path d="M256.2 162V180" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="174.96" fill="#3fb950">✓</text><text x="302.4" y="174.96" fill="#c9d1d9" fill-opacity="0.58">$</text><text x="319.2" y="174.96" textLength="378" fill="#c9d1d9" fill-opacity="0.58">grep -n &quot;export function parse&quot; src/parser.js</text><text x="714" y="174.96" textLength="218.4" fill="#6e7681">20:export function parse(t</text><text x="932.4" y="174.96" fill="#c9d1d9" fill-opacity="0.58">…</text></g>
-<g style="animation-name:k1q"><text x="8.4" y="174.96" textLength="100.8" fill="#c9d1d9" font-weight="700" fill-opacity="0.58">项目看板 (0)</text><path d="M256.2 162V180" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="174.96" textLength="655.2" fill="#c9d1d9">已修复。`parse()` 只处理到最后一个换行符，所以文件末尾没有换行时最后一条订单会</text></g>
-<g style="animation-name:k1r"><text x="8.4" y="174.96" textLength="100.8" fill="#c9d1d9" font-weight="700" fill-opacity="0.58">项目看板 (1)</text><path d="M256.2 162V180" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="174.96" textLength="655.2" fill="#c9d1d9">已修复。`parse()` 只处理到最后一个换行符，所以文件末尾没有换行时最后一条订单会</text></g>
-<g style="animation-name:k1s"><text x="8.4" y="174.96" textLength="100.8" fill="#e3b341" font-weight="700" fill-opacity="0.58">等你处理 (1)</text><path d="M147 162V180" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="159.6" y="174.96" textLength="58.8" fill="#d2a8ff" font-weight="700">@claude</text><text x="226.8" y="174.96" textLength="84" fill="#d29922">· 运行命令</text><path d="M793.8 162V180" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="806.4" y="174.96" textLength="134.4" fill="#c9d1d9" fill-opacity="0.58">时最后一条订单会</text></g>
-<g style="animation-name:k1t"><text x="8.4" y="174.96" textLength="100.8" fill="#c9d1d9" font-weight="700" fill-opacity="0.58">项目看板 (1)</text><path d="M256.2 162V180" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="174.96" textLength="638.4" fill="#c9d1d9">在 test/errors.test.js 里补了 4 个边界测试：数量不合法、价格为负、缺少字段、</text></g>
-<g style="animation-name:k1u"><path d="M256.2 180V198" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="294" y="192.96" textLength="218.4" fill="#6e7681">@codex @claude review src/</text></g>
-<g style="animation-name:k1v"><path d="M256.2 180V198" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
-<g style="animation-name:k1w"><path d="M256.2 180V198" stroke="#c9d1d9" stroke-opacity="0.45"/><use href="#spin" x="285.6" y="192.96" fill="#39c5cf"/><text x="302.4" y="192.96" fill="#c9d1d9" fill-opacity="0.58">✎</text><text x="319.2" y="192.96" textLength="159.6" fill="#c9d1d9" fill-opacity="0.58">test/parser.test.js</text></g>
-<g style="animation-name:k1x"><path d="M256.2 180V198" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="192.96" fill="#3fb950">✓</text><text x="302.4" y="192.96" fill="#c9d1d9" fill-opacity="0.58">✎</text><text x="319.2" y="192.96" textLength="159.6" fill="#c9d1d9" fill-opacity="0.58">test/parser.test.js</text></g>
-<g style="animation-name:k1y"><path d="M256.2 180V198" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="192.96" textLength="403.2" fill="#c9d1d9">丢失。现在换行符之后的文本也会解析，行号也正确。</text></g>
-<g style="animation-name:k1z"><text x="16.8" y="192.96" textLength="67.2" fill="#d29922" fill-opacity="0.58">@claude:</text><text x="92.4" y="192.96" textLength="50.4" fill="#c9d1d9" fill-opacity="0.58">npm te</text><path d="M147 180V198M793.8 180V198" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
-<g style="animation-name:k20"><path d="M256.2 180V198" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="192.96" textLength="638.4" fill="#c9d1d9">Windows 换行。每个都检查 `line` 和 `column`，@codex 确认这两个字段保持不变。</text></g>
-<g style="animation-name:k21"><path d="M256.2 198V216" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="294" y="210.96" textLength="226.8" fill="#6e7681">@codex fix the failing test</text></g>
-<g style="animation-name:k22"><path d="M256.2 198V216" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
-<g style="animation-name:k23"><path d="M256.2 198V216" stroke="#c9d1d9" stroke-opacity="0.45"/><use href="#spin" x="285.6" y="210.96" fill="#39c5cf"/><text x="302.4" y="210.96" fill="#c9d1d9" fill-opacity="0.58">$</text><text x="319.2" y="210.96" textLength="67.2" fill="#c9d1d9" fill-opacity="0.58">npm test</text></g>
-<g style="animation-name:k24"><path d="M256.2 198V216" stroke="#c9d1d9" stroke-opacity="0.45"/><use href="#spin" x="285.6" y="210.96" fill="#39c5cf"/><text x="302.4" y="210.96" fill="#c9d1d9" fill-opacity="0.58">$</text><text x="319.2" y="210.96" textLength="67.2" fill="#c9d1d9" fill-opacity="0.58">npm test</text><text x="403.2" y="210.96" textLength="411.6" fill="#6e7681">&gt; node --test --test-reporter=./scripts/report.js</text></g>
-<g style="animation-name:k25"><path d="M256.2 198V216" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="210.96" fill="#ff7b72">✗</text><text x="302.4" y="210.96" fill="#c9d1d9" fill-opacity="0.58">$</text><text x="319.2" y="210.96" textLength="67.2" fill="#c9d1d9" fill-opacity="0.58">npm test</text><text x="403.2" y="210.96" textLength="151.2" fill="#6e7681">3 passed, 1 failed</text></g>
-<g style="animation-name:k26"><path d="M147 198V216" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="159.6" y="210.96" textLength="67.2" fill="#c9d1d9" font-weight="700">npm test</text><path d="M793.8 198V216" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
-<g style="animation-name:k27"><path d="M256.2 216V234" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="294" y="228.96" textLength="210" fill="#6e7681">@kimi add edge-case tests</text></g>
-<g style="animation-name:k28"><path d="M256.2 216V234" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
-<g style="animation-name:k29"><path d="M256.2 216V234" stroke="#c9d1d9" stroke-opacity="0.45"/><use href="#spin" x="285.6" y="228.96" fill="#39c5cf"/><text x="302.4" y="228.96" fill="#c9d1d9" fill-opacity="0.58">✎</text><text x="319.2" y="228.96" textLength="109.2" fill="#c9d1d9" fill-opacity="0.58">src/parser.js</text></g>
-<g style="animation-name:k2a"><path d="M256.2 216V234" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="228.96" fill="#3fb950">✓</text><text x="302.4" y="228.96" fill="#c9d1d9" fill-opacity="0.58">✎</text><text x="319.2" y="228.96" textLength="109.2" fill="#c9d1d9" fill-opacity="0.58">src/parser.js</text></g>
-<g style="animation-name:k2b"><path d="M256.2 216V234" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="228.96" textLength="336" fill="#c9d1d9">补了一个回归测试；`npm test`：4 passed。</text></g>
-<g style="animation-name:k2c"><text x="8.4" y="228.96" textLength="100.8" fill="#c9d1d9" font-weight="700" fill-opacity="0.58">项目看板 (1)</text><path d="M147 216V234M793.8 216V234" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
-<g style="animation-name:k2d"><path d="M256.2 216V234" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="228.96" textLength="184.8" fill="#c9d1d9">`npm test`：7 passed。</text></g>
-<g style="animation-name:k2e"><path d="M256.2 234V252" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="294" y="246.96" textLength="394.8" fill="#6e7681">@all @compare:claude which approach is simpler?</text></g>
-<g style="animation-name:k2f"><path d="M256.2 234V252" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
-<g style="animation-name:k2g"><path d="M256.2 234V252" stroke="#c9d1d9" stroke-opacity="0.45"/><use href="#spin" x="285.6" y="246.96" fill="#39c5cf"/><text x="302.4" y="246.96" fill="#c9d1d9" fill-opacity="0.58">$</text><text x="319.2" y="246.96" textLength="67.2" fill="#c9d1d9" fill-opacity="0.58">npm test</text></g>
-<g style="animation-name:k2h"><path d="M256.2 234V252" stroke="#c9d1d9" stroke-opacity="0.45"/><use href="#spin" x="285.6" y="246.96" fill="#39c5cf"/><text x="302.4" y="246.96" fill="#c9d1d9" fill-opacity="0.58">$</text><text x="319.2" y="246.96" textLength="67.2" fill="#c9d1d9" fill-opacity="0.58">npm test</text><text x="403.2" y="246.96" textLength="411.6" fill="#6e7681">&gt; node --test --test-reporter=./scripts/report.js</text></g>
-<g style="animation-name:k2i"><path d="M256.2 234V252" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="246.96" fill="#3fb950">✓</text><text x="302.4" y="246.96" fill="#c9d1d9" fill-opacity="0.58">$</text><text x="319.2" y="246.96" textLength="67.2" fill="#c9d1d9" fill-opacity="0.58">npm test</text><text x="403.2" y="246.96" textLength="67.2" fill="#6e7681">4 passed</text></g>
-<g style="animation-name:k2j"><path d="M256.2 234V252" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="246.96" textLength="33.6" fill="#c9d1d9" fill-opacity="0.58">… +1</text></g>
-<g style="animation-name:k2k"><path d="M147 234V252" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="159.6" y="246.96" textLength="25.2" fill="#3fb950" font-weight="700">[1]</text><text x="193.2" y="246.96" textLength="67.2" fill="#c9d1d9">允许一次</text><path d="M793.8 234V252" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
-<g style="animation-name:k2l"><path d="M256.2 252V270" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
-<g style="animation-name:k2m"><path d="M256.2 252V270" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="264.96" textLength="655.2" fill="#c9d1d9">已修复。`parse()` 只处理到最后一个换行符，所以文件末尾没有换行时最后一条订单会</text></g>
-<g style="animation-name:k2n"><path d="M256.2 252V270" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="264.96" fill="#3fb950">✓</text><text x="302.4" y="264.96" fill="#c9d1d9" fill-opacity="0.58">✎</text><text x="319.2" y="264.96" textLength="159.6" fill="#c9d1d9" fill-opacity="0.58">test/parser.test.js</text></g>
-<g style="animation-name:k2o"><path d="M147 252V270" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="159.6" y="264.96" textLength="25.2" fill="#3fb950" font-weight="700">[2]</text><text x="193.2" y="264.96" textLength="210" fill="#c9d1d9">以后都允许 @claude 这样做</text><path d="M793.8 252V270" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
-<g style="animation-name:k2p"><path d="M256.2 252V270" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="264.96" fill="#3fb950">✓</text><text x="302.4" y="264.96" fill="#c9d1d9" fill-opacity="0.58">◇</text><text x="319.2" y="264.96" textLength="613.2" fill="#c9d1d9" fill-opacity="0.58">Read: /private/tmp/troupe-demo/.troupe/worktrees/shop-api-3cb3ac2f7015/cl</text><text x="932.4" y="264.96" fill="#c9d1d9" fill-opacity="0.58">…</text></g>
-<g style="animation-name:k2q"><path d="M256.2 270V288" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
-<g style="animation-name:k2r"><path d="M256.2 270V288" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="282.96" textLength="403.2" fill="#c9d1d9">丢失。现在换行符之后的文本也会解析，行号也正确。</text></g>
-<g style="animation-name:k2s"><path d="M256.2 270V288" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="282.96" fill="#ff7b72">✗</text><text x="302.4" y="282.96" fill="#c9d1d9" fill-opacity="0.58">$</text><text x="319.2" y="282.96" textLength="67.2" fill="#c9d1d9" fill-opacity="0.58">npm test</text><text x="403.2" y="282.96" textLength="151.2" fill="#6e7681">3 passed, 1 failed</text></g>
-<g style="animation-name:k2t"><path d="M147 270V288" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="159.6" y="282.96" textLength="25.2" fill="#ff7b72" font-weight="700">[3]</text><text x="193.2" y="282.96" textLength="33.6" fill="#c9d1d9">拒绝</text><path d="M793.8 270V288" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
-<g style="animation-name:k2u"><path d="M256.2 270V288" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="282.96" fill="#3fb950">✓</text><text x="302.4" y="282.96" fill="#c9d1d9" fill-opacity="0.58">⚙</text><text x="319.2" y="282.96" textLength="243.6" fill="#c9d1d9" fill-opacity="0.58">mcp__troupe__troupe_ask_agent</text></g>
-<g style="animation-name:k2v"><path d="M256.2 288V306" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
-<g style="animation-name:k2w"><path d="M256.2 288V306" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="300.96" fill="#3fb950">✓</text><text x="302.4" y="300.96" fill="#c9d1d9" fill-opacity="0.58">✎</text><text x="319.2" y="300.96" textLength="109.2" fill="#c9d1d9" fill-opacity="0.58">src/parser.js</text></g>
-<g style="animation-name:k2x"><path d="M147 288V306" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="159.6" y="300.96" textLength="42" fill="#c9d1d9" fill-opacity="0.58">[Esc]</text><text x="210" y="300.96" textLength="67.2" fill="#c9d1d9" fill-opacity="0.58">稍后处理</text><path d="M793.8 288V306" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
-<g style="animation-name:k2y"><path d="M256.2 288V306" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="300.96" fill="#3fb950">✓</text><text x="302.4" y="300.96" fill="#c9d1d9" fill-opacity="0.58">✎</text><text x="319.2" y="300.96" textLength="613.2" fill="#c9d1d9" fill-opacity="0.58">Write: /private/tmp/troupe-demo/.troupe/worktrees/shop-api-3cb3ac2f7015/c</text><text x="932.4" y="300.96" fill="#c9d1d9" fill-opacity="0.58">…</text></g>
-<g style="animation-name:k2z"><path d="M256.2 306V324" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
-<g style="animation-name:k30"><path d="M256.2 306V324" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="318.96" textLength="260.4" fill="#c9d1d9">补了一个回归测试；`npm test`：4</text></g>
-<g style="animation-name:k31"><path d="M256.2 306V324" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="318.96" textLength="336" fill="#c9d1d9">补了一个回归测试；`npm test`：4 passed。</text></g>
-<g style="animation-name:k32"><path d="M256.2 306V324" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="318.96" fill="#3fb950">✓</text><text x="302.4" y="318.96" fill="#c9d1d9" fill-opacity="0.58">$</text><text x="319.2" y="318.96" textLength="67.2" fill="#c9d1d9" fill-opacity="0.58">npm test</text><text x="403.2" y="318.96" textLength="67.2" fill="#6e7681">4 passed</text></g>
-<g style="animation-name:k33"><path d="M147 306V324M147 315H151.2M151.2 315H159.6M159.6 315H168M168 315H176.4M176.4 315H184.8M184.8 315H193.2M193.2 315H201.6M201.6 315H210M210 315H218.4M218.4 315H226.8M226.8 315H235.2M235.2 315H243.6M243.6 315H252M252 315H260.4M260.4 315H268.8M268.8 315H277.2M277.2 315H285.6M285.6 315H294M294 315H302.4M302.4 315H310.8M310.8 315H319.2M319.2 315H327.6M327.6 315H336M336 315H344.4M344.4 315H352.8M352.8 315H361.2M361.2 315H369.6M369.6 315H378M378 315H386.4M386.4 315H394.8M394.8 315H403.2M403.2 315H411.6M411.6 315H420M420 315H428.4M428.4 315H436.8M436.8 315H445.2M445.2 315H453.6M453.6 315H462M462 315H470.4M470.4 315H478.8M478.8 315H487.2M487.2 315H495.6M495.6 315H504M504 315H512.4M512.4 315H520.8M520.8 315H529.2M529.2 315H537.6M537.6 315H546M546 315H554.4M554.4 315H562.8M562.8 315H571.2M571.2 315H579.6M579.6 315H588M588 315H596.4M596.4 315H604.8M604.8 315H613.2M613.2 315H621.6M621.6 315H630M630 315H638.4M638.4 315H646.8M646.8 315H655.2M655.2 315H663.6M663.6 315H672M672 315H680.4M680.4 315H688.8M688.8 315H697.2M697.2 315H705.6M705.6 315H714M714 315H722.4M722.4 315H730.8M730.8 315H739.2M739.2 315H747.6M747.6 315H756M756 315H764.4M764.4 315H772.8M772.8 315H781.2M781.2 315H789.6M793.8 306V324M789.6 315H793.8" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
-<g style="animation-name:k34"><path d="M256.2 306V324" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="318.96" fill="#3fb950">✓</text><text x="302.4" y="318.96" fill="#c9d1d9" fill-opacity="0.58">$</text><text x="319.2" y="318.96" textLength="117.6" fill="#c9d1d9" fill-opacity="0.58">Bash: npm test</text></g>
-<g style="animation-name:k35"><path d="M256.2 324V342" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
-<g style="animation-name:k36"><path d="M147 324V342" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="159.6" y="336.96" textLength="176.4" fill="#c9d1d9" fill-opacity="0.58">1 · 2 · 3 · ← → · Esc</text><path d="M793.8 324V342" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
-<g style="animation-name:k37"><path d="M256.2 342V360" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
-<g style="animation-name:k38"><rect x="16.8" y="342" width="134.4" height="18" fill="#d2a8ff"/><text x="25.2" y="354.96" textLength="58.8" fill="#0d1117" font-weight="700">@claude</text><rect x="151.2" y="342" width="184.8" height="18" fill="#c9d1d9" fill-opacity="0.58"/><text x="151.2" y="354.96" textLength="184.8" fill="#0d1117">Claude Code · untested</text><rect x="336" y="342" width="151.2" height="18" fill="#c9d1d9"/></g>
-<g style="animation-name:k39"><path d="M256.2 342V360" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="268.8" y="354.96" textLength="100.8" fill="#bc8cff" font-weight="700">@claude 提问</text><text x="378" y="354.96" fill="#c9d1d9" fill-opacity="0.58">›</text></g>
-<g style="animation-name:k3a"><path d="M147 351H151.2M147 342V351M151.2 351H159.6M159.6 351H168M168 351H176.4M176.4 351H184.8M184.8 351H193.2M193.2 351H201.6M201.6 351H210M210 351H218.4M218.4 351H226.8M226.8 351H235.2M235.2 351H243.6M243.6 351H252M252 351H260.4M260.4 351H268.8M268.8 351H277.2M277.2 351H285.6M285.6 351H294M294 351H302.4M302.4 351H310.8M310.8 351H319.2M319.2 351H327.6M327.6 351H336M336 351H344.4M344.4 351H352.8M352.8 351H361.2M361.2 351H369.6M369.6 351H378M378 351H386.4M386.4 351H394.8M394.8 351H403.2M403.2 351H411.6M411.6 351H420M420 351H428.4M428.4 351H436.8M436.8 351H445.2M445.2 351H453.6M453.6 351H462M462 351H470.4M470.4 351H478.8M478.8 351H487.2M487.2 351H495.6M495.6 351H504M504 351H512.4M512.4 351H520.8M520.8 351H529.2M529.2 351H537.6M537.6 351H546M546 351H554.4M554.4 351H562.8M562.8 351H571.2M571.2 351H579.6M579.6 351H588M588 351H596.4M596.4 351H604.8M604.8 351H613.2M613.2 351H621.6M621.6 351H630M630 351H638.4M638.4 351H646.8M646.8 351H655.2M655.2 351H663.6M663.6 351H672M672 351H680.4M680.4 351H688.8M688.8 351H697.2M697.2 351H705.6M705.6 351H714M714 351H722.4M722.4 351H730.8M730.8 351H739.2M739.2 351H747.6M747.6 351H756M756 351H764.4M764.4 351H772.8M772.8 351H781.2M781.2 351H789.6M789.6 351H793.8M793.8 342V351" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
-<g style="animation-name:k3b"><path d="M256.2 360V378" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
-<g style="animation-name:k3c"><rect x="16.8" y="360" width="134.4" height="18" fill="#d2a8ff"/><text x="25.2" y="372.96" textLength="58.8" fill="#0d1117" font-weight="700">@claude</text><rect x="151.2" y="360" width="184.8" height="18" fill="#c9d1d9" fill-opacity="0.58"/><text x="151.2" y="372.96" textLength="184.8" fill="#0d1117">Claude Code · untested</text><rect x="336" y="360" width="151.2" height="18" fill="#c9d1d9"/></g>
-<g style="animation-name:k3d"><text x="25.2" y="372.96" textLength="50.4" fill="#3fb950" font-weight="700">@codex</text><text x="151.2" y="372.96" textLength="42" fill="#c9d1d9" fill-opacity="0.58">Codex</text></g>
-<g style="animation-name:k3e"><path d="M256.2 360V378" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="372.96" textLength="655.2" fill="#c9d1d9">parse() 之后还会抛出带 {line, column} 的 ParseError 吗？我的测试会同时检查这两</text></g>
-<g style="animation-name:k3f"><path d="M256.2 378V396" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
-<g style="animation-name:k3g"><rect x="16.8" y="378" width="134.4" height="18" fill="#d2a8ff"/><text x="25.2" y="390.96" textLength="58.8" fill="#0d1117" font-weight="700">@claude</text><rect x="151.2" y="378" width="184.8" height="18" fill="#c9d1d9" fill-opacity="0.58"/><text x="151.2" y="390.96" textLength="184.8" fill="#0d1117">Claude Code · untested</text><rect x="336" y="378" width="151.2" height="18" fill="#c9d1d9"/></g>
-<g style="animation-name:k3h"><text x="25.2" y="390.96" textLength="50.4" fill="#3fb950" font-weight="700">@codex</text><text x="151.2" y="390.96" textLength="42" fill="#c9d1d9" fill-opacity="0.58">Codex</text></g>
-<g style="animation-name:k3i"><text x="25.2" y="390.96" textLength="42" fill="#d29922" font-weight="700">@kimi</text><text x="151.2" y="390.96" textLength="75.6" fill="#c9d1d9" fill-opacity="0.58">Kimi Code</text></g>
-<g style="animation-name:k3j"><path d="M256.2 378V396" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="390.96" textLength="67.2" fill="#c9d1d9">个字段。</text></g>
-<g style="animation-name:k3k"><path d="M256.2 396V414" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
-<g style="animation-name:k3l"><text x="25.2" y="408.96" textLength="50.4" fill="#3fb950" font-weight="700">@codex</text><text x="151.2" y="408.96" textLength="42" fill="#c9d1d9" fill-opacity="0.58">Codex</text></g>
-<g style="animation-name:k3m"><text x="25.2" y="408.96" textLength="42" fill="#d29922" font-weight="700">@kimi</text><text x="151.2" y="408.96" textLength="75.6" fill="#c9d1d9" fill-opacity="0.58">Kimi Code</text></g>
-<g style="animation-name:k3n"><text x="25.2" y="408.96" textLength="33.6" fill="#d29922" font-weight="700">@all</text><text x="151.2" y="408.96" textLength="92.4" fill="#c9d1d9" fill-opacity="0.58">every agent</text></g>
-<g style="animation-name:k3o"><path d="M256.2 414V432" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
-<g style="animation-name:k3p"><text x="25.2" y="426.96" textLength="42" fill="#d29922" font-weight="700">@kimi</text><text x="151.2" y="426.96" textLength="75.6" fill="#c9d1d9" fill-opacity="0.58">Kimi Code</text></g>
-<g style="animation-name:k3q"><text x="25.2" y="426.96" textLength="33.6" fill="#d29922" font-weight="700">@all</text><text x="151.2" y="426.96" textLength="92.4" fill="#c9d1d9" fill-opacity="0.58">every agent</text></g>
-<g style="animation-name:k3r"><rect x="16.8" y="414" width="134.4" height="18" fill="#d2a8ff"/><text x="25.2" y="426.96" textLength="58.8" fill="#0d1117" font-weight="700">@claude</text><rect x="151.2" y="414" width="184.8" height="18" fill="#c9d1d9" fill-opacity="0.58"/><text x="151.2" y="426.96" textLength="184.8" fill="#0d1117">Claude Code · untested</text><rect x="336" y="414" width="151.2" height="18" fill="#c9d1d9"/></g>
-<g style="animation-name:k3s"><text x="25.2" y="426.96" textLength="42" fill="#d29922" font-weight="700">@auto</text><text x="151.2" y="426.96" textLength="126" fill="#c9d1d9" fill-opacity="0.58">let Troupe pick</text></g>
-<g style="animation-name:k3t"><path d="M256.2 414V432" stroke="#c9d1d9" stroke-opacity="0.45"/><use href="#spin" x="268.8" y="426.96" fill="#39c5cf"/><text x="285.6" y="426.96" textLength="50.4" fill="#3fb950" font-weight="700">@codex</text><text x="344.4" y="426.96" textLength="75.6" fill="#c9d1d9" fill-opacity="0.58">已工作 0s</text><text x="428.4" y="426.96" textLength="117.6" fill="#bc8cff">· @claude 提问</text></g>
-<g style="animation-name:k3u"><path d="M256.2 414V432" stroke="#c9d1d9" stroke-opacity="0.45"/><use href="#spin" x="268.8" y="426.96" fill="#39c5cf"/><text x="285.6" y="426.96" textLength="50.4" fill="#3fb950" font-weight="700">@codex</text><text x="344.4" y="426.96" textLength="75.6" fill="#c9d1d9" fill-opacity="0.58">已工作 1s</text><text x="428.4" y="426.96" textLength="117.6" fill="#bc8cff">· @claude 提问</text></g>
-<g style="animation-name:k3v"><path d="M256.2 414V432" stroke="#c9d1d9" stroke-opacity="0.45"/><use href="#spin" x="268.8" y="426.96" fill="#39c5cf"/><text x="285.6" y="426.96" textLength="50.4" fill="#3fb950" font-weight="700">@codex</text><text x="344.4" y="426.96" textLength="75.6" fill="#c9d1d9" fill-opacity="0.58">已工作 2s</text><text x="428.4" y="426.96" textLength="117.6" fill="#bc8cff">· @claude 提问</text></g>
-<g style="animation-name:k3w"><path d="M256.2 414V432" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="268.8" y="426.96" textLength="50.4" fill="#3fb950" font-weight="700">@codex</text><text x="327.6" y="426.96" fill="#c9d1d9" fill-opacity="0.58">›</text><text x="352.8" y="426.96" textLength="16.8" fill="#c9d1d9" fill-opacity="0.58">2s</text></g>
-<g style="animation-name:k3x"><path d="M256.2 432V450" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
-<g style="animation-name:k3y"><text x="25.2" y="444.96" textLength="33.6" fill="#d29922" font-weight="700">@all</text><text x="151.2" y="444.96" textLength="92.4" fill="#c9d1d9" fill-opacity="0.58">every agent</text></g>
-<g style="animation-name:k3z"><rect x="16.8" y="432" width="134.4" height="18" fill="#d2a8ff"/><text x="25.2" y="444.96" textLength="58.8" fill="#0d1117" font-weight="700">@claude</text><rect x="151.2" y="432" width="184.8" height="18" fill="#c9d1d9" fill-opacity="0.58"/><text x="151.2" y="444.96" textLength="184.8" fill="#0d1117">Claude Code · untested</text><rect x="336" y="432" width="151.2" height="18" fill="#c9d1d9"/></g>
-<g style="animation-name:k40"><text x="25.2" y="444.96" textLength="42" fill="#d29922" font-weight="700">@auto</text><text x="151.2" y="444.96" textLength="126" fill="#c9d1d9" fill-opacity="0.58">let Troupe pick</text></g>
-<g style="animation-name:k41"><text x="25.2" y="444.96" textLength="50.4" fill="#3fb950" font-weight="700">@codex</text><text x="151.2" y="444.96" textLength="42" fill="#c9d1d9" fill-opacity="0.58">Codex</text></g>
-<g style="animation-name:k42"><text x="25.2" y="444.96" textLength="67.2" fill="#d29922" font-weight="700">@compare</text><text x="151.2" y="444.96" textLength="252" fill="#c9d1d9" fill-opacity="0.58">compare the answers afterwards</text></g>
-<g style="animation-name:k43"><rect x="16.8" y="432" width="134.4" height="18" fill="#d29922"/><text x="25.2" y="444.96" textLength="42" fill="#0d1117" font-weight="700">@kimi</text><rect x="151.2" y="432" width="75.6" height="18" fill="#c9d1d9" fill-opacity="0.58"/><text x="151.2" y="444.96" textLength="75.6" fill="#0d1117">Kimi Code</text><rect x="226.8" y="432" width="260.4" height="18" fill="#c9d1d9"/></g>
-<g style="animation-name:k44"><path d="M256.2 432V450" stroke="#c9d1d9" stroke-opacity="0.45"/><use href="#spin" x="285.6" y="444.96" fill="#39c5cf"/><text x="302.4" y="444.96" fill="#c9d1d9" fill-opacity="0.58">⚙</text><text x="319.2" y="444.96" textLength="210" fill="#c9d1d9" fill-opacity="0.58">troupe.troupe_board_write</text></g>
-<g style="animation-name:k45"><path d="M256.2 432V450" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="444.96" fill="#3fb950">✓</text><text x="302.4" y="444.96" fill="#c9d1d9" fill-opacity="0.58">⚙</text><text x="319.2" y="444.96" textLength="210" fill="#c9d1d9" fill-opacity="0.58">troupe.troupe_board_write</text></g>
-<g style="animation-name:k46"><path d="M256.2 432V450" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="444.96" textLength="646.8" fill="#c9d1d9">会。错误格式不变：ParseError 保留 `line` 和 `column`，都从 1 开始计数。我把约</text></g>
-<g style="animation-name:k47"><path d="M256.2 450V468" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
-<g style="animation-name:k48"><text x="25.2" y="462.96" textLength="42" fill="#d29922" font-weight="700">@auto</text><text x="151.2" y="462.96" textLength="126" fill="#c9d1d9" fill-opacity="0.58">let Troupe pick</text></g>
-<g style="animation-name:k49"><text x="25.2" y="462.96" textLength="50.4" fill="#3fb950" font-weight="700">@codex</text><text x="151.2" y="462.96" textLength="42" fill="#c9d1d9" fill-opacity="0.58">Codex</text></g>
-<g style="animation-name:k4a"><rect x="16.8" y="450" width="134.4" height="18" fill="#3fb950"/><text x="25.2" y="462.96" textLength="50.4" fill="#0d1117" font-weight="700">@codex</text><rect x="151.2" y="450" width="42" height="18" fill="#c9d1d9" fill-opacity="0.58"/><text x="151.2" y="462.96" textLength="42" fill="#0d1117">Codex</text><rect x="193.2" y="450" width="294" height="18" fill="#c9d1d9"/></g>
-<g style="animation-name:k4b"><text x="25.2" y="462.96" textLength="67.2" fill="#d29922" font-weight="700">@compare</text><text x="151.2" y="462.96" textLength="252" fill="#c9d1d9" fill-opacity="0.58">compare the answers afterwards</text></g>
-<g style="animation-name:k4c"><rect x="16.8" y="450" width="134.4" height="18" fill="#d2a8ff"/><text x="25.2" y="462.96" textLength="58.8" fill="#0d1117" font-weight="700">@claude</text><rect x="151.2" y="450" width="184.8" height="18" fill="#c9d1d9" fill-opacity="0.58"/><text x="151.2" y="462.96" textLength="184.8" fill="#0d1117">Claude Code · untested</text><rect x="336" y="450" width="151.2" height="18" fill="#c9d1d9"/></g>
-<g style="animation-name:k4d"><path d="M0 459H8.4M8.4 459H16.8M16.8 459H25.2M25.2 459H33.6M33.6 459H42M42 459H50.4M50.4 459H58.8M58.8 459H67.2M67.2 459H75.6M75.6 459H84M84 459H92.4M92.4 459H100.8M100.8 459H109.2M109.2 459H117.6M117.6 459H126M126 459H134.4M134.4 459H142.8M142.8 459H151.2M151.2 459H159.6M159.6 459H168M168 459H176.4M176.4 459H184.8M184.8 459H193.2M193.2 459H201.6M201.6 459H210M210 459H218.4M218.4 459H226.8M226.8 459H235.2M235.2 459H243.6M243.6 459H252M252 459H260.4M260.4 459H268.8M268.8 459H277.2M277.2 459H285.6M285.6 459H294M294 459H302.4M302.4 459H310.8M310.8 459H319.2M319.2 459H327.6M327.6 459H336M336 459H344.4M344.4 459H352.8M352.8 459H361.2M361.2 459H369.6M369.6 459H378M378 459H386.4M386.4 459H394.8M394.8 459H403.2M403.2 459H411.6M411.6 459H420M420 459H428.4M428.4 459H436.8M436.8 459H445.2M445.2 459H453.6M453.6 459H462M462 459H470.4M470.4 459H478.8M478.8 459H487.2M487.2 459H495.6M495.6 459H504M504 459H512.4M512.4 459H520.8M520.8 459H529.2M529.2 459H537.6M537.6 459H546M546 459H554.4M554.4 459H562.8M562.8 459H571.2M571.2 459H579.6M579.6 459H588M588 459H596.4M596.4 459H604.8M604.8 459H613.2M613.2 459H621.6M621.6 459H630M630 459H638.4M638.4 459H646.8M646.8 459H655.2M655.2 459H663.6M663.6 459H672M672 459H680.4M680.4 459H688.8M688.8 459H697.2M697.2 459H705.6M705.6 459H714M714 459H722.4M722.4 459H730.8M730.8 459H739.2M739.2 459H747.6M747.6 459H756M756 459H764.4M764.4 459H772.8M772.8 459H781.2M781.2 459H789.6M789.6 459H798M798 459H806.4M806.4 459H814.8M814.8 459H823.2M823.2 459H831.6M831.6 459H840M840 459H848.4M848.4 459H856.8M856.8 459H865.2M865.2 459H873.6M873.6 459H882M882 459H890.4M890.4 459H898.8M898.8 459H907.2M907.2 459H915.6M915.6 459H924M924 459H932.4M932.4 459H940.8" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
-<g style="animation-name:k4e"><path d="M256.2 450V468" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="462.96" textLength="361.2" fill="#c9d1d9">会。错误格式不变：ParseError 保留 `line` 和</text></g>
-<g style="animation-name:k4f"><path d="M256.2 450V468" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="462.96" textLength="646.8" fill="#c9d1d9">会。错误格式不变：ParseError 保留 `line` 和 `column`，都从 1 开始计数。我把约</text></g>
-<g style="animation-name:k4g"><path d="M256.2 450V468" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="462.96" textLength="243.6" fill="#c9d1d9">定写在了看板的 api.parse 下。</text></g>
-<g style="animation-name:k4h"><path d="M256.2 468V486" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
-<g style="animation-name:k4i"><text x="25.2" y="480.96" textLength="67.2" fill="#d29922" font-weight="700">@compare</text><text x="151.2" y="480.96" textLength="252" fill="#c9d1d9" fill-opacity="0.58">compare the answers afterwards</text></g>
-<g style="animation-name:k4j"><rect x="16.8" y="468" width="134.4" height="18" fill="#3fb950"/><text x="25.2" y="480.96" textLength="50.4" fill="#0d1117" font-weight="700">@codex</text><rect x="151.2" y="468" width="42" height="18" fill="#c9d1d9" fill-opacity="0.58"/><text x="151.2" y="480.96" textLength="42" fill="#0d1117">Codex</text><rect x="193.2" y="468" width="294" height="18" fill="#c9d1d9"/></g>
-<g style="animation-name:k4k"><path d="M0 477H8.4M8.4 477H16.8M16.8 477H25.2M25.2 477H33.6M33.6 477H42M42 477H50.4M50.4 477H58.8M58.8 477H67.2M67.2 477H75.6M75.6 477H84M84 477H92.4M92.4 477H100.8M100.8 477H109.2M109.2 477H117.6M117.6 477H126M126 477H134.4M134.4 477H142.8M142.8 477H151.2M151.2 477H159.6M159.6 477H168M168 477H176.4M176.4 477H184.8M184.8 477H193.2M193.2 477H201.6M201.6 477H210M210 477H218.4M218.4 477H226.8M226.8 477H235.2M235.2 477H243.6M243.6 477H252M252 477H260.4M260.4 477H268.8M268.8 477H277.2M277.2 477H285.6M285.6 477H294M294 477H302.4M302.4 477H310.8M310.8 477H319.2M319.2 477H327.6M327.6 477H336M336 477H344.4M344.4 477H352.8M352.8 477H361.2M361.2 477H369.6M369.6 477H378M378 477H386.4M386.4 477H394.8M394.8 477H403.2M403.2 477H411.6M411.6 477H420M420 477H428.4M428.4 477H436.8M436.8 477H445.2M445.2 477H453.6M453.6 477H462M462 477H470.4M470.4 477H478.8M478.8 477H487.2M487.2 477H495.6M495.6 477H504M504 477H512.4M512.4 477H520.8M520.8 477H529.2M529.2 477H537.6M537.6 477H546M546 477H554.4M554.4 477H562.8M562.8 477H571.2M571.2 477H579.6M579.6 477H588M588 477H596.4M596.4 477H604.8M604.8 477H613.2M613.2 477H621.6M621.6 477H630M630 477H638.4M638.4 477H646.8M646.8 477H655.2M655.2 477H663.6M663.6 477H672M672 477H680.4M680.4 477H688.8M688.8 477H697.2M697.2 477H705.6M705.6 477H714M714 477H722.4M722.4 477H730.8M730.8 477H739.2M739.2 477H747.6M747.6 477H756M756 477H764.4M764.4 477H772.8M772.8 477H781.2M781.2 477H789.6M789.6 477H798M798 477H806.4M806.4 477H814.8M814.8 477H823.2M823.2 477H831.6M831.6 477H840M840 477H848.4M848.4 477H856.8M856.8 477H865.2M865.2 477H873.6M873.6 477H882M882 477H890.4M890.4 477H898.8M898.8 477H907.2M907.2 477H915.6M915.6 477H924M924 477H932.4M932.4 477H940.8" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
-<g style="animation-name:k4l"><text x="0" y="480.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="480.96" textLength="428.4" fill="#c9d1d9">@codex 修复解析器：文件末尾没有换行时会丢掉最后一行</text></g>
-<g style="animation-name:k4m"><path d="M256.2 468V486" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="480.96" textLength="201.6" fill="#c9d1d9">定写在了看板的 api.parse</text></g>
-<g style="animation-name:k4n"><path d="M256.2 468V486" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="480.96" textLength="243.6" fill="#c9d1d9">定写在了看板的 api.parse 下。</text></g>
-<g style="animation-name:k4o"><path d="M256.2 468V486" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="480.96" fill="#3fb950">✓</text><text x="302.4" y="480.96" fill="#c9d1d9" fill-opacity="0.58">⚙</text><text x="319.2" y="480.96" textLength="210" fill="#c9d1d9" fill-opacity="0.58">troupe.troupe_board_write</text></g>
-<g style="animation-name:k4p"><path d="M0 495H8.4M8.4 495H16.8M16.8 495H25.2M25.2 495H33.6M33.6 495H42M42 495H50.4M50.4 495H58.8M58.8 495H67.2M67.2 495H75.6M75.6 495H84M84 495H92.4M92.4 495H100.8M100.8 495H109.2M109.2 495H117.6M117.6 495H126M126 495H134.4M134.4 495H142.8M142.8 495H151.2M151.2 495H159.6M159.6 495H168M168 495H176.4M176.4 495H184.8M184.8 495H193.2M193.2 495H201.6M201.6 495H210M210 495H218.4M218.4 495H226.8M226.8 495H235.2M235.2 495H243.6M243.6 495H252M252 495H260.4M260.4 495H268.8M268.8 495H277.2M277.2 495H285.6M285.6 495H294M294 495H302.4M302.4 495H310.8M310.8 495H319.2M319.2 495H327.6M327.6 495H336M336 495H344.4M344.4 495H352.8M352.8 495H361.2M361.2 495H369.6M369.6 495H378M378 495H386.4M386.4 495H394.8M394.8 495H403.2M403.2 495H411.6M411.6 495H420M420 495H428.4M428.4 495H436.8M436.8 495H445.2M445.2 495H453.6M453.6 495H462M462 495H470.4M470.4 495H478.8M478.8 495H487.2M487.2 495H495.6M495.6 495H504M504 495H512.4M512.4 495H520.8M520.8 495H529.2M529.2 495H537.6M537.6 495H546M546 495H554.4M554.4 495H562.8M562.8 495H571.2M571.2 495H579.6M579.6 495H588M588 495H596.4M596.4 495H604.8M604.8 495H613.2M613.2 495H621.6M621.6 495H630M630 495H638.4M638.4 495H646.8M646.8 495H655.2M655.2 495H663.6M663.6 495H672M672 495H680.4M680.4 495H688.8M688.8 495H697.2M697.2 495H705.6M705.6 495H714M714 495H722.4M722.4 495H730.8M730.8 495H739.2M739.2 495H747.6M747.6 495H756M756 495H764.4M764.4 495H772.8M772.8 495H781.2M781.2 495H789.6M789.6 495H798M798 495H806.4M806.4 495H814.8M814.8 495H823.2M823.2 495H831.6M831.6 495H840M840 495H848.4M848.4 495H856.8M856.8 495H865.2M865.2 495H873.6M873.6 495H882M882 495H890.4M890.4 495H898.8M898.8 495H907.2M907.2 495H915.6M915.6 495H924M924 495H932.4M932.4 495H940.8" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
-<g style="animation-name:k4q"><text x="0" y="498.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="498.96" textLength="428.4" fill="#c9d1d9">@codex 修复解析器：文件末尾没有换行时会丢掉最后一行</text></g>
-<g style="animation-name:k4r"><text x="16.8" y="498.96" textLength="252" fill="#c9d1d9">@claude 给解析错误补充边界测试</text></g>
-<g style="animation-name:k4s"><text x="0" y="516.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="516.96" textLength="487.2" fill="#6e7681">@codex @claude 审查 src/   ·   Enter 发送 · Alt+Enter 换行</text></g>
-<g style="animation-name:k4t"><text x="0" y="516.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="516.96" fill="#c9d1d9">@</text></g>
-<g style="animation-name:k4u"><text x="0" y="516.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="516.96" textLength="16.8" fill="#c9d1d9">@c</text></g>
-<g style="animation-name:k4v"><text x="0" y="516.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="516.96" textLength="25.2" fill="#c9d1d9">@co</text></g>
-<g style="animation-name:k4w"><text x="0" y="516.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="516.96" textLength="33.6" fill="#c9d1d9">@cod</text></g>
-<g style="animation-name:k4x"><text x="0" y="516.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="516.96" textLength="42" fill="#c9d1d9">@code</text></g>
-<g style="animation-name:k4y"><text x="0" y="516.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="516.96" textLength="50.4" fill="#c9d1d9">@codex</text></g>
-<g style="animation-name:k4z"><text x="0" y="516.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="516.96" textLength="75.6" fill="#c9d1d9">@codex 修</text></g>
-<g style="animation-name:k50"><text x="0" y="516.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="516.96" textLength="92.4" fill="#c9d1d9">@codex 修复</text></g>
-<g style="animation-name:k51"><text x="0" y="516.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="516.96" textLength="109.2" fill="#c9d1d9">@codex 修复解</text></g>
-<g style="animation-name:k52"><text x="0" y="516.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="516.96" textLength="126" fill="#c9d1d9">@codex 修复解析</text></g>
-<g style="animation-name:k53"><text x="0" y="516.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="516.96" textLength="142.8" fill="#c9d1d9">@codex 修复解析器</text></g>
-<g style="animation-name:k54"><text x="0" y="516.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="516.96" textLength="159.6" fill="#c9d1d9">@codex 修复解析器：</text></g>
-<g style="animation-name:k55"><text x="0" y="516.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="516.96" textLength="176.4" fill="#c9d1d9">@codex 修复解析器：文</text></g>
-<g style="animation-name:k56"><text x="0" y="516.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="516.96" textLength="193.2" fill="#c9d1d9">@codex 修复解析器：文件</text></g>
-<g style="animation-name:k57"><text x="0" y="516.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="516.96" textLength="210" fill="#c9d1d9">@codex 修复解析器：文件末</text></g>
-<g style="animation-name:k58"><text x="0" y="516.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="516.96" textLength="226.8" fill="#c9d1d9">@codex 修复解析器：文件末尾</text></g>
-<g style="animation-name:k59"><text x="0" y="516.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="516.96" textLength="260.4" fill="#c9d1d9">@codex 修复解析器：文件末尾没有</text></g>
-<g style="animation-name:k5a"><text x="0" y="516.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="516.96" textLength="277.2" fill="#c9d1d9">@codex 修复解析器：文件末尾没有换</text></g>
-<g style="animation-name:k5b"><text x="0" y="516.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="516.96" textLength="294" fill="#c9d1d9">@codex 修复解析器：文件末尾没有换行</text></g>
-<g style="animation-name:k5c"><text x="0" y="516.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="516.96" textLength="310.8" fill="#c9d1d9">@codex 修复解析器：文件末尾没有换行时</text></g>
-<g style="animation-name:k5d"><text x="0" y="516.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="516.96" textLength="327.6" fill="#c9d1d9">@codex 修复解析器：文件末尾没有换行时会</text></g>
-<g style="animation-name:k5e"><text x="0" y="516.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="516.96" textLength="344.4" fill="#c9d1d9">@codex 修复解析器：文件末尾没有换行时会丢</text></g>
-<g style="animation-name:k5f"><text x="0" y="516.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="516.96" textLength="361.2" fill="#c9d1d9">@codex 修复解析器：文件末尾没有换行时会丢掉</text></g>
-<g style="animation-name:k5g"><text x="0" y="516.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="516.96" textLength="378" fill="#c9d1d9">@codex 修复解析器：文件末尾没有换行时会丢掉最</text></g>
-<g style="animation-name:k5h"><text x="0" y="516.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="516.96" textLength="394.8" fill="#c9d1d9">@codex 修复解析器：文件末尾没有换行时会丢掉最后</text></g>
-<g style="animation-name:k5i"><text x="0" y="516.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="516.96" textLength="411.6" fill="#c9d1d9">@codex 修复解析器：文件末尾没有换行时会丢掉最后一</text></g>
-<g style="animation-name:k5j"><text x="0" y="516.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="516.96" textLength="428.4" fill="#c9d1d9">@codex 修复解析器：文件末尾没有换行时会丢掉最后一行</text></g>
-<g style="animation-name:k5k"><text x="16.8" y="516.96" fill="#c9d1d9">@</text></g>
-<g style="animation-name:k5l"><text x="16.8" y="516.96" textLength="16.8" fill="#c9d1d9">@c</text></g>
-<g style="animation-name:k5m"><text x="16.8" y="516.96" textLength="25.2" fill="#c9d1d9">@cl</text></g>
-<g style="animation-name:k5n"><text x="16.8" y="516.96" textLength="33.6" fill="#c9d1d9">@cla</text></g>
-<g style="animation-name:k5o"><text x="16.8" y="516.96" textLength="42" fill="#c9d1d9">@clau</text></g>
-<g style="animation-name:k5p"><text x="16.8" y="516.96" textLength="58.8" fill="#c9d1d9">@claude</text></g>
-<g style="animation-name:k5q"><text x="16.8" y="516.96" textLength="84" fill="#c9d1d9">@claude 给</text></g>
-<g style="animation-name:k5r"><text x="16.8" y="516.96" textLength="100.8" fill="#c9d1d9">@claude 给解</text></g>
-<g style="animation-name:k5s"><text x="16.8" y="516.96" textLength="117.6" fill="#c9d1d9">@claude 给解析</text></g>
-<g style="animation-name:k5t"><text x="16.8" y="516.96" textLength="134.4" fill="#c9d1d9">@claude 给解析错</text></g>
-<g style="animation-name:k5u"><text x="16.8" y="516.96" textLength="151.2" fill="#c9d1d9">@claude 给解析错误</text></g>
-<g style="animation-name:k5v"><text x="16.8" y="516.96" textLength="168" fill="#c9d1d9">@claude 给解析错误补</text></g>
-<g style="animation-name:k5w"><text x="16.8" y="516.96" textLength="184.8" fill="#c9d1d9">@claude 给解析错误补充</text></g>
+<g style="animation-name:k11"><use href="#spin" x="8.4" y="120.96" fill="#39c5cf"/><text x="25.2" y="120.96" textLength="42" fill="#d29922" font-weight="700">@kimi</text><text x="193.2" y="120.96" textLength="50.4" fill="#39c5cf">工作中</text><path d="M256.2 108V126" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="120.96" textLength="369.6" fill="#c9d1d9">修复解析器：文件末尾没有换行时会丢掉最后一行</text></g>
+<g style="animation-name:k12"><text x="8.4" y="120.96" fill="#3fb950">○</text><text x="25.2" y="120.96" textLength="42" fill="#d29922" font-weight="700">@kimi</text><text x="210" y="120.96" textLength="33.6" fill="#3fb950">空闲</text><path d="M256.2 108V126" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="120.96" textLength="369.6" fill="#c9d1d9">修复解析器：文件末尾没有换行时会丢掉最后一行</text></g>
+<g style="animation-name:k13"><text x="8.4" y="120.96" fill="#3fb950">○</text><text x="25.2" y="120.96" textLength="42" fill="#d29922" font-weight="700">@kimi</text><text x="210" y="120.96" textLength="33.6" fill="#3fb950">空闲</text><path d="M256.2 108V126" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="120.96" textLength="184.8" fill="#c9d1d9">给解析错误补充边界测试</text></g>
+<g style="animation-name:k14"><path d="M256.2 126V144" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="294" y="138.96" textLength="50.4" fill="#3fb950" font-weight="700">@codex</text><text x="394.8" y="138.96" textLength="42" fill="#c9d1d9" fill-opacity="0.58">Codex</text></g>
+<g style="animation-name:k15"><path d="M256.2 126V144" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
+<g style="animation-name:k16"><text x="8.4" y="138.96" textLength="100.8" fill="#c9d1d9" font-weight="700" fill-opacity="0.58">项目看板 (0)</text><path d="M256.2 126V144" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
+<g style="animation-name:k17"><text x="33.6" y="138.96" textLength="92.4" fill="#c9d1d9" fill-opacity="0.58">troupe/kimi</text><path d="M256.2 126V144" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
+<g style="animation-name:k18"><path d="M256.2 144V162" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="294" y="156.96" textLength="42" fill="#d29922" font-weight="700">@kimi</text><text x="394.8" y="156.96" textLength="75.6" fill="#c9d1d9" fill-opacity="0.58">Kimi Code</text></g>
+<g style="animation-name:k19"><path d="M256.2 144V162" stroke="#c9d1d9" stroke-opacity="0.45"/><use href="#spin" x="268.8" y="156.96" fill="#39c5cf"/><text x="285.6" y="156.96" textLength="50.4" fill="#3fb950" font-weight="700">@codex</text><text x="344.4" y="156.96" textLength="75.6" fill="#c9d1d9" fill-opacity="0.58">已工作 0s</text></g>
+<g style="animation-name:k1a"><path d="M256.2 144V162" stroke="#c9d1d9" stroke-opacity="0.45"/><use href="#spin" x="268.8" y="156.96" fill="#39c5cf"/><text x="285.6" y="156.96" textLength="50.4" fill="#3fb950" font-weight="700">@codex</text><text x="344.4" y="156.96" textLength="75.6" fill="#c9d1d9" fill-opacity="0.58">已工作 1s</text></g>
+<g style="animation-name:k1b"><path d="M256.2 144V162" stroke="#c9d1d9" stroke-opacity="0.45"/><use href="#spin" x="268.8" y="156.96" fill="#39c5cf"/><text x="285.6" y="156.96" textLength="50.4" fill="#3fb950" font-weight="700">@codex</text><text x="344.4" y="156.96" textLength="75.6" fill="#c9d1d9" fill-opacity="0.58">已工作 2s</text></g>
+<g style="animation-name:k1c"><path d="M256.2 144V162" stroke="#c9d1d9" stroke-opacity="0.45"/><use href="#spin" x="268.8" y="156.96" fill="#39c5cf"/><text x="285.6" y="156.96" textLength="50.4" fill="#3fb950" font-weight="700">@codex</text><text x="344.4" y="156.96" textLength="75.6" fill="#c9d1d9" fill-opacity="0.58">已工作 3s</text></g>
+<g style="animation-name:k1d"><path d="M256.2 144V162" stroke="#c9d1d9" stroke-opacity="0.45"/><use href="#spin" x="268.8" y="156.96" fill="#39c5cf"/><text x="285.6" y="156.96" textLength="50.4" fill="#3fb950" font-weight="700">@codex</text><text x="344.4" y="156.96" textLength="75.6" fill="#c9d1d9" fill-opacity="0.58">已工作 4s</text></g>
+<g style="animation-name:k1e"><path d="M256.2 144V162" stroke="#c9d1d9" stroke-opacity="0.45"/><use href="#spin" x="268.8" y="156.96" fill="#39c5cf"/><text x="285.6" y="156.96" textLength="50.4" fill="#3fb950" font-weight="700">@codex</text><text x="344.4" y="156.96" textLength="75.6" fill="#c9d1d9" fill-opacity="0.58">已工作 5s</text></g>
+<g style="animation-name:k1f"><path d="M256.2 144V162" stroke="#c9d1d9" stroke-opacity="0.45"/><use href="#spin" x="268.8" y="156.96" fill="#39c5cf"/><text x="285.6" y="156.96" textLength="50.4" fill="#3fb950" font-weight="700">@codex</text><text x="344.4" y="156.96" textLength="75.6" fill="#c9d1d9" fill-opacity="0.58">已工作 6s</text></g>
+<g style="animation-name:k1g"><path d="M256.2 144V162" stroke="#c9d1d9" stroke-opacity="0.45"/><use href="#spin" x="268.8" y="156.96" fill="#39c5cf"/><text x="285.6" y="156.96" textLength="50.4" fill="#3fb950" font-weight="700">@codex</text><text x="344.4" y="156.96" textLength="75.6" fill="#c9d1d9" fill-opacity="0.58">已工作 7s</text></g>
+<g style="animation-name:k1h"><path d="M256.2 144V162" stroke="#c9d1d9" stroke-opacity="0.45"/><use href="#spin" x="268.8" y="156.96" fill="#39c5cf"/><text x="285.6" y="156.96" textLength="50.4" fill="#3fb950" font-weight="700">@codex</text><text x="344.4" y="156.96" textLength="75.6" fill="#c9d1d9" fill-opacity="0.58">已工作 8s</text></g>
+<g style="animation-name:k1i"><path d="M256.2 144V162" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="268.8" y="156.96" textLength="50.4" fill="#3fb950" font-weight="700">@codex</text><text x="327.6" y="156.96" fill="#c9d1d9" fill-opacity="0.58">›</text><text x="352.8" y="156.96" textLength="16.8" fill="#c9d1d9" fill-opacity="0.58">8s</text></g>
+<g style="animation-name:k1j"><path d="M147 153H151.2M147 153V162M151.2 153H159.6" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="168" y="156.96" textLength="84" fill="#c9d1d9" font-weight="700">需要你批准</text><path d="M260.4 153H268.8M268.8 153H277.2M277.2 153H285.6M285.6 153H294M294 153H302.4M302.4 153H310.8M310.8 153H319.2M319.2 153H327.6M327.6 153H336M336 153H344.4M344.4 153H352.8M352.8 153H361.2M361.2 153H369.6M369.6 153H378M378 153H386.4M386.4 153H394.8M394.8 153H403.2M403.2 153H411.6M411.6 153H420M420 153H428.4M428.4 153H436.8M436.8 153H445.2M445.2 153H453.6M453.6 153H462M462 153H470.4M470.4 153H478.8M478.8 153H487.2M487.2 153H495.6M495.6 153H504M504 153H512.4M512.4 153H520.8M520.8 153H529.2M529.2 153H537.6M537.6 153H546M546 153H554.4M554.4 153H562.8M562.8 153H571.2M571.2 153H579.6M579.6 153H588M588 153H596.4M596.4 153H604.8M604.8 153H613.2M613.2 153H621.6M621.6 153H630M630 153H638.4" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="646.8" y="156.96" textLength="134.4" fill="#c9d1d9" fill-opacity="0.58">第 1 项，共 1 项</text><path d="M789.6 153H793.8M793.8 153V162" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
+<g style="animation-name:k1k"><path d="M256.2 144V162" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="268.8" y="156.96" textLength="58.8" fill="#d2a8ff" font-weight="700">@claude</text><text x="336" y="156.96" fill="#c9d1d9" fill-opacity="0.58">›</text><text x="361.2" y="156.96" textLength="25.2" fill="#c9d1d9" fill-opacity="0.58">15s</text></g>
+<g style="animation-name:k1l"><path d="M256.2 162V180" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
+<g style="animation-name:k1m"><text x="8.4" y="174.96" textLength="100.8" fill="#c9d1d9" font-weight="700" fill-opacity="0.58">项目看板 (0)</text><path d="M256.2 162V180" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
+<g style="animation-name:k1n"><text x="8.4" y="174.96" textLength="100.8" fill="#c9d1d9" font-weight="700" fill-opacity="0.58">项目看板 (0)</text><path d="M256.2 162V180" stroke="#c9d1d9" stroke-opacity="0.45"/><use href="#spin" x="285.6" y="174.96" fill="#39c5cf"/><text x="302.4" y="174.96" fill="#c9d1d9" fill-opacity="0.58">$</text><text x="319.2" y="174.96" textLength="378" fill="#c9d1d9" fill-opacity="0.58">grep -n &quot;export function parse&quot; src/parser.js</text></g>
+<g style="animation-name:k1o"><text x="8.4" y="174.96" textLength="100.8" fill="#c9d1d9" font-weight="700" fill-opacity="0.58">项目看板 (0)</text><path d="M256.2 162V180" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="174.96" fill="#3fb950">✓</text><text x="302.4" y="174.96" fill="#c9d1d9" fill-opacity="0.58">$</text><text x="319.2" y="174.96" textLength="378" fill="#c9d1d9" fill-opacity="0.58">grep -n &quot;export function parse&quot; src/parser.js</text><text x="714" y="174.96" textLength="218.4" fill="#6e7681">20:export function parse(t</text><text x="932.4" y="174.96" fill="#c9d1d9" fill-opacity="0.58">…</text></g>
+<g style="animation-name:k1p"><text x="8.4" y="174.96" textLength="100.8" fill="#c9d1d9" font-weight="700" fill-opacity="0.58">项目看板 (0)</text><path d="M256.2 162V180" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="174.96" textLength="655.2" fill="#c9d1d9">已修复。`parse()` 只处理到最后一个换行符，所以文件末尾没有换行时最后一条订单会</text></g>
+<g style="animation-name:k1q"><text x="8.4" y="174.96" textLength="100.8" fill="#c9d1d9" font-weight="700" fill-opacity="0.58">项目看板 (1)</text><path d="M256.2 162V180" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="174.96" textLength="655.2" fill="#c9d1d9">已修复。`parse()` 只处理到最后一个换行符，所以文件末尾没有换行时最后一条订单会</text></g>
+<g style="animation-name:k1r"><text x="8.4" y="174.96" textLength="100.8" fill="#e3b341" font-weight="700" fill-opacity="0.58">等你处理 (1)</text><path d="M147 162V180" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="159.6" y="174.96" textLength="58.8" fill="#d2a8ff" font-weight="700">@claude</text><text x="226.8" y="174.96" textLength="84" fill="#d29922">· 运行命令</text><path d="M793.8 162V180" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="806.4" y="174.96" textLength="134.4" fill="#c9d1d9" fill-opacity="0.58">时最后一条订单会</text></g>
+<g style="animation-name:k1s"><text x="8.4" y="174.96" textLength="100.8" fill="#c9d1d9" font-weight="700" fill-opacity="0.58">项目看板 (1)</text><path d="M256.2 162V180" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="174.96" textLength="638.4" fill="#c9d1d9">在 test/errors.test.js 里补了 4 个边界测试：数量不合法、价格为负、缺少字段、</text></g>
+<g style="animation-name:k1t"><path d="M256.2 180V198" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="294" y="192.96" textLength="218.4" fill="#6e7681">@codex @claude review src/</text></g>
+<g style="animation-name:k1u"><path d="M256.2 180V198" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
+<g style="animation-name:k1v"><path d="M256.2 180V198" stroke="#c9d1d9" stroke-opacity="0.45"/><use href="#spin" x="285.6" y="192.96" fill="#39c5cf"/><text x="302.4" y="192.96" fill="#c9d1d9" fill-opacity="0.58">✎</text><text x="319.2" y="192.96" textLength="159.6" fill="#c9d1d9" fill-opacity="0.58">test/parser.test.js</text></g>
+<g style="animation-name:k1w"><path d="M256.2 180V198" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="192.96" fill="#3fb950">✓</text><text x="302.4" y="192.96" fill="#c9d1d9" fill-opacity="0.58">✎</text><text x="319.2" y="192.96" textLength="159.6" fill="#c9d1d9" fill-opacity="0.58">test/parser.test.js</text></g>
+<g style="animation-name:k1x"><path d="M256.2 180V198" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="192.96" textLength="403.2" fill="#c9d1d9">丢失。现在换行符之后的文本也会解析，行号也正确。</text></g>
+<g style="animation-name:k1y"><text x="16.8" y="192.96" textLength="67.2" fill="#d29922" fill-opacity="0.58">@claude:</text><text x="92.4" y="192.96" textLength="50.4" fill="#c9d1d9" fill-opacity="0.58">npm te</text><path d="M147 180V198M793.8 180V198" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
+<g style="animation-name:k1z"><path d="M256.2 180V198" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="192.96" textLength="638.4" fill="#c9d1d9">Windows 换行。每个都检查 `line` 和 `column`，@codex 确认这两个字段保持不变。</text></g>
+<g style="animation-name:k20"><path d="M256.2 198V216" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="294" y="210.96" textLength="226.8" fill="#6e7681">@codex fix the failing test</text></g>
+<g style="animation-name:k21"><path d="M256.2 198V216" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
+<g style="animation-name:k22"><path d="M256.2 198V216" stroke="#c9d1d9" stroke-opacity="0.45"/><use href="#spin" x="285.6" y="210.96" fill="#39c5cf"/><text x="302.4" y="210.96" fill="#c9d1d9" fill-opacity="0.58">$</text><text x="319.2" y="210.96" textLength="67.2" fill="#c9d1d9" fill-opacity="0.58">npm test</text></g>
+<g style="animation-name:k23"><path d="M256.2 198V216" stroke="#c9d1d9" stroke-opacity="0.45"/><use href="#spin" x="285.6" y="210.96" fill="#39c5cf"/><text x="302.4" y="210.96" fill="#c9d1d9" fill-opacity="0.58">$</text><text x="319.2" y="210.96" textLength="67.2" fill="#c9d1d9" fill-opacity="0.58">npm test</text><text x="403.2" y="210.96" textLength="411.6" fill="#6e7681">&gt; node --test --test-reporter=./scripts/report.js</text></g>
+<g style="animation-name:k24"><path d="M256.2 198V216" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="210.96" fill="#ff7b72">✗</text><text x="302.4" y="210.96" fill="#c9d1d9" fill-opacity="0.58">$</text><text x="319.2" y="210.96" textLength="67.2" fill="#c9d1d9" fill-opacity="0.58">npm test</text><text x="403.2" y="210.96" textLength="151.2" fill="#6e7681">3 passed, 1 failed</text></g>
+<g style="animation-name:k25"><path d="M147 198V216" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="159.6" y="210.96" textLength="67.2" fill="#c9d1d9" font-weight="700">npm test</text><path d="M793.8 198V216" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
+<g style="animation-name:k26"><path d="M256.2 216V234" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="294" y="228.96" textLength="210" fill="#6e7681">@kimi add edge-case tests</text></g>
+<g style="animation-name:k27"><path d="M256.2 216V234" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
+<g style="animation-name:k28"><path d="M256.2 216V234" stroke="#c9d1d9" stroke-opacity="0.45"/><use href="#spin" x="285.6" y="228.96" fill="#39c5cf"/><text x="302.4" y="228.96" fill="#c9d1d9" fill-opacity="0.58">✎</text><text x="319.2" y="228.96" textLength="109.2" fill="#c9d1d9" fill-opacity="0.58">src/parser.js</text></g>
+<g style="animation-name:k29"><path d="M256.2 216V234" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="228.96" fill="#3fb950">✓</text><text x="302.4" y="228.96" fill="#c9d1d9" fill-opacity="0.58">✎</text><text x="319.2" y="228.96" textLength="109.2" fill="#c9d1d9" fill-opacity="0.58">src/parser.js</text></g>
+<g style="animation-name:k2a"><path d="M256.2 216V234" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="228.96" textLength="336" fill="#c9d1d9">补了一个回归测试；`npm test`：4 passed。</text></g>
+<g style="animation-name:k2b"><text x="8.4" y="228.96" textLength="100.8" fill="#c9d1d9" font-weight="700" fill-opacity="0.58">项目看板 (1)</text><path d="M147 216V234M793.8 216V234" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
+<g style="animation-name:k2c"><path d="M256.2 216V234" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="228.96" textLength="184.8" fill="#c9d1d9">`npm test`：7 passed。</text></g>
+<g style="animation-name:k2d"><path d="M256.2 234V252" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="294" y="246.96" textLength="394.8" fill="#6e7681">@all @compare:claude which approach is simpler?</text></g>
+<g style="animation-name:k2e"><path d="M256.2 234V252" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
+<g style="animation-name:k2f"><path d="M256.2 234V252" stroke="#c9d1d9" stroke-opacity="0.45"/><use href="#spin" x="285.6" y="246.96" fill="#39c5cf"/><text x="302.4" y="246.96" fill="#c9d1d9" fill-opacity="0.58">$</text><text x="319.2" y="246.96" textLength="67.2" fill="#c9d1d9" fill-opacity="0.58">npm test</text></g>
+<g style="animation-name:k2g"><path d="M256.2 234V252" stroke="#c9d1d9" stroke-opacity="0.45"/><use href="#spin" x="285.6" y="246.96" fill="#39c5cf"/><text x="302.4" y="246.96" fill="#c9d1d9" fill-opacity="0.58">$</text><text x="319.2" y="246.96" textLength="67.2" fill="#c9d1d9" fill-opacity="0.58">npm test</text><text x="403.2" y="246.96" textLength="411.6" fill="#6e7681">&gt; node --test --test-reporter=./scripts/report.js</text></g>
+<g style="animation-name:k2h"><path d="M256.2 234V252" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="246.96" fill="#3fb950">✓</text><text x="302.4" y="246.96" fill="#c9d1d9" fill-opacity="0.58">$</text><text x="319.2" y="246.96" textLength="67.2" fill="#c9d1d9" fill-opacity="0.58">npm test</text><text x="403.2" y="246.96" textLength="67.2" fill="#6e7681">4 passed</text></g>
+<g style="animation-name:k2i"><path d="M256.2 234V252" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="246.96" textLength="33.6" fill="#c9d1d9" fill-opacity="0.58">… +1</text></g>
+<g style="animation-name:k2j"><path d="M147 234V252" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="159.6" y="246.96" textLength="25.2" fill="#3fb950" font-weight="700">[1]</text><text x="193.2" y="246.96" textLength="67.2" fill="#c9d1d9">允许一次</text><path d="M793.8 234V252" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
+<g style="animation-name:k2k"><path d="M256.2 252V270" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
+<g style="animation-name:k2l"><path d="M256.2 252V270" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="264.96" textLength="655.2" fill="#c9d1d9">已修复。`parse()` 只处理到最后一个换行符，所以文件末尾没有换行时最后一条订单会</text></g>
+<g style="animation-name:k2m"><path d="M256.2 252V270" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="264.96" fill="#3fb950">✓</text><text x="302.4" y="264.96" fill="#c9d1d9" fill-opacity="0.58">✎</text><text x="319.2" y="264.96" textLength="159.6" fill="#c9d1d9" fill-opacity="0.58">test/parser.test.js</text></g>
+<g style="animation-name:k2n"><path d="M147 252V270" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="159.6" y="264.96" textLength="25.2" fill="#3fb950" font-weight="700">[2]</text><text x="193.2" y="264.96" textLength="210" fill="#c9d1d9">以后都允许 @claude 这样做</text><path d="M793.8 252V270" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
+<g style="animation-name:k2o"><path d="M256.2 252V270" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="264.96" fill="#3fb950">✓</text><text x="302.4" y="264.96" fill="#c9d1d9" fill-opacity="0.58">◇</text><text x="319.2" y="264.96" textLength="613.2" fill="#c9d1d9" fill-opacity="0.58">Read: /private/tmp/troupe-demo/.troupe/worktrees/shop-api-3cb3ac2f7015/cl</text><text x="932.4" y="264.96" fill="#c9d1d9" fill-opacity="0.58">…</text></g>
+<g style="animation-name:k2p"><path d="M256.2 270V288" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
+<g style="animation-name:k2q"><path d="M256.2 270V288" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="282.96" textLength="403.2" fill="#c9d1d9">丢失。现在换行符之后的文本也会解析，行号也正确。</text></g>
+<g style="animation-name:k2r"><path d="M256.2 270V288" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="282.96" fill="#ff7b72">✗</text><text x="302.4" y="282.96" fill="#c9d1d9" fill-opacity="0.58">$</text><text x="319.2" y="282.96" textLength="67.2" fill="#c9d1d9" fill-opacity="0.58">npm test</text><text x="403.2" y="282.96" textLength="151.2" fill="#6e7681">3 passed, 1 failed</text></g>
+<g style="animation-name:k2s"><path d="M147 270V288" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="159.6" y="282.96" textLength="25.2" fill="#ff7b72" font-weight="700">[3]</text><text x="193.2" y="282.96" textLength="33.6" fill="#c9d1d9">拒绝</text><path d="M793.8 270V288" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
+<g style="animation-name:k2t"><path d="M256.2 270V288" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="282.96" fill="#3fb950">✓</text><text x="302.4" y="282.96" fill="#c9d1d9" fill-opacity="0.58">⚙</text><text x="319.2" y="282.96" textLength="243.6" fill="#c9d1d9" fill-opacity="0.58">mcp__troupe__troupe_ask_agent</text></g>
+<g style="animation-name:k2u"><path d="M256.2 288V306" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
+<g style="animation-name:k2v"><path d="M256.2 288V306" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="300.96" fill="#3fb950">✓</text><text x="302.4" y="300.96" fill="#c9d1d9" fill-opacity="0.58">✎</text><text x="319.2" y="300.96" textLength="109.2" fill="#c9d1d9" fill-opacity="0.58">src/parser.js</text></g>
+<g style="animation-name:k2w"><path d="M147 288V306" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="159.6" y="300.96" textLength="42" fill="#c9d1d9" fill-opacity="0.58">[Esc]</text><text x="210" y="300.96" textLength="67.2" fill="#c9d1d9" fill-opacity="0.58">稍后处理</text><path d="M793.8 288V306" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
+<g style="animation-name:k2x"><path d="M256.2 288V306" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="300.96" fill="#3fb950">✓</text><text x="302.4" y="300.96" fill="#c9d1d9" fill-opacity="0.58">✎</text><text x="319.2" y="300.96" textLength="613.2" fill="#c9d1d9" fill-opacity="0.58">Write: /private/tmp/troupe-demo/.troupe/worktrees/shop-api-3cb3ac2f7015/c</text><text x="932.4" y="300.96" fill="#c9d1d9" fill-opacity="0.58">…</text></g>
+<g style="animation-name:k2y"><path d="M256.2 306V324" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
+<g style="animation-name:k2z"><path d="M256.2 306V324" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="318.96" textLength="260.4" fill="#c9d1d9">补了一个回归测试；`npm test`：4</text></g>
+<g style="animation-name:k30"><path d="M256.2 306V324" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="318.96" textLength="336" fill="#c9d1d9">补了一个回归测试；`npm test`：4 passed。</text></g>
+<g style="animation-name:k31"><path d="M256.2 306V324" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="318.96" fill="#3fb950">✓</text><text x="302.4" y="318.96" fill="#c9d1d9" fill-opacity="0.58">$</text><text x="319.2" y="318.96" textLength="67.2" fill="#c9d1d9" fill-opacity="0.58">npm test</text><text x="403.2" y="318.96" textLength="67.2" fill="#6e7681">4 passed</text></g>
+<g style="animation-name:k32"><path d="M147 306V324M147 315H151.2M151.2 315H159.6M159.6 315H168M168 315H176.4M176.4 315H184.8M184.8 315H193.2M193.2 315H201.6M201.6 315H210M210 315H218.4M218.4 315H226.8M226.8 315H235.2M235.2 315H243.6M243.6 315H252M252 315H260.4M260.4 315H268.8M268.8 315H277.2M277.2 315H285.6M285.6 315H294M294 315H302.4M302.4 315H310.8M310.8 315H319.2M319.2 315H327.6M327.6 315H336M336 315H344.4M344.4 315H352.8M352.8 315H361.2M361.2 315H369.6M369.6 315H378M378 315H386.4M386.4 315H394.8M394.8 315H403.2M403.2 315H411.6M411.6 315H420M420 315H428.4M428.4 315H436.8M436.8 315H445.2M445.2 315H453.6M453.6 315H462M462 315H470.4M470.4 315H478.8M478.8 315H487.2M487.2 315H495.6M495.6 315H504M504 315H512.4M512.4 315H520.8M520.8 315H529.2M529.2 315H537.6M537.6 315H546M546 315H554.4M554.4 315H562.8M562.8 315H571.2M571.2 315H579.6M579.6 315H588M588 315H596.4M596.4 315H604.8M604.8 315H613.2M613.2 315H621.6M621.6 315H630M630 315H638.4M638.4 315H646.8M646.8 315H655.2M655.2 315H663.6M663.6 315H672M672 315H680.4M680.4 315H688.8M688.8 315H697.2M697.2 315H705.6M705.6 315H714M714 315H722.4M722.4 315H730.8M730.8 315H739.2M739.2 315H747.6M747.6 315H756M756 315H764.4M764.4 315H772.8M772.8 315H781.2M781.2 315H789.6M793.8 306V324M789.6 315H793.8" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
+<g style="animation-name:k33"><path d="M256.2 306V324" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="318.96" fill="#3fb950">✓</text><text x="302.4" y="318.96" fill="#c9d1d9" fill-opacity="0.58">$</text><text x="319.2" y="318.96" textLength="117.6" fill="#c9d1d9" fill-opacity="0.58">Bash: npm test</text></g>
+<g style="animation-name:k34"><path d="M256.2 324V342" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
+<g style="animation-name:k35"><path d="M147 324V342" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="159.6" y="336.96" textLength="176.4" fill="#c9d1d9" fill-opacity="0.58">1 · 2 · 3 · ← → · Esc</text><path d="M793.8 324V342" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
+<g style="animation-name:k36"><path d="M256.2 342V360" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
+<g style="animation-name:k37"><rect x="16.8" y="342" width="134.4" height="18" fill="#d2a8ff"/><text x="25.2" y="354.96" textLength="58.8" fill="#0d1117" font-weight="700">@claude</text><rect x="151.2" y="342" width="184.8" height="18" fill="#c9d1d9" fill-opacity="0.58"/><text x="151.2" y="354.96" textLength="184.8" fill="#0d1117">Claude Code · untested</text><rect x="336" y="342" width="151.2" height="18" fill="#c9d1d9"/></g>
+<g style="animation-name:k38"><path d="M256.2 342V360" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="268.8" y="354.96" textLength="100.8" fill="#bc8cff" font-weight="700">@claude 提问</text><text x="378" y="354.96" fill="#c9d1d9" fill-opacity="0.58">›</text></g>
+<g style="animation-name:k39"><path d="M147 351H151.2M147 342V351M151.2 351H159.6M159.6 351H168M168 351H176.4M176.4 351H184.8M184.8 351H193.2M193.2 351H201.6M201.6 351H210M210 351H218.4M218.4 351H226.8M226.8 351H235.2M235.2 351H243.6M243.6 351H252M252 351H260.4M260.4 351H268.8M268.8 351H277.2M277.2 351H285.6M285.6 351H294M294 351H302.4M302.4 351H310.8M310.8 351H319.2M319.2 351H327.6M327.6 351H336M336 351H344.4M344.4 351H352.8M352.8 351H361.2M361.2 351H369.6M369.6 351H378M378 351H386.4M386.4 351H394.8M394.8 351H403.2M403.2 351H411.6M411.6 351H420M420 351H428.4M428.4 351H436.8M436.8 351H445.2M445.2 351H453.6M453.6 351H462M462 351H470.4M470.4 351H478.8M478.8 351H487.2M487.2 351H495.6M495.6 351H504M504 351H512.4M512.4 351H520.8M520.8 351H529.2M529.2 351H537.6M537.6 351H546M546 351H554.4M554.4 351H562.8M562.8 351H571.2M571.2 351H579.6M579.6 351H588M588 351H596.4M596.4 351H604.8M604.8 351H613.2M613.2 351H621.6M621.6 351H630M630 351H638.4M638.4 351H646.8M646.8 351H655.2M655.2 351H663.6M663.6 351H672M672 351H680.4M680.4 351H688.8M688.8 351H697.2M697.2 351H705.6M705.6 351H714M714 351H722.4M722.4 351H730.8M730.8 351H739.2M739.2 351H747.6M747.6 351H756M756 351H764.4M764.4 351H772.8M772.8 351H781.2M781.2 351H789.6M789.6 351H793.8M793.8 342V351" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
+<g style="animation-name:k3a"><path d="M256.2 360V378" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
+<g style="animation-name:k3b"><rect x="16.8" y="360" width="134.4" height="18" fill="#d2a8ff"/><text x="25.2" y="372.96" textLength="58.8" fill="#0d1117" font-weight="700">@claude</text><rect x="151.2" y="360" width="184.8" height="18" fill="#c9d1d9" fill-opacity="0.58"/><text x="151.2" y="372.96" textLength="184.8" fill="#0d1117">Claude Code · untested</text><rect x="336" y="360" width="151.2" height="18" fill="#c9d1d9"/></g>
+<g style="animation-name:k3c"><text x="25.2" y="372.96" textLength="50.4" fill="#3fb950" font-weight="700">@codex</text><text x="151.2" y="372.96" textLength="42" fill="#c9d1d9" fill-opacity="0.58">Codex</text></g>
+<g style="animation-name:k3d"><path d="M256.2 360V378" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="372.96" textLength="655.2" fill="#c9d1d9">parse() 之后还会抛出带 {line, column} 的 ParseError 吗？我的测试会同时检查这两</text></g>
+<g style="animation-name:k3e"><path d="M256.2 378V396" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
+<g style="animation-name:k3f"><rect x="16.8" y="378" width="134.4" height="18" fill="#d2a8ff"/><text x="25.2" y="390.96" textLength="58.8" fill="#0d1117" font-weight="700">@claude</text><rect x="151.2" y="378" width="184.8" height="18" fill="#c9d1d9" fill-opacity="0.58"/><text x="151.2" y="390.96" textLength="184.8" fill="#0d1117">Claude Code · untested</text><rect x="336" y="378" width="151.2" height="18" fill="#c9d1d9"/></g>
+<g style="animation-name:k3g"><text x="25.2" y="390.96" textLength="50.4" fill="#3fb950" font-weight="700">@codex</text><text x="151.2" y="390.96" textLength="42" fill="#c9d1d9" fill-opacity="0.58">Codex</text></g>
+<g style="animation-name:k3h"><text x="25.2" y="390.96" textLength="42" fill="#d29922" font-weight="700">@kimi</text><text x="151.2" y="390.96" textLength="75.6" fill="#c9d1d9" fill-opacity="0.58">Kimi Code</text></g>
+<g style="animation-name:k3i"><path d="M256.2 378V396" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="390.96" textLength="67.2" fill="#c9d1d9">个字段。</text></g>
+<g style="animation-name:k3j"><path d="M256.2 396V414" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
+<g style="animation-name:k3k"><text x="25.2" y="408.96" textLength="50.4" fill="#3fb950" font-weight="700">@codex</text><text x="151.2" y="408.96" textLength="42" fill="#c9d1d9" fill-opacity="0.58">Codex</text></g>
+<g style="animation-name:k3l"><text x="25.2" y="408.96" textLength="42" fill="#d29922" font-weight="700">@kimi</text><text x="151.2" y="408.96" textLength="75.6" fill="#c9d1d9" fill-opacity="0.58">Kimi Code</text></g>
+<g style="animation-name:k3m"><text x="25.2" y="408.96" textLength="33.6" fill="#d29922" font-weight="700">@all</text><text x="151.2" y="408.96" textLength="92.4" fill="#c9d1d9" fill-opacity="0.58">every agent</text></g>
+<g style="animation-name:k3n"><path d="M256.2 414V432" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
+<g style="animation-name:k3o"><text x="25.2" y="426.96" textLength="42" fill="#d29922" font-weight="700">@kimi</text><text x="151.2" y="426.96" textLength="75.6" fill="#c9d1d9" fill-opacity="0.58">Kimi Code</text></g>
+<g style="animation-name:k3p"><text x="25.2" y="426.96" textLength="33.6" fill="#d29922" font-weight="700">@all</text><text x="151.2" y="426.96" textLength="92.4" fill="#c9d1d9" fill-opacity="0.58">every agent</text></g>
+<g style="animation-name:k3q"><rect x="16.8" y="414" width="134.4" height="18" fill="#d2a8ff"/><text x="25.2" y="426.96" textLength="58.8" fill="#0d1117" font-weight="700">@claude</text><rect x="151.2" y="414" width="184.8" height="18" fill="#c9d1d9" fill-opacity="0.58"/><text x="151.2" y="426.96" textLength="184.8" fill="#0d1117">Claude Code · untested</text><rect x="336" y="414" width="151.2" height="18" fill="#c9d1d9"/></g>
+<g style="animation-name:k3r"><text x="25.2" y="426.96" textLength="42" fill="#d29922" font-weight="700">@auto</text><text x="151.2" y="426.96" textLength="126" fill="#c9d1d9" fill-opacity="0.58">let Troupe pick</text></g>
+<g style="animation-name:k3s"><path d="M256.2 414V432" stroke="#c9d1d9" stroke-opacity="0.45"/><use href="#spin" x="268.8" y="426.96" fill="#39c5cf"/><text x="285.6" y="426.96" textLength="50.4" fill="#3fb950" font-weight="700">@codex</text><text x="344.4" y="426.96" textLength="75.6" fill="#c9d1d9" fill-opacity="0.58">已工作 0s</text><text x="428.4" y="426.96" textLength="117.6" fill="#bc8cff">· @claude 提问</text></g>
+<g style="animation-name:k3t"><path d="M256.2 414V432" stroke="#c9d1d9" stroke-opacity="0.45"/><use href="#spin" x="268.8" y="426.96" fill="#39c5cf"/><text x="285.6" y="426.96" textLength="50.4" fill="#3fb950" font-weight="700">@codex</text><text x="344.4" y="426.96" textLength="75.6" fill="#c9d1d9" fill-opacity="0.58">已工作 1s</text><text x="428.4" y="426.96" textLength="117.6" fill="#bc8cff">· @claude 提问</text></g>
+<g style="animation-name:k3u"><path d="M256.2 414V432" stroke="#c9d1d9" stroke-opacity="0.45"/><use href="#spin" x="268.8" y="426.96" fill="#39c5cf"/><text x="285.6" y="426.96" textLength="50.4" fill="#3fb950" font-weight="700">@codex</text><text x="344.4" y="426.96" textLength="75.6" fill="#c9d1d9" fill-opacity="0.58">已工作 2s</text><text x="428.4" y="426.96" textLength="117.6" fill="#bc8cff">· @claude 提问</text></g>
+<g style="animation-name:k3v"><path d="M256.2 414V432" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="268.8" y="426.96" textLength="50.4" fill="#3fb950" font-weight="700">@codex</text><text x="327.6" y="426.96" fill="#c9d1d9" fill-opacity="0.58">›</text><text x="352.8" y="426.96" textLength="16.8" fill="#c9d1d9" fill-opacity="0.58">2s</text></g>
+<g style="animation-name:k3w"><path d="M256.2 432V450" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
+<g style="animation-name:k3x"><text x="25.2" y="444.96" textLength="33.6" fill="#d29922" font-weight="700">@all</text><text x="151.2" y="444.96" textLength="92.4" fill="#c9d1d9" fill-opacity="0.58">every agent</text></g>
+<g style="animation-name:k3y"><rect x="16.8" y="432" width="134.4" height="18" fill="#d2a8ff"/><text x="25.2" y="444.96" textLength="58.8" fill="#0d1117" font-weight="700">@claude</text><rect x="151.2" y="432" width="184.8" height="18" fill="#c9d1d9" fill-opacity="0.58"/><text x="151.2" y="444.96" textLength="184.8" fill="#0d1117">Claude Code · untested</text><rect x="336" y="432" width="151.2" height="18" fill="#c9d1d9"/></g>
+<g style="animation-name:k3z"><text x="25.2" y="444.96" textLength="42" fill="#d29922" font-weight="700">@auto</text><text x="151.2" y="444.96" textLength="126" fill="#c9d1d9" fill-opacity="0.58">let Troupe pick</text></g>
+<g style="animation-name:k40"><text x="25.2" y="444.96" textLength="50.4" fill="#3fb950" font-weight="700">@codex</text><text x="151.2" y="444.96" textLength="42" fill="#c9d1d9" fill-opacity="0.58">Codex</text></g>
+<g style="animation-name:k41"><text x="25.2" y="444.96" textLength="67.2" fill="#d29922" font-weight="700">@compare</text><text x="151.2" y="444.96" textLength="252" fill="#c9d1d9" fill-opacity="0.58">compare the answers afterwards</text></g>
+<g style="animation-name:k42"><rect x="16.8" y="432" width="134.4" height="18" fill="#d29922"/><text x="25.2" y="444.96" textLength="42" fill="#0d1117" font-weight="700">@kimi</text><rect x="151.2" y="432" width="75.6" height="18" fill="#c9d1d9" fill-opacity="0.58"/><text x="151.2" y="444.96" textLength="75.6" fill="#0d1117">Kimi Code</text><rect x="226.8" y="432" width="260.4" height="18" fill="#c9d1d9"/></g>
+<g style="animation-name:k43"><path d="M256.2 432V450" stroke="#c9d1d9" stroke-opacity="0.45"/><use href="#spin" x="285.6" y="444.96" fill="#39c5cf"/><text x="302.4" y="444.96" fill="#c9d1d9" fill-opacity="0.58">⚙</text><text x="319.2" y="444.96" textLength="210" fill="#c9d1d9" fill-opacity="0.58">troupe.troupe_board_write</text></g>
+<g style="animation-name:k44"><path d="M256.2 432V450" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="444.96" fill="#3fb950">✓</text><text x="302.4" y="444.96" fill="#c9d1d9" fill-opacity="0.58">⚙</text><text x="319.2" y="444.96" textLength="210" fill="#c9d1d9" fill-opacity="0.58">troupe.troupe_board_write</text></g>
+<g style="animation-name:k45"><path d="M256.2 432V450" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="444.96" textLength="646.8" fill="#c9d1d9">会。错误格式不变：ParseError 保留 `line` 和 `column`，都从 1 开始计数。我把约</text></g>
+<g style="animation-name:k46"><path d="M256.2 450V468" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
+<g style="animation-name:k47"><text x="25.2" y="462.96" textLength="42" fill="#d29922" font-weight="700">@auto</text><text x="151.2" y="462.96" textLength="126" fill="#c9d1d9" fill-opacity="0.58">let Troupe pick</text></g>
+<g style="animation-name:k48"><text x="25.2" y="462.96" textLength="50.4" fill="#3fb950" font-weight="700">@codex</text><text x="151.2" y="462.96" textLength="42" fill="#c9d1d9" fill-opacity="0.58">Codex</text></g>
+<g style="animation-name:k49"><rect x="16.8" y="450" width="134.4" height="18" fill="#3fb950"/><text x="25.2" y="462.96" textLength="50.4" fill="#0d1117" font-weight="700">@codex</text><rect x="151.2" y="450" width="42" height="18" fill="#c9d1d9" fill-opacity="0.58"/><text x="151.2" y="462.96" textLength="42" fill="#0d1117">Codex</text><rect x="193.2" y="450" width="294" height="18" fill="#c9d1d9"/></g>
+<g style="animation-name:k4a"><text x="25.2" y="462.96" textLength="67.2" fill="#d29922" font-weight="700">@compare</text><text x="151.2" y="462.96" textLength="252" fill="#c9d1d9" fill-opacity="0.58">compare the answers afterwards</text></g>
+<g style="animation-name:k4b"><rect x="16.8" y="450" width="134.4" height="18" fill="#d2a8ff"/><text x="25.2" y="462.96" textLength="58.8" fill="#0d1117" font-weight="700">@claude</text><rect x="151.2" y="450" width="184.8" height="18" fill="#c9d1d9" fill-opacity="0.58"/><text x="151.2" y="462.96" textLength="184.8" fill="#0d1117">Claude Code · untested</text><rect x="336" y="450" width="151.2" height="18" fill="#c9d1d9"/></g>
+<g style="animation-name:k4c"><path d="M0 459H8.4M8.4 459H16.8M16.8 459H25.2M25.2 459H33.6M33.6 459H42M42 459H50.4M50.4 459H58.8M58.8 459H67.2M67.2 459H75.6M75.6 459H84M84 459H92.4M92.4 459H100.8M100.8 459H109.2M109.2 459H117.6M117.6 459H126M126 459H134.4M134.4 459H142.8M142.8 459H151.2M151.2 459H159.6M159.6 459H168M168 459H176.4M176.4 459H184.8M184.8 459H193.2M193.2 459H201.6M201.6 459H210M210 459H218.4M218.4 459H226.8M226.8 459H235.2M235.2 459H243.6M243.6 459H252M252 459H260.4M260.4 459H268.8M268.8 459H277.2M277.2 459H285.6M285.6 459H294M294 459H302.4M302.4 459H310.8M310.8 459H319.2M319.2 459H327.6M327.6 459H336M336 459H344.4M344.4 459H352.8M352.8 459H361.2M361.2 459H369.6M369.6 459H378M378 459H386.4M386.4 459H394.8M394.8 459H403.2M403.2 459H411.6M411.6 459H420M420 459H428.4M428.4 459H436.8M436.8 459H445.2M445.2 459H453.6M453.6 459H462M462 459H470.4M470.4 459H478.8M478.8 459H487.2M487.2 459H495.6M495.6 459H504M504 459H512.4M512.4 459H520.8M520.8 459H529.2M529.2 459H537.6M537.6 459H546M546 459H554.4M554.4 459H562.8M562.8 459H571.2M571.2 459H579.6M579.6 459H588M588 459H596.4M596.4 459H604.8M604.8 459H613.2M613.2 459H621.6M621.6 459H630M630 459H638.4M638.4 459H646.8M646.8 459H655.2M655.2 459H663.6M663.6 459H672M672 459H680.4M680.4 459H688.8M688.8 459H697.2M697.2 459H705.6M705.6 459H714M714 459H722.4M722.4 459H730.8M730.8 459H739.2M739.2 459H747.6M747.6 459H756M756 459H764.4M764.4 459H772.8M772.8 459H781.2M781.2 459H789.6M789.6 459H798M798 459H806.4M806.4 459H814.8M814.8 459H823.2M823.2 459H831.6M831.6 459H840M840 459H848.4M848.4 459H856.8M856.8 459H865.2M865.2 459H873.6M873.6 459H882M882 459H890.4M890.4 459H898.8M898.8 459H907.2M907.2 459H915.6M915.6 459H924M924 459H932.4M932.4 459H940.8" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
+<g style="animation-name:k4d"><path d="M256.2 450V468" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="462.96" textLength="361.2" fill="#c9d1d9">会。错误格式不变：ParseError 保留 `line` 和</text></g>
+<g style="animation-name:k4e"><path d="M256.2 450V468" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="462.96" textLength="646.8" fill="#c9d1d9">会。错误格式不变：ParseError 保留 `line` 和 `column`，都从 1 开始计数。我把约</text></g>
+<g style="animation-name:k4f"><path d="M256.2 450V468" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="462.96" textLength="243.6" fill="#c9d1d9">定写在了看板的 api.parse 下。</text></g>
+<g style="animation-name:k4g"><path d="M256.2 468V486" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
+<g style="animation-name:k4h"><text x="25.2" y="480.96" textLength="67.2" fill="#d29922" font-weight="700">@compare</text><text x="151.2" y="480.96" textLength="252" fill="#c9d1d9" fill-opacity="0.58">compare the answers afterwards</text></g>
+<g style="animation-name:k4i"><rect x="16.8" y="468" width="134.4" height="18" fill="#3fb950"/><text x="25.2" y="480.96" textLength="50.4" fill="#0d1117" font-weight="700">@codex</text><rect x="151.2" y="468" width="42" height="18" fill="#c9d1d9" fill-opacity="0.58"/><text x="151.2" y="480.96" textLength="42" fill="#0d1117">Codex</text><rect x="193.2" y="468" width="294" height="18" fill="#c9d1d9"/></g>
+<g style="animation-name:k4j"><path d="M0 477H8.4M8.4 477H16.8M16.8 477H25.2M25.2 477H33.6M33.6 477H42M42 477H50.4M50.4 477H58.8M58.8 477H67.2M67.2 477H75.6M75.6 477H84M84 477H92.4M92.4 477H100.8M100.8 477H109.2M109.2 477H117.6M117.6 477H126M126 477H134.4M134.4 477H142.8M142.8 477H151.2M151.2 477H159.6M159.6 477H168M168 477H176.4M176.4 477H184.8M184.8 477H193.2M193.2 477H201.6M201.6 477H210M210 477H218.4M218.4 477H226.8M226.8 477H235.2M235.2 477H243.6M243.6 477H252M252 477H260.4M260.4 477H268.8M268.8 477H277.2M277.2 477H285.6M285.6 477H294M294 477H302.4M302.4 477H310.8M310.8 477H319.2M319.2 477H327.6M327.6 477H336M336 477H344.4M344.4 477H352.8M352.8 477H361.2M361.2 477H369.6M369.6 477H378M378 477H386.4M386.4 477H394.8M394.8 477H403.2M403.2 477H411.6M411.6 477H420M420 477H428.4M428.4 477H436.8M436.8 477H445.2M445.2 477H453.6M453.6 477H462M462 477H470.4M470.4 477H478.8M478.8 477H487.2M487.2 477H495.6M495.6 477H504M504 477H512.4M512.4 477H520.8M520.8 477H529.2M529.2 477H537.6M537.6 477H546M546 477H554.4M554.4 477H562.8M562.8 477H571.2M571.2 477H579.6M579.6 477H588M588 477H596.4M596.4 477H604.8M604.8 477H613.2M613.2 477H621.6M621.6 477H630M630 477H638.4M638.4 477H646.8M646.8 477H655.2M655.2 477H663.6M663.6 477H672M672 477H680.4M680.4 477H688.8M688.8 477H697.2M697.2 477H705.6M705.6 477H714M714 477H722.4M722.4 477H730.8M730.8 477H739.2M739.2 477H747.6M747.6 477H756M756 477H764.4M764.4 477H772.8M772.8 477H781.2M781.2 477H789.6M789.6 477H798M798 477H806.4M806.4 477H814.8M814.8 477H823.2M823.2 477H831.6M831.6 477H840M840 477H848.4M848.4 477H856.8M856.8 477H865.2M865.2 477H873.6M873.6 477H882M882 477H890.4M890.4 477H898.8M898.8 477H907.2M907.2 477H915.6M915.6 477H924M924 477H932.4M932.4 477H940.8" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
+<g style="animation-name:k4k"><text x="0" y="480.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="480.96" textLength="428.4" fill="#c9d1d9">@codex 修复解析器：文件末尾没有换行时会丢掉最后一行</text></g>
+<g style="animation-name:k4l"><path d="M256.2 468V486" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="480.96" textLength="201.6" fill="#c9d1d9">定写在了看板的 api.parse</text></g>
+<g style="animation-name:k4m"><path d="M256.2 468V486" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="480.96" textLength="243.6" fill="#c9d1d9">定写在了看板的 api.parse 下。</text></g>
+<g style="animation-name:k4n"><path d="M256.2 468V486" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="480.96" fill="#3fb950">✓</text><text x="302.4" y="480.96" fill="#c9d1d9" fill-opacity="0.58">⚙</text><text x="319.2" y="480.96" textLength="210" fill="#c9d1d9" fill-opacity="0.58">troupe.troupe_board_write</text></g>
+<g style="animation-name:k4o"><path d="M0 495H8.4M8.4 495H16.8M16.8 495H25.2M25.2 495H33.6M33.6 495H42M42 495H50.4M50.4 495H58.8M58.8 495H67.2M67.2 495H75.6M75.6 495H84M84 495H92.4M92.4 495H100.8M100.8 495H109.2M109.2 495H117.6M117.6 495H126M126 495H134.4M134.4 495H142.8M142.8 495H151.2M151.2 495H159.6M159.6 495H168M168 495H176.4M176.4 495H184.8M184.8 495H193.2M193.2 495H201.6M201.6 495H210M210 495H218.4M218.4 495H226.8M226.8 495H235.2M235.2 495H243.6M243.6 495H252M252 495H260.4M260.4 495H268.8M268.8 495H277.2M277.2 495H285.6M285.6 495H294M294 495H302.4M302.4 495H310.8M310.8 495H319.2M319.2 495H327.6M327.6 495H336M336 495H344.4M344.4 495H352.8M352.8 495H361.2M361.2 495H369.6M369.6 495H378M378 495H386.4M386.4 495H394.8M394.8 495H403.2M403.2 495H411.6M411.6 495H420M420 495H428.4M428.4 495H436.8M436.8 495H445.2M445.2 495H453.6M453.6 495H462M462 495H470.4M470.4 495H478.8M478.8 495H487.2M487.2 495H495.6M495.6 495H504M504 495H512.4M512.4 495H520.8M520.8 495H529.2M529.2 495H537.6M537.6 495H546M546 495H554.4M554.4 495H562.8M562.8 495H571.2M571.2 495H579.6M579.6 495H588M588 495H596.4M596.4 495H604.8M604.8 495H613.2M613.2 495H621.6M621.6 495H630M630 495H638.4M638.4 495H646.8M646.8 495H655.2M655.2 495H663.6M663.6 495H672M672 495H680.4M680.4 495H688.8M688.8 495H697.2M697.2 495H705.6M705.6 495H714M714 495H722.4M722.4 495H730.8M730.8 495H739.2M739.2 495H747.6M747.6 495H756M756 495H764.4M764.4 495H772.8M772.8 495H781.2M781.2 495H789.6M789.6 495H798M798 495H806.4M806.4 495H814.8M814.8 495H823.2M823.2 495H831.6M831.6 495H840M840 495H848.4M848.4 495H856.8M856.8 495H865.2M865.2 495H873.6M873.6 495H882M882 495H890.4M890.4 495H898.8M898.8 495H907.2M907.2 495H915.6M915.6 495H924M924 495H932.4M932.4 495H940.8" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
+<g style="animation-name:k4p"><text x="0" y="498.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="498.96" textLength="428.4" fill="#c9d1d9">@codex 修复解析器：文件末尾没有换行时会丢掉最后一行</text></g>
+<g style="animation-name:k4q"><text x="16.8" y="498.96" textLength="252" fill="#c9d1d9">@claude 给解析错误补充边界测试</text></g>
+<g style="animation-name:k4r"><text x="0" y="516.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="516.96" textLength="487.2" fill="#6e7681">@codex @claude 审查 src/   ·   Enter 发送 · Alt+Enter 换行</text></g>
+<g style="animation-name:k4s"><text x="0" y="516.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="516.96" fill="#c9d1d9">@</text></g>
+<g style="animation-name:k4t"><text x="0" y="516.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="516.96" textLength="16.8" fill="#c9d1d9">@c</text></g>
+<g style="animation-name:k4u"><text x="0" y="516.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="516.96" textLength="25.2" fill="#c9d1d9">@co</text></g>
+<g style="animation-name:k4v"><text x="0" y="516.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="516.96" textLength="33.6" fill="#c9d1d9">@cod</text></g>
+<g style="animation-name:k4w"><text x="0" y="516.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="516.96" textLength="42" fill="#c9d1d9">@code</text></g>
+<g style="animation-name:k4x"><text x="0" y="516.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="516.96" textLength="50.4" fill="#c9d1d9">@codex</text></g>
+<g style="animation-name:k4y"><text x="0" y="516.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="516.96" textLength="75.6" fill="#c9d1d9">@codex 修</text></g>
+<g style="animation-name:k4z"><text x="0" y="516.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="516.96" textLength="92.4" fill="#c9d1d9">@codex 修复</text></g>
+<g style="animation-name:k50"><text x="0" y="516.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="516.96" textLength="109.2" fill="#c9d1d9">@codex 修复解</text></g>
+<g style="animation-name:k51"><text x="0" y="516.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="516.96" textLength="126" fill="#c9d1d9">@codex 修复解析</text></g>
+<g style="animation-name:k52"><text x="0" y="516.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="516.96" textLength="142.8" fill="#c9d1d9">@codex 修复解析器</text></g>
+<g style="animation-name:k53"><text x="0" y="516.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="516.96" textLength="159.6" fill="#c9d1d9">@codex 修复解析器：</text></g>
+<g style="animation-name:k54"><text x="0" y="516.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="516.96" textLength="176.4" fill="#c9d1d9">@codex 修复解析器：文</text></g>
+<g style="animation-name:k55"><text x="0" y="516.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="516.96" textLength="193.2" fill="#c9d1d9">@codex 修复解析器：文件</text></g>
+<g style="animation-name:k56"><text x="0" y="516.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="516.96" textLength="210" fill="#c9d1d9">@codex 修复解析器：文件末</text></g>
+<g style="animation-name:k57"><text x="0" y="516.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="516.96" textLength="226.8" fill="#c9d1d9">@codex 修复解析器：文件末尾</text></g>
+<g style="animation-name:k58"><text x="0" y="516.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="516.96" textLength="260.4" fill="#c9d1d9">@codex 修复解析器：文件末尾没有</text></g>
+<g style="animation-name:k59"><text x="0" y="516.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="516.96" textLength="277.2" fill="#c9d1d9">@codex 修复解析器：文件末尾没有换</text></g>
+<g style="animation-name:k5a"><text x="0" y="516.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="516.96" textLength="294" fill="#c9d1d9">@codex 修复解析器：文件末尾没有换行</text></g>
+<g style="animation-name:k5b"><text x="0" y="516.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="516.96" textLength="310.8" fill="#c9d1d9">@codex 修复解析器：文件末尾没有换行时</text></g>
+<g style="animation-name:k5c"><text x="0" y="516.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="516.96" textLength="327.6" fill="#c9d1d9">@codex 修复解析器：文件末尾没有换行时会</text></g>
+<g style="animation-name:k5d"><text x="0" y="516.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="516.96" textLength="344.4" fill="#c9d1d9">@codex 修复解析器：文件末尾没有换行时会丢</text></g>
+<g style="animation-name:k5e"><text x="0" y="516.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="516.96" textLength="361.2" fill="#c9d1d9">@codex 修复解析器：文件末尾没有换行时会丢掉</text></g>
+<g style="animation-name:k5f"><text x="0" y="516.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="516.96" textLength="378" fill="#c9d1d9">@codex 修复解析器：文件末尾没有换行时会丢掉最</text></g>
+<g style="animation-name:k5g"><text x="0" y="516.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="516.96" textLength="394.8" fill="#c9d1d9">@codex 修复解析器：文件末尾没有换行时会丢掉最后</text></g>
+<g style="animation-name:k5h"><text x="0" y="516.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="516.96" textLength="411.6" fill="#c9d1d9">@codex 修复解析器：文件末尾没有换行时会丢掉最后一</text></g>
+<g style="animation-name:k5i"><text x="0" y="516.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="516.96" textLength="428.4" fill="#c9d1d9">@codex 修复解析器：文件末尾没有换行时会丢掉最后一行</text></g>
+<g style="animation-name:k5j"><text x="16.8" y="516.96" fill="#c9d1d9">@</text></g>
+<g style="animation-name:k5k"><text x="16.8" y="516.96" textLength="16.8" fill="#c9d1d9">@c</text></g>
+<g style="animation-name:k5l"><text x="16.8" y="516.96" textLength="25.2" fill="#c9d1d9">@cl</text></g>
+<g style="animation-name:k5m"><text x="16.8" y="516.96" textLength="33.6" fill="#c9d1d9">@cla</text></g>
+<g style="animation-name:k5n"><text x="16.8" y="516.96" textLength="42" fill="#c9d1d9">@clau</text></g>
+<g style="animation-name:k5o"><text x="16.8" y="516.96" textLength="58.8" fill="#c9d1d9">@claude</text></g>
+<g style="animation-name:k5p"><text x="16.8" y="516.96" textLength="84" fill="#c9d1d9">@claude 给</text></g>
+<g style="animation-name:k5q"><text x="16.8" y="516.96" textLength="100.8" fill="#c9d1d9">@claude 给解</text></g>
+<g style="animation-name:k5r"><text x="16.8" y="516.96" textLength="117.6" fill="#c9d1d9">@claude 给解析</text></g>
+<g style="animation-name:k5s"><text x="16.8" y="516.96" textLength="134.4" fill="#c9d1d9">@claude 给解析错</text></g>
+<g style="animation-name:k5t"><text x="16.8" y="516.96" textLength="151.2" fill="#c9d1d9">@claude 给解析错误</text></g>
+<g style="animation-name:k5u"><text x="16.8" y="516.96" textLength="168" fill="#c9d1d9">@claude 给解析错误补</text></g>
+<g style="animation-name:k5v"><text x="16.8" y="516.96" textLength="184.8" fill="#c9d1d9">@claude 给解析错误补充</text></g>
+<g style="animation-name:k5w"><text x="16.8" y="516.96" textLength="201.6" fill="#c9d1d9">@claude 给解析错误补充边</text></g>
 <g style="animation-name:k5x"><text x="16.8" y="516.96" textLength="218.4" fill="#c9d1d9">@claude 给解析错误补充边界</text></g>
-<g style="animation-name:k5y"><text x="16.8" y="516.96" textLength="235.2" fill="#c9d1d9">@claude 给解析错误补充边界测</text></g>
-<g style="animation-name:k5z"><text x="16.8" y="516.96" textLength="252" fill="#c9d1d9">@claude 给解析错误补充边界测试</text></g>
-<g style="animation-name:k60"><text x="16.8" y="516.96" textLength="16.8" fill="#c9d1d9">@k</text></g>
-<g style="animation-name:k61"><text x="16.8" y="516.96" textLength="33.6" fill="#c9d1d9">@kim</text></g>
-<g style="animation-name:k62"><text x="16.8" y="516.96" textLength="42" fill="#c9d1d9">@kimi</text></g>
-<g style="animation-name:k63"><text x="16.8" y="516.96" textLength="67.2" fill="#c9d1d9">@kimi 在</text></g>
-<g style="animation-name:k64"><text x="16.8" y="516.96" textLength="84" fill="#c9d1d9">@kimi 在 d</text></g>
-<g style="animation-name:k65"><text x="16.8" y="516.96" textLength="92.4" fill="#c9d1d9">@kimi 在 do</text></g>
-<g style="animation-name:k66"><text x="16.8" y="516.96" textLength="100.8" fill="#c9d1d9">@kimi 在 doc</text></g>
-<g style="animation-name:k67"><text x="16.8" y="516.96" textLength="109.2" fill="#c9d1d9">@kimi 在 docs</text></g>
-<g style="animation-name:k68"><text x="16.8" y="516.96" textLength="126" fill="#c9d1d9">@kimi 在 docs/i</text></g>
-<g style="animation-name:k69"><text x="16.8" y="516.96" textLength="134.4" fill="#c9d1d9">@kimi 在 docs/im</text></g>
-<g style="animation-name:k6a"><text x="16.8" y="516.96" textLength="142.8" fill="#c9d1d9">@kimi 在 docs/imp</text></g>
-<g style="animation-name:k6b"><text x="16.8" y="516.96" textLength="151.2" fill="#c9d1d9">@kimi 在 docs/impo</text></g>
-<g style="animation-name:k6c"><text x="16.8" y="516.96" textLength="159.6" fill="#c9d1d9">@kimi 在 docs/impor</text></g>
-<g style="animation-name:k6d"><text x="16.8" y="516.96" textLength="168" fill="#c9d1d9">@kimi 在 docs/import</text></g>
-<g style="animation-name:k6e"><text x="16.8" y="516.96" textLength="176.4" fill="#c9d1d9">@kimi 在 docs/import.</text></g>
-<g style="animation-name:k6f"><text x="16.8" y="516.96" textLength="184.8" fill="#c9d1d9">@kimi 在 docs/import.m</text></g>
-<g style="animation-name:k6g"><text x="16.8" y="516.96" textLength="193.2" fill="#c9d1d9">@kimi 在 docs/import.md</text></g>
-<g style="animation-name:k6h"><text x="16.8" y="516.96" textLength="218.4" fill="#c9d1d9">@kimi 在 docs/import.md 写</text></g>
-<g style="animation-name:k6i"><text x="16.8" y="516.96" textLength="235.2" fill="#c9d1d9">@kimi 在 docs/import.md 写清</text></g>
-<g style="animation-name:k6j"><text x="16.8" y="516.96" textLength="252" fill="#c9d1d9">@kimi 在 docs/import.md 写清楚</text></g>
-<g style="animation-name:k6k"><text x="16.8" y="516.96" textLength="268.8" fill="#c9d1d9">@kimi 在 docs/import.md 写清楚导</text></g>
-<g style="animation-name:k6l"><text x="16.8" y="516.96" textLength="285.6" fill="#c9d1d9">@kimi 在 docs/import.md 写清楚导入</text></g>
-<g style="animation-name:k6m"><text x="16.8" y="516.96" textLength="302.4" fill="#c9d1d9">@kimi 在 docs/import.md 写清楚导入格</text></g>
-<g style="animation-name:k6n"><text x="16.8" y="516.96" textLength="319.2" fill="#c9d1d9">@kimi 在 docs/import.md 写清楚导入格式</text></g>
-<g style="animation-name:k6o"><text x="0" y="516.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="516.96" textLength="378" fill="#6e7681">发给 @codex，或以 @代理 开头   ·   Enter 发送</text></g>
-<g style="animation-name:k6p"><text x="0" y="516.96" fill="#39c5cf" fill-opacity="0.58">›</text><text x="16.8" y="516.96" textLength="378" fill="#6e7681">发给 @codex，或以 @代理 开头   ·   Enter 发送</text></g>
-<g style="animation-name:k6q"><text x="0" y="516.96" fill="#39c5cf" fill-opacity="0.58">›</text><text x="16.8" y="516.96" textLength="386.4" fill="#6e7681">发给 @claude，或以 @代理 开头   ·   Enter 发送</text></g>
-<g style="animation-name:k6r"><text x="8.4" y="534.96" textLength="361.2" fill="#c9d1d9" fill-opacity="0.58">Enter 发送 · Tab 补全 · ↑ 历史 · Esc 快捷键</text></g>
-<g style="animation-name:k6s"><text x="8.4" y="534.96" textLength="226.8" fill="#39c5cf">已发给 @codex @claude @kimi</text></g>
-<g style="animation-name:k6t"><text x="8.4" y="534.96" textLength="67.2" fill="#c9d1d9" fill-opacity="0.58">Esc 关闭</text></g>
-<g style="animation-name:k6u"><text x="8.4" y="534.96" textLength="924" fill="#c9d1d9" fill-opacity="0.58">↑↓ 选代理 · a 审批 · d 改动 · m 合并 · s 停止 · g 目标 · b 看板 · n 新代理 · p 权限 · ? 帮助 · i 输入 · q 退出</text></g>
+<g style="animation-name:k5y"><text x="16.8" y="516.96" textLength="252" fill="#c9d1d9">@claude 给解析错误补充边界测试</text></g>
+<g style="animation-name:k5z"><text x="16.8" y="516.96" textLength="16.8" fill="#c9d1d9">@k</text></g>
+<g style="animation-name:k60"><text x="16.8" y="516.96" textLength="25.2" fill="#c9d1d9">@ki</text></g>
+<g style="animation-name:k61"><text x="16.8" y="516.96" textLength="42" fill="#c9d1d9">@kimi</text></g>
+<g style="animation-name:k62"><text x="16.8" y="516.96" textLength="67.2" fill="#c9d1d9">@kimi 在</text></g>
+<g style="animation-name:k63"><text x="16.8" y="516.96" textLength="84" fill="#c9d1d9">@kimi 在 d</text></g>
+<g style="animation-name:k64"><text x="16.8" y="516.96" textLength="92.4" fill="#c9d1d9">@kimi 在 do</text></g>
+<g style="animation-name:k65"><text x="16.8" y="516.96" textLength="100.8" fill="#c9d1d9">@kimi 在 doc</text></g>
+<g style="animation-name:k66"><text x="16.8" y="516.96" textLength="109.2" fill="#c9d1d9">@kimi 在 docs</text></g>
+<g style="animation-name:k67"><text x="16.8" y="516.96" textLength="126" fill="#c9d1d9">@kimi 在 docs/i</text></g>
+<g style="animation-name:k68"><text x="16.8" y="516.96" textLength="134.4" fill="#c9d1d9">@kimi 在 docs/im</text></g>
+<g style="animation-name:k69"><text x="16.8" y="516.96" textLength="142.8" fill="#c9d1d9">@kimi 在 docs/imp</text></g>
+<g style="animation-name:k6a"><text x="16.8" y="516.96" textLength="151.2" fill="#c9d1d9">@kimi 在 docs/impo</text></g>
+<g style="animation-name:k6b"><text x="16.8" y="516.96" textLength="159.6" fill="#c9d1d9">@kimi 在 docs/impor</text></g>
+<g style="animation-name:k6c"><text x="16.8" y="516.96" textLength="168" fill="#c9d1d9">@kimi 在 docs/import</text></g>
+<g style="animation-name:k6d"><text x="16.8" y="516.96" textLength="176.4" fill="#c9d1d9">@kimi 在 docs/import.</text></g>
+<g style="animation-name:k6e"><text x="16.8" y="516.96" textLength="184.8" fill="#c9d1d9">@kimi 在 docs/import.m</text></g>
+<g style="animation-name:k6f"><text x="16.8" y="516.96" textLength="193.2" fill="#c9d1d9">@kimi 在 docs/import.md</text></g>
+<g style="animation-name:k6g"><text x="16.8" y="516.96" textLength="218.4" fill="#c9d1d9">@kimi 在 docs/import.md 写</text></g>
+<g style="animation-name:k6h"><text x="16.8" y="516.96" textLength="235.2" fill="#c9d1d9">@kimi 在 docs/import.md 写清</text></g>
+<g style="animation-name:k6i"><text x="16.8" y="516.96" textLength="252" fill="#c9d1d9">@kimi 在 docs/import.md 写清楚</text></g>
+<g style="animation-name:k6j"><text x="16.8" y="516.96" textLength="268.8" fill="#c9d1d9">@kimi 在 docs/import.md 写清楚导</text></g>
+<g style="animation-name:k6k"><text x="16.8" y="516.96" textLength="285.6" fill="#c9d1d9">@kimi 在 docs/import.md 写清楚导入</text></g>
+<g style="animation-name:k6l"><text x="16.8" y="516.96" textLength="302.4" fill="#c9d1d9">@kimi 在 docs/import.md 写清楚导入格</text></g>
+<g style="animation-name:k6m"><text x="16.8" y="516.96" textLength="319.2" fill="#c9d1d9">@kimi 在 docs/import.md 写清楚导入格式</text></g>
+<g style="animation-name:k6n"><text x="0" y="516.96" fill="#39c5cf" font-weight="700">›</text><text x="16.8" y="516.96" textLength="378" fill="#6e7681">发给 @codex，或以 @代理 开头   ·   Enter 发送</text></g>
+<g style="animation-name:k6o"><text x="0" y="516.96" fill="#39c5cf" fill-opacity="0.58">›</text><text x="16.8" y="516.96" textLength="378" fill="#6e7681">发给 @codex，或以 @代理 开头   ·   Enter 发送</text></g>
+<g style="animation-name:k6p"><text x="0" y="516.96" fill="#39c5cf" fill-opacity="0.58">›</text><text x="16.8" y="516.96" textLength="386.4" fill="#6e7681">发给 @claude，或以 @代理 开头   ·   Enter 发送</text></g>
+<g style="animation-name:k6q"><text x="8.4" y="534.96" textLength="361.2" fill="#c9d1d9" fill-opacity="0.58">Enter 发送 · Tab 补全 · ↑ 历史 · Esc 快捷键</text></g>
+<g style="animation-name:k6r"><text x="8.4" y="534.96" textLength="226.8" fill="#39c5cf">已发给 @codex @claude @kimi</text></g>
+<g style="animation-name:k6s"><text x="8.4" y="534.96" textLength="67.2" fill="#c9d1d9" fill-opacity="0.58">Esc 关闭</text></g>
+<g style="animation-name:k6t"><text x="8.4" y="534.96" textLength="924" fill="#c9d1d9" fill-opacity="0.58">↑↓ 选代理 · a 审批 · d 改动 · m 合并 · s 停止 · g 目标 · b 看板 · n 新代理 · p 权限 · ? 帮助 · i 输入 · q 退出</text></g>
 <rect class="cursor" width="8.4" height="18" fill="#c9d1d9" fill-opacity=".75"/>
 </g>
 </g>

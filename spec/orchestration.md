@@ -202,7 +202,9 @@ Transcript roles: `user`, `assistant`, `question`, `feedback`, `review`, `compar
 ## State on disk
 
 `TROUPE_HOME` (default `~/.troupe`) holds `config.json`, `projects/<project-id>/` and
-`worktrees/`. A project directory contains `agents.json`, `transcripts/<agent-id>.jsonl`,
-`board.json`, `decisions.json`, `goals/<goal-id>.json`, `events.jsonl` (an append-only
-audit log of dispatches, approvals, merges and gate results), `mailbox/` and `lock.json`.
+`worktrees/<project-id>/`. A project directory contains `agents.json`,
+`transcripts/<agent-id>.jsonl`, `board.json`, `decisions.json`, `goals/<goal-id>.json`,
+`events.jsonl` (an append-only audit log of dispatches, approvals, merges and gate
+results), `mailbox-tokens.json` and `lock.json`. `worktrees/<project-id>/` holds what
+agents write: one worktree per isolated agent and `.mailbox/` with their mailboxes.
 One engine may open a project at a time.
