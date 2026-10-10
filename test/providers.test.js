@@ -108,10 +108,10 @@ test('versions are parsed from typical --version output', () => {
 test('config loads defaults and ignores invalid values', (t) => {
   const home = tempDir(t);
   fs.writeFileSync(path.join(home, 'config.json'), JSON.stringify({ defaults: { mode: 'full', maxPerProvider: 2, isolation: 'nowhere' }, providers: { x: {} }, lang: 'zh' }));
-  const config = loadConfig({ TROUPE_HOME: home });
+  const config = loadConfig({ CROSS_HARNESS_HOME: home });
   assert.equal(config.defaults.mode, 'full');
   assert.equal(config.defaults.maxPerProvider, 2);
   assert.equal(config.defaults.isolation, 'worktree');
   assert.equal(config.lang, 'zh');
-  assert.match(projectId(home), /^troupe-test-.+-[0-9a-f]{12}$/);
+  assert.match(projectId(home), /^cross-harness-test-.+-[0-9a-f]{12}$/);
 });

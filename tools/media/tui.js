@@ -1,4 +1,4 @@
-// Records Troupe's real terminal UI: runTui draws into a terminal of a fixed size, a
+// Records cross-harness's real terminal UI: runTui draws into a terminal of a fixed size, a
 // person's keystrokes are fed through the real key decoder, and every frame the UI
 // draws is kept with its time.
 import { EventEmitter } from 'node:events';

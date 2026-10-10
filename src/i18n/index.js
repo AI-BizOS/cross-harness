@@ -4,7 +4,7 @@ let current = 'en';
 
 /** zh for Chinese locales or an explicit choice, else en. */
 export function pickLang(explicit = null, env = process.env) {
-  const wanted = String(explicit || env.TROUPE_LANG || env.LC_ALL || env.LC_MESSAGES || env.LANG || '').toLowerCase();
+  const wanted = String(explicit || env.CROSS_HARNESS_LANG || env.LC_ALL || env.LC_MESSAGES || env.LANG || '').toLowerCase();
   return wanted.startsWith('zh') ? 'zh' : 'en';
 }
 

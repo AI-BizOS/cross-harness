@@ -1,9 +1,9 @@
 // Goals (spec/goals.md): what "done" means, written down before work starts and
-// checked by Troupe itself rather than by the agent that did the work.
+// checked by cross-harness itself rather than by the agent that did the work.
 import { randomUUID } from 'node:crypto';
 import { CODES, fail } from '../protocol/errors.js';
 
-export const GOAL_SCHEMA = 'troupe.goal/1';
+export const GOAL_SCHEMA = 'cross-harness.goal/1';
 export const GOAL_STATUS = Object.freeze(['draft', 'approved', 'running', 'met', 'needs-you', 'failed']);
 const ID = /^[A-Za-z0-9][A-Za-z0-9_.-]{0,39}$/;
 const MAX_TEXT = 4000;
@@ -96,7 +96,7 @@ export function armProblems(goal) {
   if (!goal.criteria.length) problems.push({ code: 'criteria', message: 'Add at least one acceptance criterion' });
   for (const c of goal.criteria) if (!c.text) problems.push({ code: 'criterion-text', message: `Criterion ${c.id} needs a description` });
   if (goal.criteria.length && !goal.criteria.some((c) => c.check || c.review)) {
-    problems.push({ code: 'independent', message: 'At least one criterion must be checked independently: a command Troupe runs, or a review by another agent' });
+    problems.push({ code: 'independent', message: 'At least one criterion must be checked independently: a command cross-harness runs, or a review by another agent' });
   }
   for (const c of goal.criteria) {
     if (c.review && goal.assignees.includes(c.review.by)) problems.push({ code: 'reviewer', message: `Criterion ${c.id} is reviewed by @${c.review.by}, who is also doing the work` });
@@ -120,13 +120,13 @@ export function goalBrief(goal) {
   const lines = [
     `Goal: ${goal.title}`,
     `Outcome: ${goal.outcome}`,
-    'Acceptance criteria (Troupe checks these itself when your turn ends):',
+    'Acceptance criteria (cross-harness checks these itself when your turn ends):',
     ...goal.criteria.map((c) => `- ${c.id}: ${c.text}${c.check ? ` [checked by running: ${c.check.run}]` : c.review ? ` [reviewed by @${c.review.by}]` : ' [confirmed by the user]'}`),
   ];
   if (goal.boundaries.length) lines.push('Boundaries:', ...goal.boundaries.map((b) => `- ${b}`));
   const answered = goal.questions.filter((q) => q.answer);
   if (answered.length) lines.push('Decisions already made:', ...answered.map((q) => `- ${q.text} → ${q.answer}`));
-  lines.push('Work until every criterion holds. Use troupe_goal_status to see the latest check results.');
+  lines.push('Work until every criterion holds. Use cross_harness_goal_status to see the latest check results.');
   return lines.join('\n');
 }
 

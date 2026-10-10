@@ -9,7 +9,7 @@
 //   ['read', file, ms]                 read a file
 //   ['edit', file, change]             change: {write}, {append} or {replace: [old, new]}
 //   ['run', command]                   run a shell command in the working directory
-//   ['tool', name, args]               call one of Troupe's collaboration tools
+//   ['tool', name, args]               call one of cross-harness's collaboration tools
 //   ['say', text]                      the answer
 //   ['usage', input, output]           tokens used by the turn
 //   ['wait', ms]
@@ -220,7 +220,7 @@ export function scenes(lang = 'en') {
         actions: [
           ['think', 800],
           ['run', 'grep -n "ParseError(" src/parser.js'],
-          ['tool', 'troupe_ask_agent', { agent: 'bizos', question: s.question }],
+          ['tool', 'cross_harness_ask_agent', { agent: 'bizos', question: s.question }],
           ['think', 600],
           ['edit', 'test/errors.test.js', { write: ERROR_TESTS }],
           ['wait', 300],

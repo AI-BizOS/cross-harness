@@ -46,7 +46,7 @@ test('DeepSeek Harness desktop without a dsh command runs its own CLI', { skip: 
   const home = tempDir(t);
   const { entry, node } = bundle(home, 'DeepSeek Harness.app');
   if (!realApp) assert.equal(resolveExecutable('dsh', { PATH: '', HOME: home }), entry);
-  // The app's CLI starts with the app's own Node; other scripts with Troupe's.
+  // The app's CLI starts with the app's own Node; other scripts with cross-harness's.
   assert.deepEqual(launchCommand(entry, ['--profile', 'acp'], {}), { binary: node, args: [entry, '--profile', 'acp'], env: {} });
   assert.equal(nodeFor(path.join(home, 'elsewhere', 'cli.js')), process.execPath);
   // A renamed backup is not an installed app.

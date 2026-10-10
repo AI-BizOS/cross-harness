@@ -7,11 +7,11 @@ import { CODES } from '../src/protocol/errors.js';
 import { NODE, gitEnv, gitRepo, mockProviders, tempDir, until } from './helpers.js';
 
 async function open(t, { files, mode = 'workspace', git = true, providers = {} } = {}) {
-  const home = tempDir(t, 'troupe-home-');
+  const home = tempDir(t, 'cross-harness-home-');
   const state = path.join(home, 'mock');
   fs.mkdirSync(state);
   const repo = git ? gitRepo(t, files) : { dir: tempDir(t), git: null };
-  const env = { ...gitEnv(), TROUPE_HOME: home, MOCK_STATE: state, MOCK_LOG: path.join(home, 'mock.log') };
+  const env = { ...gitEnv(), CROSS_HARNESS_HOME: home, MOCK_STATE: state, MOCK_LOG: path.join(home, 'mock.log') };
   const make = () =>
     new Engine({
       root: repo.dir,
@@ -47,7 +47,7 @@ test('one message reaches several agents, each in its own worktree', async (t) =
   const acp = engine.agentByName('mock-acp');
   // A brand-new agent has no earlier session to report on.
   assert.ok(!acp.transcript.some((e) => e.code === 'session-new' || e.code === 'session-resumed'));
-  assert.match(acp.worktree.branch, /^troupe\/mock-acp/);
+  assert.match(acp.worktree.branch, /^cross-harness\/mock-acp/);
   assert.notEqual(acp.cwd, engine.root);
   assert.ok(events.some((e) => e.type === 'agent.text'));
   assert.ok(events.some((e) => e.type === 'agent.activity'));
@@ -122,8 +122,8 @@ test('what an agent writes, its worktree and its mailbox, is under one directory
   const [server] = engine.collabServers(agent);
   const inside = (file) => file.startsWith(engine.worktreeRoot + path.sep);
   assert.ok(inside(agent.worktree.path), agent.worktree.path);
-  assert.ok(inside(server.env.TROUPE_MAILBOX), server.env.TROUPE_MAILBOX);
-  // The token registry stays with Troupe's own state, out of the agents' reach.
+  assert.ok(inside(server.env.CROSS_HARNESS_MAILBOX), server.env.CROSS_HARNESS_MAILBOX);
+  // The token registry stays with cross-harness's own state, out of the agents' reach.
   assert.ok(fs.existsSync(path.join(engine.stateDir, 'mailbox-tokens.json')));
   assert.equal(fs.existsSync(path.join(engine.worktreeRoot, '.mailbox', 'tokens.json')), false);
 });
@@ -131,10 +131,10 @@ test('what an agent writes, its worktree and its mailbox, is under one directory
 test('agents ask each other through the collaboration tools', async (t) => {
   const { engine } = await open(t);
   await engine.call('createAgent', { provider: 'mock-codex' });
-  await engine.call('send', { text: '@mock-acp coordinate [mcp:troupe_ask_agent {"agent":"mock-codex","question":"which port?","wait_seconds":30}]' });
+  await engine.call('send', { text: '@mock-acp coordinate [mcp:cross_harness_ask_agent {"agent":"mock-codex","question":"which port?","wait_seconds":30}]' });
   await until(() => lastAssistant(engine, 'mock-acp'), { label: 'asker answered', timeoutMs: 30_000 });
   const asker = lastAssistant(engine, 'mock-acp').text;
-  assert.match(asker, /\[troupe_ask_agent\] @mock-codex answered:\nmock-codex answered: Question from @mock-acp/);
+  assert.match(asker, /\[cross_harness_ask_agent\] @mock-codex answered:\nmock-codex answered: Question from @mock-acp/);
   const target = engine.agentByName('mock-codex').transcript;
   const question = target.find((e) => e.role === 'question');
   assert.equal(question.text, 'which port?');
@@ -145,7 +145,7 @@ test('agents ask the user, share a board and list each other', async (t) => {
   const { engine, events } = await open(t);
   await engine.call('createAgent', { provider: 'mock-codex' });
   await engine.call('send', {
-    text: '@mock-acp plan [mcp:troupe_board_write {"key":"plan","value":"api first"}] [mcp:troupe_ask_user {"question":"Ship today?","options":["yes","no"],"wait_seconds":30}] [mcp:troupe_list_agents {}]',
+    text: '@mock-acp plan [mcp:cross_harness_board_write {"key":"plan","value":"api first"}] [mcp:cross_harness_ask_user {"question":"Ship today?","options":["yes","no"],"wait_seconds":30}] [mcp:cross_harness_list_agents {}]',
   });
   const asked = await until(() => events.find((e) => e.type === 'decision.requested'), { label: 'decision', timeoutMs: 20_000 });
   assert.deepEqual(asked.decision.options, ['yes', 'no']);
@@ -153,11 +153,11 @@ test('agents ask the user, share a board and list each other', async (t) => {
   engine.call('answerDecision', { id: asked.decision.id, answer: 'yes' });
   await until(() => lastAssistant(engine, 'mock-acp'), { label: 'answer', timeoutMs: 20_000 });
   const text = lastAssistant(engine, 'mock-acp').text;
-  assert.match(text, /\[troupe_board_write\] Saved "plan"/);
-  assert.match(text, /\[troupe_ask_user\] The user answered:\nyes/);
-  assert.match(text, /\[troupe_list_agents\] - @mock-codex \(Mock Codex/);
+  assert.match(text, /\[cross_harness_board_write\] Saved "plan"/);
+  assert.match(text, /\[cross_harness_ask_user\] The user answered:\nyes/);
+  assert.match(text, /\[cross_harness_list_agents\] - @mock-codex \(Mock Codex/);
   assert.equal(engine.snapshot().board.entries[0].author, 'mock-acp');
-  await engine.call('send', { text: '@mock-codex read it [mcp:troupe_board_read {"key":"plan"}]' });
+  await engine.call('send', { text: '@mock-codex read it [mcp:cross_harness_board_read {"key":"plan"}]' });
   await until(() => lastAssistant(engine, 'mock-codex'), { label: 'reader', timeoutMs: 20_000 });
   assert.match(lastAssistant(engine, 'mock-codex').text, /plan \(by mock-acp.*\):\napi first/);
 });
@@ -217,14 +217,14 @@ test('new agents are created together, each with its own name and branch', async
 
 test('a project opened through a symbolic link gives agents their worktree', async (t) => {
   const repo = gitRepo(t);
-  const link = path.join(tempDir(t, 'troupe-link-'), 'project');
+  const link = path.join(tempDir(t, 'cross-harness-link-'), 'project');
   fs.symlinkSync(repo.dir, link);
-  const home = tempDir(t, 'troupe-home-');
+  const home = tempDir(t, 'cross-harness-home-');
   const state = path.join(home, 'mock');
   fs.mkdirSync(state);
   const engine = await new Engine({
     root: link,
-    env: { ...gitEnv(), TROUPE_HOME: home, MOCK_STATE: state, MOCK_LOG: path.join(home, 'mock.log') },
+    env: { ...gitEnv(), CROSS_HARNESS_HOME: home, MOCK_STATE: state, MOCK_LOG: path.join(home, 'mock.log') },
     builtins: false,
     providers: mockProviders(),
     config: { providers: {}, defaults: { mode: 'workspace', isolation: 'worktree', maxPerProvider: 3, idleMinutes: 15, gateTimeoutSec: 60, maxIterations: 5 }, lang: null },
@@ -238,7 +238,7 @@ test('a project opened through a symbolic link gives agents their worktree', asy
   assert.equal(fs.readFileSync(path.join(agent.worktree.path, 'linked.txt'), 'utf8'), 'through the link\n');
 });
 
-test('a goal runs, is checked by Troupe and is met', async (t) => {
+test('a goal runs, is checked by cross-harness and is met', async (t) => {
   const { engine, events, repo } = await open(t);
   const draft = await engine.call('goalSave', {
     goal: {

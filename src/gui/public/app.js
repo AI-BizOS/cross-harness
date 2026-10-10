@@ -1,4 +1,4 @@
-// Troupe web UI. Same engine client and store as the terminal UI; everything an
+// cross-harness web UI. Same engine client and store as the terminal UI; everything an
 // agent wrote is inserted as text (never as HTML).
 import { createStore, lastGate } from '/store.js';
 import { engineText, translate } from '/i18n.js';
@@ -23,11 +23,11 @@ const ui = {
 function readToken() {
   const match = /token=([0-9a-f]+)/.exec(location.hash);
   if (match) {
-    sessionStorage.setItem('troupe-token', match[1]);
+    sessionStorage.setItem('cross-harness-token', match[1]);
     history.replaceState(null, '', location.pathname);
     return match[1];
   }
-  return sessionStorage.getItem('troupe-token') || '';
+  return sessionStorage.getItem('cross-harness-token') || '';
 }
 const token = readToken();
 
@@ -55,7 +55,7 @@ async function starRequest(method, value) {
   return body.result;
 }
 
-// The local server checks for a newer Troupe at most once a day (src/update.js).
+// The local server checks for a newer cross-harness at most once a day (src/update.js).
 async function checkUpdate() {
   if (ui.updateChecked) return;
   ui.updateChecked = true;
@@ -181,7 +181,7 @@ function react(event) {
       invalidate('waiting', 'side', 'top');
       if (document.hidden && 'Notification' in window && Notification.permission === 'granted') {
         const who = event.approval?.agentName || event.decision?.agentName;
-        new Notification(`Troupe · @${who}`, { body: event.approval ? t('approval.title') : t('decision.title', { name: who }) });
+        new Notification(`cross-harness · @${who}`, { body: event.approval ? t('approval.title') : t('decision.title', { name: who }) });
       }
       break;
     case 'approval.resolved':
@@ -372,7 +372,7 @@ function renderTop() {
   replace(
     $('topbar'),
     h('button', { class: 'ghost menu-toggle', 'aria-label': t('gui.agents'), onclick: () => $('shell').classList.toggle('side-open') }, '☰'),
-    h('span', { class: 'brand' }, 'Troupe'),
+    h('span', { class: 'brand' }, 'cross-harness'),
     h('span', { class: 'project' }, project ? `${project.name}${project.branch ? ` (${project.branch})` : ''}` : ''),
     h('span', { class: 'pill hide-narrow' }, t('header.agents', { n: counts.agents })),
     counts.working ? h('span', { class: 'pill accent hide-narrow' }, t('header.working', { n: counts.working })) : null,
@@ -574,7 +574,7 @@ function welcome() {
   return h(
     'div',
     { class: 'welcome' },
-    h('h1', {}, 'Troupe'),
+    h('h1', {}, 'cross-harness'),
     h('p', { class: 'muted' }, t('app.tagline')),
     h('p', {}, t('empty.noAgents')),
     h(
@@ -848,7 +848,7 @@ async function merge(d, force) {
   } catch (error) {
     d.stage = 'error';
     d.error = { message: error.message, files: error.files };
-    d.canForce = error.code === 'TROUPE_GATE_FAILED';
+    d.canForce = error.code === 'CROSS_HARNESS_GATE_FAILED';
     if (ui.dialog === d) renderDialog();
   }
 }
@@ -1103,7 +1103,7 @@ setInterval(() => {
   if (agent && (agent.state === 'running' || agent.state === 'starting')) invalidate('live');
 }, 1000);
 
-document.title = 'Troupe';
+document.title = 'cross-harness';
 $('send').textContent = t('gui.send');
 updatePlaceholder();
 invalidate('all');

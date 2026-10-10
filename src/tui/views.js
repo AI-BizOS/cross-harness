@@ -80,7 +80,7 @@ function header({ store, ui, t }, width) {
   const s = store.state;
   const counts = store.counts();
   const project = s.project;
-  const left = [span(' Troupe ', 'bold'), span('│ ', 'dim'), span(project?.name || '', 'bold')];
+  const left = [span(' cross-harness ', 'bold'), span('│ ', 'dim'), span(project?.name || '', 'bold')];
   if (project?.branch) left.push(span(` (${project.branch})`, 'dim'));
   left.push(span('  ·  ', 'dim'), span(t('header.agents', { n: counts.agents })));
   if (counts.working) left.push(span('  ·  ', 'dim'), span(t('header.working', { n: counts.working }), 'cyan'));
@@ -258,7 +258,7 @@ export function transcriptLines({ store, ui, t, now, frame }, agent, width) {
 }
 
 function welcome({ store, t }, width) {
-  const lines = [[], [span('  Troupe', 'bold', 'cyan'), span(` — ${t('app.tagline')}`, 'dim')], []];
+  const lines = [[], [span('  cross-harness', 'bold', 'cyan'), span(` — ${t('app.tagline')}`, 'dim')], []];
   for (const line of wrap(t('empty.noAgents'), width - 4)) lines.push([span(`  ${line}`)]);
   lines.push([]);
   const available = store.state.providers.filter((p) => p.available);

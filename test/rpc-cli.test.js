@@ -8,11 +8,11 @@ import { parseArgs } from '../src/cli/args.js';
 import { CODES } from '../src/protocol/errors.js';
 import { NODE, ROOT, fixture, gitEnv, gitRepo, tempDir, until } from './helpers.js';
 
-const BIN = path.join(ROOT, 'bin', 'troupe.js');
+const BIN = path.join(ROOT, 'bin', 'cross-harness.js');
 
-/** TROUPE_HOME with a config that registers the mock agents, as a user would register BizOS. */
+/** CROSS_HARNESS_HOME with a config that registers the mock agents, as a user would register BizOS. */
 function home(t) {
-  const dir = tempDir(t, 'troupe-home-');
+  const dir = tempDir(t, 'cross-harness-home-');
   fs.mkdirSync(path.join(dir, 'mock'));
   fs.writeFileSync(
     path.join(dir, 'config.json'),
@@ -23,7 +23,7 @@ function home(t) {
       },
     }),
   );
-  return { dir, env: { ...gitEnv(), TROUPE_HOME: dir, MOCK_STATE: path.join(dir, 'mock') } };
+  return { dir, env: { ...gitEnv(), CROSS_HARNESS_HOME: dir, MOCK_STATE: path.join(dir, 'mock') } };
 }
 
 test('a remote engine is driven over stdio, as over ssh', async (t) => {
@@ -46,7 +46,7 @@ test('a remote engine is driven over stdio, as over ssh', async (t) => {
   assert.equal(snapshot.agents.length, 1);
 });
 
-test('troupe run sends, waits and prints the answers', (t) => {
+test('cross-harness run sends, waits and prints the answers', (t) => {
   const { env } = home(t);
   const repo = gitRepo(t);
   const out = execFileSync(NODE, [BIN, 'run', '@mock-acp @mock-codex count to three', '--cwd', repo.dir, '--json'], { env, encoding: 'utf8', timeout: 60_000 });
@@ -56,7 +56,7 @@ test('troupe run sends, waits and prints the answers', (t) => {
   assert.ok(result.answers.every((a) => /answered: count to three/.test(a.text)));
 });
 
-test('troupe run denies approvals unless allowed', (t) => {
+test('cross-harness run denies approvals unless allowed', (t) => {
   const { env } = home(t);
   const repo = gitRepo(t);
   const denied = spawnSync(NODE, [BIN, 'run', '@mock-acp do it [approve]', '--cwd', repo.dir, '--mode', 'ask'], { env, encoding: 'utf8', timeout: 60_000 });
@@ -67,7 +67,7 @@ test('troupe run denies approvals unless allowed', (t) => {
   assert.doesNotMatch(allowed.stdout, /denied/);
 });
 
-test('troupe detect, agents, help and version', (t) => {
+test('cross-harness detect, agents, help and version', (t) => {
   const { env } = home(t);
   const repo = gitRepo(t);
   const detected = JSON.parse(execFileSync(NODE, [BIN, 'detect', '--json'], { env, encoding: 'utf8', timeout: 60_000 }));
@@ -75,9 +75,9 @@ test('troupe detect, agents, help and version', (t) => {
   assert.ok(detected.some((p) => p.id === 'claude'));
   const list = execFileSync(NODE, [BIN, 'agents', '--cwd', repo.dir], { env, encoding: 'utf8', timeout: 30_000 });
   assert.match(list, /No agents yet/);
-  assert.match(execFileSync(NODE, [BIN, '--help'], { env, encoding: 'utf8' }), /troupe run/);
+  assert.match(execFileSync(NODE, [BIN, '--help'], { env, encoding: 'utf8' }), /cross-harness run/);
   const { version } = JSON.parse(fs.readFileSync(path.join(ROOT, 'package.json'), 'utf8'));
-  assert.equal(execFileSync(NODE, [BIN, '--version'], { env, encoding: 'utf8' }), `troupe ${version} (troupe/1)\n`);
+  assert.equal(execFileSync(NODE, [BIN, '--version'], { env, encoding: 'utf8' }), `cross-harness ${version} (cross-harness/1)\n`);
   const bad = spawnSync(NODE, [BIN, '--bogus'], { env, encoding: 'utf8' });
   assert.equal(bad.status, 2);
   const tui = spawnSync(NODE, [BIN, '--cwd', repo.dir], { env, encoding: 'utf8', input: '' });
@@ -92,7 +92,7 @@ test('argument parsing and ssh command lines', () => {
   assert.throws(() => parseArgs(['--nope'], spec), /Unknown option/);
   assert.deepEqual(sshCommand('dev@box', { cwd: "/srv/it's here" }), {
     command: 'ssh',
-    args: ['-T', '-o', 'BatchMode=yes', 'dev@box', "troupe serve --stdio --cwd '/srv/it'\\''s here'"],
+    args: ['-T', '-o', 'BatchMode=yes', 'dev@box', "cross-harness serve --stdio --cwd '/srv/it'\\''s here'"],
   });
   assert.throws(() => sshCommand('-oProxyCommand=touch /tmp/x'), (error) => error.code === CODES.ARGUMENT_INVALID);
 });

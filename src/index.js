@@ -6,6 +6,6 @@ export { connectRemote, localClient, serveEngine, sshCommand } from './engine/rp
 export { ADAPTERS, createSession } from './adapters/index.js';
 export { BUILTIN_PROVIDERS, buildRegistry, validateProvider } from './providers/registry.js';
 export { createDetector, resolveExecutable } from './providers/detect.js';
-export { loadConfig, troupeHome } from './config.js';
+export { loadConfig, crossHarnessHome } from './config.js';
 export { startGui } from './gui/server.js';
 export { runTui } from './tui/app.js';

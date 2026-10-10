@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 470" width="1000" height="470" role="img" aria-label="How Troupe works: interfaces talk to one engine per project; the engine reaches each agent through the protocol its vendor ships; agents call Troupe back through a file mailbox.">
-<title>How Troupe works: interfaces talk to one engine per project; the engine reaches each agent through the protocol its vendor ships; agents call Troupe back through a file mailbox.</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 470" width="1000" height="470" role="img" aria-label="How cross-harness works: interfaces talk to one engine per project; the engine reaches each agent through the protocol its vendor ships; agents call cross-harness back through a file mailbox.">
+<title>How cross-harness works: interfaces talk to one engine per project; the engine reaches each agent through the protocol its vendor ships; agents call cross-harness back through a file mailbox.</title>
 <style>
 text{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei","Noto Sans CJK SC",Helvetica,Arial,sans-serif;fill:#1f2328}.mono{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;font-size:12.5px;fill:#656d76}
 .caps{font-size:11.5px;font-weight:700;letter-spacing:.8px;fill:#656d76}.name{font-size:15px;font-weight:600}.small{font-size:13.5px}.title{font-size:18px;font-weight:700}.note{font-size:12px;fill:#656d76}.left{text-anchor:start}
@@ -20,23 +20,23 @@ text{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang
 <path d="M240 97H330" class="wire"/>
 <rect x="20" y="70" width="220" height="54" rx="10" class="card"/>
 <text x="36" y="93" class="name">Terminal UI</text>
-<text x="36" y="112" class="mono">troupe</text>
+<text x="36" y="112" class="mono">cross-harness</text>
 <path d="M240 165H330" class="wire"/>
 <rect x="20" y="138" width="220" height="54" rx="10" class="card"/>
 <text x="36" y="161" class="name">Web UI</text>
-<text x="36" y="180" class="mono">troupe gui</text>
+<text x="36" y="180" class="mono">cross-harness gui</text>
 <path d="M240 233H330" class="wire"/>
 <rect x="20" y="206" width="220" height="54" rx="10" class="card"/>
 <text x="36" y="229" class="name">Scripts and CI</text>
-<text x="36" y="248" class="mono">troupe run</text>
+<text x="36" y="248" class="mono">cross-harness run</text>
 <path d="M240 301H330" class="wire"/>
 <rect x="20" y="274" width="220" height="54" rx="10" class="card"/>
 <text x="36" y="297" class="name">Another machine</text>
-<text x="36" y="316" class="mono">troupe --ssh host</text>
+<text x="36" y="316" class="mono">cross-harness --ssh host</text>
 <text x="285" y="354" text-anchor="middle" class="note">client protocol: in-process, stdio or SSH</text>
 <rect x="330" y="70" width="300" height="260" rx="10" class="engine"/>
-<text x="350" y="104" class="title">Troupe engine</text>
-<text x="610" y="104" text-anchor="end" class="mono accent">troupe/1</text>
+<text x="350" y="104" class="title">cross-harness engine</text>
+<text x="610" y="104" text-anchor="end" class="mono accent">cross-harness/1</text>
 <rect x="350" y="126" width="260" height="30" rx="15" class="pill"/>
 <text x="366" y="146" class="pilltext">@mentions → tasks</text>
 <rect x="350" y="164" width="260" height="30" rx="15" class="pill"/>
@@ -70,7 +70,7 @@ text{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang
 <path d="M835 330V380" class="wire dashed"/>
 <path d="M480 330V380" class="wire dashed"/>
 <rect x="330" y="380" width="650" height="64" rx="10" class="mail"/>
-<text x="350" y="407" class="name mailtext">troupe mcp · file mailbox</text>
+<text x="350" y="407" class="name mailtext">cross-harness mcp · file mailbox</text>
 <text x="350" y="428" class="mono mailtext">ask_agent · ask_user · board · report_progress · goal_status</text>
 <circle cx="29" cy="388" r="5" class="dot task" style="opacity:1;animation:none"/>
 <text x="42" y="392.5" class="note left">a task</text>

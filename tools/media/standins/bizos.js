@@ -4,7 +4,7 @@
 // coding_create, coding_command_start) reported with kind "other", text streamed as
 // message chunks, no plan, and approvals with two options, allow once and reject. Like
 // BizOS Code it asks before creating a file or running a command, and before editing
-// one only in Build mode; "Accept edits" (Troupe's workspace mode) edits existing files
+// one only in Build mode; "Accept edits" (cross-harness's workspace mode) edits existing files
 // without asking, and YOLO asks for nothing.
 import { createHash, randomUUID } from 'node:crypto';
 import fs from 'node:fs';

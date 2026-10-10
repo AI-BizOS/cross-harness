@@ -37,10 +37,10 @@ test('the star prompt can be turned off and never runs in CI', (t) => {
   const home = tempDir(t);
   assert.ok(starPromptFor({ home, config: { starPrompt: true }, env: {} }));
   assert.equal(starPromptFor({ home, config: { starPrompt: false }, env: {} }), null);
-  assert.equal(starPromptFor({ home, config: {}, env: { TROUPE_NO_STAR_PROMPT: '1' } }), null);
+  assert.equal(starPromptFor({ home, config: {}, env: { CROSS_HARNESS_NO_STAR_PROMPT: '1' } }), null);
   assert.equal(starPromptFor({ home, config: {}, env: { CI: 'true' } }), null);
   fs.writeFileSync(path.join(home, 'config.json'), JSON.stringify({ starPrompt: false }));
-  assert.equal(loadConfig({ TROUPE_HOME: home }).starPrompt, false);
+  assert.equal(loadConfig({ CROSS_HARNESS_HOME: home }).starPrompt, false);
   fs.writeFileSync(path.join(home, 'config.json'), '{}');
-  assert.equal(loadConfig({ TROUPE_HOME: home }).starPrompt, true);
+  assert.equal(loadConfig({ CROSS_HARNESS_HOME: home }).starPrompt, true);
 });

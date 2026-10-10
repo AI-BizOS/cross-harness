@@ -169,14 +169,14 @@ test('editor: layout wraps CJK text and places the cursor', () => {
 function sampleSnapshot() {
   const now = new Date().toISOString();
   return {
-    protocol: 'troupe/1',
+    protocol: 'cross-harness/1',
     version: '0.1.0',
     seq: 10,
     project: { root: '/work/shop', name: 'shop', isGit: true, branch: 'main' },
     defaults: { mode: 'workspace' },
     agents: [
-      { id: 'a1111111-0000-0000-0000-000000000000', id8: 'a1111111', name: 'codex', provider: 'codex', providerName: 'Codex', verified: true, mode: 'workspace', branch: 'troupe/codex', state: 'running', needsYou: 1, queue: 0, plan: [], text: '', usage: { input_tokens: 1200, output_tokens: 300 }, activity: { kind: 'command', title: 'npm test' }, turnStartedAt: Date.now() - 65_000 },
-      { id: 'b2222222-0000-0000-0000-000000000000', id8: 'b2222222', name: 'kimi', provider: 'kimi', providerName: 'Kimi Code', verified: false, mode: 'ask', branch: 'troupe/kimi', state: 'idle', needsYou: 0, queue: 0, plan: [], text: '', usage: {}, progress: '写好了边界测试' },
+      { id: 'a1111111-0000-0000-0000-000000000000', id8: 'a1111111', name: 'codex', provider: 'codex', providerName: 'Codex', verified: true, mode: 'workspace', branch: 'cross-harness/codex', state: 'running', needsYou: 1, queue: 0, plan: [], text: '', usage: { input_tokens: 1200, output_tokens: 300 }, activity: { kind: 'command', title: 'npm test' }, turnStartedAt: Date.now() - 65_000 },
+      { id: 'b2222222-0000-0000-0000-000000000000', id8: 'b2222222', name: 'kimi', provider: 'kimi', providerName: 'Kimi Code', verified: false, mode: 'ask', branch: 'cross-harness/kimi', state: 'idle', needsYou: 0, queue: 0, plan: [], text: '', usage: {}, progress: '写好了边界测试' },
     ],
     approvals: [{ id: 'ap1', agentId: 'a1111111-0000-0000-0000-000000000000', agentName: 'codex', kind: 'command', title: 'npm test', command: 'npm test -- --watch=false', detail: 'run the tests', options: ['allow_once', 'allow_always', 'deny'], at: now }],
     decisions: [],
@@ -221,7 +221,7 @@ test('the screen renders agents, transcript, approvals and the composer at exact
   assert.equal(out.rows.length, 28);
   for (const row of out.rows) assert.equal(displayWidth(strip(row)), 100);
   const text = frameText(out.rows);
-  assert.match(text, /Troupe │ shop \(main\)/);
+  assert.match(text, /cross-harness │ shop \(main\)/);
   assert.match(text, /2 agents\s+·\s+1 working\s+·\s+1 need you/);
   assert.match(text, /@codex/);
   assert.match(text, /\$ npm test/);
@@ -229,7 +229,7 @@ test('the screen renders agents, transcript, approvals and the composer at exact
   assert.match(text, /为 parser 补充边界测试/);
   assert.match(text, /Added 4 tests\./);
   assert.match(text, /✓ ✎ test\/parser\.test\.js/);
-  assert.match(text, /@kimi · Kimi Code · untested · ask · troupe\/kimi/);
+  assert.match(text, /@kimi · Kimi Code · untested · ask · cross-harness\/kimi/);
   assert.match(text, /Message @kimi/);
   assert.ok(out.cursor, 'cursor in the composer');
   // Narrow terminals drop the sidebar but keep exact widths.
@@ -248,10 +248,10 @@ test('modals: approval, diff, goals and help render inside the frame', () => {
   assert.match(text, /需要你批准/);
   assert.match(text, /npm test -- --watch=false/);
   assert.match(text, /\[2\] 以后都允许 @codex 这样做/);
-  ui.modal = { type: 'diff', agentName: 'kimi', branch: 'troupe/kimi', scroll: 0, diff: { isolated: true, base: 'main', commits: 1, uncommitted: true, files: [{ path: 'a.js', status: 'modified', added: 1, removed: 1 }], patch: 'diff --git a/a.js b/a.js\n-old\n+new' } };
+  ui.modal = { type: 'diff', agentName: 'kimi', branch: 'cross-harness/kimi', scroll: 0, diff: { isolated: true, base: 'main', commits: 1, uncommitted: true, files: [{ path: 'a.js', status: 'modified', added: 1, removed: 1 }], patch: 'diff --git a/a.js b/a.js\n-old\n+new' } };
   text = frameText(renderApp({ store, ui, size, t, now: Date.now(), frame: 0 }).rows);
   assert.match(text, /@kimi 的改动/);
-  assert.match(text, /troupe\/kimi → main · 1 个提交 · 包含未提交的改动/);
+  assert.match(text, /cross-harness\/kimi → main · 1 个提交 · 包含未提交的改动/);
   assert.match(text, /\+new/);
   ui.modal = { type: 'goals', index: 0 };
   text = frameText(renderApp({ store, ui, size, t, now: Date.now(), frame: 0 }).rows);
@@ -301,10 +301,10 @@ class FakeTerminal extends EventEmitter {
 
 test('the TUI drives a real engine: send, approve, view the diff, merge, quit', async (t2) => {
   setLang('en');
-  const home = tempDir(t2, 'troupe-home-');
+  const home = tempDir(t2, 'cross-harness-home-');
   fs.mkdirSync(path.join(home, 'mock'));
   const repo = gitRepo(t2);
-  const env = { ...gitEnv(), TROUPE_HOME: home, MOCK_STATE: path.join(home, 'mock') };
+  const env = { ...gitEnv(), CROSS_HARNESS_HOME: home, MOCK_STATE: path.join(home, 'mock') };
   const engine = await new Engine({ root: repo.dir, env, builtins: false, providers: mockProviders(), config: { providers: {}, defaults: { mode: 'ask', isolation: 'worktree', maxPerProvider: 3, idleMinutes: 15, gateTimeoutSec: 60, maxIterations: 5 }, lang: null } }).open();
   t2.after(() => engine.close());
   const term = new FakeTerminal(110, 32);
@@ -325,7 +325,7 @@ test('the TUI drives a real engine: send, approve, view the diff, merge, quit', 
   term.press('down');
   term.press('enter');
   await until(() => fs.existsSync(path.join(repo.dir, 'feature.txt')), { label: 'merged', timeoutMs: 20_000 });
-  await until(() => term.text().includes('Merged troupe/mock-acp'), { label: 'merge notice' });
+  await until(() => term.text().includes('Merged cross-harness/mock-acp'), { label: 'merge notice' });
   term.type('q');
   await done;
   assert.equal(term.started, false);
@@ -333,16 +333,16 @@ test('the TUI drives a real engine: send, approve, view the diff, merge, quit', 
 
 test('the TUI mentions a newer release once and keeps it in the header', async (t2) => {
   setLang('en');
-  const home = tempDir(t2, 'troupe-home-');
+  const home = tempDir(t2, 'cross-harness-home-');
   const repo = gitRepo(t2);
-  const env = { ...gitEnv(), TROUPE_HOME: home };
+  const env = { ...gitEnv(), CROSS_HARNESS_HOME: home };
   const engine = await new Engine({ root: repo.dir, env, builtins: false, providers: mockProviders(), config: { providers: {}, defaults: { mode: 'ask', isolation: 'worktree', maxPerProvider: 3, idleMinutes: 15, gateTimeoutSec: 60, maxIterations: 5 }, lang: null } }).open();
   t2.after(() => engine.close());
   const term = new FakeTerminal(120, 30);
   const update = { check: async () => ({ current: '0.1.3', latest: '0.2.0' }) };
   const done = runTui({ client: localClient(engine), lang: 'en', terminal: term, env: { ...env, NO_COLOR: '' }, update });
-  await until(() => term.text().includes('Troupe 0.2.0 is available (you have 0.1.3). Run `troupe update` to install it.'), { label: 'update notice' });
-  assert.match(term.text().split('\n')[0], /↑ Troupe 0\.2\.0/);
+  await until(() => term.text().includes('cross-harness 0.2.0 is available (you have 0.1.3). Run `cross-harness update` to install it.'), { label: 'update notice' });
+  assert.match(term.text().split('\n')[0], /↑ cross-harness 0\.2\.0/);
   term.press('escape');
   term.type('q');
   await done;
@@ -350,9 +350,9 @@ test('the TUI mentions a newer release once and keeps it in the header', async (
 
 test('the TUI asks once for a GitHub star, opens the page on Enter and remembers it', async (t2) => {
   setLang('en');
-  const home = tempDir(t2, 'troupe-home-');
+  const home = tempDir(t2, 'cross-harness-home-');
   const repo = gitRepo(t2);
-  const env = { ...gitEnv(), TROUPE_HOME: home };
+  const env = { ...gitEnv(), CROSS_HARNESS_HOME: home };
   const engine = await new Engine({ root: repo.dir, env, builtins: false, providers: mockProviders(), config: { providers: {}, defaults: { mode: 'ask', isolation: 'worktree', maxPerProvider: 3, idleMinutes: 15, gateTimeoutSec: 60, maxIterations: 5 }, lang: null } }).open();
   t2.after(() => engine.close());
   const star = createStarPrompt({ file: path.join(home, 'star.json') });
@@ -366,10 +366,10 @@ test('the TUI asks once for a GitHub star, opens the page on Enter and remembers
   };
   // The third launch asks.
   const first = start();
-  await until(() => first.term.text().includes('Enjoying Troupe?'), { label: 'star prompt' });
-  assert.match(first.term.text(), /github\.com\/AI-BizOS\/troupe/);
+  await until(() => first.term.text().includes('Enjoying cross-harness?'), { label: 'star prompt' });
+  assert.match(first.term.text(), /github\.com\/AI-BizOS\/cross-harness/);
   first.term.press('enter');
-  await until(() => !first.term.text().includes('Enjoying Troupe?'), { label: 'prompt closed' });
+  await until(() => !first.term.text().includes('Enjoying cross-harness?'), { label: 'prompt closed' });
   assert.deepEqual(opened, [REPOSITORY_URL]);
   first.term.press('escape');
   first.term.type('q');
@@ -378,7 +378,7 @@ test('the TUI asks once for a GitHub star, opens the page on Enter and remembers
   const second = start();
   await until(() => second.term.text().includes('No agents yet'), { label: 'welcome screen' });
   await new Promise((resolve) => setTimeout(resolve, 150));
-  assert.doesNotMatch(second.term.text(), /Enjoying Troupe/);
+  assert.doesNotMatch(second.term.text(), /Enjoying cross-harness/);
   second.term.press('escape');
   second.term.type('q');
   await second.done;

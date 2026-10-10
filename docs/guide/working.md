@@ -13,7 +13,7 @@ Mentions count only at the start of a line.
 | `@codex+ …` | a new Codex agent with a fresh session |
 | `@backend …` | an agent you renamed (`r` in the terminal UI) |
 | `@all …` | every agent on the project |
-| `@auto …` | Troupe picks: two different agents for a review, one otherwise |
+| `@auto …` | cross-harness picks: two different agents for a review, one otherwise |
 | `@codex @kimi @compare:claude which is faster?` | Claude compares both answers once they are in |
 | no mention | goes to the selected agent |
 
@@ -34,25 +34,25 @@ In `workspace` mode, edits are automatic only inside the agent's own worktree; e
 
 ## Worktrees and branches
 
-In a git repository, each agent works in its own worktree under `~/.troupe/worktrees`, on a branch named `troupe/<agent>` created from the branch you are on. Agents working in parallel never touch each other's files, or yours. The branch stays after a merge, so every change can be traced.
+In a git repository, each agent works in its own worktree under `~/.cross-harness/worktrees`, on a branch named `cross-harness/<agent>` created from the branch you are on. Agents working in parallel never touch each other's files, or yours. The branch stays after a merge, so every change can be traced.
 
 `--shared` makes new agents work directly in the project directory instead; use it for repositories where a second checkout is not practical.
 
 ## Agents asking each other
 
-Every agent gets Troupe's collaboration tools:
+Every agent gets cross-harness's collaboration tools:
 
 | Tool | Purpose |
 | --- | --- |
-| `troupe_list_agents` | who else is working and on what |
-| `troupe_ask_agent` | ask another agent and wait for its answer |
-| `troupe_check_answers` | collect answers that arrived later |
-| `troupe_ask_user` | ask you to decide, optionally with choices |
-| `troupe_board_read` / `troupe_board_write` | shared plans, interface contracts, file ownership |
-| `troupe_report_progress` | a one-line status |
-| `troupe_goal_status` | its goal and the latest check results |
+| `cross_harness_list_agents` | who else is working and on what |
+| `cross_harness_ask_agent` | ask another agent and wait for its answer |
+| `cross_harness_check_answers` | collect answers that arrived later |
+| `cross_harness_ask_user` | ask you to decide, optionally with choices |
+| `cross_harness_board_read` / `cross_harness_board_write` | shared plans, interface contracts, file ownership |
+| `cross_harness_report_progress` | a one-line status |
+| `cross_harness_goal_status` | its goal and the latest check results |
 
-You can write on the project board too (`b`). When two agents would wait for each other, Troupe notices and tells them.
+You can write on the project board too (`b`). When two agents would wait for each other, cross-harness notices and tells them.
 
 ## Review and merge
 
@@ -64,7 +64,7 @@ You can write on the project board too (`b`). When two agents would wait for eac
 
 ## Goals
 
-A goal says what "done" means and lets Troupe check it:
+A goal says what "done" means and lets cross-harness check it:
 
 ```json
 {
@@ -78,7 +78,7 @@ A goal says what "done" means and lets Troupe check it:
 }
 ```
 
-Press `g` (or open Goals in the web UI) to write one, or let an agent draft it. Before it starts, a goal needs an independent check (a command or a review by another agent), answers to its open questions and your approval of that exact text. While it runs, Troupe checks the agent's worktree after every turn and sends failures back, up to `maxIterations` times; a merge waits until the checks pass on the tree being merged. Check commands run only after you approve the goal.
+Press `g` (or open Goals in the web UI) to write one, or let an agent draft it. Before it starts, a goal needs an independent check (a command or a review by another agent), answers to its open questions and your approval of that exact text. While it runs, cross-harness checks the agent's worktree after every turn and sends failures back, up to `maxIterations` times; a merge waits until the checks pass on the tree being merged. Check commands run only after you approve the goal.
 
 ## Stopping, resuming, archiving
 

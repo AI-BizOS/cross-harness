@@ -184,7 +184,7 @@ export class MailboxHub {
       const result = await this.handle(agentId, String(op), params && typeof params === 'object' && !Array.isArray(params) ? params : {});
       reply = { id, ok: true, result };
     } catch (cause) {
-      reply = { id, ok: false, error: { code: cause.code || 'TROUPE_COLLAB_FAILED', message: cause.message || 'Collaboration request failed' } };
+      reply = { id, ok: false, error: { code: cause.code || 'CROSS_HARNESS_COLLAB_FAILED', message: cause.message || 'Collaboration request failed' } };
     }
     const responses = this.tokens.has(token) ? this.inbox(token, 'responses') : null;
     if (!responses) return;

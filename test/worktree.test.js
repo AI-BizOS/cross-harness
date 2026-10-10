@@ -21,7 +21,7 @@ test('an agent works in its own worktree and its changes are reported', async (t
   const env = gitEnv();
   const { dir } = gitRepo(t, { 'README.md': '# demo\n', 'src/a.js': 'export const a = 1;\n' });
   const home = tempDir(t);
-  const wt = await createWorktree({ root: dir, dir: path.join(home, 'codex'), branch: 'troupe/codex', base: 'main', env });
+  const wt = await createWorktree({ root: dir, dir: path.join(home, 'codex'), branch: 'cross-harness/codex', base: 'main', env });
   assert.equal(wt.created, true);
   fs.writeFileSync(path.join(wt.path, 'src/a.js'), 'export const a = 2;\n');
   fs.writeFileSync(path.join(wt.path, 'new.txt'), 'hello\n');
@@ -41,7 +41,7 @@ test('an agent works in its own worktree and its changes are reported', async (t
   const tree = await workingTree(wt.path, env);
   assert.equal(tree, diff.tree);
   // Reusing the same directory for the same branch is fine.
-  const again = await createWorktree({ root: dir, dir: wt.path, branch: 'troupe/codex', base: 'main', env });
+  const again = await createWorktree({ root: dir, dir: wt.path, branch: 'cross-harness/codex', base: 'main', env });
   assert.equal(again.created, false);
   // Once everything is committed nothing is pending; staged work alone still is, and the
   // agent's index (copied for the snapshot) keeps what it staged.
@@ -65,7 +65,7 @@ test('a file changed right after checkout, keeping its size, is never missed', a
   const { dir } = gitRepo(t, { 'a.js': 'export const a = 1;\n' });
   const home = tempDir(t);
   for (let i = 0; i < 20; i++) {
-    const wt = await createWorktree({ root: dir, dir: path.join(home, `wt${i}`), branch: `troupe/racy-${i}`, base: 'main', env });
+    const wt = await createWorktree({ root: dir, dir: path.join(home, `wt${i}`), branch: `cross-harness/racy-${i}`, base: 'main', env });
     fs.writeFileSync(path.join(wt.path, 'a.js'), 'export const a = 2;\n');
     const diff = await changes({ dir: wt.path, base: 'main', env });
     assert.deepEqual(diff.files.map((f) => f.path), ['a.js'], `attempt ${i + 1}`);
@@ -76,33 +76,33 @@ test('merge commits pending work, merges with --no-ff and keeps the branch', asy
   const env = gitEnv();
   const { dir, git } = gitRepo(t);
   const home = tempDir(t);
-  const wt = await createWorktree({ root: dir, dir: path.join(home, 'kimi'), branch: 'troupe/kimi', base: 'main', env });
+  const wt = await createWorktree({ root: dir, dir: path.join(home, 'kimi'), branch: 'cross-harness/kimi', base: 'main', env });
   fs.writeFileSync(path.join(wt.path, 'feature.txt'), 'done\n');
-  const commit = await commitAll({ dir: wt.path, message: 'troupe: kimi work', env });
+  const commit = await commitAll({ dir: wt.path, message: 'cross-harness: kimi work', env });
   assert.match(commit, /^[0-9a-f]{40}$/);
   assert.equal(await commitAll({ dir: wt.path, message: 'nothing', env }), null);
-  const result = await mergeBranch({ root: dir, branch: 'troupe/kimi', message: 'Merge troupe/kimi', env });
+  const result = await mergeBranch({ root: dir, branch: 'cross-harness/kimi', message: 'Merge cross-harness/kimi', env });
   assert.equal(result.target, 'main');
   assert.equal(result.commits, 1);
   assert.equal(fs.readFileSync(path.join(dir, 'feature.txt'), 'utf8'), 'done\n');
-  assert.match(git('log', '--oneline', '-1'), /Merge troupe\/kimi/);
-  await assert.rejects(mergeBranch({ root: dir, branch: 'troupe/kimi', message: 'again', env }), (error) => error.code === CODES.MERGE_NOTHING);
+  assert.match(git('log', '--oneline', '-1'), /Merge cross-harness\/kimi/);
+  await assert.rejects(mergeBranch({ root: dir, branch: 'cross-harness/kimi', message: 'again', env }), (error) => error.code === CODES.MERGE_NOTHING);
   await removeWorktree({ root: dir, dir: wt.path, env });
   assert.equal(fs.existsSync(wt.path), false);
-  assert.match(git('branch', '--list', 'troupe/kimi'), /troupe\/kimi/);
+  assert.match(git('branch', '--list', 'cross-harness/kimi'), /cross-harness\/kimi/);
 });
 
 test('merge refuses a dirty project and aborts cleanly on conflict', async (t) => {
   const env = gitEnv();
   const { dir, git } = gitRepo(t, { 'shared.txt': 'base\n' });
   const home = tempDir(t);
-  const wt = await createWorktree({ root: dir, dir: path.join(home, 'a'), branch: 'troupe/a', base: 'main', env });
+  const wt = await createWorktree({ root: dir, dir: path.join(home, 'a'), branch: 'cross-harness/a', base: 'main', env });
   fs.writeFileSync(path.join(wt.path, 'shared.txt'), 'agent version\n');
   await commitAll({ dir: wt.path, message: 'agent edit', env });
   fs.writeFileSync(path.join(dir, 'shared.txt'), 'user edit\n');
-  await assert.rejects(mergeBranch({ root: dir, branch: 'troupe/a', message: 'm', env }), (error) => error.code === CODES.MERGE_DIRTY && error.files.includes('shared.txt'));
+  await assert.rejects(mergeBranch({ root: dir, branch: 'cross-harness/a', message: 'm', env }), (error) => error.code === CODES.MERGE_DIRTY && error.files.includes('shared.txt'));
   git('commit', '-qam', 'user edit');
-  await assert.rejects(mergeBranch({ root: dir, branch: 'troupe/a', message: 'm', env }), (error) => error.code === CODES.MERGE_CONFLICT && error.files.includes('shared.txt'));
+  await assert.rejects(mergeBranch({ root: dir, branch: 'cross-harness/a', message: 'm', env }), (error) => error.code === CODES.MERGE_CONFLICT && error.files.includes('shared.txt'));
   assert.equal(git('status', '--porcelain').trim(), '', 'merge aborted');
   assert.equal(fs.readFileSync(path.join(dir, 'shared.txt'), 'utf8'), 'user edit\n');
 });

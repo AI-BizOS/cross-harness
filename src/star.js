@@ -1,12 +1,12 @@
-// Asking people to star Troupe on GitHub. The interactive interfaces ask at most once at
+// Asking people to star cross-harness on GitHub. The interactive interfaces ask at most once at
 // a good moment, after a first merge or the third time one of them opens, and never
 // again once the person answers ("later" waits two weeks). Nothing is sent anywhere:
-// the repository opens in the browser only when the person chooses it. `troupe run`
+// the repository opens in the browser only when the person chooses it. `cross-harness run`
 // never asks, and neither does any interface when the prompt is turned off.
 import path from 'node:path';
 import { readJson, writeJsonAtomic } from './util/fsx.js';
 
-export const REPOSITORY_URL = 'https://github.com/AI-BizOS/troupe';
+export const REPOSITORY_URL = 'https://github.com/AI-BizOS/cross-harness';
 const LAUNCHES = 3;
 const LATER_MS = 14 * 24 * 60 * 60 * 1000;
 const ANSWERS = ['star', 'later', 'never'];
@@ -42,6 +42,6 @@ export function createStarPrompt({ file, now = Date.now }) {
 
 /** The prompt for an interactive interface, or null when the user turned it off. */
 export function starPromptFor({ home, config, env = process.env }) {
-  if (config?.starPrompt === false || env.TROUPE_NO_STAR_PROMPT || env.CI) return null;
+  if (config?.starPrompt === false || env.CROSS_HARNESS_NO_STAR_PROMPT || env.CI) return null;
   return createStarPrompt({ file: path.join(home, 'star.json') });
 }

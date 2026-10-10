@@ -1,5 +1,5 @@
 // The stage for a recording: a fresh copy of the demo project as a git repository,
-// and a Troupe engine whose @bizos, @claude, @codex and @kimi are stand-in agents. The
+// and a cross-harness engine whose @bizos, @claude, @codex and @kimi are stand-in agents. The
 // stand-ins keep the real harnesses' names and "verified" labels, so the interface
 // shows what it would show for the real ones.
 import { execFileSync } from 'node:child_process';
@@ -16,16 +16,16 @@ const STANDINS = { bizos: 'bizos.js', claude: 'claude.js', codex: 'codex.js', ki
 
 // Agents show absolute paths, so the demo lives at a short, neutral place. The real
 // path: an agent's directory inside its worktree is computed from it.
-export const DEFAULT_ROOT = path.join(fs.realpathSync(os.tmpdir()), 'troupe-demo');
+export const DEFAULT_ROOT = path.join(fs.realpathSync(os.tmpdir()), 'cross-harness-demo');
 
 function demoEnv(extra) {
   return {
     ...process.env,
     ...extra,
-    GIT_AUTHOR_NAME: 'Troupe demo',
-    GIT_AUTHOR_EMAIL: 'demo@troupe.invalid',
-    GIT_COMMITTER_NAME: 'Troupe demo',
-    GIT_COMMITTER_EMAIL: 'demo@troupe.invalid',
+    GIT_AUTHOR_NAME: 'cross-harness demo',
+    GIT_AUTHOR_EMAIL: 'demo@cross-harness.invalid',
+    GIT_COMMITTER_NAME: 'cross-harness demo',
+    GIT_COMMITTER_EMAIL: 'demo@cross-harness.invalid',
     GIT_CONFIG_GLOBAL: '/dev/null',
     GIT_CONFIG_NOSYSTEM: '1',
   };
@@ -49,7 +49,7 @@ export async function stage({ root = DEFAULT_ROOT, lang = 'en' } = {}) {
     fs.mkdirSync(path.dirname(path.join(project, file)), { recursive: true });
     fs.writeFileSync(path.join(project, file), text);
   }
-  const env = demoEnv({ TROUPE_HOME: path.join(root, '.troupe'), DEMO_LANG: lang });
+  const env = demoEnv({ CROSS_HARNESS_HOME: path.join(root, '.cross-harness'), DEMO_LANG: lang });
   const git = (...args) => execFileSync('git', args, { cwd: project, env, stdio: 'pipe' });
   git('init', '-q', '-b', 'main');
   git('add', '-A');

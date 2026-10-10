@@ -8,9 +8,9 @@ import { CODES, fail } from '../protocol/errors.js';
 import { runCommand } from '../util/process.js';
 
 const MAX_PATCH = 2 * 1024 * 1024;
-const FALLBACK_IDENTITY = ['-c', 'user.name=Troupe', '-c', 'user.email=troupe@localhost'];
+const FALLBACK_IDENTITY = ['-c', 'user.name=BizOS', '-c', 'user.email=bizos-ai@users.noreply.github.com'];
 
-/** Runs git and returns stdout; throws a TroupeError with stderr on failure. */
+/** Runs git and returns stdout; throws a cross-harnessError with stderr on failure. */
 export async function git(args, { cwd, env = process.env, timeoutMs = 60_000, allowFail = false } = {}) {
   const result = await runCommand('git', args, { cwd, env: { ...env, GIT_TERMINAL_PROMPT: '0', LC_ALL: 'C' }, timeoutMs, maxBuffer: 16 * 1024 * 1024 });
   if (result.error) throw fail(CODES.WORKTREE_FAILED, `git is not available: ${result.error.message}`);
@@ -83,7 +83,7 @@ export async function removeWorktree({ root, dir, force = false, env }) {
  * .gitignore) through a private index, so the agent's own index is untouched.
  */
 async function withScratchIndex(dir, env, work) {
-  const index = path.join(os.tmpdir(), `troupe-index-${randomUUID()}`);
+  const index = path.join(os.tmpdir(), `cross-harness-index-${randomUUID()}`);
   const scratch = { ...env, GIT_INDEX_FILE: index };
   try {
     // A copy of the worktree's own index keeps the size and time of every file, so git

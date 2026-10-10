@@ -643,7 +643,7 @@ export async function runTui({ client, lang = 'en', terminal = null, env = proce
 
   function defaultEditJson(value) {
     // A private directory: a predictable name in a shared temp directory could be a planted link.
-    const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'troupe-goal-'));
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'cross-harness-goal-'));
     const file = path.join(dir, 'goal.json');
     fs.writeFileSync(file, JSON.stringify(value, null, 2) + '\n', { mode: 0o600, flag: 'wx' });
     const editor = env.VISUAL || env.EDITOR || (process.platform === 'win32' ? 'notepad' : 'vi');

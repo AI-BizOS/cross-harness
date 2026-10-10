@@ -6,7 +6,7 @@ main(process.argv.slice(2)).then(
     if (Number.isInteger(code)) process.exitCode = code;
   },
   (error) => {
-    process.stderr.write(`troupe: ${error?.message || error}\n`);
+    process.stderr.write(`cross-harness: ${error?.message || error}\n`);
     process.exitCode = 1;
   },
 );

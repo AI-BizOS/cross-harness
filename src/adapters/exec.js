@@ -34,7 +34,7 @@ export function createExecSession({ binary, args = [], env, cwd, label = 'Agent'
     if (typeof cwd !== 'string' || !path.isAbsolute(cwd)) throw fail(CODES.START_FAILED, 'The working directory must be an absolute path');
     if (!exec || !Array.isArray(exec.args) || !exec.args.includes('{prompt}')) throw fail(CODES.START_FAILED, `${label} has no exec argument template`);
     if (permissionMode !== 'full' && !exec.modeArgs?.[permissionMode]) {
-      throw fail(CODES.PLAN_DENIED, `${label} runs tools without asking, so Troupe only starts it in full mode`);
+      throw fail(CODES.PLAN_DENIED, `${label} runs tools without asking, so cross-harness only starts it in full mode`);
     }
     emit = safeEmitter(onEvent);
     mode = permissionMode;

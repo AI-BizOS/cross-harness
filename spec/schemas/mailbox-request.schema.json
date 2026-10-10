@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:troupe:1:mailbox-request",
-  "title": "Troupe mailbox request (troupe/1)",
-  "description": "One collaboration call, written atomically by `troupe mcp` to <mailbox>/requests/<id>.json. At most 256 KiB.",
+  "$id": "urn:cross-harness:1:mailbox-request",
+  "title": "cross-harness mailbox request (cross-harness/1)",
+  "description": "One collaboration call, written atomically by `cross-harness mcp` to <mailbox>/requests/<id>.json. At most 256 KiB.",
   "type": "object",
   "required": ["id", "op", "params", "token"],
   "additionalProperties": false,

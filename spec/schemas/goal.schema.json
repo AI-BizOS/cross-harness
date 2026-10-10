@@ -1,11 +1,11 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:troupe:1:goal",
-  "title": "Troupe goal (troupe.goal/1)",
+  "$id": "urn:cross-harness:1:goal",
+  "title": "cross-harness goal (cross-harness.goal/1)",
   "type": "object",
   "required": ["schema", "id", "title", "outcome", "criteria", "assignees", "status", "revision"],
   "properties": {
-    "schema": { "const": "troupe.goal/1" },
+    "schema": { "const": "cross-harness.goal/1" },
     "id": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,39}$" },
     "title": { "type": "string", "maxLength": 200 },
     "outcome": { "type": "string", "maxLength": 4000 },

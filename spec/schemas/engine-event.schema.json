@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:troupe:1:engine-event",
-  "title": "Troupe engine event (troupe/1)",
+  "$id": "urn:cross-harness:1:engine-event",
+  "title": "cross-harness engine event (cross-harness/1)",
   "description": "Delivered to user interfaces in order. Receivers ignore unknown types and fields.",
   "type": "object",
   "required": ["seq", "type", "at"],

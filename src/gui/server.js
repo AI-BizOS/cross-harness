@@ -1,4 +1,4 @@
-// `troupe gui`: a local web UI over the same engine client as the terminal UI.
+// `cross-harness gui`: a local web UI over the same engine client as the terminal UI.
 // Only this machine can reach it (127.0.0.1), every API call needs the random
 // token the browser gets in the URL fragment, and requests from other origins or
 // with an unexpected Host header (DNS rebinding) are refused.
@@ -43,7 +43,7 @@ function send(res, status, body, type = 'application/json; charset=utf-8') {
 }
 
 function errorBody(error) {
-  return { ok: false, error: { code: error.code || 'TROUPE_INTERNAL', message: String(error.message || error) } };
+  return { ok: false, error: { code: error.code || 'CROSS_HARNESS_INTERNAL', message: String(error.message || error) } };
 }
 
 function readBody(req) {
@@ -125,8 +125,8 @@ export function createGuiHandler({ client, token, lang = 'en', port, star = null
 
   return async function handle(req, res) {
     try {
-      if (!hostAllowed(req)) return send(res, 421, errorBody({ code: 'TROUPE_UNAUTHORIZED', message: 'Unexpected Host header' }));
-      if (!originAllowed(req)) return send(res, 403, errorBody({ code: 'TROUPE_UNAUTHORIZED', message: 'Cross-origin requests are refused' }));
+      if (!hostAllowed(req)) return send(res, 421, errorBody({ code: 'CROSS_HARNESS_UNAUTHORIZED', message: 'Unexpected Host header' }));
+      if (!originAllowed(req)) return send(res, 403, errorBody({ code: 'CROSS_HARNESS_UNAUTHORIZED', message: 'Cross-origin requests are refused' }));
       const url = new URL(req.url, 'http://localhost');
       if (req.method === 'GET' && STATIC[url.pathname]) {
         const entry = STATIC[url.pathname];
@@ -134,8 +134,8 @@ export function createGuiHandler({ client, token, lang = 'en', port, star = null
         if (entry.template) body = body.toString('utf8').replaceAll('{{LANG}}', lang === 'zh' ? 'zh' : 'en').replaceAll('{{VERSION}}', VERSION);
         return send(res, 200, body, entry.type);
       }
-      if (!url.pathname.startsWith('/api/')) return send(res, 404, errorBody({ code: 'TROUPE_NOT_FOUND', message: 'Not found' }));
-      if (!authorized(req)) return send(res, 401, errorBody({ code: 'TROUPE_UNAUTHORIZED', message: 'Open Troupe from the link it printed (the token is in the address)' }));
+      if (!url.pathname.startsWith('/api/')) return send(res, 404, errorBody({ code: 'CROSS_HARNESS_NOT_FOUND', message: 'Not found' }));
+      if (!authorized(req)) return send(res, 401, errorBody({ code: 'CROSS_HARNESS_UNAUTHORIZED', message: 'Open cross-harness from the link it printed (the token is in the address)' }));
       if (req.method === 'GET' && url.pathname === '/api/events') return events(req, res);
       // The star prompt lives with this server, not with the engine, which may be remote.
       if (req.method === 'GET' && url.pathname === '/api/star') {
@@ -153,27 +153,27 @@ export function createGuiHandler({ client, token, lang = 'en', port, star = null
         return send(res, 200, { ok: true, result: (await update?.check()) || null });
       }
       if (req.method === 'POST' && url.pathname === '/api/star') {
-        if (!String(req.headers['content-type'] || '').startsWith('application/json')) return send(res, 415, errorBody({ code: 'TROUPE_ARGUMENT_INVALID', message: 'Send JSON' }));
+        if (!String(req.headers['content-type'] || '').startsWith('application/json')) return send(res, 415, errorBody({ code: 'CROSS_HARNESS_ARGUMENT_INVALID', message: 'Send JSON' }));
         let body;
         try {
           body = JSON.parse(await readBody(req));
           if (!star) throw new Error('The star prompt is off');
           star.answer(body?.answer);
         } catch (error) {
-          return send(res, 400, errorBody({ code: 'TROUPE_ARGUMENT_INVALID', message: error.message }));
+          return send(res, 400, errorBody({ code: 'CROSS_HARNESS_ARGUMENT_INVALID', message: error.message }));
         }
         return send(res, 200, { ok: true, result: { answer: body.answer } });
       }
       if (req.method === 'POST' && url.pathname === '/api/call') {
-        if (!String(req.headers['content-type'] || '').startsWith('application/json')) return send(res, 415, errorBody({ code: 'TROUPE_ARGUMENT_INVALID', message: 'Send JSON' }));
+        if (!String(req.headers['content-type'] || '').startsWith('application/json')) return send(res, 415, errorBody({ code: 'CROSS_HARNESS_ARGUMENT_INVALID', message: 'Send JSON' }));
         let request;
         try {
           request = JSON.parse(await readBody(req));
         } catch (error) {
-          return send(res, error.status || 400, errorBody({ code: 'TROUPE_ARGUMENT_INVALID', message: error.status ? error.message : 'Invalid JSON' }));
+          return send(res, error.status || 400, errorBody({ code: 'CROSS_HARNESS_ARGUMENT_INVALID', message: error.status ? error.message : 'Invalid JSON' }));
         }
         if (!request || typeof request.method !== 'string' || !METHODS.includes(request.method)) {
-          return send(res, 400, errorBody({ code: 'TROUPE_METHOD_UNKNOWN', message: `Unknown method: ${request?.method}` }));
+          return send(res, 400, errorBody({ code: 'CROSS_HARNESS_METHOD_UNKNOWN', message: `Unknown method: ${request?.method}` }));
         }
         try {
           const result = await client.call(request.method, request.params && typeof request.params === 'object' ? request.params : {});
@@ -182,7 +182,7 @@ export function createGuiHandler({ client, token, lang = 'en', port, star = null
           return send(res, 200, errorBody(error));
         }
       }
-      return send(res, 404, errorBody({ code: 'TROUPE_NOT_FOUND', message: 'Not found' }));
+      return send(res, 404, errorBody({ code: 'CROSS_HARNESS_NOT_FOUND', message: 'Not found' }));
     } catch (error) {
       if (!res.headersSent) send(res, 500, errorBody(error));
       else res.end?.();
@@ -193,7 +193,7 @@ export function createGuiHandler({ client, token, lang = 'en', port, star = null
 /** Starts the GUI server on a loopback address and resolves once it listens. */
 export async function startGui({ client, port = 0, host = '127.0.0.1', lang = 'en', token = randomBytes(24).toString('hex'), star = null, update = null }) {
   // The token travels in plain HTTP, so the server must not be reachable from other machines.
-  if (!LOOPBACK.includes(host)) throw fail(CODES.ARGUMENT_INVALID, `troupe gui only listens on this machine (${LOOPBACK.join(', ')}), not ${host}`);
+  if (!LOOPBACK.includes(host)) throw fail(CODES.ARGUMENT_INVALID, `cross-harness gui only listens on this machine (${LOOPBACK.join(', ')}), not ${host}`);
   let actualPort = port;
   const handler = createGuiHandler({ client, token, lang, port: () => actualPort, star, update });
   try {

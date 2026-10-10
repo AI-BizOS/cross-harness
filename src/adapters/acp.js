@@ -209,7 +209,7 @@ export function createAcpSession({ binary, args = [], env, cwd, label = 'ACP age
 
   function onRequest(method, params) {
     if (method !== 'session/request_permission') {
-      throw fail(CODES.RPC_UNSUPPORTED, `Troupe does not provide ${method}`, { rpcCode: -32601 });
+      throw fail(CODES.RPC_UNSUPPORTED, `cross-harness does not provide ${method}`, { rpcCode: -32601 });
     }
     // Once a turn is cancelled, ACP answers its permission requests as cancelled.
     if (cancelling || closing || !turn) return cancelledOutcome();
@@ -316,7 +316,7 @@ export function createAcpSession({ binary, args = [], env, cwd, label = 'ACP age
         { protocolVersion: 1, clientCapabilities: { fs: { readTextFile: false, writeTextFile: false }, terminal: false }, clientInfo: CLIENT_INFO },
         { timeoutMs: INIT_MS },
       );
-      if (capabilities?.protocolVersion !== 1) throw fail(CODES.VERSION_UNSUPPORTED, `${label} speaks ACP version ${capabilities?.protocolVersion}, Troupe speaks 1`);
+      if (capabilities?.protocolVersion !== 1) throw fail(CODES.VERSION_UNSUPPORTED, `${label} speaks ACP version ${capabilities?.protocolVersion}, cross-harness speaks 1`);
       const agent = capabilities.agentCapabilities || {};
       const base = { cwd, mcpServers: servers };
       const method = !resumeId ? null : agent.loadSession ? 'session/load' : agent.sessionCapabilities?.resume ? 'session/resume' : null;

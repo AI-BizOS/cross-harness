@@ -8,7 +8,7 @@ export const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '
 export const fixture = (name) => path.join(ROOT, 'test', 'fixtures', name);
 export const NODE = process.execPath;
 
-export function tempDir(t, prefix = 'troupe-test-') {
+export function tempDir(t, prefix = 'cross-harness-test-') {
   const dir = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), prefix)));
   t?.after?.(() => fs.rmSync(dir, { recursive: true, force: true }));
   return dir;
@@ -16,7 +16,7 @@ export function tempDir(t, prefix = 'troupe-test-') {
 
 /** A git repository with one commit on `main`. */
 export function gitRepo(t, files = { 'README.md': '# demo\n' }) {
-  const dir = tempDir(t, 'troupe-repo-');
+  const dir = tempDir(t, 'cross-harness-repo-');
   const git = (...args) => execFileSync('git', args, { cwd: dir, stdio: 'pipe', env: gitEnv() }).toString();
   git('init', '-q', '-b', 'main');
   for (const [name, text] of Object.entries(files)) {

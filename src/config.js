@@ -1,6 +1,6 @@
 // User configuration and state locations. Only user-level configuration can name
 // commands to run: a project directory (which may be someone else's repository)
-// never decides what Troupe executes.
+// never decides what cross-harness executes.
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
@@ -17,12 +17,18 @@ export const DEFAULTS = Object.freeze({
   maxIterations: 5,
 });
 
-export function troupeHome(env = process.env) {
-  return env.TROUPE_HOME ? path.resolve(env.TROUPE_HOME) : path.join(env.HOME || env.USERPROFILE || os.homedir(), '.troupe');
+export function crossHarnessHome(env = process.env) {
+  if (env.CROSS_HARNESS_HOME) return path.resolve(env.CROSS_HARNESS_HOME);
+  // Keep existing installations' absolute worktree paths and sandbox grants valid.
+  if (env.TROUPE_HOME) return path.resolve(env.TROUPE_HOME);
+  const home = env.HOME || env.USERPROFILE || os.homedir();
+  const current = path.join(home, '.cross-harness');
+  const legacy = path.join(home, '.troupe');
+  return !fs.existsSync(current) && fs.existsSync(legacy) ? legacy : current;
 }
 
 export function loadConfig(env = process.env) {
-  const file = path.join(troupeHome(env), 'config.json');
+  const file = path.join(crossHarnessHome(env), 'config.json');
   const raw = readJson(file, {}) || {};
   const defaults = { ...DEFAULTS };
   const given = raw.defaults && typeof raw.defaults === 'object' ? raw.defaults : {};
@@ -36,7 +42,7 @@ export function loadConfig(env = process.env) {
     providers: raw.providers && typeof raw.providers === 'object' ? raw.providers : {},
     defaults,
     lang: typeof raw.lang === 'string' ? raw.lang : null,
-    // false turns off the one-time question about starring Troupe on GitHub.
+    // false turns off the one-time question about starring cross-harness on GitHub.
     starPrompt: raw.starPrompt !== false,
     updateCheck: raw.updateCheck !== false,
   };
@@ -55,5 +61,5 @@ export function projectId(root) {
 }
 
 export function projectStateDir(root, env = process.env) {
-  return path.join(troupeHome(env), 'projects', projectId(root));
+  return path.join(crossHarnessHome(env), 'projects', projectId(root));
 }

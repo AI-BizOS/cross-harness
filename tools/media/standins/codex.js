@@ -67,7 +67,7 @@ async function runTurn(thread, turnId, prompt) {
 
 lines((message) => {
   const { id, method, params = {} } = message;
-  if (method === 'initialize') return reply(id, { userAgent: 'troupe-demo/1' });
+  if (method === 'initialize') return reply(id, { userAgent: 'cross-harness-demo/1' });
   if (method === 'thread/start') {
     const threadId = `thread-${randomUUID()}`;
     threads.set(threadId, { id: threadId, cwd: params.cwd, tokens: 0 });

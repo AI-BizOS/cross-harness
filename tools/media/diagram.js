@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // The "How it works" picture in the README, in English and Chinese: interfaces, one
 // engine per project, agents through their own protocols, and the file mailbox they
-// call Troupe's tools through. Dots show a task going out, a question between two
+// call cross-harness's tools through. Dots show a task going out, a question between two
 // agents and an approval coming back to you. Colours follow the light or dark theme.
 //
 //   node tools/media/diagram.js [--out docs/media]
@@ -15,19 +15,19 @@ const out = path.resolve(ROOT, args.includes('--out') ? args[args.indexOf('--out
 
 const TEXT = {
   en: {
-    label: 'How Troupe works: interfaces talk to one engine per project; the engine reaches each agent through the protocol its vendor ships; agents call Troupe back through a file mailbox.',
+    label: 'How cross-harness works: interfaces talk to one engine per project; the engine reaches each agent through the protocol its vendor ships; agents call cross-harness back through a file mailbox.',
     you: 'YOU',
     engine: 'ONE ENGINE PER PROJECT',
     agents: 'AGENTS · THEIR OWN PROTOCOLS',
     ui: [
-      ['Terminal UI', 'troupe'],
-      ['Web UI', 'troupe gui'],
-      ['Scripts and CI', 'troupe run'],
-      ['Another machine', 'troupe --ssh host'],
+      ['Terminal UI', 'cross-harness'],
+      ['Web UI', 'cross-harness gui'],
+      ['Scripts and CI', 'cross-harness run'],
+      ['Another machine', 'cross-harness --ssh host'],
     ],
     client: 'client protocol: in-process, stdio or SSH',
-    title: 'Troupe engine',
-    protocol: 'troupe/1',
+    title: 'cross-harness engine',
+    protocol: 'cross-harness/1',
     parts: ['@mentions → tasks', 'one approval queue', 'a git worktree per agent', 'review by another agent', 'goal gates with evidence'],
     harnesses: [
       ['Claude Code', 'stream-json'],
@@ -36,7 +36,7 @@ const TEXT = {
       ['Aider · Amp', 'one-shot'],
       ['Your own runner', 'ACP'],
     ],
-    mailbox: 'troupe mcp · file mailbox',
+    mailbox: 'cross-harness mcp · file mailbox',
     tools: 'ask_agent · ask_user · board · report_progress · goal_status',
     legend: [
       ['task', 'a task'],
@@ -45,19 +45,19 @@ const TEXT = {
     ],
   },
   zh: {
-    label: 'Troupe 的工作方式：界面连接每个项目唯一的引擎；引擎通过各厂商自己的协议连接代理；代理通过文件信箱回调 Troupe。',
+    label: 'cross-harness 的工作方式：界面连接每个项目唯一的引擎；引擎通过各厂商自己的协议连接代理；代理通过文件信箱回调 cross-harness。',
     you: '你',
     engine: '每个项目一个引擎',
     agents: '代理，走各自厂商的协议',
     ui: [
-      ['终端界面', 'troupe'],
-      ['网页界面', 'troupe gui'],
-      ['脚本与 CI', 'troupe run'],
-      ['另一台机器', 'troupe --ssh host'],
+      ['终端界面', 'cross-harness'],
+      ['网页界面', 'cross-harness gui'],
+      ['脚本与 CI', 'cross-harness run'],
+      ['另一台机器', 'cross-harness --ssh host'],
     ],
     client: '客户端协议：同进程、stdio 或 SSH',
-    title: 'Troupe 引擎',
-    protocol: 'troupe/1',
+    title: 'cross-harness 引擎',
+    protocol: 'cross-harness/1',
     parts: ['@点名 → 派发任务', '统一的审批队列', '每个代理一个 worktree', '由另一个代理审查', '用证据核查目标'],
     harnesses: [
       ['Claude Code', 'stream-json'],
@@ -66,7 +66,7 @@ const TEXT = {
       ['Aider · Amp', '单次运行'],
       ['你自己的运行器', 'ACP'],
     ],
-    mailbox: 'troupe mcp · 文件信箱',
+    mailbox: 'cross-harness mcp · 文件信箱',
     tools: 'ask_agent · ask_user · board · report_progress · goal_status',
     legend: [
       ['task', '派发任务'],

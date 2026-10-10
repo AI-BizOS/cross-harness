@@ -1,5 +1,5 @@
 // Pieces shared by the session adapters. Each adapter turns one vendor protocol
-// into the troupe/1 agent-session events (spec/agent-session.md).
+// into the cross-harness/1 agent-session events (spec/agent-session.md).
 import path from 'node:path';
 import { CODES, fail } from '../protocol/errors.js';
 import { PERMISSION_MODES } from '../protocol/index.js';
@@ -7,7 +7,7 @@ import { clip, oneLine } from '../util/text.js';
 import { VERSION } from '../version.js';
 
 export const TEXT_INTERVAL_MS = 75;
-export const CLIENT_INFO = Object.freeze({ name: 'troupe', title: 'Troupe', version: VERSION });
+export const CLIENT_INFO = Object.freeze({ name: 'cross-harness', title: 'cross-harness', version: VERSION });
 
 /** Wraps a listener so a failing UI can never break a vendor turn. */
 export function safeEmitter(listener) {

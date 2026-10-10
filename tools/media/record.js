@@ -1,10 +1,10 @@
 #!/usr/bin/env node
-// Records the animations in the README from Troupe's real interfaces.
+// Records the animations in the README from cross-harness's real interfaces.
 //
 //   node tools/media/record.js [--lang en|zh] [--out docs/media] [--only terminal|web]
 //
 // The web UI is recorded with a Playwright installation of your own:
-//   TROUPE_PLAYWRIGHT=/path/to/node_modules/playwright/index.js (TROUPE_CHROME optional)
+//   CROSS_HARNESS_PLAYWRIGHT=/path/to/node_modules/playwright/index.js (CROSS_HARNESS_CHROME optional)
 //
 // The engine, the terminal UI, worktrees, approvals, reviews and merges are all real;
 // the agents are stand-ins (standins/) that speak the BizOS CLI (`bizos acp`), Claude
@@ -39,10 +39,10 @@ const LABELS = {
     diff: 'See what changed',
     review: 'Another agent reviews',
     merge: 'Merge',
-    title: 'troupe — shop-api',
-    hero: 'Troupe terminal UI: one message starts BizOS CLI (BizOS Code), Codex and Claude Code in parallel; you allow a command for BizOS once and for all, Codex asks BizOS a question, and each agent finishes on its own branch.',
-    reviewMerge: "Troupe terminal UI: the diff of BizOS CLI's branch, a review by Codex, then the merge.",
-    web: 'Troupe web UI: the same message from the browser, an approval card for BizOS CLI, then a review by another agent and the merge.',
+    title: 'cross-harness — shop-api',
+    hero: 'cross-harness terminal UI: one message starts BizOS CLI (BizOS Code), Codex and Claude Code in parallel; you allow a command for BizOS once and for all, Codex asks BizOS a question, and each agent finishes on its own branch.',
+    reviewMerge: "cross-harness terminal UI: the diff of BizOS CLI's branch, a review by Codex, then the merge.",
+    web: 'cross-harness web UI: the same message from the browser, an approval card for BizOS CLI, then a review by another agent and the merge.',
   },
   zh: {
     dispatch: '一条消息，三个代理',
@@ -52,10 +52,10 @@ const LABELS = {
     diff: '查看改动',
     review: '另一个代理审查',
     merge: '合并',
-    title: 'troupe — shop-api',
-    hero: 'Troupe 终端界面：一条消息同时启动 BizOS CLI（BizOS Code）、Codex 和 Claude Code；你为 BizOS 的命令选择“以后都允许”，Codex 向 BizOS 提问，每个代理在自己的分支上完成工作。',
-    reviewMerge: 'Troupe 终端界面：查看 BizOS CLI 分支的改动，由 Codex 审查，然后合并。',
-    web: 'Troupe 网页界面：在浏览器里发出同一条消息，处理 BizOS CLI 的审批卡片，再由另一个代理审查后合并。',
+    title: 'cross-harness — shop-api',
+    hero: 'cross-harness 终端界面：一条消息同时启动 BizOS CLI（BizOS Code）、Codex 和 Claude Code；你为 BizOS 的命令选择“以后都允许”，Codex 向 BizOS 提问，每个代理在自己的分支上完成工作。',
+    reviewMerge: 'cross-harness 终端界面：查看 BizOS CLI 分支的改动，由 Codex 审查，然后合并。',
+    web: 'cross-harness 网页界面：在浏览器里发出同一条消息，处理 BizOS CLI 的审批卡片，再由另一个代理审查后合并。',
   },
 }[lang];
 
@@ -142,7 +142,7 @@ async function recordBrowser(playwright) {
   const { engine } = await stage({ lang });
   const client = localClient(engine);
   await client.call('providers', {});
-  const web = await recordWeb({ client, lang, playwright, chrome: process.env.TROUPE_CHROME || null });
+  const web = await recordWeb({ client, lang, playwright, chrome: process.env.CROSS_HARNESS_CHROME || null });
   const story = text(lang);
   const named = (name) => [...engine.agents.values()].find((agent) => agent.name === name);
   const idle = () => engine.agents.size > 0 && [...engine.agents.values()].every((agent) => !agent.busy);
@@ -203,9 +203,9 @@ if (only !== 'web') {
 }
 
 if (only !== 'terminal') {
-  const playwright = process.env.TROUPE_PLAYWRIGHT;
-  if (!playwright && only === 'web') throw new Error('Set TROUPE_PLAYWRIGHT to the index.js of a Playwright installation to record the web UI');
-  if (!playwright) console.log(`web${suffix}.svg: skipped (set TROUPE_PLAYWRIGHT to record the web UI)`);
+  const playwright = process.env.CROSS_HARNESS_PLAYWRIGHT;
+  if (!playwright && only === 'web') throw new Error('Set CROSS_HARNESS_PLAYWRIGHT to the index.js of a Playwright installation to record the web UI');
+  if (!playwright) console.log(`web${suffix}.svg: skipped (set CROSS_HARNESS_PLAYWRIGHT to record the web UI)`);
   else {
     const web = await recordBrowser(playwright);
     const svg = webSvg(web.frames, { end: web.end, width: 1080, height: 660, pointer: web.pointer, clicks: web.clicks, url: '127.0.0.1:7788', label: LABELS.web });

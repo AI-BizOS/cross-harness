@@ -123,7 +123,7 @@ test('acp: permission modes select the agent mode', async (t) => {
   }
 });
 
-test('acp: BizOS Code modes and its two approval options map onto Troupe', async (t) => {
+test('acp: BizOS Code modes and its two approval options map onto cross-harness', async (t) => {
   // The modes and options `bizos acp` offers (BizOS Code 0.3.05).
   const { dir, env, read } = setup(t, {
     MOCK_MODES: JSON.stringify([
@@ -149,7 +149,7 @@ test('acp: BizOS Code modes and its two approval options map onto Troupe', async
     await session.close();
     assert.equal(read().slice(before).find((entry) => entry.method === 'session/set_mode')?.modeId, expected, mode);
   }
-  // "Always allow" is remembered by Troupe; the agent, which has no such option, gets "allow once".
+  // "Always allow" is remembered by cross-harness; the agent, which has no such option, gets "allow once".
   const session = createAcpSession({ binary: NODE, args: [fixture('mock-acp-agent.js')], cwd: dir, env });
   t.after(() => session.close());
   await session.start({ permissionMode: 'ask', onEvent: (event) => event.type === 'approval' && event.respond('allow_always') });
@@ -221,14 +221,14 @@ test('codex: usage is counted once per model request', async (t) => {
 });
 
 test('codex: MCP servers become -c TOML overrides', () => {
-  const args = mcpConfigArgs([{ name: 'troupe', command: '/usr/bin/node', args: ['/x/troupe.js', 'mcp'], env: { TROUPE_MAILBOX: '/tmp/a "b"' } }]);
+  const args = mcpConfigArgs([{ name: 'cross-harness', command: '/usr/bin/node', args: ['/x/cross-harness.js', 'mcp'], env: { CROSS_HARNESS_MAILBOX: '/tmp/a "b"' } }]);
   assert.deepEqual(args, [
     '-c',
-    'mcp_servers.troupe.command="/usr/bin/node"',
+    'mcp_servers.cross-harness.command="/usr/bin/node"',
     '-c',
-    'mcp_servers.troupe.args=["/x/troupe.js","mcp"]',
+    'mcp_servers.cross-harness.args=["/x/cross-harness.js","mcp"]',
     '-c',
-    'mcp_servers.troupe.env={TROUPE_MAILBOX="/tmp/a \\"b\\""}',
+    'mcp_servers.cross-harness.env={CROSS_HARNESS_MAILBOX="/tmp/a \\"b\\""}',
   ]);
   assert.throws(() => mcpConfigArgs([{ name: 'x', command: 'relative' }]), (error) => error.code === CODES.MCP_INVALID);
 });
@@ -237,14 +237,14 @@ test('claude: plan mode and MCP config reach the command line', async (t) => {
   const { dir, env, read } = setup(t);
   const session = createClaudeSession({ binary: NODE, args: [fixture('mock-claude.js')], cwd: dir, env });
   t.after(() => session.close());
-  await session.start({ permissionMode: 'plan', model: 'sonnet', mcpServers: [{ name: 'troupe', command: NODE, args: ['x'], env: { A: 'b' } }] });
+  await session.start({ permissionMode: 'plan', model: 'sonnet', mcpServers: [{ name: 'cross-harness', command: NODE, args: ['x'], env: { A: 'b' } }] });
   await until(() => read().some((entry) => entry.start));
   const start = read().find((entry) => entry.start);
   assert.equal(start.mode, 'plan');
   assert.equal(start.model, 'sonnet');
-  assert.deepEqual(start.mcp, ['troupe']);
+  assert.deepEqual(start.mcp, ['cross-harness']);
   assert.equal(start.strict, false);
-  assert.match(mcpConfig([{ name: 'troupe', command: NODE }]), /"type":"stdio"/);
+  assert.match(mcpConfig([{ name: 'cross-harness', command: NODE }]), /"type":"stdio"/);
 });
 
 test('exec: one process per prompt, full mode only', async (t) => {

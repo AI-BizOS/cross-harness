@@ -16,15 +16,15 @@ test('package entry points exist and load', async () => {
     assert.ok(api[name] !== undefined, `${name} is exported`);
   }
   assert.equal(api.VERSION, pkg.version);
-  assert.equal(api.PROTOCOL_VERSION, 'troupe/1');
+  assert.equal(api.PROTOCOL_VERSION, 'cross-harness/1');
   const protocol = await import(`${pkg.name}/protocol`);
   assert.deepEqual(protocol.PERMISSION_MODES, ['plan', 'ask', 'workspace', 'full']);
 });
 
-test('the troupe command prints its version without opening anything', () => {
-  const result = spawnSync(NODE, [path.join(ROOT, pkg.bin.troupe), '--version'], { encoding: 'utf8' });
+test('the cross-harness command prints its version without opening anything', () => {
+  const result = spawnSync(NODE, [path.join(ROOT, pkg.bin['cross-harness']), '--version'], { encoding: 'utf8' });
   assert.equal(result.status, 0);
-  assert.equal(result.stdout.trim(), `troupe ${pkg.version} (troupe/1)`);
+  assert.equal(result.stdout.trim(), `cross-harness ${pkg.version} (cross-harness/1)`);
   assert.equal(pkg.license, 'Apache-2.0');
   assert.deepEqual(pkg.dependencies, undefined, 'no runtime dependencies');
 });

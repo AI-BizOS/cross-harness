@@ -208,7 +208,7 @@ export function createClaudeSession({ binary, args = [], env, cwd, label = 'Clau
       return true;
     };
     if (request.subtype !== 'can_use_tool') {
-      reply({ subtype: 'error', request_id: id, error: `Troupe does not handle ${request.subtype}` });
+      reply({ subtype: 'error', request_id: id, error: `cross-harness does not handle ${request.subtype}` });
       return;
     }
     const input = request.input && typeof request.input === 'object' ? request.input : {};
@@ -372,7 +372,7 @@ export function createClaudeSession({ binary, args = [], env, cwd, label = 'Clau
     if (!alive()) return false;
     if (current) current.interrupted = true;
     for (const answer of [...approvals.values()]) answer('cancel');
-    const id = `troupe-interrupt-${++seq}`;
+    const id = `cross-harness-interrupt-${++seq}`;
     return new Promise((resolve) => {
       let timer = null;
       const done = (ok) => {

@@ -54,7 +54,7 @@ const newestFirst = (a, b) => {
 
 /**
  * Where installers, package managers and version managers put commands, searched after
- * PATH: a harness installed under nvm, volta, pnpm or Homebrew is found even when Troupe
+ * PATH: a harness installed under nvm, volta, pnpm or Homebrew is found even when cross-harness
  * starts from a shell whose PATH does not include that manager.
  */
 export function installDirs(env = process.env, platform = process.platform) {

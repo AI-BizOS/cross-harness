@@ -83,8 +83,8 @@ test('approval policy by mode', (t) => {
   assert.equal(decide({ mode: 'workspace', request: { ...edit, paths: ['src/b.js'] }, root }), 'allow', 'relative to the agent directory');
   assert.equal(decide({ mode: 'workspace', request: command }), 'ask');
   assert.equal(decide({ mode: 'ask', request: edit, root }), 'ask');
-  assert.equal(decide({ mode: 'ask', request: { kind: 'tool', title: 'mcp__troupe__troupe_ask_agent' } }), 'allow');
-  assert.equal(decide({ mode: 'plan', request: { kind: 'tool', title: 'troupe_board_write' } }), 'allow');
+  assert.equal(decide({ mode: 'ask', request: { kind: 'tool', title: 'mcp__cross_harness__cross_harness_ask_agent' } }), 'allow');
+  assert.equal(decide({ mode: 'plan', request: { kind: 'tool', title: 'cross_harness_board_write' } }), 'allow');
   const rule = ruleFor(command);
   assert.deepEqual(rule, { kind: 'command', prefix: 'npm test' });
   assert.equal(decide({ mode: 'ask', request: { kind: 'command', command: 'npm test' }, rules: [rule] }), 'allow');
@@ -100,12 +100,14 @@ test('approval policy cannot be talked around', (t) => {
   const root = tempDir(t);
   const outside = tempDir(t);
   // Tool names count only as the tool itself, never inside a command or its arguments.
-  const disguised = { kind: 'command', command: 'rm -rf ~ # troupe_list_agents', title: 'rm -rf ~ # troupe_list_agents', detail: 'troupe_ask_agent' };
+  const disguised = { kind: 'command', command: 'rm -rf ~ # cross_harness_list_agents', title: 'rm -rf ~ # cross_harness_list_agents', detail: 'cross_harness_ask_agent' };
   assert.equal(decide({ mode: 'plan', request: disguised }), 'deny');
   assert.equal(decide({ mode: 'ask', request: disguised }), 'ask');
-  assert.equal(decide({ mode: 'ask', request: { kind: 'tool', title: 'evil_troupe_ask_agent' } }), 'ask');
-  assert.equal(decide({ mode: 'ask', request: { kind: 'tool', title: 'troupe_troupe_board_read' } }), 'allow');
-  assert.equal(decide({ mode: 'ask', request: { kind: 'tool', title: 'troupe_ask_agent (troupe MCP Server)' } }), 'allow');
+  assert.equal(decide({ mode: 'ask', request: { kind: 'tool', title: 'evil_cross_harness_ask_agent' } }), 'ask');
+  assert.equal(decide({ mode: 'ask', request: { kind: 'tool', title: 'cross_harness_cross_harness_board_read' } }), 'allow');
+  assert.equal(decide({ mode: 'ask', request: { kind: 'tool', title: 'mcp__cross-harness__cross_harness_board_read' } }), 'allow');
+  assert.equal(decide({ mode: 'ask', request: { kind: 'tool', title: 'mcp__cross_harness__cross_harness_board_read' } }), 'allow');
+  assert.equal(decide({ mode: 'ask', request: { kind: 'tool', title: 'cross_harness_ask_agent (cross-harness MCP Server)' } }), 'allow');
   // A command rule covers that command, not whatever is chained to it.
   const rule = ruleFor({ kind: 'command', command: "/bin/zsh -lc 'npm test -- --watch'" });
   assert.deepEqual(rule, { kind: 'command', prefix: 'npm test' });

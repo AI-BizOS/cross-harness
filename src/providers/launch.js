@@ -1,6 +1,6 @@
 // How a harness found on disk is started. Most are executables, but some are not:
 // - npm installs a Windows command as a .cmd wrapper, which Node cannot spawn without a
-//   shell. Troupe reads the wrapper and starts what it names (a Node script or an .exe)
+//   shell. cross-harness reads the wrapper and starts what it names (a Node script or an .exe)
 //   directly, so arguments never pass through cmd.exe.
 // - DeepSeek Harness desktop can ship its CLI as a Node script next to its own Node
 //   runtime instead of registering a `dsh` command.
@@ -10,7 +10,7 @@ import path from 'node:path';
 const SCRIPT = /\.[cm]?js$/i;
 const WRAPPER = /\.(?:cmd|bat)$/i;
 
-/** The Node that runs a script: the runtime bundled next to it, else Troupe's own. */
+/** The Node that runs a script: the runtime bundled next to it, else cross-harness's own. */
 export function nodeFor(entry) {
   const marker = `${path.sep}runtime${path.sep}`;
   const at = entry.lastIndexOf(marker);
@@ -39,7 +39,7 @@ export function launchCommand(binary, args, env) {
   if (SCRIPT.test(binary)) return { binary: nodeFor(binary), args: [binary, ...args], env };
   if (!WRAPPER.test(binary)) return { binary, args, env };
   // The adapters report this message as the reason the harness failed to start.
-  const unreadable = () => Object.assign(new Error(`Troupe cannot read the Windows wrapper ${binary}; reinstall the harness`), { unreadable: true });
+  const unreadable = () => Object.assign(new Error(`cross-harness cannot read the Windows wrapper ${binary}; reinstall the harness`), { unreadable: true });
   let source;
   try {
     if (fs.statSync(binary).size > 65536) throw unreadable();

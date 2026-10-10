@@ -4,7 +4,7 @@
 //   @backend add the endpoint         a named agent
 //   @codex+ start over                a fresh session instead of resuming
 //   @all run the tests                every agent on the project (or every available harness)
-//   @auto fix the flaky test          Troupe picks (two different harnesses for reviews)
+//   @auto fix the flaky test          cross-harness picks (two different harnesses for reviews)
 //   @compare / @compare:claude        after all targets answer, one agent compares the answers
 //
 // Mentions count only at the start of a line. A line that starts with mentions begins
@@ -71,7 +71,7 @@ export function completions(prefix, { agents = [], providers = [] }) {
     ...agents.filter((a) => a.state !== 'archived').map((a) => ({ name: a.name, kind: 'agent', detail: `${a.providerName} · ${a.state}` })),
     ...providers.filter((p) => !agents.some((a) => a.name === p.id)).map((p) => ({ name: p.id, kind: 'provider', detail: p.available ? `${p.name}${p.version ? ` ${p.version}` : ''}${p.verified ? '' : ' · untested'}` : `${p.name} · ${p.reason}`, available: p.available })),
     { name: 'all', kind: 'special', detail: 'every agent' },
-    { name: 'auto', kind: 'special', detail: 'let Troupe pick' },
+    { name: 'auto', kind: 'special', detail: 'let cross-harness pick' },
     { name: 'compare', kind: 'special', detail: 'compare the answers afterwards' },
   ];
   return rows.filter((row) => row.name.toLowerCase().startsWith(wanted));

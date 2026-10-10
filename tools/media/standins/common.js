@@ -1,5 +1,5 @@
 // Shared by the stand-in agents: the scene a prompt starts, real commands and edits in
-// the agent's working directory, and calls to Troupe's collaboration tools over MCP.
+// the agent's working directory, and calls to cross-harness's collaboration tools over MCP.
 import { spawn } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -14,7 +14,7 @@ export const send = (message) => process.stdout.write(JSON.stringify(message) + 
 /** `--version` prints no version number, so the interface shows none for a stand-in. */
 export function answerVersion() {
   if (!process.argv.includes('--version')) return false;
-  process.stdout.write('troupe demo stand-in\n');
+  process.stdout.write('cross-harness demo stand-in\n');
   return true;
 }
 
@@ -81,7 +81,7 @@ export function runCommand(command, cwd, onOutput = () => {}) {
   });
 }
 
-/** Calls one tool on an MCP stdio server (Troupe's `troupe mcp`) and returns its text. */
+/** Calls one tool on an MCP stdio server (cross-harness's `cross-harness mcp`) and returns its text. */
 export async function callTool(server, tool, args) {
   const env = { ...process.env, ...(server.env || {}) };
   const child = spawn(server.command, server.args || [], { env, stdio: ['pipe', 'pipe', 'inherit'] });
@@ -103,7 +103,7 @@ export async function callTool(server, tool, args) {
       pending.set(id, resolve);
       child.stdin.write(JSON.stringify({ jsonrpc: '2.0', id, method, params }) + '\n');
     });
-  await request('initialize', { protocolVersion: '2025-06-18', capabilities: {}, clientInfo: { name: 'troupe-demo', version: '1' } });
+  await request('initialize', { protocolVersion: '2025-06-18', capabilities: {}, clientInfo: { name: 'cross-harness-demo', version: '1' } });
   child.stdin.write(JSON.stringify({ jsonrpc: '2.0', method: 'notifications/initialized' }) + '\n');
   const reply = await request('tools/call', { name: tool, arguments: args });
   child.stdin.end();

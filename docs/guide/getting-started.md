@@ -8,12 +8,12 @@ This walk-through uses the terminal UI. The [web UI](interfaces.md#web-ui) works
 
 ```sh
 cd your-project
-troupe
+cross-harness
 ```
 
-Troupe works best in a git repository with at least one commit: each agent then gets its own worktree and branch. In a plain directory, agents share the directory.
+cross-harness works best in a git repository with at least one commit: each agent then gets its own worktree and branch. In a plain directory, agents share the directory.
 
-The welcome screen lists the agents Troupe found. Run `troupe detect` in another terminal if one you expect is missing.
+The welcome screen lists the agents cross-harness found. Run `cross-harness detect` in another terminal if one you expect is missing.
 
 ## 2. Send a message
 
@@ -24,7 +24,7 @@ Start a line with the agents you want:
 @codex add edge-case tests for the parser; ask bizos if the error format is unclear
 ```
 
-Each line is a separate task, and the agents start at the same time. `@codex @claude review src/` gives both the same task. The first message to a new agent takes a moment longer: Troupe creates its worktree, and the agent starts its session.
+Each line is a separate task, and the agents start at the same time. `@codex @claude review src/` gives both the same task. The first message to a new agent takes a moment longer: cross-harness creates its worktree, and the agent starts its session.
 
 ## 3. Answer what the agents ask
 
@@ -47,7 +47,7 @@ Press `d` to see what the selected agent changed on its branch, then `m`:
 1. **Have another agent review it first** (recommended) — a different agent reads the diff and ends with PASS or FAIL.
 2. **Merge now without review.**
 
-Troupe merges with `--no-ff` into the branch you were on and keeps the agent's branch. It refuses to merge into a project with uncommitted changes and stops cleanly on a conflict.
+cross-harness merges with `--no-ff` into the branch you were on and keeps the agent's branch. It refuses to merge into a project with uncommitted changes and stops cleanly on a conflict.
 
 ## Next
 

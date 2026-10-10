@@ -1,158 +1,158 @@
-<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 1004.8 666" width="1004.8" height="666" role="img" aria-label="Troupe 终端界面：查看 BizOS CLI 分支的改动，由 Codex 审查，然后合并。">
-<title>Troupe 终端界面：查看 BizOS CLI 分支的改动，由 Codex 审查，然后合并。</title>
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 1004.8 666" width="1004.8" height="666" role="img" aria-label="cross-harness 终端界面：查看 BizOS CLI 分支的改动，由 Codex 审查，然后合并。">
+<title>cross-harness 终端界面：查看 BizOS CLI 分支的改动，由 Codex 审查，然后合并。</title>
 <style>
 text{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Monaco,Consolas,"Liberation Mono","DejaVu Sans Mono",monospace;font-size:14px;white-space:pre}
-.screen g{opacity:0;animation-duration:16.59s;animation-iteration-count:infinite;animation-timing-function:step-end}
+.screen g{opacity:0;animation-duration:16.56s;animation-iteration-count:infinite;animation-timing-function:step-end}
 .screen path{fill:none;stroke-width:1}
 .s{opacity:0;animation:sp 1s step-end infinite}@keyframes sp{0%{opacity:1}10%{opacity:0}}
-.cursor{opacity:0;animation:cur 16.59s step-end infinite}
+.cursor{opacity:0;animation:cur 16.56s step-end infinite}
 .bar-title{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;font-size:12.5px;fill:#8b949e}
-.chapter{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;font-size:13px;font-weight:600;fill:#8b949e;animation-duration:16.59s;animation-iteration-count:infinite;animation-timing-function:step-end}
-.track{fill:#8b949e;opacity:.25}.fill{fill:#2f81f7;transform:scaleX(0);animation-duration:16.59s;animation-iteration-count:infinite;animation-timing-function:linear}
+.chapter{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;font-size:13px;font-weight:600;fill:#8b949e;animation-duration:16.56s;animation-iteration-count:infinite;animation-timing-function:step-end}
+.track{fill:#8b949e;opacity:.25}.fill{fill:#2f81f7;transform:scaleX(0);animation-duration:16.56s;animation-iteration-count:infinite;animation-timing-function:linear}
 @media (prefers-reduced-motion:reduce){.screen g,.cursor,.s,.chapter,.fill{animation:none!important}.screen g{opacity:0}.screen g.p{opacity:1}.cursor,.s{opacity:0}.s:first-child{opacity:1}}
-@keyframes k0{0%{opacity:1}43.373%{opacity:0}55.777%{opacity:1}}
-@keyframes k1{0%{opacity:0}43.373%{opacity:1}55.777%{opacity:0}}
+@keyframes k0{0%{opacity:1}43.266%{opacity:0}55.568%{opacity:1}}
+@keyframes k1{0%{opacity:0}43.266%{opacity:1}55.568%{opacity:0}}
 @keyframes k2{0%{opacity:1}0.012%{opacity:0}}
-@keyframes k3{0%{opacity:0}0.012%{opacity:1}9.083%{opacity:0}33.777%{opacity:1}}
-@keyframes k4{0%{opacity:0}9.083%{opacity:1}33.777%{opacity:0}}
+@keyframes k3{0%{opacity:0}0.012%{opacity:1}8.805%{opacity:0}33.863%{opacity:1}}
+@keyframes k4{0%{opacity:0}8.805%{opacity:1}33.863%{opacity:0}}
 @keyframes k5{0%{opacity:1}0.012%{opacity:0}}
-@keyframes k6{0%{opacity:0}0.012%{opacity:1}9.083%{opacity:0}33.777%{opacity:1}}
-@keyframes k7{0%{opacity:0}9.083%{opacity:1}33.777%{opacity:0}}
+@keyframes k6{0%{opacity:0}0.012%{opacity:1}8.805%{opacity:0}33.863%{opacity:1}}
+@keyframes k7{0%{opacity:0}8.805%{opacity:1}33.863%{opacity:0}}
 @keyframes k8{0%{opacity:1}0.012%{opacity:0}}
-@keyframes k9{0%{opacity:0}0.012%{opacity:1}9.083%{opacity:0}33.777%{opacity:1}78.271%{opacity:0}}
-@keyframes ka{0%{opacity:0}9.083%{opacity:1}33.777%{opacity:0}}
-@keyframes kb{0%{opacity:0}78.271%{opacity:1}}
+@keyframes k9{0%{opacity:0}0.012%{opacity:1}8.805%{opacity:0}33.863%{opacity:1}78.294%{opacity:0}}
+@keyframes ka{0%{opacity:0}8.805%{opacity:1}33.863%{opacity:0}}
+@keyframes kb{0%{opacity:0}78.294%{opacity:1}}
 @keyframes kc{0%{opacity:1}0.012%{opacity:0}}
-@keyframes kd{0%{opacity:0}0.012%{opacity:1}9.083%{opacity:0}33.777%{opacity:1}43.373%{opacity:0}55.777%{opacity:1}78.271%{opacity:0}}
-@keyframes ke{0%{opacity:0}9.083%{opacity:1}33.777%{opacity:0}}
-@keyframes kf{0%{opacity:0}43.373%{opacity:1}55.777%{opacity:0}}
-@keyframes kg{0%{opacity:0}78.271%{opacity:1}}
-@keyframes kh{0%{opacity:1}9.083%{opacity:0}33.777%{opacity:1}78.271%{opacity:0}}
-@keyframes ki{0%{opacity:0}9.083%{opacity:1}33.777%{opacity:0}}
-@keyframes kj{0%{opacity:0}78.271%{opacity:1}}
+@keyframes kd{0%{opacity:0}0.012%{opacity:1}8.805%{opacity:0}33.863%{opacity:1}43.266%{opacity:0}55.568%{opacity:1}78.294%{opacity:0}}
+@keyframes ke{0%{opacity:0}8.805%{opacity:1}33.863%{opacity:0}}
+@keyframes kf{0%{opacity:0}43.266%{opacity:1}55.568%{opacity:0}}
+@keyframes kg{0%{opacity:0}78.294%{opacity:1}}
+@keyframes kh{0%{opacity:1}8.805%{opacity:0}33.863%{opacity:1}78.294%{opacity:0}}
+@keyframes ki{0%{opacity:0}8.805%{opacity:1}33.863%{opacity:0}}
+@keyframes kj{0%{opacity:0}78.294%{opacity:1}}
 @keyframes kk{0%{opacity:1}0.012%{opacity:0}}
-@keyframes kl{0%{opacity:0}0.012%{opacity:1}9.083%{opacity:0}33.777%{opacity:1}55.777%{opacity:0}77.367%{opacity:1}78.271%{opacity:0}}
-@keyframes km{0%{opacity:0}9.083%{opacity:1}33.777%{opacity:0}}
-@keyframes kn{0%{opacity:0}55.777%{opacity:1}77.367%{opacity:0}}
-@keyframes ko{0%{opacity:0}78.271%{opacity:1}}
-@keyframes kp{0%{opacity:1}9.083%{opacity:0}33.777%{opacity:1}55.777%{opacity:0}77.367%{opacity:1}78.271%{opacity:0}}
-@keyframes kq{0%{opacity:0}9.083%{opacity:1}33.777%{opacity:0}}
-@keyframes kr{0%{opacity:0}55.777%{opacity:1}77.367%{opacity:0}}
-@keyframes ks{0%{opacity:0}78.271%{opacity:1}}
+@keyframes kl{0%{opacity:0}0.012%{opacity:1}8.805%{opacity:0}33.863%{opacity:1}55.568%{opacity:0}77.352%{opacity:1}78.294%{opacity:0}}
+@keyframes km{0%{opacity:0}8.805%{opacity:1}33.863%{opacity:0}}
+@keyframes kn{0%{opacity:0}55.568%{opacity:1}77.352%{opacity:0}}
+@keyframes ko{0%{opacity:0}78.294%{opacity:1}}
+@keyframes kp{0%{opacity:1}8.805%{opacity:0}33.863%{opacity:1}55.568%{opacity:0}77.352%{opacity:1}78.294%{opacity:0}}
+@keyframes kq{0%{opacity:0}8.805%{opacity:1}33.863%{opacity:0}}
+@keyframes kr{0%{opacity:0}55.568%{opacity:1}77.352%{opacity:0}}
+@keyframes ks{0%{opacity:0}78.294%{opacity:1}}
 @keyframes kt{0%{opacity:1}0.012%{opacity:0}}
-@keyframes ku{0%{opacity:0}0.012%{opacity:1}9.083%{opacity:0}33.777%{opacity:1}55.777%{opacity:0}77.367%{opacity:1}78.271%{opacity:0}}
-@keyframes kv{0%{opacity:0}9.083%{opacity:1}33.777%{opacity:0}}
-@keyframes kw{0%{opacity:0}55.777%{opacity:1}77.367%{opacity:0}}
-@keyframes kx{0%{opacity:0}78.271%{opacity:1}}
+@keyframes ku{0%{opacity:0}0.012%{opacity:1}8.805%{opacity:0}33.863%{opacity:1}55.568%{opacity:0}77.352%{opacity:1}78.294%{opacity:0}}
+@keyframes kv{0%{opacity:0}8.805%{opacity:1}33.863%{opacity:0}}
+@keyframes kw{0%{opacity:0}55.568%{opacity:1}77.352%{opacity:0}}
+@keyframes kx{0%{opacity:0}78.294%{opacity:1}}
 @keyframes ky{0%{opacity:1}0.012%{opacity:0}}
-@keyframes kz{0%{opacity:0}0.012%{opacity:1}9.083%{opacity:0}33.777%{opacity:1}55.777%{opacity:0}77.367%{opacity:1}78.271%{opacity:0}}
-@keyframes k10{0%{opacity:0}9.083%{opacity:1}33.777%{opacity:0}}
-@keyframes k11{0%{opacity:0}55.777%{opacity:1}77.367%{opacity:0}}
-@keyframes k12{0%{opacity:0}78.271%{opacity:1}}
+@keyframes kz{0%{opacity:0}0.012%{opacity:1}8.805%{opacity:0}33.863%{opacity:1}55.568%{opacity:0}77.352%{opacity:1}78.294%{opacity:0}}
+@keyframes k10{0%{opacity:0}8.805%{opacity:1}33.863%{opacity:0}}
+@keyframes k11{0%{opacity:0}55.568%{opacity:1}77.352%{opacity:0}}
+@keyframes k12{0%{opacity:0}78.294%{opacity:1}}
 @keyframes k13{0%{opacity:1}0.012%{opacity:0}}
-@keyframes k14{0%{opacity:0}0.012%{opacity:1}9.083%{opacity:0}42.824%{opacity:1}55.777%{opacity:0}77.367%{opacity:1}78.271%{opacity:0}}
-@keyframes k15{0%{opacity:0}9.083%{opacity:1}33.777%{opacity:0}}
-@keyframes k16{0%{opacity:0}33.777%{opacity:1}42.824%{opacity:0}}
-@keyframes k17{0%{opacity:0}55.777%{opacity:1}77.367%{opacity:0}}
-@keyframes k18{0%{opacity:0}78.271%{opacity:1}}
-@keyframes k19{0%{opacity:1}0.012%{opacity:0}78.271%{opacity:1}}
-@keyframes k1a{0%{opacity:0}0.012%{opacity:1}9.083%{opacity:0}77.367%{opacity:1}78.271%{opacity:0}}
-@keyframes k1b{0%{opacity:0}9.083%{opacity:1}33.777%{opacity:0}}
-@keyframes k1c{0%{opacity:0}33.777%{opacity:1}42.824%{opacity:0}}
-@keyframes k1d{0%{opacity:0}42.824%{opacity:1}55.777%{opacity:0}}
-@keyframes k1e{0%{opacity:0}55.777%{opacity:1}77.367%{opacity:0}}
+@keyframes k14{0%{opacity:0}0.012%{opacity:1}8.805%{opacity:0}42.94%{opacity:1}55.568%{opacity:0}77.352%{opacity:1}78.294%{opacity:0}}
+@keyframes k15{0%{opacity:0}8.805%{opacity:1}33.863%{opacity:0}}
+@keyframes k16{0%{opacity:0}33.863%{opacity:1}42.94%{opacity:0}}
+@keyframes k17{0%{opacity:0}55.568%{opacity:1}77.352%{opacity:0}}
+@keyframes k18{0%{opacity:0}78.294%{opacity:1}}
+@keyframes k19{0%{opacity:1}0.012%{opacity:0}78.294%{opacity:1}}
+@keyframes k1a{0%{opacity:0}0.012%{opacity:1}8.805%{opacity:0}77.352%{opacity:1}78.294%{opacity:0}}
+@keyframes k1b{0%{opacity:0}8.805%{opacity:1}33.863%{opacity:0}}
+@keyframes k1c{0%{opacity:0}33.863%{opacity:1}42.94%{opacity:0}}
+@keyframes k1d{0%{opacity:0}42.94%{opacity:1}55.568%{opacity:0}}
+@keyframes k1e{0%{opacity:0}55.568%{opacity:1}77.352%{opacity:0}}
 @keyframes k1f{0%{opacity:1}0.012%{opacity:0}}
-@keyframes k1g{0%{opacity:0}0.012%{opacity:1}8.45%{opacity:0}}
-@keyframes k1h{0%{opacity:0}8.45%{opacity:1}9.083%{opacity:0}}
-@keyframes k1i{0%{opacity:0}9.083%{opacity:1}33.777%{opacity:0}}
-@keyframes k1j{0%{opacity:0}33.777%{opacity:1}42.824%{opacity:0}}
-@keyframes k1k{0%{opacity:0}42.824%{opacity:1}43.373%{opacity:0}}
-@keyframes k1l{0%{opacity:0}43.373%{opacity:1}55.777%{opacity:0}}
-@keyframes k1m{0%{opacity:0}55.777%{opacity:1}77.367%{opacity:0}}
-@keyframes k1n{0%{opacity:0}77.367%{opacity:1}78.476%{opacity:0}}
-@keyframes k1o{0%{opacity:0}78.476%{opacity:1}}
+@keyframes k1g{0%{opacity:0}0.012%{opacity:1}8.485%{opacity:0}}
+@keyframes k1h{0%{opacity:0}8.485%{opacity:1}8.805%{opacity:0}}
+@keyframes k1i{0%{opacity:0}8.805%{opacity:1}33.863%{opacity:0}}
+@keyframes k1j{0%{opacity:0}33.863%{opacity:1}42.94%{opacity:0}}
+@keyframes k1k{0%{opacity:0}42.94%{opacity:1}43.266%{opacity:0}}
+@keyframes k1l{0%{opacity:0}43.266%{opacity:1}55.568%{opacity:0}}
+@keyframes k1m{0%{opacity:0}55.568%{opacity:1}77.352%{opacity:0}}
+@keyframes k1n{0%{opacity:0}77.352%{opacity:1}78.294%{opacity:0}}
+@keyframes k1o{0%{opacity:0}78.294%{opacity:1}}
 @keyframes k1p{0%{opacity:1}0.012%{opacity:0}}
-@keyframes k1q{0%{opacity:0}0.012%{opacity:1}8.45%{opacity:0}}
-@keyframes k1r{0%{opacity:0}8.45%{opacity:1}9.083%{opacity:0}}
-@keyframes k1s{0%{opacity:0}9.083%{opacity:1}33.777%{opacity:0}}
-@keyframes k1t{0%{opacity:0}33.777%{opacity:1}42.824%{opacity:0}}
-@keyframes k1u{0%{opacity:0}42.824%{opacity:1}55.777%{opacity:0}}
-@keyframes k1v{0%{opacity:0}55.777%{opacity:1}77.367%{opacity:0}}
-@keyframes k1w{0%{opacity:0}77.367%{opacity:1}78.476%{opacity:0}}
-@keyframes k1x{0%{opacity:0}78.476%{opacity:1}}
+@keyframes k1q{0%{opacity:0}0.012%{opacity:1}8.485%{opacity:0}}
+@keyframes k1r{0%{opacity:0}8.485%{opacity:1}8.805%{opacity:0}}
+@keyframes k1s{0%{opacity:0}8.805%{opacity:1}33.863%{opacity:0}}
+@keyframes k1t{0%{opacity:0}33.863%{opacity:1}42.94%{opacity:0}}
+@keyframes k1u{0%{opacity:0}42.94%{opacity:1}55.568%{opacity:0}}
+@keyframes k1v{0%{opacity:0}55.568%{opacity:1}77.352%{opacity:0}}
+@keyframes k1w{0%{opacity:0}77.352%{opacity:1}78.294%{opacity:0}}
+@keyframes k1x{0%{opacity:0}78.294%{opacity:1}}
 @keyframes k1y{0%{opacity:1}0.012%{opacity:0}}
-@keyframes k1z{0%{opacity:0}0.012%{opacity:1}8.45%{opacity:0}}
-@keyframes k20{0%{opacity:0}8.45%{opacity:1}9.083%{opacity:0}}
-@keyframes k21{0%{opacity:0}9.083%{opacity:1}33.777%{opacity:0}}
-@keyframes k22{0%{opacity:0}33.777%{opacity:1}42.824%{opacity:0}}
-@keyframes k23{0%{opacity:0}42.824%{opacity:1}55.777%{opacity:0}}
-@keyframes k24{0%{opacity:0}55.777%{opacity:1}77.367%{opacity:0}}
-@keyframes k25{0%{opacity:0}77.367%{opacity:1}78.476%{opacity:0}}
-@keyframes k26{0%{opacity:0}78.476%{opacity:1}}
+@keyframes k1z{0%{opacity:0}0.012%{opacity:1}8.485%{opacity:0}}
+@keyframes k20{0%{opacity:0}8.485%{opacity:1}8.805%{opacity:0}}
+@keyframes k21{0%{opacity:0}8.805%{opacity:1}33.863%{opacity:0}}
+@keyframes k22{0%{opacity:0}33.863%{opacity:1}42.94%{opacity:0}}
+@keyframes k23{0%{opacity:0}42.94%{opacity:1}55.568%{opacity:0}}
+@keyframes k24{0%{opacity:0}55.568%{opacity:1}77.352%{opacity:0}}
+@keyframes k25{0%{opacity:0}77.352%{opacity:1}78.294%{opacity:0}}
+@keyframes k26{0%{opacity:0}78.294%{opacity:1}}
 @keyframes k27{0%{opacity:1}0.012%{opacity:0}}
-@keyframes k28{0%{opacity:0}0.012%{opacity:1}9.083%{opacity:0}77.367%{opacity:1}78.271%{opacity:0}}
-@keyframes k29{0%{opacity:0}9.083%{opacity:1}33.777%{opacity:0}}
-@keyframes k2a{0%{opacity:0}33.777%{opacity:1}42.824%{opacity:0}}
-@keyframes k2b{0%{opacity:0}42.824%{opacity:1}55.777%{opacity:0}}
-@keyframes k2c{0%{opacity:0}55.777%{opacity:1}77.367%{opacity:0}}
-@keyframes k2d{0%{opacity:0}78.271%{opacity:1}}
+@keyframes k28{0%{opacity:0}0.012%{opacity:1}8.805%{opacity:0}77.352%{opacity:1}78.294%{opacity:0}}
+@keyframes k29{0%{opacity:0}8.805%{opacity:1}33.863%{opacity:0}}
+@keyframes k2a{0%{opacity:0}33.863%{opacity:1}42.94%{opacity:0}}
+@keyframes k2b{0%{opacity:0}42.94%{opacity:1}55.568%{opacity:0}}
+@keyframes k2c{0%{opacity:0}55.568%{opacity:1}77.352%{opacity:0}}
+@keyframes k2d{0%{opacity:0}78.294%{opacity:1}}
 @keyframes k2e{0%{opacity:1}0.012%{opacity:0}}
-@keyframes k2f{0%{opacity:0}0.012%{opacity:1}9.083%{opacity:0}42.824%{opacity:1}55.777%{opacity:0}77.367%{opacity:1}}
-@keyframes k2g{0%{opacity:0}9.083%{opacity:1}33.777%{opacity:0}}
-@keyframes k2h{0%{opacity:0}33.777%{opacity:1}42.824%{opacity:0}}
-@keyframes k2i{0%{opacity:0}55.777%{opacity:1}77.367%{opacity:0}}
+@keyframes k2f{0%{opacity:0}0.012%{opacity:1}8.805%{opacity:0}42.94%{opacity:1}55.568%{opacity:0}77.352%{opacity:1}}
+@keyframes k2g{0%{opacity:0}8.805%{opacity:1}33.863%{opacity:0}}
+@keyframes k2h{0%{opacity:0}33.863%{opacity:1}42.94%{opacity:0}}
+@keyframes k2i{0%{opacity:0}55.568%{opacity:1}77.352%{opacity:0}}
 @keyframes k2j{0%{opacity:1}0.012%{opacity:0}}
-@keyframes k2k{0%{opacity:0}0.012%{opacity:1}9.083%{opacity:0}33.777%{opacity:1}55.777%{opacity:0}77.367%{opacity:1}}
-@keyframes k2l{0%{opacity:0}9.083%{opacity:1}33.777%{opacity:0}}
-@keyframes k2m{0%{opacity:0}55.777%{opacity:1}77.367%{opacity:0}}
-@keyframes k2n{0%{opacity:1}0.012%{opacity:0}78.271%{opacity:1}}
-@keyframes k2o{0%{opacity:0}0.012%{opacity:1}9.083%{opacity:0}33.777%{opacity:1}55.777%{opacity:0}77.367%{opacity:1}78.271%{opacity:0}}
-@keyframes k2p{0%{opacity:0}9.083%{opacity:1}33.777%{opacity:0}}
-@keyframes k2q{0%{opacity:0}55.777%{opacity:1}77.367%{opacity:0}}
+@keyframes k2k{0%{opacity:0}0.012%{opacity:1}8.805%{opacity:0}33.863%{opacity:1}55.568%{opacity:0}77.352%{opacity:1}}
+@keyframes k2l{0%{opacity:0}8.805%{opacity:1}33.863%{opacity:0}}
+@keyframes k2m{0%{opacity:0}55.568%{opacity:1}77.352%{opacity:0}}
+@keyframes k2n{0%{opacity:1}0.012%{opacity:0}78.294%{opacity:1}}
+@keyframes k2o{0%{opacity:0}0.012%{opacity:1}8.805%{opacity:0}33.863%{opacity:1}55.568%{opacity:0}77.352%{opacity:1}78.294%{opacity:0}}
+@keyframes k2p{0%{opacity:0}8.805%{opacity:1}33.863%{opacity:0}}
+@keyframes k2q{0%{opacity:0}55.568%{opacity:1}77.352%{opacity:0}}
 @keyframes k2r{0%{opacity:1}0.012%{opacity:0}}
-@keyframes k2s{0%{opacity:0}0.012%{opacity:1}9.083%{opacity:0}33.777%{opacity:1}55.777%{opacity:0}77.367%{opacity:1}78.271%{opacity:0}}
-@keyframes k2t{0%{opacity:0}9.083%{opacity:1}33.777%{opacity:0}}
-@keyframes k2u{0%{opacity:0}55.777%{opacity:1}77.367%{opacity:0}}
-@keyframes k2v{0%{opacity:0}78.271%{opacity:1}}
-@keyframes k2w{0%{opacity:1}9.083%{opacity:0}33.777%{opacity:1}55.777%{opacity:0}77.367%{opacity:1}78.271%{opacity:0}}
-@keyframes k2x{0%{opacity:0}9.083%{opacity:1}33.777%{opacity:0}}
-@keyframes k2y{0%{opacity:0}55.777%{opacity:1}77.367%{opacity:0}}
-@keyframes k2z{0%{opacity:0}78.271%{opacity:1}}
+@keyframes k2s{0%{opacity:0}0.012%{opacity:1}8.805%{opacity:0}33.863%{opacity:1}55.568%{opacity:0}77.352%{opacity:1}78.294%{opacity:0}}
+@keyframes k2t{0%{opacity:0}8.805%{opacity:1}33.863%{opacity:0}}
+@keyframes k2u{0%{opacity:0}55.568%{opacity:1}77.352%{opacity:0}}
+@keyframes k2v{0%{opacity:0}78.294%{opacity:1}}
+@keyframes k2w{0%{opacity:1}8.805%{opacity:0}33.863%{opacity:1}55.568%{opacity:0}77.352%{opacity:1}78.294%{opacity:0}}
+@keyframes k2x{0%{opacity:0}8.805%{opacity:1}33.863%{opacity:0}}
+@keyframes k2y{0%{opacity:0}55.568%{opacity:1}77.352%{opacity:0}}
+@keyframes k2z{0%{opacity:0}78.294%{opacity:1}}
 @keyframes k30{0%{opacity:1}0.012%{opacity:0}}
-@keyframes k31{0%{opacity:0}0.012%{opacity:1}9.083%{opacity:0}33.777%{opacity:1}78.271%{opacity:0}}
-@keyframes k32{0%{opacity:0}9.083%{opacity:1}33.777%{opacity:0}}
-@keyframes k33{0%{opacity:0}78.271%{opacity:1}}
-@keyframes k34{0%{opacity:1}0.012%{opacity:0}78.271%{opacity:1}}
-@keyframes k35{0%{opacity:0}0.012%{opacity:1}9.083%{opacity:0}33.777%{opacity:1}78.271%{opacity:0}}
-@keyframes k36{0%{opacity:0}9.083%{opacity:1}33.777%{opacity:0}}
+@keyframes k31{0%{opacity:0}0.012%{opacity:1}8.805%{opacity:0}33.863%{opacity:1}78.294%{opacity:0}}
+@keyframes k32{0%{opacity:0}8.805%{opacity:1}33.863%{opacity:0}}
+@keyframes k33{0%{opacity:0}78.294%{opacity:1}}
+@keyframes k34{0%{opacity:1}0.012%{opacity:0}78.294%{opacity:1}}
+@keyframes k35{0%{opacity:0}0.012%{opacity:1}8.805%{opacity:0}33.863%{opacity:1}78.294%{opacity:0}}
+@keyframes k36{0%{opacity:0}8.805%{opacity:1}33.863%{opacity:0}}
 @keyframes k37{0%{opacity:1}0.012%{opacity:0}}
-@keyframes k38{0%{opacity:0}0.012%{opacity:1}9.083%{opacity:0}33.777%{opacity:1}78.271%{opacity:0}}
-@keyframes k39{0%{opacity:0}9.083%{opacity:1}33.777%{opacity:0}}
-@keyframes k3a{0%{opacity:0}78.271%{opacity:1}}
-@keyframes k3b{0%{opacity:1}9.083%{opacity:0}33.777%{opacity:1}78.271%{opacity:0}}
-@keyframes k3c{0%{opacity:0}9.083%{opacity:1}33.777%{opacity:0}}
-@keyframes k3d{0%{opacity:0}78.271%{opacity:1}}
-@keyframes k3e{0%{opacity:1}0.012%{opacity:0}78.271%{opacity:1}}
-@keyframes k3f{0%{opacity:0}0.012%{opacity:1}9.083%{opacity:0}33.777%{opacity:1}78.271%{opacity:0}}
-@keyframes k3g{0%{opacity:0}9.083%{opacity:1}33.777%{opacity:0}}
+@keyframes k38{0%{opacity:0}0.012%{opacity:1}8.805%{opacity:0}33.863%{opacity:1}78.294%{opacity:0}}
+@keyframes k39{0%{opacity:0}8.805%{opacity:1}33.863%{opacity:0}}
+@keyframes k3a{0%{opacity:0}78.294%{opacity:1}}
+@keyframes k3b{0%{opacity:1}8.805%{opacity:0}33.863%{opacity:1}78.294%{opacity:0}}
+@keyframes k3c{0%{opacity:0}8.805%{opacity:1}33.863%{opacity:0}}
+@keyframes k3d{0%{opacity:0}78.294%{opacity:1}}
+@keyframes k3e{0%{opacity:1}0.012%{opacity:0}78.294%{opacity:1}}
+@keyframes k3f{0%{opacity:0}0.012%{opacity:1}8.805%{opacity:0}33.863%{opacity:1}78.294%{opacity:0}}
+@keyframes k3g{0%{opacity:0}8.805%{opacity:1}33.863%{opacity:0}}
 @keyframes k3h{0%{opacity:1}0.012%{opacity:0}}
-@keyframes k3i{0%{opacity:0}0.012%{opacity:1}9.083%{opacity:0}33.777%{opacity:1}78.271%{opacity:0}}
-@keyframes k3j{0%{opacity:0}9.083%{opacity:1}33.777%{opacity:0}}
-@keyframes k3k{0%{opacity:0}78.271%{opacity:1}}
-@keyframes k3l{0%{opacity:1}9.083%{opacity:0}33.777%{opacity:1}}
-@keyframes k3m{0%{opacity:0}9.083%{opacity:1}33.777%{opacity:0}}
+@keyframes k3i{0%{opacity:0}0.012%{opacity:1}8.805%{opacity:0}33.863%{opacity:1}78.294%{opacity:0}}
+@keyframes k3j{0%{opacity:0}8.805%{opacity:1}33.863%{opacity:0}}
+@keyframes k3k{0%{opacity:0}78.294%{opacity:1}}
+@keyframes k3l{0%{opacity:1}8.805%{opacity:0}33.863%{opacity:1}}
+@keyframes k3m{0%{opacity:0}8.805%{opacity:1}33.863%{opacity:0}}
 @keyframes k3n{0%{opacity:1}0.012%{opacity:0}}
 @keyframes k3o{0%{opacity:0}0.012%{opacity:1}}
-@keyframes k3p{0%{opacity:1}8.45%{opacity:0}}
-@keyframes k3q{0%{opacity:0}8.45%{opacity:1}78.476%{opacity:0}}
-@keyframes k3r{0%{opacity:0}78.476%{opacity:1}}
+@keyframes k3p{0%{opacity:1}8.485%{opacity:0}}
+@keyframes k3q{0%{opacity:0}8.485%{opacity:1}78.294%{opacity:0}}
+@keyframes k3r{0%{opacity:0}78.294%{opacity:1}}
 @keyframes cur{0%{opacity:0}}
-@keyframes c0{0%{fill:#8b949e}0%{fill:#2f81f7}42.806%{fill:#8b949e}}
-@keyframes f0{0%{transform:scaleX(0)}0%{transform:scaleX(0)}42.806%{transform:scaleX(1)}42.812%{transform:scaleX(0)}}
-@keyframes c1{0%{fill:#8b949e}42.806%{fill:#2f81f7}77.349%{fill:#8b949e}}
-@keyframes f1{0%{transform:scaleX(0)}42.806%{transform:scaleX(0)}77.349%{transform:scaleX(1)}77.355%{transform:scaleX(0)}}
-@keyframes c2{0%{fill:#8b949e}77.349%{fill:#2f81f7}}
-@keyframes f2{0%{transform:scaleX(0)}77.349%{transform:scaleX(0)}100%{transform:scaleX(1)}}
+@keyframes c0{0%{fill:#8b949e}0%{fill:#2f81f7}42.904%{fill:#8b949e}}
+@keyframes f0{0%{transform:scaleX(0)}0%{transform:scaleX(0)}42.904%{transform:scaleX(1)}42.91%{transform:scaleX(0)}}
+@keyframes c1{0%{fill:#8b949e}42.904%{fill:#2f81f7}77.322%{fill:#8b949e}}
+@keyframes f1{0%{transform:scaleX(0)}42.904%{transform:scaleX(0)}77.322%{transform:scaleX(1)}77.328%{transform:scaleX(0)}}
+@keyframes c2{0%{fill:#8b949e}77.322%{fill:#2f81f7}}
+@keyframes f2{0%{transform:scaleX(0)}77.322%{transform:scaleX(0)}100%{transform:scaleX(1)}}
 </style>
 <defs><g id="spin"><text class="s" style="animation-delay:-1s">⠋</text><text class="s" style="animation-delay:-0.9s">⠙</text><text class="s" style="animation-delay:-0.8s">⠹</text><text class="s" style="animation-delay:-0.7s">⠸</text><text class="s" style="animation-delay:-0.6s">⠼</text><text class="s" style="animation-delay:-0.5s">⠴</text><text class="s" style="animation-delay:-0.4s">⠦</text><text class="s" style="animation-delay:-0.3s">⠧</text><text class="s" style="animation-delay:-0.2s">⠇</text><text class="s" style="animation-delay:-0.1s">⠏</text></g><filter id="shadow" x="-5%" y="-5%" width="110%" height="115%"><feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000" flood-opacity=".28"/></filter></defs>
 <g transform="translate(18 18)">
@@ -160,37 +160,37 @@ text{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Monaco,Consolas,"Li
 <path d="M0 10a10 10 0 0 1 10-10h948.8a10 10 0 0 1 10 10v24h-968.8z" fill="#161b22"/>
 <path d="M0 34h968.8" stroke="#30363d"/>
 <circle cx="20" cy="17" r="6" fill="#ff5f57"/><circle cx="40" cy="17" r="6" fill="#febc2e"/><circle cx="60" cy="17" r="6" fill="#28c840"/>
-<text x="484.4" y="21.5" text-anchor="middle" class="bar-title">troupe — shop-api</text>
+<text x="484.4" y="21.5" text-anchor="middle" class="bar-title">cross-harness — shop-api</text>
 <g class="screen" transform="translate(14 48)">
-<g class="p" style="animation-name:k0"><text x="8.4" y="12.96" textLength="50.4" fill="#c9d1d9" font-weight="700">Troupe</text><path d="M71.4 0V18" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="84" y="12.96" textLength="67.2" fill="#c9d1d9" font-weight="700">shop-api</text><text x="159.6" y="12.96" textLength="50.4" fill="#c9d1d9" fill-opacity="0.58">(main)</text><text x="226.8" y="12.96" fill="#c9d1d9" fill-opacity="0.58">·</text><text x="252" y="12.96" textLength="67.2" fill="#c9d1d9">3 个代理</text></g>
-<g style="animation-name:k1"><text x="8.4" y="12.96" textLength="50.4" fill="#c9d1d9" font-weight="700">Troupe</text><path d="M71.4 0V18" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="84" y="12.96" textLength="67.2" fill="#c9d1d9" font-weight="700">shop-api</text><text x="159.6" y="12.96" textLength="50.4" fill="#c9d1d9" fill-opacity="0.58">(main)</text><text x="226.8" y="12.96" fill="#c9d1d9" fill-opacity="0.58">·</text><text x="252" y="12.96" textLength="67.2" fill="#c9d1d9">3 个代理</text><text x="336" y="12.96" fill="#c9d1d9" fill-opacity="0.58">·</text><text x="361.2" y="12.96" textLength="84" fill="#39c5cf">1 个工作中</text></g>
-<g style="animation-name:k2"><text x="8.4" y="30.96" textLength="33.6" fill="#c9d1d9" font-weight="700" fill-opacity="0.58">代理</text><path d="M256.2 18V36" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="268.8" y="30.96" textLength="50.4" fill="#3fb950" font-weight="700">@codex</text><text x="327.6" y="30.96" textLength="58.8" fill="#c9d1d9" fill-opacity="0.58">· Codex</text><text x="394.8" y="30.96" textLength="67.2" fill="#c9d1d9" fill-opacity="0.58">· 工作区</text><text x="470.4" y="30.96" textLength="117.6" fill="#c9d1d9" fill-opacity="0.58">· troupe/codex</text><text x="823.2" y="30.96" textLength="58.8" fill="#c9d1d9" fill-opacity="0.58">23k tok</text><text x="898.8" y="30.96" textLength="33.6" fill="#3fb950">空闲</text></g>
-<g class="p" style="animation-name:k3"><text x="8.4" y="30.96" textLength="33.6" fill="#c9d1d9" font-weight="700" fill-opacity="0.58">代理</text><path d="M256.2 18V36" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="268.8" y="30.96" textLength="50.4" fill="#56d364" font-weight="700">@bizos</text><text x="327.6" y="30.96" textLength="100.8" fill="#c9d1d9" fill-opacity="0.58">· BizOS Code</text><text x="436.8" y="30.96" textLength="67.2" fill="#c9d1d9" fill-opacity="0.58">· 工作区</text><text x="512.4" y="30.96" textLength="117.6" fill="#c9d1d9" fill-opacity="0.58">· troupe/bizos</text><text x="898.8" y="30.96" textLength="33.6" fill="#3fb950">空闲</text></g>
+<g class="p" style="animation-name:k0"><text x="8.4" y="12.96" textLength="109.2" fill="#c9d1d9" font-weight="700">cross-harness</text><path d="M130.2 0V18" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="142.8" y="12.96" textLength="67.2" fill="#c9d1d9" font-weight="700">shop-api</text><text x="218.4" y="12.96" textLength="50.4" fill="#c9d1d9" fill-opacity="0.58">(main)</text><text x="285.6" y="12.96" fill="#c9d1d9" fill-opacity="0.58">·</text><text x="310.8" y="12.96" textLength="67.2" fill="#c9d1d9">3 个代理</text></g>
+<g style="animation-name:k1"><text x="8.4" y="12.96" textLength="109.2" fill="#c9d1d9" font-weight="700">cross-harness</text><path d="M130.2 0V18" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="142.8" y="12.96" textLength="67.2" fill="#c9d1d9" font-weight="700">shop-api</text><text x="218.4" y="12.96" textLength="50.4" fill="#c9d1d9" fill-opacity="0.58">(main)</text><text x="285.6" y="12.96" fill="#c9d1d9" fill-opacity="0.58">·</text><text x="310.8" y="12.96" textLength="67.2" fill="#c9d1d9">3 个代理</text><text x="394.8" y="12.96" fill="#c9d1d9" fill-opacity="0.58">·</text><text x="420" y="12.96" textLength="84" fill="#39c5cf">1 个工作中</text></g>
+<g style="animation-name:k2"><text x="8.4" y="30.96" textLength="33.6" fill="#c9d1d9" font-weight="700" fill-opacity="0.58">代理</text><path d="M256.2 18V36" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="268.8" y="30.96" textLength="50.4" fill="#3fb950" font-weight="700">@codex</text><text x="327.6" y="30.96" textLength="58.8" fill="#c9d1d9" fill-opacity="0.58">· Codex</text><text x="394.8" y="30.96" textLength="67.2" fill="#c9d1d9" fill-opacity="0.58">· 工作区</text><text x="470.4" y="30.96" textLength="176.4" fill="#c9d1d9" fill-opacity="0.58">· cross-harness/codex</text><text x="823.2" y="30.96" textLength="58.8" fill="#c9d1d9" fill-opacity="0.58">23k tok</text><text x="898.8" y="30.96" textLength="33.6" fill="#3fb950">空闲</text></g>
+<g class="p" style="animation-name:k3"><text x="8.4" y="30.96" textLength="33.6" fill="#c9d1d9" font-weight="700" fill-opacity="0.58">代理</text><path d="M256.2 18V36" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="268.8" y="30.96" textLength="50.4" fill="#56d364" font-weight="700">@bizos</text><text x="327.6" y="30.96" textLength="100.8" fill="#c9d1d9" fill-opacity="0.58">· BizOS Code</text><text x="436.8" y="30.96" textLength="67.2" fill="#c9d1d9" fill-opacity="0.58">· 工作区</text><text x="512.4" y="30.96" textLength="176.4" fill="#c9d1d9" fill-opacity="0.58">· cross-harness/bizos</text><text x="898.8" y="30.96" textLength="33.6" fill="#3fb950">空闲</text></g>
 <g style="animation-name:k4"><path d="M12.6 27H16.8M12.6 27V36M16.8 27H25.2" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="33.6" y="30.96" textLength="109.2" fill="#c9d1d9" font-weight="700">@bizos 的改动</text><path d="M151.2 27H159.6M159.6 27H168M168 27H176.4M176.4 27H184.8M184.8 27H193.2M193.2 27H201.6M201.6 27H210M210 27H218.4M218.4 27H226.8M226.8 27H235.2M235.2 27H243.6M243.6 27H252M252 27H260.4M260.4 27H268.8M268.8 27H277.2M277.2 27H285.6M285.6 27H294M294 27H302.4M302.4 27H310.8M310.8 27H319.2M319.2 27H327.6M327.6 27H336M336 27H344.4M344.4 27H352.8M352.8 27H361.2M361.2 27H369.6M369.6 27H378M378 27H386.4M386.4 27H394.8M394.8 27H403.2M403.2 27H411.6M411.6 27H420M420 27H428.4M428.4 27H436.8M436.8 27H445.2M445.2 27H453.6M453.6 27H462M462 27H470.4M470.4 27H478.8M478.8 27H487.2M487.2 27H495.6M495.6 27H504M504 27H512.4M512.4 27H520.8M520.8 27H529.2M529.2 27H537.6M537.6 27H546M546 27H554.4M554.4 27H562.8M562.8 27H571.2M571.2 27H579.6M579.6 27H588M588 27H596.4M596.4 27H604.8M604.8 27H613.2M613.2 27H621.6M621.6 27H630M630 27H638.4M638.4 27H646.8M646.8 27H655.2M655.2 27H663.6M663.6 27H672M672 27H680.4M680.4 27H688.8M688.8 27H697.2M697.2 27H705.6M705.6 27H714M714 27H722.4M722.4 27H730.8M730.8 27H739.2M739.2 27H747.6M747.6 27H756M756 27H764.4M764.4 27H772.8M772.8 27H781.2M781.2 27H789.6M789.6 27H798M798 27H806.4M806.4 27H814.8M814.8 27H823.2M823.2 27H831.6M831.6 27H840M840 27H848.4" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="856.8" y="30.96" textLength="58.8" fill="#c9d1d9" fill-opacity="0.58">1-19/26</text><path d="M924 27H928.2M928.2 27V36" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
 <g style="animation-name:k5"><text x="8.4" y="48.96" fill="#3fb950">○</text><text x="25.2" y="48.96" textLength="50.4" fill="#56d364" font-weight="700">@bizos</text><text x="210" y="48.96" textLength="33.6" fill="#3fb950">空闲</text><path d="M256.2 36V54M260.4 45H268.8M268.8 45H277.2M277.2 45H285.6M285.6 45H294M294 45H302.4M302.4 45H310.8M310.8 45H319.2M319.2 45H327.6M327.6 45H336M336 45H344.4M344.4 45H352.8M352.8 45H361.2M361.2 45H369.6M369.6 45H378M378 45H386.4M386.4 45H394.8M394.8 45H403.2M403.2 45H411.6M411.6 45H420M420 45H428.4M428.4 45H436.8M436.8 45H445.2M445.2 45H453.6M453.6 45H462M462 45H470.4M470.4 45H478.8M478.8 45H487.2M487.2 45H495.6M495.6 45H504M504 45H512.4M512.4 45H520.8M520.8 45H529.2M529.2 45H537.6M537.6 45H546M546 45H554.4M554.4 45H562.8M562.8 45H571.2M571.2 45H579.6M579.6 45H588M588 45H596.4M596.4 45H604.8M604.8 45H613.2M613.2 45H621.6M621.6 45H630M630 45H638.4M638.4 45H646.8M646.8 45H655.2M655.2 45H663.6M663.6 45H672M672 45H680.4M680.4 45H688.8M688.8 45H697.2M697.2 45H705.6M705.6 45H714M714 45H722.4M722.4 45H730.8M730.8 45H739.2M739.2 45H747.6M747.6 45H756M756 45H764.4M764.4 45H772.8M772.8 45H781.2M781.2 45H789.6M789.6 45H798M798 45H806.4M806.4 45H814.8M814.8 45H823.2M823.2 45H831.6M831.6 45H840M840 45H848.4M848.4 45H856.8M856.8 45H865.2M865.2 45H873.6M873.6 45H882M882 45H890.4M890.4 45H898.8M898.8 45H907.2M907.2 45H915.6M915.6 45H924M924 45H932.4M932.4 45H940.8" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
 <g class="p" style="animation-name:k6"><text x="0" y="48.96" fill="#39c5cf">▶</text><text x="8.4" y="48.96" fill="#3fb950">○</text><text x="25.2" y="48.96" textLength="50.4" fill="#56d364" font-weight="700">@bizos</text><text x="210" y="48.96" textLength="33.6" fill="#3fb950">空闲</text><path d="M256.2 36V54M260.4 45H268.8M268.8 45H277.2M277.2 45H285.6M285.6 45H294M294 45H302.4M302.4 45H310.8M310.8 45H319.2M319.2 45H327.6M327.6 45H336M336 45H344.4M344.4 45H352.8M352.8 45H361.2M361.2 45H369.6M369.6 45H378M378 45H386.4M386.4 45H394.8M394.8 45H403.2M403.2 45H411.6M411.6 45H420M420 45H428.4M428.4 45H436.8M436.8 45H445.2M445.2 45H453.6M453.6 45H462M462 45H470.4M470.4 45H478.8M478.8 45H487.2M487.2 45H495.6M495.6 45H504M504 45H512.4M512.4 45H520.8M520.8 45H529.2M529.2 45H537.6M537.6 45H546M546 45H554.4M554.4 45H562.8M562.8 45H571.2M571.2 45H579.6M579.6 45H588M588 45H596.4M596.4 45H604.8M604.8 45H613.2M613.2 45H621.6M621.6 45H630M630 45H638.4M638.4 45H646.8M646.8 45H655.2M655.2 45H663.6M663.6 45H672M672 45H680.4M680.4 45H688.8M688.8 45H697.2M697.2 45H705.6M705.6 45H714M714 45H722.4M722.4 45H730.8M730.8 45H739.2M739.2 45H747.6M747.6 45H756M756 45H764.4M764.4 45H772.8M772.8 45H781.2M781.2 45H789.6M789.6 45H798M798 45H806.4M806.4 45H814.8M814.8 45H823.2M823.2 45H831.6M831.6 45H840M840 45H848.4M848.4 45H856.8M856.8 45H865.2M865.2 45H873.6M873.6 45H882M882 45H890.4M890.4 45H898.8M898.8 45H907.2M907.2 45H915.6M915.6 45H924M924 45H932.4M932.4 45H940.8" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
-<g style="animation-name:k7"><text x="0" y="48.96" fill="#39c5cf" fill-opacity="0.58">▶</text><path d="M12.6 36V54" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="25.2" y="48.96" textLength="319.2" fill="#c9d1d9" fill-opacity="0.58">troupe/bizos → main · 包含未提交的改动</text><path d="M928.2 36V54M932.4 45H940.8" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
-<g style="animation-name:k8"><text x="33.6" y="66.96" textLength="100.8" fill="#c9d1d9" fill-opacity="0.58">troupe/bizos</text><path d="M256.2 54V72" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="268.8" y="66.96" textLength="378" fill="#c9d1d9" fill-opacity="0.58">· 在自己的 worktree 里工作，分支 troupe/codex</text></g>
-<g style="animation-name:k9"><text x="33.6" y="66.96" textLength="100.8" fill="#c9d1d9" fill-opacity="0.58">troupe/bizos</text><path d="M256.2 54V72" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="268.8" y="66.96" textLength="378" fill="#c9d1d9" fill-opacity="0.58">· 在自己的 worktree 里工作，分支 troupe/bizos</text></g>
+<g style="animation-name:k7"><text x="0" y="48.96" fill="#39c5cf" fill-opacity="0.58">▶</text><path d="M12.6 36V54" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="25.2" y="48.96" textLength="378" fill="#c9d1d9" fill-opacity="0.58">cross-harness/bizos → main · 包含未提交的改动</text><path d="M928.2 36V54M932.4 45H940.8" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
+<g style="animation-name:k8"><text x="33.6" y="66.96" textLength="159.6" fill="#c9d1d9" fill-opacity="0.58">cross-harness/bizos</text><path d="M256.2 54V72" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="268.8" y="66.96" textLength="436.8" fill="#c9d1d9" fill-opacity="0.58">· 在自己的 worktree 里工作，分支 cross-harness/codex</text></g>
+<g style="animation-name:k9"><text x="33.6" y="66.96" textLength="159.6" fill="#c9d1d9" fill-opacity="0.58">cross-harness/bizos</text><path d="M256.2 54V72" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="268.8" y="66.96" textLength="436.8" fill="#c9d1d9" fill-opacity="0.58">· 在自己的 worktree 里工作，分支 cross-harness/bizos</text></g>
 <g style="animation-name:ka"><path d="M12.6 54V72" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="25.2" y="66.96" fill="#d29922">~</text><text x="42" y="66.96" textLength="109.2" fill="#c9d1d9">src/parser.js</text><text x="168" y="66.96" textLength="42" fill="#c9d1d9" fill-opacity="0.58">2+ 0-</text><path d="M928.2 54V72" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
-<g class="p" style="animation-name:kb"><text x="33.6" y="66.96" textLength="100.8" fill="#c9d1d9" fill-opacity="0.58">troupe/bizos</text><path d="M256.2 54V72" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="268.8" y="66.96" textLength="16.8" fill="#58a6ff" font-weight="700">你</text><text x="294" y="66.96" fill="#c9d1d9" fill-opacity="0.58">›</text></g>
+<g class="p" style="animation-name:kb"><text x="33.6" y="66.96" textLength="159.6" fill="#c9d1d9" fill-opacity="0.58">cross-harness/bizos</text><path d="M256.2 54V72" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="268.8" y="66.96" textLength="16.8" fill="#58a6ff" font-weight="700">你</text><text x="294" y="66.96" fill="#c9d1d9" fill-opacity="0.58">›</text></g>
 <g style="animation-name:kc"><text x="0" y="84.96" fill="#39c5cf">▶</text><text x="8.4" y="84.96" fill="#3fb950">○</text><text x="25.2" y="84.96" textLength="50.4" fill="#3fb950" font-weight="700">@codex</text><text x="210" y="84.96" textLength="33.6" fill="#3fb950">空闲</text><path d="M256.2 72V90" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
 <g style="animation-name:kd"><text x="8.4" y="84.96" fill="#3fb950">○</text><text x="25.2" y="84.96" textLength="50.4" fill="#3fb950" font-weight="700">@codex</text><text x="210" y="84.96" textLength="33.6" fill="#3fb950">空闲</text><path d="M256.2 72V90" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
 <g style="animation-name:ke"><path d="M12.6 72V90" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="25.2" y="84.96" fill="#d29922">~</text><text x="42" y="84.96" textLength="159.6" fill="#c9d1d9">test/parser.test.js</text><text x="218.4" y="84.96" textLength="42" fill="#c9d1d9" fill-opacity="0.58">4+ 0-</text><path d="M928.2 72V90" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
 <g style="animation-name:kf"><use href="#spin" x="8.4" y="84.96" fill="#39c5cf"/><text x="25.2" y="84.96" textLength="50.4" fill="#3fb950" font-weight="700">@codex</text><text x="193.2" y="84.96" textLength="50.4" fill="#39c5cf">工作中</text><path d="M256.2 72V90" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
 <g class="p" style="animation-name:kg"><text x="8.4" y="84.96" fill="#3fb950">○</text><text x="25.2" y="84.96" textLength="50.4" fill="#3fb950" font-weight="700">@codex</text><text x="210" y="84.96" textLength="33.6" fill="#3fb950">空闲</text><path d="M256.2 72V90" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="84.96" textLength="369.6" fill="#c9d1d9">修复解析器：文件末尾没有换行时会丢掉最后一行</text></g>
-<g style="animation-name:kh"><text x="33.6" y="102.96" textLength="100.8" fill="#c9d1d9" fill-opacity="0.58">troupe/codex</text><path d="M256.2 90V108" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="268.8" y="102.96" textLength="16.8" fill="#58a6ff" font-weight="700">你</text><text x="294" y="102.96" fill="#c9d1d9" fill-opacity="0.58">›</text></g>
+<g style="animation-name:kh"><text x="33.6" y="102.96" textLength="159.6" fill="#c9d1d9" fill-opacity="0.58">cross-harness/codex</text><path d="M256.2 90V108" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="268.8" y="102.96" textLength="16.8" fill="#58a6ff" font-weight="700">你</text><text x="294" y="102.96" fill="#c9d1d9" fill-opacity="0.58">›</text></g>
 <g style="animation-name:ki"><path d="M12.6 90V108M928.2 90V108" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
-<g class="p" style="animation-name:kj"><text x="33.6" y="102.96" textLength="100.8" fill="#c9d1d9" fill-opacity="0.58">troupe/codex</text><path d="M256.2 90V108" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
+<g class="p" style="animation-name:kj"><text x="33.6" y="102.96" textLength="159.6" fill="#c9d1d9" fill-opacity="0.58">cross-harness/codex</text><path d="M256.2 90V108" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
 <g style="animation-name:kk"><text x="8.4" y="120.96" fill="#3fb950">○</text><text x="25.2" y="120.96" textLength="58.8" fill="#d2a8ff" font-weight="700">@claude</text><text x="210" y="120.96" textLength="33.6" fill="#3fb950">空闲</text><path d="M256.2 108V126" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="120.96" textLength="184.8" fill="#c9d1d9">给解析错误补充边界测试</text></g>
 <g style="animation-name:kl"><text x="8.4" y="120.96" fill="#3fb950">○</text><text x="25.2" y="120.96" textLength="58.8" fill="#d2a8ff" font-weight="700">@claude</text><text x="210" y="120.96" textLength="33.6" fill="#3fb950">空闲</text><path d="M256.2 108V126" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="120.96" textLength="369.6" fill="#c9d1d9">修复解析器：文件末尾没有换行时会丢掉最后一行</text></g>
 <g style="animation-name:km"><path d="M12.6 108V126" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="25.2" y="120.96" textLength="352.8" fill="#c9d1d9" font-weight="700">diff --git a/src/parser.js b/src/parser.js</text><path d="M928.2 108V126" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
 <g style="animation-name:kn"><text x="8.4" y="120.96" fill="#3fb950" fill-opacity="0.58">○</text><text x="25.2" y="120.96" textLength="58.8" fill="#d2a8ff" font-weight="700" fill-opacity="0.58">@claude</text><path d="M147 117H151.2M147 117V126M151.2 117H159.6" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="168" y="120.96" textLength="176.4" fill="#c9d1d9" font-weight="700">把 @bizos 合并到 main</text><path d="M352.8 117H361.2M361.2 117H369.6M369.6 117H378M378 117H386.4M386.4 117H394.8M394.8 117H403.2M403.2 117H411.6M411.6 117H420M420 117H428.4M428.4 117H436.8M436.8 117H445.2M445.2 117H453.6M453.6 117H462M462 117H470.4M470.4 117H478.8M478.8 117H487.2M487.2 117H495.6M495.6 117H504M504 117H512.4M512.4 117H520.8M520.8 117H529.2M529.2 117H537.6M537.6 117H546M546 117H554.4M554.4 117H562.8M562.8 117H571.2M571.2 117H579.6M579.6 117H588M588 117H596.4M596.4 117H604.8M604.8 117H613.2M613.2 117H621.6M621.6 117H630M630 117H638.4M638.4 117H646.8M646.8 117H655.2M655.2 117H663.6M663.6 117H672M672 117H680.4M680.4 117H688.8M688.8 117H697.2M697.2 117H705.6M705.6 117H714M714 117H722.4M722.4 117H730.8M730.8 117H739.2M739.2 117H747.6M747.6 117H756M756 117H764.4M764.4 117H772.8M772.8 117H781.2M781.2 117H789.6M789.6 117H793.8M793.8 117V126" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
 <g class="p" style="animation-name:ko"><text x="8.4" y="120.96" fill="#3fb950">○</text><text x="25.2" y="120.96" textLength="58.8" fill="#d2a8ff" font-weight="700">@claude</text><text x="210" y="120.96" textLength="33.6" fill="#3fb950">空闲</text><path d="M256.2 108V126" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="268.8" y="120.96" textLength="50.4" fill="#56d364" font-weight="700">@bizos</text><text x="327.6" y="120.96" fill="#c9d1d9" fill-opacity="0.58">›</text><text x="352.8" y="120.96" textLength="16.8" fill="#c9d1d9" fill-opacity="0.58">8s</text></g>
-<g style="animation-name:kp"><text x="33.6" y="138.96" textLength="109.2" fill="#c9d1d9" fill-opacity="0.58">troupe/claude</text><path d="M256.2 126V144" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
+<g style="animation-name:kp"><text x="33.6" y="138.96" textLength="168" fill="#c9d1d9" fill-opacity="0.58">cross-harness/claude</text><path d="M256.2 126V144" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
 <g style="animation-name:kq"><path d="M12.6 126V144" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="25.2" y="138.96" textLength="243.6" fill="#c9d1d9" font-weight="700">index 78691ac..c70e472 100644</text><path d="M928.2 126V144" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
-<g style="animation-name:kr"><text x="33.6" y="138.96" textLength="109.2" fill="#c9d1d9" fill-opacity="0.58">troupe/claude</text><path d="M147 126V144" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="159.6" y="138.96" textLength="100.8" fill="#3fb950" font-weight="700">@codex：PASS</text><path d="M793.8 126V144" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
-<g class="p" style="animation-name:ks"><text x="33.6" y="138.96" textLength="109.2" fill="#c9d1d9" fill-opacity="0.58">troupe/claude</text><path d="M256.2 126V144" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="138.96" textLength="184.8" fill="#c9d1d9">先用一个测试复现问题。</text></g>
+<g style="animation-name:kr"><text x="33.6" y="138.96" textLength="109.2" fill="#c9d1d9" fill-opacity="0.58">cross-harness</text><path d="M147 126V144" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="159.6" y="138.96" textLength="100.8" fill="#3fb950" font-weight="700">@codex：PASS</text><path d="M793.8 126V144" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
+<g class="p" style="animation-name:ks"><text x="33.6" y="138.96" textLength="168" fill="#c9d1d9" fill-opacity="0.58">cross-harness/claude</text><path d="M256.2 126V144" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="138.96" textLength="184.8" fill="#c9d1d9">先用一个测试复现问题。</text></g>
 <g style="animation-name:kt"><path d="M256.2 144V162" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="268.8" y="156.96" textLength="50.4" fill="#3fb950" font-weight="700">@codex</text><text x="327.6" y="156.96" fill="#c9d1d9" fill-opacity="0.58">›</text><text x="352.8" y="156.96" textLength="25.2" fill="#c9d1d9" fill-opacity="0.58">12s</text></g>
 <g style="animation-name:ku"><path d="M256.2 144V162" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="268.8" y="156.96" textLength="50.4" fill="#56d364" font-weight="700">@bizos</text><text x="327.6" y="156.96" fill="#c9d1d9" fill-opacity="0.58">›</text><text x="352.8" y="156.96" textLength="16.8" fill="#c9d1d9" fill-opacity="0.58">8s</text></g>
 <g style="animation-name:kv"><path d="M12.6 144V162" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="25.2" y="156.96" textLength="159.6" fill="#c9d1d9" font-weight="700">--- a/src/parser.js</text><path d="M928.2 144V162" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
@@ -232,7 +232,7 @@ text{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Monaco,Consolas,"Li
 <g style="animation-name:k1v"><path d="M147 234V252M793.8 234V252" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
 <g style="animation-name:k1w"><path d="M147 234V252" stroke="#c9d1d9" stroke-opacity="0.45"/><use href="#spin" x="159.6" y="246.96" fill="#39c5cf"/><text x="176.4" y="246.96" textLength="84" fill="#c9d1d9">git merge…</text><path d="M793.8 234V252" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
 <g class="p" style="animation-name:k1x"><path d="M256.2 234V252" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="246.96" textLength="33.6" fill="#c9d1d9" fill-opacity="0.58">… +2</text></g>
-<g style="animation-name:k1y"><path d="M256.2 252V270" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="264.96" fill="#3fb950">✓</text><text x="302.4" y="264.96" fill="#c9d1d9" fill-opacity="0.58">⚙</text><text x="319.2" y="264.96" textLength="193.2" fill="#c9d1d9" fill-opacity="0.58">troupe.troupe_ask_agent</text></g>
+<g style="animation-name:k1y"><path d="M256.2 252V270" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="264.96" fill="#3fb950">✓</text><text x="302.4" y="264.96" fill="#c9d1d9" fill-opacity="0.58">⚙</text><text x="319.2" y="264.96" textLength="310.8" fill="#c9d1d9" fill-opacity="0.58">cross-harness.cross_harness_ask_agent</text></g>
 <g style="animation-name:k1z"><path d="M256.2 252V270" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="264.96" textLength="336" fill="#c9d1d9">补了一个回归测试；`npm test`：4 passed。</text></g>
 <g style="animation-name:k20"><path d="M12.6 261H16.8M12.6 252V261M16.8 261H25.2M25.2 261H33.6M33.6 261H42M42 261H50.4M50.4 261H58.8M58.8 261H67.2M67.2 261H75.6M75.6 261H84M84 261H92.4M92.4 261H100.8M100.8 261H109.2M109.2 261H117.6M117.6 261H126M126 261H134.4M134.4 261H142.8M142.8 261H151.2M151.2 261H159.6M159.6 261H168M168 261H176.4M176.4 261H184.8M184.8 261H193.2M193.2 261H201.6M201.6 261H210M210 261H218.4M218.4 261H226.8M226.8 261H235.2M235.2 261H243.6M243.6 261H252M252 261H260.4M260.4 261H268.8M268.8 261H277.2M277.2 261H285.6M285.6 261H294M294 261H302.4M302.4 261H310.8M310.8 261H319.2M319.2 261H327.6M327.6 261H336M336 261H344.4M344.4 261H352.8M352.8 261H361.2M361.2 261H369.6M369.6 261H378M378 261H386.4M386.4 261H394.8M394.8 261H403.2M403.2 261H411.6M411.6 261H420M420 261H428.4M428.4 261H436.8M436.8 261H445.2M445.2 261H453.6M453.6 261H462M462 261H470.4M470.4 261H478.8M478.8 261H487.2M487.2 261H495.6M495.6 261H504M504 261H512.4M512.4 261H520.8M520.8 261H529.2M529.2 261H537.6M537.6 261H546M546 261H554.4M554.4 261H562.8M562.8 261H571.2M571.2 261H579.6M579.6 261H588M588 261H596.4M596.4 261H604.8M604.8 261H613.2M613.2 261H621.6M621.6 261H630M630 261H638.4M638.4 261H646.8M646.8 261H655.2M655.2 261H663.6M663.6 261H672M672 261H680.4M680.4 261H688.8M688.8 261H697.2M697.2 261H705.6M705.6 261H714M714 261H722.4M722.4 261H730.8M730.8 261H739.2M739.2 261H747.6M747.6 261H756M756 261H764.4M764.4 261H772.8M772.8 261H781.2M781.2 261H789.6M789.6 261H798M798 261H806.4M806.4 261H814.8M814.8 261H823.2M823.2 261H831.6M831.6 261H840M840 261H848.4M848.4 261H856.8M856.8 261H865.2M865.2 261H873.6M873.6 261H882M882 261H890.4M890.4 261H898.8M898.8 261H907.2M907.2 261H915.6M915.6 261H924M924 261H928.2M928.2 252V261" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
 <g style="animation-name:k21"><path d="M12.6 252V270" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="25.2" y="264.96" textLength="445.2" fill="#3fb950">+  const last = text.slice(start).replace(/\r$/, '');</text><path d="M928.2 252V270" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
@@ -290,14 +290,14 @@ text{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Monaco,Consolas,"Li
 <g style="animation-name:k3h"><path d="M256.2 468V486" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
 <g style="animation-name:k3i"><path d="M256.2 468V486" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="285.6" y="480.96" textLength="596.4" fill="#c9d1d9">会。错误格式不变：ParseError 保留 `line` 和 `column`，都从 1 开始计数。</text></g>
 <g style="animation-name:k3j"><path d="M12.6 468V486" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="25.2" y="480.96" textLength="226.8" fill="#c9d1d9" fill-opacity="0.58">↑↓ PgUp PgDn · m 合并 · Esc</text><path d="M928.2 468V486" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
-<g class="p" style="animation-name:k3k"><path d="M256.2 468V486" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="268.8" y="480.96" textLength="361.2" fill="#c9d1d9" fill-opacity="0.58">· 已将 troupe/bizos 合并到 main（1 个提交）</text></g>
+<g class="p" style="animation-name:k3k"><path d="M256.2 468V486" stroke="#c9d1d9" stroke-opacity="0.45"/><text x="268.8" y="480.96" textLength="420" fill="#c9d1d9" fill-opacity="0.58">· 已将 cross-harness/bizos 合并到 main（1 个提交）</text></g>
 <g class="p" style="animation-name:k3l"><path d="M0 495H8.4M8.4 495H16.8M16.8 495H25.2M25.2 495H33.6M33.6 495H42M42 495H50.4M50.4 495H58.8M58.8 495H67.2M67.2 495H75.6M75.6 495H84M84 495H92.4M92.4 495H100.8M100.8 495H109.2M109.2 495H117.6M117.6 495H126M126 495H134.4M134.4 495H142.8M142.8 495H151.2M151.2 495H159.6M159.6 495H168M168 495H176.4M176.4 495H184.8M184.8 495H193.2M193.2 495H201.6M201.6 495H210M210 495H218.4M218.4 495H226.8M226.8 495H235.2M235.2 495H243.6M243.6 495H252M252 495H260.4M260.4 495H268.8M268.8 495H277.2M277.2 495H285.6M285.6 495H294M294 495H302.4M302.4 495H310.8M310.8 495H319.2M319.2 495H327.6M327.6 495H336M336 495H344.4M344.4 495H352.8M352.8 495H361.2M361.2 495H369.6M369.6 495H378M378 495H386.4M386.4 495H394.8M394.8 495H403.2M403.2 495H411.6M411.6 495H420M420 495H428.4M428.4 495H436.8M436.8 495H445.2M445.2 495H453.6M453.6 495H462M462 495H470.4M470.4 495H478.8M478.8 495H487.2M487.2 495H495.6M495.6 495H504M504 495H512.4M512.4 495H520.8M520.8 495H529.2M529.2 495H537.6M537.6 495H546M546 495H554.4M554.4 495H562.8M562.8 495H571.2M571.2 495H579.6M579.6 495H588M588 495H596.4M596.4 495H604.8M604.8 495H613.2M613.2 495H621.6M621.6 495H630M630 495H638.4M638.4 495H646.8M646.8 495H655.2M655.2 495H663.6M663.6 495H672M672 495H680.4M680.4 495H688.8M688.8 495H697.2M697.2 495H705.6M705.6 495H714M714 495H722.4M722.4 495H730.8M730.8 495H739.2M739.2 495H747.6M747.6 495H756M756 495H764.4M764.4 495H772.8M772.8 495H781.2M781.2 495H789.6M789.6 495H798M798 495H806.4M806.4 495H814.8M814.8 495H823.2M823.2 495H831.6M831.6 495H840M840 495H848.4M848.4 495H856.8M856.8 495H865.2M865.2 495H873.6M873.6 495H882M882 495H890.4M890.4 495H898.8M898.8 495H907.2M907.2 495H915.6M915.6 495H924M924 495H932.4M932.4 495H940.8" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
 <g style="animation-name:k3m"><path d="M0 495H8.4M12.6 495H16.8M12.6 486V495M16.8 495H25.2M25.2 495H33.6M33.6 495H42M42 495H50.4M50.4 495H58.8M58.8 495H67.2M67.2 495H75.6M75.6 495H84M84 495H92.4M92.4 495H100.8M100.8 495H109.2M109.2 495H117.6M117.6 495H126M126 495H134.4M134.4 495H142.8M142.8 495H151.2M151.2 495H159.6M159.6 495H168M168 495H176.4M176.4 495H184.8M184.8 495H193.2M193.2 495H201.6M201.6 495H210M210 495H218.4M218.4 495H226.8M226.8 495H235.2M235.2 495H243.6M243.6 495H252M252 495H260.4M260.4 495H268.8M268.8 495H277.2M277.2 495H285.6M285.6 495H294M294 495H302.4M302.4 495H310.8M310.8 495H319.2M319.2 495H327.6M327.6 495H336M336 495H344.4M344.4 495H352.8M352.8 495H361.2M361.2 495H369.6M369.6 495H378M378 495H386.4M386.4 495H394.8M394.8 495H403.2M403.2 495H411.6M411.6 495H420M420 495H428.4M428.4 495H436.8M436.8 495H445.2M445.2 495H453.6M453.6 495H462M462 495H470.4M470.4 495H478.8M478.8 495H487.2M487.2 495H495.6M495.6 495H504M504 495H512.4M512.4 495H520.8M520.8 495H529.2M529.2 495H537.6M537.6 495H546M546 495H554.4M554.4 495H562.8M562.8 495H571.2M571.2 495H579.6M579.6 495H588M588 495H596.4M596.4 495H604.8M604.8 495H613.2M613.2 495H621.6M621.6 495H630M630 495H638.4M638.4 495H646.8M646.8 495H655.2M655.2 495H663.6M663.6 495H672M672 495H680.4M680.4 495H688.8M688.8 495H697.2M697.2 495H705.6M705.6 495H714M714 495H722.4M722.4 495H730.8M730.8 495H739.2M739.2 495H747.6M747.6 495H756M756 495H764.4M764.4 495H772.8M772.8 495H781.2M781.2 495H789.6M789.6 495H798M798 495H806.4M806.4 495H814.8M814.8 495H823.2M823.2 495H831.6M831.6 495H840M840 495H848.4M848.4 495H856.8M856.8 495H865.2M865.2 495H873.6M873.6 495H882M882 495H890.4M890.4 495H898.8M898.8 495H907.2M907.2 495H915.6M915.6 495H924M924 495H928.2M928.2 486V495M932.4 495H940.8" stroke="#c9d1d9" stroke-opacity="0.45"/></g>
 <g style="animation-name:k3n"><text x="0" y="516.96" fill="#39c5cf" fill-opacity="0.58">›</text><text x="16.8" y="516.96" textLength="378" fill="#6e7681">发给 @codex，或以 @代理 开头   ·   Enter 发送</text></g>
 <g class="p" style="animation-name:k3o"><text x="0" y="516.96" fill="#39c5cf" fill-opacity="0.58">›</text><text x="16.8" y="516.96" textLength="378" fill="#6e7681">发给 @bizos，或以 @代理 开头   ·   Enter 发送</text></g>
 <g style="animation-name:k3p"><text x="8.4" y="534.96" textLength="924" fill="#c9d1d9" fill-opacity="0.58">↑↓ 选代理 · a 审批 · d 改动 · m 合并 · s 停止 · g 目标 · b 看板 · n 新代理 · p 权限 · ? 帮助 · i 输入 · q 退出</text></g>
 <g style="animation-name:k3q"><text x="8.4" y="534.96" textLength="67.2" fill="#c9d1d9" fill-opacity="0.58">Esc 关闭</text></g>
-<g class="p" style="animation-name:k3r"><text x="8.4" y="534.96" textLength="243.6" fill="#3fb950">已把 troupe/bizos 合并到 main</text></g>
+<g class="p" style="animation-name:k3r"><text x="8.4" y="534.96" textLength="302.4" fill="#3fb950">已把 cross-harness/bizos 合并到 main</text></g>
 <rect class="cursor" width="8.4" height="18" fill="#c9d1d9" fill-opacity=".75"/>
 </g>
 </g>

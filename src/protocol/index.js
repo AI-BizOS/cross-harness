@@ -1,10 +1,10 @@
-// The Troupe cross-harness protocol, version troupe/1. The normative description
+// The cross-harness cross-harness protocol, version cross-harness/1. The normative description
 // lives in spec/; this module holds the constants and shapes the reference
 // implementation and its clients share.
 
-export { CODES, TroupeError, fail, serializeError, isCancelled } from './errors.js';
+export { CODES, CrossHarnessError, fail, serializeError, isCancelled } from './errors.js';
 
-export const PROTOCOL_VERSION = 'troupe/1';
+export const PROTOCOL_VERSION = 'cross-harness/1';
 
 /**
  * Permission modes, from most to least restricted. An agent never runs above the

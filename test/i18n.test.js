@@ -8,9 +8,9 @@ import { ROOT } from './helpers.js';
 const zh = (key, params) => translate('zh', key, params);
 const en = (key, params) => translate('en', key, params);
 
-test('messages Troupe writes itself follow the interface language', () => {
-  const created = { role: 'system', code: 'created', params: { branch: 'troupe/codex' }, text: 'Working on branch troupe/codex in its own worktree' };
-  assert.equal(engineText(created, zh), '在自己的 worktree 里工作，分支 troupe/codex');
+test('messages cross-harness writes itself follow the interface language', () => {
+  const created = { role: 'system', code: 'created', params: { branch: 'cross-harness/codex' }, text: 'Working on branch cross-harness/codex in its own worktree' };
+  assert.equal(engineText(created, zh), '在自己的 worktree 里工作，分支 cross-harness/codex');
   assert.equal(engineText(created, en), created.text);
   const raised = { code: 'mode-raised', key: 'mode-raised.full', params: { harness: 'Amp', mode: 'ask', final: 'full' }, text: 'Amp cannot run in ask mode, so this agent runs in full mode and acts without asking' };
   assert.equal(engineText(raised, zh), 'Amp 不能以“询问”模式运行，所以这个代理以“完全访问”模式运行，不经询问直接执行');

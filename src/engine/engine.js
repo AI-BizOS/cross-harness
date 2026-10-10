@@ -1,4 +1,4 @@
-// The Troupe engine: one per project. It owns the agents, dispatches messages, routes
+// The cross-harness engine: one per project. It owns the agents, dispatches messages, routes
 // approvals and questions, runs goal gates and merges. User interfaces (TUI, GUI,
 // remote clients) talk to it only through call(method, params) and subscribe().
 import fs from 'node:fs';
@@ -7,7 +7,7 @@ import { randomUUID } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { CODES, fail, serializeError } from '../protocol/errors.js';
 import { LIMITS, MODE_RANK, PERMISSION_MODES, PROTOCOL_VERSION } from '../protocol/index.js';
-import { DEFAULTS, loadConfig, projectId, projectStateDir, troupeHome } from '../config.js';
+import { DEFAULTS, loadConfig, projectId, projectStateDir, crossHarnessHome } from '../config.js';
 import { buildRegistry } from '../providers/registry.js';
 import { createDetector } from '../providers/detect.js';
 import { MailboxHub } from '../collab/mailbox.js';
@@ -22,7 +22,7 @@ import { completions, looksLikeReview, parseDispatch, SPECIAL } from './dispatch
 import { capMode, decide, ruleFor } from './policy.js';
 
 export { VERSION };
-const BIN = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..', 'bin', 'troupe.js');
+const BIN = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..', 'bin', 'cross-harness.js');
 const NAME = /^[a-z][a-z0-9_-]{0,31}$/;
 const KEY = /^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$/;
 const QUESTION_KEEP = 64;
@@ -68,7 +68,7 @@ export class Engine {
    * @param {NodeJS.ProcessEnv} [options.env]
    * @param {object} [options.config] loadConfig() result
    * @param {Record<string,object>} [options.providers] extra/overriding provider definitions
-   * @param {{command:string,args:string[]}} [options.launcher] how agents start `troupe mcp`
+   * @param {{command:string,args:string[]}} [options.launcher] how agents start `cross-harness mcp`
    * @param {Function} [options.spawnProcess] child_process.spawn replacement (tests)
    * @param {boolean} [options.builtins=true] include the built-in harness definitions
    * @param {boolean} [options.collab=true] give agents the collaboration tools
@@ -80,7 +80,7 @@ export class Engine {
     this.defaults = { ...DEFAULTS, ...this.config.defaults };
     this.registry = buildRegistry({ ...this.config.providers, ...providers }, { builtins });
     this.detector = detector || createDetector({ registry: this.registry, env });
-    this.home = troupeHome(env);
+    this.home = crossHarnessHome(env);
     this.stateDir = stateDir || projectStateDir(this.root, env);
     this.worktreeRoot = worktreeRoot || path.join(this.home, 'worktrees', projectId(this.root));
     this.launcher = launcher || { command: process.execPath, args: [BIN, 'mcp'] };
@@ -130,13 +130,13 @@ export class Engine {
       this.agents.set(agent.id, agent);
       if (record.state === 'running') {
         agent.state = 'stopped';
-        agent.record({ role: 'system', code: 'interrupted', params: {}, text: 'Troupe exited while this agent was working. Check its changes before continuing.' });
+        agent.record({ role: 'system', code: 'interrupted', params: {}, text: 'cross-harness exited while this agent was working. Check its changes before continuing.' });
       }
     }
     if (this.collabEnabled) {
       // Everything an agent writes, its worktree and its mailbox, is under one directory,
       // so a harness that sandboxes its tools (BizOS Code) needs a single write grant, and
-      // Troupe's own state, including the mailbox tokens, stays outside it. 0.1.0 kept the
+      // cross-harness's own state, including the mailbox tokens, stays outside it. 0.1.0 kept the
       // mailboxes in the project state; that copy is removed.
       fs.rmSync(path.join(this.stateDir, 'mailbox'), { recursive: true, force: true });
       this.hub = new MailboxHub({ dir: path.join(this.worktreeRoot, '.mailbox'), tokensFile: path.join(this.stateDir, 'mailbox-tokens.json'), handle: (agentId, op, params) => this.collab(agentId, op, params) });
@@ -149,7 +149,7 @@ export class Engine {
   }
 
   takeLock(force) {
-    if (OPEN_PROJECTS.has(this.stateDir) && !force) throw fail(CODES.LOCKED, 'This project is already open in this Troupe');
+    if (OPEN_PROJECTS.has(this.stateDir) && !force) throw fail(CODES.LOCKED, 'This project is already open in this cross-harness');
     const file = path.join(this.stateDir, 'lock.json');
     const lock = readJson(file);
     if (lock?.pid && lock.pid !== process.pid && !force) {
@@ -160,7 +160,7 @@ export class Engine {
       } catch (error) {
         alive = error.code === 'EPERM';
       }
-      if (alive) throw fail(CODES.LOCKED, `This project is already open in another Troupe (pid ${lock.pid}). Close that one first.`);
+      if (alive) throw fail(CODES.LOCKED, `This project is already open in another cross-harness (pid ${lock.pid}). Close that one first.`);
     }
     writeJsonAtomic(file, { pid: process.pid, startedAt: new Date().toISOString() });
     this.lockFile = file;
@@ -174,7 +174,7 @@ export class Engine {
     await Promise.all(
       [...this.agents.values()].map(async (agent) => {
         agent.clearIdle();
-        if (agent.busy) await agent.stop('Stopped: Troupe was closed').catch(() => {});
+        if (agent.busy) await agent.stop('Stopped: cross-harness was closed').catch(() => {});
         await agent.closeSession('quit').catch(() => {});
       }),
     );
@@ -234,7 +234,7 @@ export class Engine {
       writeJsonAtomic(path.join(this.stateDir, 'agents.json'), { schema: 1, agents: [...this.agents.values()].map((agent) => agent.toRecord()) });
       writeJsonAtomic(path.join(this.stateDir, 'decisions.json'), { schema: 1, decisions: [...this.decisions.values()] });
     } catch (error) {
-      this.notice('error', `Could not save Troupe state: ${error.message}`, { code: 'state-save-failed', params: { error: error.message } });
+      this.notice('error', `Could not save cross-harness state: ${error.message}`, { code: 'state-save-failed', params: { error: error.message } });
     }
   }
 
@@ -352,9 +352,9 @@ export class Engine {
       let cwd = this.project.gitRoot || this.root;
       if (wantIsolation === 'worktree' && this.project.isGit && this.project.head) {
         const part = safeBranchPart(agentName);
-        let branch = `troupe/${part}`;
+        let branch = `cross-harness/${part}`;
         const exists = (await git(['rev-parse', '--verify', '--quiet', `refs/heads/${branch}`], { cwd: this.project.gitRoot, env: this.env, allowFail: true })).code === 0;
-        if (exists) branch = `troupe/${part}-${id.slice(0, 6)}`;
+        if (exists) branch = `cross-harness/${part}-${id.slice(0, 6)}`;
         const dir = path.join(this.worktreeRoot, `${part}-${id.slice(0, 6)}`);
         const base = this.project.branch || this.project.head;
         worktree = await createWorktree({ root: this.project.gitRoot, dir, branch, base, env: this.env });
@@ -393,15 +393,15 @@ export class Engine {
   /** Every non-archived agent's environment: the user's plus the harness's own entries. */
   agentEnv(provider) {
     const env = { ...this.env, ...(provider.env || {}) };
-    delete env.TROUPE_MAILBOX;
-    delete env.TROUPE_TOKEN;
+    delete env.CROSS_HARNESS_MAILBOX;
+    delete env.CROSS_HARNESS_TOKEN;
     return env;
   }
 
   collabServers(agent) {
     if (!this.collabEnabled || !this.hub || agent.provider.protocol === 'exec') return [];
     const { dir, token } = this.hub.register(agent.id);
-    return [{ name: 'troupe', command: this.launcher.command, args: this.launcher.args, env: { TROUPE_MAILBOX: dir, TROUPE_TOKEN: token } }];
+    return [{ name: 'cross-harness', command: this.launcher.command, args: this.launcher.args, env: { CROSS_HARNESS_MAILBOX: dir, CROSS_HARNESS_TOKEN: token } }];
   }
 
   acquireSlot(agent) {
@@ -547,7 +547,7 @@ export class Engine {
       if (judge) {
         const request = assignments.map((a) => a.text).join('\n\n');
         void Promise.all(waits)
-          .then((answers) => judge.enqueue({ kind: 'compare', text: comparePrompt(request, answers), display: `Compare ${answers.length} answers`, displayKey: 'compare', displayParams: { n: answers.length }, from: { type: 'troupe', name: 'troupe' } }))
+          .then((answers) => judge.enqueue({ kind: 'compare', text: comparePrompt(request, answers), display: `Compare ${answers.length} answers`, displayKey: 'compare', displayParams: { n: answers.length }, from: { type: 'cross-harness', name: 'cross-harness' } }))
           .catch((error) => this.notice('error', `Compare failed: ${error.message}`, { code: 'compare-failed', params: { error: error.message } }));
         dispatched.push({ agentId: judge.id, agent: judge.name, provider: judge.providerId, created: false, role: 'compare' });
       }
@@ -733,7 +733,7 @@ export class Engine {
     }
   }
 
-  // ── collaboration (requests from agents' troupe mcp servers) ───────────
+  // ── collaboration (requests from agents' cross-harness mcp servers) ───────────
 
   async collab(agentId, op, params) {
     const self = this.agents.get(agentId);
@@ -892,7 +892,7 @@ export class Engine {
     if (params.options != null && (!Array.isArray(params.options) || params.options.length > LIMITS.options)) throw fail(CODES.COLLAB_INVALID, `options must be a list of at most ${LIMITS.options}`);
     const options = (params.options || []).map((option) => requireText(option, 200, 'option'));
     const open = [...this.decisions.values()].filter((d) => d.agentId === self.id && d.status === 'pending').length;
-    if (open >= LIMITS.openDecisionsPerAgent) throw fail(CODES.DECISION_LIMIT, 'Too many questions are waiting for the user; collect answers with troupe_check_answers first');
+    if (open >= LIMITS.openDecisionsPerAgent) throw fail(CODES.DECISION_LIMIT, 'Too many questions are waiting for the user; collect answers with cross_harness_check_answers first');
     const decision = { id: randomUUID(), agentId: self.id, agentName: self.name, question, options, askedAt: new Date().toISOString(), status: 'pending' };
     this.decisions.set(decision.id, decision);
     this.save();
@@ -1056,7 +1056,7 @@ export class Engine {
       if (!passedTree || now !== passedTree) throw changed();
     }
     try {
-      await commitAll({ dir: agent.worktree.path, message: `troupe: work by @${agent.name} (${agent.provider.name})`, env: this.env });
+      await commitAll({ dir: agent.worktree.path, message: `cross-harness: work by @${agent.name} (${agent.provider.name})`, env: this.env });
       // A turn may have started since the check above; the branch tip must still be what passed.
       if (gated && (await git(['rev-parse', 'HEAD^{tree}'], { cwd: agent.worktree.path, env: this.env })).trim() !== passedTree) throw changed();
       const result = await mergeBranch({ root: this.project.gitRoot, branch: agent.worktree.branch, message: `Merge ${agent.worktree.branch} (@${agent.name}, ${agent.provider.name})`, env: this.env });
@@ -1153,7 +1153,7 @@ export class Engine {
   async goalCheck({ id, agent: ref = null }) {
     const goal = this.goalById(id);
     // Check commands may come from an agent's draft, so they run only once the user approved them.
-    if (goal.approvedRevision !== goal.revision) throw fail(CODES.GATE_NOT_ARMED, 'Approve this revision of the goal before Troupe runs its checks');
+    if (goal.approvedRevision !== goal.revision) throw fail(CODES.GATE_NOT_ARMED, 'Approve this revision of the goal before cross-harness runs its checks');
     const agents = ref ? [this.agentRef(ref)] : goal.assignees.map((name) => this.agentByName(name)).filter(Boolean);
     if (!agents.length) throw fail(CODES.AGENT_NOT_FOUND, 'This goal has no agent to check yet');
     const gates = [];
@@ -1227,7 +1227,7 @@ export class Engine {
           next.status = 'needs-you';
           this.notice('warn', `Goal "${next.title}" still fails after ${iteration} checks; it needs you`, { code: 'goal-stuck', params: { title: next.title, n: iteration } });
         } else {
-          agent.enqueue({ kind: 'feedback', text: feedbackPrompt(next, gate), display: `Check ${iteration}/${next.maxIterations}: ${failing.length} criteria not met`, displayKey: 'feedback', displayParams: { i: iteration, max: next.maxIterations, n: failing.length }, from: { type: 'troupe', name: 'troupe' } });
+          agent.enqueue({ kind: 'feedback', text: feedbackPrompt(next, gate), display: `Check ${iteration}/${next.maxIterations}: ${failing.length} criteria not met`, displayKey: 'feedback', displayParams: { i: iteration, max: next.maxIterations, n: failing.length }, from: { type: 'cross-harness', name: 'cross-harness' } });
         }
       }
       this.writeGoal(next);
@@ -1250,7 +1250,7 @@ export class Engine {
       displayKey: 'gate-review',
       displayParams: { name: author.name, criterion: criterion.text },
       modeCap: 'plan',
-      from: { type: 'troupe', name: 'troupe' },
+      from: { type: 'cross-harness', name: 'cross-harness' },
     });
     if (answer.status !== 'answered') return { passed: false, summary: `review failed: ${answer.error}` };
     return { ...parseVerdict(answer.answer), evidence: { reviewer: reviewer.name, answerTail: answer.answer.slice(-1500) } };

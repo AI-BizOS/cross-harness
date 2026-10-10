@@ -64,7 +64,7 @@ async function prompt(id, params) {
       else done(toolCallId, (await runCommand(args[0], session.cwd)).code === 0 ? 'completed' : 'failed');
     } else if (action === 'tool') {
       const server = session.mcpServers[0];
-      call({ toolCallId, title: `troupe.${args[0]}`, kind: 'other', status: 'in_progress', rawInput: args[1] });
+      call({ toolCallId, title: `cross-harness.${args[0]}`, kind: 'other', status: 'in_progress', rawInput: args[1] });
       await callTool({ command: server.command, args: server.args, env: Object.fromEntries(server.env.map((item) => [item.name, item.value])) }, args[0], args[1]);
       done(toolCallId);
     } else if (action === 'say') {

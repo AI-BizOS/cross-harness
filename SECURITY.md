@@ -2,29 +2,29 @@
 
 ## Supported versions
 
-Troupe is before 1.0. Security fixes are made on the latest 0.x release.
+cross-harness is before 1.0. Security fixes are made on the latest 0.x release.
 
 ## Reporting a vulnerability
 
 Please report privately, through GitHub's private vulnerability reporting on the
-`AI-BizOS/troupe` repository (**Security → Report a vulnerability**). Do not open a public
+`AI-BizOS/cross-harness` repository (**Security → Report a vulnerability**). Do not open a public
 issue for a security problem.
 
-Include the Troupe version, your operating system, the harnesses involved and their
+Include the cross-harness version, your operating system, the harnesses involved and their
 versions, the steps to reproduce and what an attacker gains. We will confirm that we
 received the report, work on a fix with you and agree on when to publish. We are glad to
 credit reporters who want it.
 
-## What Troupe protects, and what it does not
+## What cross-harness protects, and what it does not
 
-Troupe coordinates coding agents that run as you, with your credentials. It is not a
+cross-harness coordinates coding agents that run as you, with your credentials. It is not a
 sandbox: what an agent can do is limited by the permission modes, your answers to its
 requests and the harness's own sandbox.
 
 **In scope** — please report:
 
 - Agent output, a repository, a mailbox file, a board entry or a goal draft that makes
-  Troupe run a command, approve a request or merge without your decision or a rule you
+  cross-harness run a command, approve a request or merge without your decision or a rule you
   set.
 - Ways around the approval policy, for example an edit outside the agent's worktree
   approved automatically in `workspace` mode, or an "always allow" command rule that
@@ -42,15 +42,15 @@ requests and the harness's own sandbox.
   you approved).
 - Weaknesses in a harness's own sandbox or protocol; please report those to its vendor
   (we are happy to help coordinate).
-- Attacks that need control of your user account or of `~/.troupe/config.json`, which are
+- Attacks that need control of your user account or of `~/.cross-harness/config.json`, which are
   trusted.
 - An agent you started using up resources, such as filling its own worktree.
 
 ## Protections in place
 
-- **Commands.** Only the user-level `~/.troupe/config.json` names programs to run. A goal's
+- **Commands.** Only the user-level `~/.cross-harness/config.json` names programs to run. A goal's
   check commands run only after you approve that exact revision of the goal.
-- **Approvals.** Troupe's own tools are recognised by tool name only. Edits are automatic
+- **Approvals.** cross-harness's own tools are recognised by tool name only. Edits are automatic
   only inside the agent's worktree, after following symbolic links, and never inside
   `.git`. Command rules look through shell wrappers and never cover chained, piped,
   redirected or substituted commands. A question from another agent runs with the lower of

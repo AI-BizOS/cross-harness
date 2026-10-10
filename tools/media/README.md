@@ -1,6 +1,6 @@
 # README media
 
-The animations in the README are recorded from Troupe's real interfaces, not drawn by
+The animations in the README are recorded from cross-harness's real interfaces, not drawn by
 hand. This directory holds the tools that make them; the results are in
 [docs/media](../../docs/media).
 
@@ -13,12 +13,12 @@ hand. This directory holds the tools that make them; the results are in
 
 ## What is real and what is scripted
 
-- **Real:** Troupe's engine, terminal UI and web UI, run unchanged in this process. The
-  demo project ([story.js](story.js)) is a small git repository with a real bug. Troupe
+- **Real:** cross-harness's engine, terminal UI and web UI, run unchanged in this process. The
+  demo project ([story.js](story.js)) is a small git repository with a real bug. cross-harness
   creates the worktrees and branches, decides and queues the approvals, carries the
   question between agents through its MCP server and file mailbox, asks for the review
   and performs the merge. The web UI is served by `createGuiHandler`, the same request
-  handler `troupe gui` uses; Playwright routes the page's requests to it in-process.
+  handler `cross-harness gui` uses; Playwright routes the page's requests to it in-process.
 - **Scripted:** the agents. [standins/](standins) are small programs that speak the real
   protocols — the BizOS CLI's `bizos acp` (with BizOS Code's own tool names and approval
   rules), Claude Code stream-json (asking before every edit, command and MCP tool, as
@@ -49,13 +49,13 @@ hand. This directory holds the tools that make them; the results are in
 Re-record after changing anything people see in the terminal or web UI:
 
 ```sh
-TROUPE_PLAYWRIGHT=/path/to/node_modules/playwright/index.js npm run media
+CROSS_HARNESS_PLAYWRIGHT=/path/to/node_modules/playwright/index.js npm run media
 ```
 
-This needs git, npm (the stand-ins run `npm test`) and Google Chrome (or `TROUPE_CHROME`
-pointing at another Chromium). Without `TROUPE_PLAYWRIGHT` the web UI is skipped. Each
+This needs git, npm (the stand-ins run `npm test`) and Google Chrome (or `CROSS_HARNESS_CHROME`
+pointing at another Chromium). Without `CROSS_HARNESS_PLAYWRIGHT` the web UI is skipped. Each
 recording takes about a minute and runs in real time; the demo project lives in
-`$TMPDIR/troupe-demo` and is replaced every time.
+`$TMPDIR/cross-harness-demo` and is replaced every time.
 
 One part at a time:
 

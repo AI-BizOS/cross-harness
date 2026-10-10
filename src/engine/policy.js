@@ -1,6 +1,6 @@
 // Who answers an agent's permission request (spec/orchestration.md §Approvals).
 //   reads and searches          always allowed
-//   Troupe's own tools          always allowed (matched by tool name, never by arguments)
+//   cross-harness's own tools          always allowed (matched by tool name, never by arguments)
 //   full                        everything allowed
 //   plan                        everything else denied
 //   edits outside the agent's   asked, whatever the rules say
@@ -13,7 +13,7 @@ import path from 'node:path';
 import { MODE_RANK } from '../protocol/index.js';
 
 // The tool name starts the title; harnesses prefix MCP tools with the server name.
-const OWN_TOOL = /^(?:mcp__troupe__|troupe(?:__|[_.:/]))?troupe_(?:list_agents|ask_agent|check_answers|ask_user|board_read|board_write|report_progress|goal_status)(?![\w-])/;
+const OWN_TOOL = /^(?:mcp__cross[-_]harness__|cross[-_]harness(?:__|[_.:/]))?cross_harness_(?:list_agents|ask_agent|check_answers|ask_user|board_read|board_write|report_progress|goal_status)(?![\w-])/;
 // Some harnesses report commands wrapped in a shell (`bash -lc '…'`); rules apply to the script.
 const SHELL_WRAPPER = /^(?:\S*\/)?(?:ba|z|da|k)?sh\s+-l?c\s+/;
 // A command rule never covers chained, piped, redirected or substituted commands.

@@ -1,6 +1,6 @@
 // Newline-delimited JSON-RPC over any pair of byte streams. Used for ACP, MCP and
 // `codex app-server` (which omits the "jsonrpc" member) on agent stdio, and for the
-// engine's own remote protocol (`troupe serve --stdio`). Both sides may send requests.
+// engine's own remote protocol (`cross-harness serve --stdio`). Both sides may send requests.
 import { StringDecoder } from 'node:string_decoder';
 import { CODES, fail } from '../protocol/errors.js';
 

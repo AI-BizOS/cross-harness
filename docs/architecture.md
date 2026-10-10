@@ -10,9 +10,9 @@ implementation choice that other implementations may make differently.
 ```
  terminal UI ─┐                            ┌─ Agent ─ adapter ═ harness process (claude, codex, opencode …)
  web UI ──────┼─ client ═ Engine ──────────┼─ Agent ─ adapter ═ harness process
- troupe run ──┘  in-process,               └─ …                        │ starts
+ cross-harness run ──┘  in-process,               └─ …                        │ starts
                  stdio or SSH                                           ▼
-                    ▲                                              troupe mcp
+                    ▲                                              cross-harness mcp
                     └────────── file mailbox (requests / responses) ────┘
 ```
 
@@ -28,13 +28,13 @@ same agent-session interface, whatever protocol the vendor speaks.
 | `src/adapters` | One adapter per session protocol (ACP, `codex app-server`, Claude Code stream-json, one-shot). Each turns a vendor protocol into the seven agent-session events of [spec/agent-session.md](../spec/agent-session.md). |
 | `src/providers` | The harness registry (built-ins merged with the user's config) and detection of installed CLIs. See [providers.md](providers.md). |
 | `src/engine` | `Engine` (one per project: dispatch, approvals, collaboration, merging, goals), `Agent` (one per agent: queue, session, transcript), mention parsing, the approval policy and the client protocol over streams. |
-| `src/collab` | The MCP server agents start (`troupe mcp`), the engine's mailbox hub, and the tool definitions. |
+| `src/collab` | The MCP server agents start (`cross-harness mcp`), the engine's mailbox hub, and the tool definitions. |
 | `src/git` | Worktrees, diffs, review input and merges. |
 | `src/goals` | Goal documents, the arm gate and gate evaluation. |
 | `src/tui`, `src/gui` | The terminal UI and the web UI. `src/tui/store.js` holds the client-side state and is used by both. |
 | `src/i18n` | English and Chinese interface strings. |
 | `src/util` | JSON-RPC peer, process groups, atomic files, display width, text sanitising. |
-| `src/cli` | The `troupe` command. |
+| `src/cli` | The `cross-harness` command. |
 
 `src/index.js` is the public API; other modules are internal.
 
@@ -44,22 +44,22 @@ same agent-session interface, whatever protocol the vendor speaks.
 2. `dispatch.js` reads mentions at the start of lines: one assignment, two targets.
 3. For each target the engine reuses the project's agent of that name or harness, or
    creates one: it checks the harness is installed, creates a worktree on
-   `troupe/<name>` and records a system entry in the new agent's transcript.
+   `cross-harness/<name>` and records a system entry in the new agent's transcript.
 4. The message joins the agent's queue (Codex can also take it into a running turn).
    `Agent.runNext` waits for a slot (`maxPerProvider`), then opens or resumes the
-   session through the adapter, passing the permission mode and Troupe's MCP server.
+   session through the adapter, passing the permission mode and cross-harness's MCP server.
 5. While the turn runs, adapter events become engine events (`agent.text`,
    `agent.activity`, `agent.plan`) with increasing `seq`, delivered to every client.
 6. A permission request goes through `policy.decide`. It is answered at once
-   (reads, Troupe's own tools, `full`, `plan`, rules, edits inside the worktree in
+   (reads, cross-harness's own tools, `full`, `plan`, rules, edits inside the worktree in
    `workspace` mode) or becomes `approval.requested` for the user.
 7. The turn's answer is appended to the transcript (`agent.message`). If the agent works
    on a goal, the gate runs now. Then the next queued message starts.
 
 ## Agents talking to each other
 
-The harness starts `troupe mcp` as a stdio MCP server, with the absolute Node path and
-two environment variables: `TROUPE_MAILBOX` (its private directory) and `TROUPE_TOKEN`.
+The harness starts `cross-harness mcp` as a stdio MCP server, with the absolute Node path and
+two environment variables: `CROSS_HARNESS_MAILBOX` (its private directory) and `CROSS_HARNESS_TOKEN`.
 A tool call becomes a JSON file written atomically into `requests/`. The engine's
 `MailboxHub` watches the directory where the system allows it and polls every 250 ms,
 claims each file by renaming it, checks the token and calls
@@ -70,7 +70,7 @@ Files are used instead of sockets because harnesses often run their tool servers
 sandboxes that block loopback and Unix sockets but allow file writes in a temporary or
 home directory.
 
-`troupe_ask_agent` puts the question in the target's queue as a normal message marked as
+`cross_harness_ask_agent` puts the question in the target's queue as a normal message marked as
 coming from the asker, with `modeCap` set to the lower of the two permission modes. The
 asker's tool call waits for that turn's answer. The engine keeps a wait-for graph of the
 asks that are blocking right now, so two agents never sit out each other's timeout.
@@ -80,8 +80,8 @@ asks that are blocking right now, so two agents never sit out each other's timeo
 `src/engine/policy.js` decides every request in a fixed order (spec:
 [orchestration.md §Approvals](../spec/orchestration.md#approvals)). The hard cases:
 
-- **Troupe's own tools** are recognised by the tool name at the start of the title, and only
-  for tool requests, so a command that merely mentions `troupe_ask_agent` gains nothing.
+- **cross-harness's own tools** are recognised by the tool name at the start of the title, and only
+  for tool requests, so a command that merely mentions `cross_harness_ask_agent` gains nothing.
 - **Edits** are automatic only when every path the harness reports is inside the agent's
   directory once symbolic links are followed, and not inside `.git`. An edit with no
   paths, or with paths elsewhere, is asked even if a rule would allow it.
@@ -90,13 +90,13 @@ asks that are blocking right now, so two agents never sit out each other's timeo
   substitutes, so `npm test && curl … | sh` is asked even when `npm test` is allowed.
 
 Harness sandboxes still apply underneath: Codex runs `read-only` or `workspace-write`,
-Claude Code runs with every permission prompt routed to Troupe, and ACP agents are moved
+Claude Code runs with every permission prompt routed to cross-harness, and ACP agents are moved
 to the closest mode they offer.
 
 ## Worktrees, review and merge
 
 Each agent gets `git worktree add` on its own branch under
-`$TROUPE_HOME/worktrees/<project-id>/`. Diffs and tree ids are computed with a scratch
+`$CROSS_HARNESS_HOME/worktrees/<project-id>/`. Diffs and tree ids are computed with a scratch
 index (`GIT_INDEX_FILE`), so untracked files are included and the agent's own index is
 never touched. Review sends that diff to a different agent in `plan` mode and reads a
 `VERDICT:` line. Merge commits pending work in the worktree, refuses a dirty project,
@@ -119,8 +119,8 @@ that subscribes before taking the snapshot never misses or repeats an event.
 
 - In-process: `localClient(engine)`.
 - Over a byte stream: `serveEngine` and `connectRemote` speak newline-delimited JSON-RPC
-  2.0 (`troupe serve --stdio`).
-- Over SSH: `ssh -T -o BatchMode=yes <host> 'troupe serve --stdio --cwd …'`. The remote
+  2.0 (`cross-harness serve --stdio`).
+- Over SSH: `ssh -T -o BatchMode=yes <host> 'cross-harness serve --stdio --cwd …'`. The remote
   host runs the engine, agents and worktrees; only the interface is local.
 - In the browser: the GUI server wraps the client as `POST /api/call` and
   `GET /api/events` (server-sent events read with `fetch`, so the token travels in an
@@ -141,12 +141,12 @@ same store and the same strings, so they show the same state in the same words.
 
 ## State on disk
 
-Everything lives under `TROUPE_HOME` (default `~/.troupe`), never in the project:
+Everything lives under `CROSS_HARNESS_HOME` (default `~/.cross-harness`), never in the project:
 configuration, one directory per project (agents, transcripts as JSON lines, board,
 decisions, goals, an append-only audit log, the mailbox tokens and a lock) and, under
 `worktrees/<project-id>/`, everything agents write: their worktrees and, in `.mailbox/`,
 their mailboxes. A harness that sandboxes its tools, such as BizOS Code, then needs one
-write grant, and Troupe's own state stays out of its reach.
+write grant, and cross-harness's own state stays out of its reach.
 JSON files are written atomically (temporary file, then rename). The layout is listed in
 [orchestration.md §State on disk](../spec/orchestration.md#state-on-disk).
 

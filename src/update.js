@@ -1,15 +1,15 @@
-// Newer releases: `troupe update` installs the newest one, and the interactive interfaces
+// Newer releases: `cross-harness update` installs the newest one, and the interactive interfaces
 // mention it once a newer one exists. The check reads the public repository's release tags
 // with `git ls-remote`, so git's proxy settings apply, at most once a day and in the
 // background; nothing about you or your projects is sent. Turn the check off with
-// `"updateCheck": false`, TROUPE_NO_UPDATE_CHECK or CI.
+// `"updateCheck": false`, CROSS_HARNESS_NO_UPDATE_CHECK or CI.
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { readJson, writeJsonAtomic } from './util/fsx.js';
 import { runCommand } from './util/process.js';
 
-export const REPOSITORY = 'https://github.com/AI-BizOS/troupe';
+export const REPOSITORY = 'https://github.com/AI-BizOS/cross-harness';
 export const PACKAGE_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DAY_MS = 24 * 60 * 60 * 1000;
 const RELEASE_TAG = /^[0-9a-f]+\trefs\/tags\/v(\d+\.\d+\.\d+)$/gm;
@@ -23,11 +23,11 @@ export function compareVersions(a, b) {
 
 /** The release package of a version, as the README installs it. */
 export function releaseUrl(version) {
-  return `${REPOSITORY}/releases/download/v${version}/bizos-ai-troupe-${version}.tgz`;
+  return `${REPOSITORY}/releases/download/v${version}/bizos-ai-cross-harness-${version}.tgz`;
 }
 
 /** The newest released version (from tags like v0.1.2), or null when there is none. */
-export async function latestRelease({ env = process.env, repository = env.TROUPE_UPDATE_REPOSITORY || `${REPOSITORY}.git`, run = runCommand, timeoutMs = 15_000 } = {}) {
+export async function latestRelease({ env = process.env, repository = env.CROSS_HARNESS_UPDATE_REPOSITORY || `${REPOSITORY}.git`, run = runCommand, timeoutMs = 15_000 } = {}) {
   const result = await run('git', ['ls-remote', '--tags', '--refs', repository], { env: { ...env, GIT_TERMINAL_PROMPT: '0' }, timeoutMs });
   if (result.error || result.timedOut || result.code !== 0) {
     throw new Error(result.timedOut ? `git ls-remote did not answer within ${timeoutMs / 1000} seconds` : String(result.stderr || result.error?.message || `git exited with ${result.code}`).trim().split('\n').pop());
@@ -47,7 +47,7 @@ export function installKind(root = PACKAGE_ROOT) {
  * never throws, and a failed check is not retried before the next day.
  */
 export function updateCheckFor({ home, config, current, env = process.env, now = Date.now, latest = latestRelease }) {
-  if (config?.updateCheck === false || env.TROUPE_NO_UPDATE_CHECK || env.CI) return null;
+  if (config?.updateCheck === false || env.CROSS_HARNESS_NO_UPDATE_CHECK || env.CI) return null;
   const file = path.join(home, 'update.json');
   let pending = null;
   async function check() {

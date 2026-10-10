@@ -1,13 +1,13 @@
 // The engine protocol for user interfaces (spec/orchestration.md §Client protocol):
-// newline-delimited JSON-RPC 2.0 over any byte stream. `troupe serve --stdio` exposes
-// an engine this way, so `ssh host troupe serve --stdio` runs every agent on that host
+// newline-delimited JSON-RPC 2.0 over any byte stream. `cross-harness serve --stdio` exposes
+// an engine this way, so `ssh host cross-harness serve --stdio` runs every agent on that host
 // while the TUI or GUI stays local.
 //
 //   → initialize {client}                ← {protocol, version, snapshot}
 //   → call {method, params}              ← result of engine.call(method, params)
 //   ← notification "event" {event}       every engine event, in order
 import { spawn } from 'node:child_process';
-import { CODES, TroupeError, fail } from '../protocol/errors.js';
+import { CODES, CrossHarnessError, fail } from '../protocol/errors.js';
 import { PROTOCOL_VERSION } from '../protocol/index.js';
 import { JsonRpcPeer } from '../util/jsonrpc.js';
 import { tail } from '../util/process.js';
@@ -36,7 +36,7 @@ export function serveEngine(engine, { input = process.stdin, output = process.st
       input,
       output,
       jsonrpc: true,
-      label: 'troupe client',
+      label: 'cross-harness client',
       onRequest: async (method, params) => {
         if (method === 'initialize') {
           unsubscribe?.();
@@ -70,17 +70,17 @@ export function serveEngine(engine, { input = process.stdin, output = process.st
   });
 }
 
-function toTroupeError(error) {
-  if (error instanceof TroupeError && error.code !== CODES.RPC_ERROR) return error;
+function toCrossHarnessError(error) {
+  if (error instanceof CrossHarnessError && error.code !== CODES.RPC_ERROR) return error;
   const code = error?.data?.code;
-  return code ? new TroupeError(code, error.message) : error;
+  return code ? new CrossHarnessError(code, error.message) : error;
 }
 
 /**
- * Starts `command args` (for example `ssh host troupe serve --stdio --cwd ~/repo`) and
+ * Starts `command args` (for example `ssh host cross-harness serve --stdio --cwd ~/repo`) and
  * talks to the engine it serves.
  */
-export async function connectRemote({ command, args = [], env = process.env, label = 'remote troupe', spawnProcess = spawn, timeoutMs = 60_000 }) {
+export async function connectRemote({ command, args = [], env = process.env, label = 'remote cross-harness', spawnProcess = spawn, timeoutMs = 60_000 }) {
   const child = spawnProcess(command, args, { env, stdio: ['pipe', 'pipe', 'pipe'], windowsHide: true });
   const stderr = tail(child.stderr, 4000);
   const listeners = new Set();
@@ -107,14 +107,14 @@ export async function connectRemote({ command, args = [], env = process.env, lab
   });
   let hello;
   try {
-    hello = await peer.request('initialize', { client: 'troupe' }, { timeoutMs });
+    hello = await peer.request('initialize', { client: 'cross-harness' }, { timeoutMs });
   } catch (error) {
     child.kill();
     throw fail(error.code === CODES.TIMEOUT ? CODES.TIMEOUT : CODES.START_FAILED, `${label}: ${error.message}${stderr.text ? ` (${stderr.text.trim().split('\n').pop()})` : ''}`);
   }
   if (hello?.protocol !== PROTOCOL_VERSION) {
     child.kill();
-    throw fail(CODES.VERSION_UNSUPPORTED, `${label} speaks ${hello?.protocol}, this Troupe speaks ${PROTOCOL_VERSION}; install the same version on both machines`);
+    throw fail(CODES.VERSION_UNSUPPORTED, `${label} speaks ${hello?.protocol}, this cross-harness speaks ${PROTOCOL_VERSION}; install the same version on both machines`);
   }
   return {
     remote: true,
@@ -124,7 +124,7 @@ export async function connectRemote({ command, args = [], env = process.env, lab
       try {
         return await peer.request('call', { method, params });
       } catch (error) {
-        throw toTroupeError(error);
+        throw toCrossHarnessError(error);
       }
     },
     subscribe(listener) {
@@ -157,8 +157,8 @@ export async function connectRemote({ command, args = [], env = process.env, lab
   };
 }
 
-/** argv for running Troupe on another machine over SSH. */
-export function sshCommand(host, { cwd = null, remoteCommand = 'troupe', sshArgs = [] } = {}) {
+/** argv for running cross-harness on another machine over SSH. */
+export function sshCommand(host, { cwd = null, remoteCommand = 'cross-harness', sshArgs = [] } = {}) {
   // ssh would read a "host" starting with "-" as an option (for example -oProxyCommand=…).
   if (typeof host !== 'string' || !host.trim() || host.startsWith('-')) throw fail(CODES.ARGUMENT_INVALID, `Invalid SSH host: ${host}`);
   const quote = (value) => `'${String(value).replace(/'/g, `'\\''`)}'`;

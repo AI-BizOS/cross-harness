@@ -67,10 +67,10 @@ class FakeResponse extends EventEmitter {
 }
 
 async function setup(t) {
-  const home = tempDir(t, 'troupe-home-');
+  const home = tempDir(t, 'cross-harness-home-');
   fs.mkdirSync(path.join(home, 'mock'));
   const repo = gitRepo(t);
-  const env = { ...gitEnv(), TROUPE_HOME: home, MOCK_STATE: path.join(home, 'mock') };
+  const env = { ...gitEnv(), CROSS_HARNESS_HOME: home, MOCK_STATE: path.join(home, 'mock') };
   const engine = await new Engine({
     root: repo.dir,
     env,
@@ -107,23 +107,23 @@ test('gui: DNS rebinding and cross-origin requests are refused', async (t) => {
   const same = await request(handler, { url: '/api/call', method: 'POST', body: { method: 'snapshot' }, headers: { ...auth, 'content-type': 'application/json', origin: `http://127.0.0.1:${PORT}` } });
   assert.equal(same.status, 200);
   assert.equal(same.json.ok, true);
-  assert.equal(same.json.result.protocol, 'troupe/1');
+  assert.equal(same.json.result.protocol, 'cross-harness/1');
 });
 
 test('gui: calls are whitelisted and errors keep their codes', async (t) => {
   const { handler } = await setup(t);
   const call = (body) => request(handler, { url: '/api/call', method: 'POST', body, headers: { ...auth, 'content-type': 'application/json' } });
   assert.equal((await call({ method: 'close' })).status, 400, 'engine methods outside the RPC list are refused');
-  assert.equal((await call({ method: 'constructor' })).json.error.code, 'TROUPE_METHOD_UNKNOWN');
+  assert.equal((await call({ method: 'constructor' })).json.error.code, 'CROSS_HARNESS_METHOD_UNKNOWN');
   const missing = await call({ method: 'stop', params: { agent: 'nobody' } });
   assert.equal(missing.json.ok, false);
-  assert.equal(missing.json.error.code, 'TROUPE_AGENT_NOT_FOUND');
+  assert.equal(missing.json.error.code, 'CROSS_HARNESS_AGENT_NOT_FOUND');
   assert.equal((await request(handler, { url: '/api/call', method: 'POST', body: 'not json', headers: { ...auth, 'content-type': 'application/json' } })).status, 400);
   assert.equal((await request(handler, { url: '/api/call', method: 'POST', body: '{}', headers: { ...auth, 'content-type': 'text/plain' } })).status, 415);
   const huge = await request(handler, { url: '/api/call', method: 'POST', body: 'x'.repeat(1024 * 1024 + 1), headers: { ...auth, 'content-type': 'application/json' } });
   assert.equal(huge.status, 413);
   // Only loopback addresses: the token travels in plain HTTP.
-  await assert.rejects(startGui({ client: null, host: '0.0.0.0' }), (error) => error.code === 'TROUPE_ARGUMENT_INVALID');
+  await assert.rejects(startGui({ client: null, host: '0.0.0.0' }), (error) => error.code === 'CROSS_HARNESS_ARGUMENT_INVALID');
 });
 
 test('gui: the star prompt is answered through the local server, never the engine', async (t) => {
@@ -136,7 +136,7 @@ test('gui: the star prompt is answered through the local server, never the engin
   assert.equal((await ask('launch')).json.result.due, false);
   const merged = await ask('merged');
   assert.equal(merged.json.result.due, true);
-  assert.equal(merged.json.result.url, 'https://github.com/AI-BizOS/troupe');
+  assert.equal(merged.json.result.url, 'https://github.com/AI-BizOS/cross-harness');
   const answer = (value, headers = { ...auth, 'content-type': 'application/json' }) => request(handler, { url: '/api/star', method: 'POST', body: { answer: value }, headers });
   assert.equal((await answer('maybe')).status, 400);
   assert.equal((await answer('never', auth)).status, 415);
@@ -175,14 +175,14 @@ test('gui: the event stream starts with a snapshot and follows the engine', asyn
 
 // ── the real page in headless Chrome ─────────────────────────────────────
 
-// Troupe does not depend on Playwright. To run this test, point TROUPE_PLAYWRIGHT at a
-// Playwright package's index.js; TROUPE_CHROME picks the browser binary (default:
-// Playwright's own Chromium) and TROUPE_SCREENSHOTS a directory for screenshots.
-const PLAYWRIGHT = process.env.TROUPE_PLAYWRIGHT || null;
-const CHROME = process.env.TROUPE_CHROME || null;
-const SHOTS = process.env.TROUPE_SCREENSHOTS || null;
+// cross-harness does not depend on Playwright. To run this test, point CROSS_HARNESS_PLAYWRIGHT at a
+// Playwright package's index.js; CROSS_HARNESS_CHROME picks the browser binary (default:
+// Playwright's own Chromium) and CROSS_HARNESS_SCREENSHOTS a directory for screenshots.
+const PLAYWRIGHT = process.env.CROSS_HARNESS_PLAYWRIGHT || null;
+const CHROME = process.env.CROSS_HARNESS_CHROME || null;
+const SHOTS = process.env.CROSS_HARNESS_SCREENSHOTS || null;
 
-test('gui: the page works end to end in a browser', { skip: !PLAYWRIGHT || !fs.existsSync(PLAYWRIGHT) ? 'set TROUPE_PLAYWRIGHT to run it' : false, timeout: 120_000 }, async (t) => {
+test('gui: the page works end to end in a browser', { skip: !PLAYWRIGHT || !fs.existsSync(PLAYWRIGHT) ? 'set CROSS_HARNESS_PLAYWRIGHT to run it' : false, timeout: 120_000 }, async (t) => {
   const { engine, handler, repo } = await setup(t);
   const { chromium } = (await import(pathToFileURL(PLAYWRIGHT).href)).default;
   const browser = await chromium.launch({ ...(CHROME ? { executablePath: CHROME } : {}), headless: true, args: ['--use-gl=angle', '--use-angle=swiftshader'] });

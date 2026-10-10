@@ -1,4 +1,4 @@
-// Records Troupe's real web UI. The page is served by the real request handler
+// Records cross-harness's real web UI. The page is served by the real request handler
 // (createGuiHandler) inside this process: Playwright routes the page's requests to
 // it and streams /api/events into the page, so no port is opened. A person's pointer
 // and keys drive the page; after every step the page is captured in the light and
@@ -22,9 +22,9 @@ const STREAM_EVENTS = () => {
     const encoder = new TextEncoder();
     let controller;
     const body = new ReadableStream({ start: (c) => (controller = c) });
-    window.__troupeEvent = (text) => controller.enqueue(encoder.encode(text));
+    window.__crossHarnessEvent = (text) => controller.enqueue(encoder.encode(text));
     const authorization = init?.headers?.Authorization || '';
-    return window.__troupeOpenEvents(authorization).then(() => new Response(body, { status: 200, headers: { 'Content-Type': 'text/event-stream' } }));
+    return window.__crossHarnessOpenEvents(authorization).then(() => new Response(body, { status: 200, headers: { 'Content-Type': 'text/event-stream' } }));
   };
 };
 
@@ -82,13 +82,13 @@ export async function recordWeb({ client, lang = 'en', playwright, chrome = null
 
   await page.addInitScript(STREAM_EVENTS);
   let events = Promise.resolve();
-  await page.exposeFunction('__troupeOpenEvents', (authorization) => {
+  await page.exposeFunction('__crossHarnessOpenEvents', (authorization) => {
     void exchange(handler, {
       method: 'GET',
       url: '/api/events',
       headers: { host: `127.0.0.1:${PORT}`, authorization },
       onWrite: (text) => {
-        events = events.then(() => page.evaluate((chunk) => window.__troupeEvent(chunk), text)).catch(() => {});
+        events = events.then(() => page.evaluate((chunk) => window.__crossHarnessEvent(chunk), text)).catch(() => {});
       },
     });
   });
@@ -116,7 +116,7 @@ export async function recordWeb({ client, lang = 'en', playwright, chrome = null
   // off around the second capture, inside one task, so nothing changes in between.
   const BOTH_THEMES = `(() => {
     const capture = ${captureScene.toString()};
-    let dark = document.getElementById('troupe-media-dark');
+    let dark = document.getElementById('cross-harness-media-dark');
     if (!dark) {
       let css = '';
       for (const sheet of document.styleSheets) {
@@ -125,7 +125,7 @@ export async function recordWeb({ client, lang = 'en', playwright, chrome = null
         }
       }
       dark = document.createElement('style');
-      dark.id = 'troupe-media-dark';
+      dark.id = 'cross-harness-media-dark';
       dark.textContent = css;
       document.head.append(dark);
     }

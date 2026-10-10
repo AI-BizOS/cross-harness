@@ -1,11 +1,12 @@
 {
-  "name": "@bizos-ai/troupe",
-  "version": "0.1.3",
+  "name": "@bizos-ai/cross-harness",
+  "version": "0.2.0",
   "description": "Run BizOS Code, Claude Code, Codex, OpenCode, Gemini CLI, Kimi and other coding agents side by side: one open cross-harness protocol, live sessions, agent-to-agent Q&A, approvals, isolated worktrees, goal gates and review-before-merge, in a TUI or a local web GUI.",
   "license": "Apache-2.0",
   "type": "module",
   "bin": {
-    "troupe": "bin/troupe.js"
+    "cross-harness": "bin/cross-harness.js",
+    "troupe": "bin/cross-harness.js"
   },
   "exports": {
     ".": "./src/index.js",
@@ -26,8 +27,8 @@
   },
   "scripts": {
     "test": "node --test --test-concurrency=4 test/*.test.js",
-    "start": "node bin/troupe.js",
-    "gui": "node bin/troupe.js gui",
+    "start": "node bin/cross-harness.js",
+    "gui": "node bin/cross-harness.js gui",
     "media": "node tools/media/record.js --lang en && node tools/media/record.js --lang zh && node tools/media/diagram.js"
   },
   "keywords": [
@@ -47,6 +48,6 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AI-BizOS/troupe.git"
+    "url": "git+https://github.com/AI-BizOS/cross-harness.git"
   }
 }

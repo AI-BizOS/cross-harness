@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // A stand-in for `claude -p --input-format stream-json --output-format stream-json
 // --permission-prompt-tool stdio`. Like Claude Code in its default permission mode it
-// asks before every edit, command and MCP tool, with absolute file paths; Troupe's
+// asks before every edit, command and MCP tool, with absolute file paths; cross-harness's
 // policy answers or asks the user.
 import { randomUUID } from 'node:crypto';
 import path from 'node:path';
@@ -18,7 +18,7 @@ const servers = flag('--mcp-config') ? JSON.parse(flag('--mcp-config')).mcpServe
 const controls = new Map();
 let messages = 0;
 
-send({ type: 'system', subtype: 'init', session_id: sessionId, cwd: process.cwd(), tools: ['Bash', 'Read', 'Edit', 'Write', 'mcp__troupe__troupe_ask_agent'] });
+send({ type: 'system', subtype: 'init', session_id: sessionId, cwd: process.cwd(), tools: ['Bash', 'Read', 'Edit', 'Write', 'mcp__cross_harness__cross_harness_ask_agent'] });
 
 const assistant = (content) => send({ type: 'assistant', message: { id: `msg-${++messages}`, role: 'assistant', content }, parent_tool_use_id: null, session_id: sessionId });
 const toolResult = (id, text, isError = false) => send({ type: 'user', message: { role: 'user', content: [{ type: 'tool_result', tool_use_id: id, content: text, is_error: isError }] }, session_id: sessionId });

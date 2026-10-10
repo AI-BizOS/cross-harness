@@ -1,7 +1,7 @@
 // Codex over `codex app-server`: newline-delimited JSON-RPC without the "jsonrpc"
 // member. One thread per agent, resumable by id; one turn per prompt; text can be
 // steered into a running turn; command and file-change approvals are answered by
-// Troupe. Method names follow `codex app-server generate-json-schema`.
+// cross-harness. Method names follow `codex app-server generate-json-schema`.
 import path from 'node:path';
 import { randomUUID } from 'node:crypto';
 import { CODES, fail } from '../protocol/errors.js';
@@ -10,7 +10,7 @@ import { spawnAgent, lifecycle, tail } from '../util/process.js';
 import { oneLine } from '../util/text.js';
 import { CLIENT_INFO, TEXT_INTERVAL_MS, assertMode, assertPrompt, normalizeMcpServers, safeEmitter, within } from './common.js';
 
-// plan runs read-only and Troupe declines every approval it is asked for.
+// plan runs read-only and cross-harness declines every approval it is asked for.
 const MODES = {
   full: { approvalPolicy: 'never', sandbox: 'workspace-write' },
   workspace: { approvalPolicy: 'on-request', sandbox: 'workspace-write' },
@@ -244,7 +244,7 @@ export function createCodexSession({ binary, args = [], env, cwd, label = 'Codex
 
   function onRequest(method, params, rpcId) {
     const kind = method === 'item/commandExecution/requestApproval' ? 'command' : method === 'item/fileChange/requestApproval' ? 'edit' : null;
-    if (!kind) throw fail(CODES.RPC_UNSUPPORTED, `Troupe does not provide ${method}`, { rpcCode: -32601 });
+    if (!kind) throw fail(CODES.RPC_UNSUPPORTED, `cross-harness does not provide ${method}`, { rpcCode: -32601 });
     const current = turn && (turn.id === null || turn.id === params.turnId) ? turn : null;
     if (!current || current.settled) return { decision: 'cancel' };
     const rawCommand = kind === 'command' ? params.command || current.commands.get(params.itemId)?.command : null;
@@ -304,7 +304,7 @@ export function createCodexSession({ binary, args = [], env, cwd, label = 'Codex
       await peer.request('initialize', { clientInfo: CLIENT_INFO, capabilities: null }, { timeoutMs: HANDSHAKE_MS });
       peer.notify('initialized');
       const settings = { cwd, ...MODES[permissionMode], ...(model ? { model } : {}) };
-      // Troupe keeps its own transcript, so history is not replayed on resume.
+      // cross-harness keeps its own transcript, so history is not replayed on resume.
       const resumed = sessionId
         ? await peer.request('thread/resume', { threadId: sessionId, ...settings, excludeTurns: true }, { timeoutMs: THREAD_MS }).catch((error) => {
             if (error.code === CODES.RPC_ERROR && UNKNOWN_THREAD.test(error.message)) return null;

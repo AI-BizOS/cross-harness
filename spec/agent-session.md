@@ -1,6 +1,6 @@
-# Agent session (`troupe/1`)
+# Agent session (`cross-harness/1`)
 
-An agent session is one live conversation with one harness process. Troupe talks to
+An agent session is one live conversation with one harness process. cross-harness talks to
 every harness through the same small interface; an *adapter* translates it to the
 harness's own protocol. This document defines that interface and the four adapters of
 the reference implementation.
@@ -12,14 +12,14 @@ The key words MUST, SHOULD and MAY are used as in RFC 2119.
 | Command | Result | Notes |
 | --- | --- | --- |
 | `start({sessionId?, model?, permissionMode, mcpServers, onEvent})` | `{sessionId, resumed}` | Starts the process and opens or resumes a session. A resume the harness no longer has MUST fall back to a new session with `resumed:false`; sign-in failures, timeouts and crashes MUST fail. |
-| `prompt(text, {signal?})` | `{text, stopReason, usage}` | Runs one turn and resolves with the final answer. One turn at a time per session: a second prompt while one runs fails with `TROUPE_BUSY`. Aborting `signal` cancels the turn; the promise rejects with `TROUPE_CANCELLED`. |
+| `prompt(text, {signal?})` | `{text, stopReason, usage}` | Runs one turn and resolves with the final answer. One turn at a time per session: a second prompt while one runs fails with `CROSS_HARNESS_BUSY`. Aborting `signal` cancels the turn; the promise rejects with `CROSS_HARNESS_CANCELLED`. |
 | `steer(text)` | `boolean` | Adds text to the running turn if the harness supports it (Codex); `false` means "queue it instead". |
 | `cancel()` | `boolean` | Asks the harness to stop the running turn. Pending approvals are answered `cancel`. |
 | `close()` | — | Ends the session and the process group (SIGTERM, then SIGKILL after a grace period). Never rejects. |
 
 `permissionMode` is one of `plan`, `ask`, `workspace`, `full` (see
 [orchestration.md](orchestration.md#approvals)). `mcpServers` lists stdio MCP servers
-the harness must start — Troupe passes its collaboration server here.
+the harness must start — cross-harness passes its collaboration server here.
 
 ## Events
 
@@ -44,7 +44,7 @@ control characters before displaying it.
 Used for OpenCode (`opencode acp`), Kimi Code (`kimi acp`), DeepSeek Harness, Gemini
 CLI, Qwen Code, Copilot CLI, Goose, Cursor Agent and any custom ACP agent.
 
-| Troupe | ACP |
+| cross-harness | ACP |
 | --- | --- |
 | `start` | `initialize {protocolVersion:1, clientCapabilities:{fs:{readTextFile:false,writeTextFile:false}, terminal:false}}`; then `session/load` (if `agentCapabilities.loadSession`) or `session/resume`, else `session/new {cwd, mcpServers}` |
 | model | `session/set_config_option` (category `model`) or `session/set_model` |
@@ -56,7 +56,7 @@ CLI, Qwen Code, Copilot CLI, Goose, Cursor Agent and any custom ACP agent.
 | `plan` | `plan` |
 | `usage` | `usage_update` and the prompt result's `usage` |
 | `approval` | request `session/request_permission`; `paths` come from the tool call's `locations`, its `diff` content and path-like `rawInput` fields; the reply selects the option whose `kind` matches (`allow_once`, `allow_always`, `reject_once`/`reject_always`) or `{outcome:"cancelled"}` |
-| errors | RPC error `-32000` → `TROUPE_AUTH_REQUIRED`; `stopReason:"refusal"` → `TROUPE_PROVIDER_FAILED` |
+| errors | RPC error `-32000` → `CROSS_HARNESS_AUTH_REQUIRED`; `stopReason:"refusal"` → `CROSS_HARNESS_PROVIDER_FAILED` |
 
 MCP servers are passed as `{name, command, args, env:[{name,value}]}` with an absolute
 `command`.
@@ -66,7 +66,7 @@ MCP servers are passed as `{name, command, args, env:[{name,value}]}` with an ab
 Newline-delimited JSON-RPC without the `"jsonrpc"` member. MCP servers become
 `-c mcp_servers.<name>.command=…` TOML overrides before the `app-server` argument.
 
-| Troupe | app-server |
+| cross-harness | app-server |
 | --- | --- |
 | `start` | `initialize {clientInfo}`, notification `initialized`, then `thread/resume {threadId, excludeTurns:true, …}` or `thread/start {cwd, approvalPolicy, sandbox, model?}`. "No rollout found" on resume falls back to a new thread. |
 | modes | full → `never` + `workspace-write`; workspace → `on-request` + `workspace-write`; ask and plan → `on-request` + `read-only` (plan: every approval is declined) |
@@ -84,7 +84,7 @@ Newline-delimited JSON-RPC without the `"jsonrpc"` member. MCP servers become
 --permission-prompt-tool stdio --permission-mode default|plan [--mcp-config JSON]
 [--model M] [--resume ID]`, kept alive across turns.
 
-| Troupe | stream-json |
+| cross-harness | stream-json |
 | --- | --- |
 | `prompt` | stdin line `{type:"user", message:{role:"user", content:[{type:"text"}]}}`; exactly one `result` line ends the turn |
 | `cancel` | `{type:"control_request", request:{subtype:"interrupt"}}` |
@@ -98,7 +98,7 @@ Newline-delimited JSON-RPC without the `"jsonrpc"` member. MCP servers become
 
 Harnesses without a session protocol run once per prompt with an argument template
 (`{prompt}`, `{model}`); stdout is the answer and a non-zero exit is
-`TROUPE_PROVIDER_FAILED`. They act without asking, so a provider definition MUST list
+`CROSS_HARNESS_PROVIDER_FAILED`. They act without asking, so a provider definition MUST list
 `modes: ["full"]` unless it maps the other modes to flags.
 
 ## Process rules
@@ -107,5 +107,5 @@ Harnesses without a session protocol run once per prompt with an argument templa
   started.
 - Adapters MUST NOT write anything to an agent's stdin except protocol messages, and MUST
   tolerate unknown message types and oversized lines (drop them, keep the session).
-- A crashed harness rejects the running prompt with `TROUPE_PROCESS_EXITED` and keeps
+- A crashed harness rejects the running prompt with `CROSS_HARNESS_PROCESS_EXITED` and keeps
   the last 8 KB of stderr for diagnosis.

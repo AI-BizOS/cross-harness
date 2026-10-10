@@ -1,4 +1,4 @@
-# Orchestration (`troupe/1`)
+# Orchestration (`cross-harness/1`)
 
 How a user addresses agents, how agents live and wait, who answers permission requests,
 how parallel work stays isolated and comes back, and how user interfaces talk to the
@@ -18,9 +18,9 @@ belong to that assignment. Unknown names and `@` signs inside sentences are plai
 | `@codex …` | The project's existing Codex agent if there is one (the idle one first), otherwise a new agent. |
 | `@codex+ …` | Always a new agent with a fresh session. |
 | `@all …` | Every agent on the project; if there are none, up to four available harnesses. |
-| `@auto …` | Troupe picks available harnesses by rank: two different ones when the text asks for a review, otherwise one. Idle agents are preferred to new ones. |
+| `@auto …` | cross-harness picks available harnesses by rank: two different ones when the text asks for a review, otherwise one. Idle agents are preferred to new ones. |
 | `@compare` / `@compare:claude` | After every target has answered, one agent (the named one, else a harness not among the targets) compares the answers. |
-| text without mentions | Sent to `to` (the agent selected in the interface); without `to` it fails with `TROUPE_NO_TARGET`. Text before the first mention line is prepended to every assignment. |
+| text without mentions | Sent to `to` (the agent selected in the interface); without `to` it fails with `CROSS_HARNESS_NO_TARGET`. Text before the first mention line is prepended to every assignment. |
 
 `send` returns `{dispatched:[{agentId, agent, provider, created, isolation, branch}],
 skipped:[{target, reason}]}`; a harness that is not installed, or that does not allow the
@@ -43,7 +43,7 @@ Names are lowercase (`^[a-z][a-z0-9_-]{0,31}$`), unique per project, and may not
 | `archived` | Retired; kept for history. |
 
 Flags shown next to the state: `needsYou` (approvals and questions waiting for the user),
-`waitingOn` (blocked in `troupe_ask_agent`), `waitingForSlot`, `checking` (goal check),
+`waitingOn` (blocked in `cross_harness_ask_agent`), `waitingForSlot`, `checking` (goal check),
 `queue` and `queuePaused`.
 
 - **Queue.** Messages to a busy agent wait in its queue. Codex sessions accept extra text
@@ -59,7 +59,7 @@ Flags shown next to the state: `needsYou` (approvals and questions waiting for t
 Each agent has a permission mode. Requests are decided in this order:
 
 1. reads and searches — allowed;
-2. Troupe's own collaboration tools, recognised by the tool name that starts the request
+2. cross-harness's own collaboration tools, recognised by the tool name that starts the request
    (never by text inside a command or its arguments) — allowed;
 3. `full` — allowed;
 4. `plan` — denied;
@@ -79,7 +79,7 @@ those are asked. Unanswered requests expire when the turn ends.
 
 Harnesses enforce their own sandboxes as well: Codex runs `read-only` or
 `workspace-write`; Claude Code runs in `default` or `plan` permission mode with every
-prompt routed to Troupe; ACP agents are switched to the closest mode they offer. A
+prompt routed to cross-harness; ACP agents are switched to the closest mode they offer. A
 harness running in its own "never ask" mode does not ask, so `full` should be given only
 to agents whose own sandbox you trust.
 
@@ -89,12 +89,12 @@ In a git repository each new agent (unless `isolation: "shared"`) gets its own w
 on its own branch:
 
 ```
-branch   troupe/<name>                (troupe/<name>-<id6> if that branch already exists)
-worktree <TROUPE_HOME>/worktrees/<project-id>/<name>-<id6>
+branch   cross-harness/<name>                (cross-harness/<name>-<id6> if that branch already exists)
+worktree <CROSS_HARNESS_HOME>/worktrees/<project-id>/<name>-<id6>
 base     the branch checked out when the agent was created
 ```
 
-Outside git, agents share the project directory and Troupe says so.
+Outside git, agents share the project directory and cross-harness says so.
 
 - **Diff** shows everything the agent changed since its branch left the base — commits,
   uncommitted edits and new files — computed with a private index so the agent's own index
@@ -104,27 +104,27 @@ Outside git, agents share the project directory and Troupe says so.
   with the verdict counts.
 - **Merge** commits pending work in the worktree, then runs `git merge --no-ff` into the
   branch checked out in the project. It refuses a project with uncommitted changes
-  (`TROUPE_MERGE_DIRTY`), aborts cleanly on conflict and lists the files
-  (`TROUPE_MERGE_CONFLICT`), and, when the agent works on a goal, requires the last goal
-  check to have passed on exactly the tree being merged (`TROUPE_GATE_FAILED`; a forced
+  (`CROSS_HARNESS_MERGE_DIRTY`), aborts cleanly on conflict and lists the files
+  (`CROSS_HARNESS_MERGE_CONFLICT`), and, when the agent works on a goal, requires the last goal
+  check to have passed on exactly the tree being merged (`CROSS_HARNESS_GATE_FAILED`; a forced
   merge is recorded). The branch is kept after merging.
 
 ## Client protocol
 
 User interfaces use one engine through `call(method, params)` and an event stream. The
-same protocol runs in-process, over stdio (`troupe serve --stdio`), over SSH
-(`ssh host troupe serve --stdio`) and, wrapped in HTTP, in the web UI.
+same protocol runs in-process, over stdio (`cross-harness serve --stdio`), over SSH
+(`ssh host cross-harness serve --stdio`) and, wrapped in HTTP, in the web UI.
 
 Over a byte stream it is newline-delimited JSON-RPC 2.0:
 
 ```
-→ {"jsonrpc":"2.0","id":1,"method":"initialize","params":{"client":"troupe"}}
-← {"jsonrpc":"2.0","id":1,"result":{"protocol":"troupe/1","version":"0.1.3","snapshot":{…}}}
+→ {"jsonrpc":"2.0","id":1,"method":"initialize","params":{"client":"cross-harness"}}
+← {"jsonrpc":"2.0","id":1,"result":{"protocol":"cross-harness/1","version":"0.1.3","snapshot":{…}}}
 → {"jsonrpc":"2.0","id":2,"method":"call","params":{"method":"send","params":{"text":"@codex hi"}}}
 ← {"jsonrpc":"2.0","method":"event","params":{"event":{"seq":42,"type":"agent.updated",…}}}
 ```
 
-Errors carry the Troupe code in `error.data.code`. Clients MUST refuse a different
+Errors carry the cross-harness code in `error.data.code`. Clients MUST refuse a different
 `protocol`.
 
 ### Methods
@@ -165,7 +165,7 @@ reflects; clients ignore events with a lower `seq`.
 Transcript roles: `user`, `assistant`, `question`, `feedback`, `review`, `compare`,
 `draft`, `system`, `error`, `gate`.
 
-Messages Troupe writes itself (system entries, notices, the requests it sends on your
+Messages cross-harness writes itself (system entries, notices, the requests it sends on your
 behalf) carry `params`, with `code` or `key` naming the message, so that interfaces can
 show them in their own language; `text` is the English form, for logs and for
 interfaces that do not know the message.
@@ -174,40 +174,40 @@ interfaces that do not know the message.
 
 | Code | Meaning |
 | --- | --- |
-| `TROUPE_START_FAILED` | The harness could not start or open a session. |
-| `TROUPE_PROCESS_EXITED` | The harness process exited. |
-| `TROUPE_CLOSED` | The session or connection was closed. |
-| `TROUPE_TIMEOUT` | A harness or remote engine did not answer in time. |
-| `TROUPE_CANCELLED` | The turn was stopped. |
-| `TROUPE_BUSY` | The agent or session is busy. |
-| `TROUPE_PROMPT_INVALID` | Empty or too long message. |
-| `TROUPE_SESSION_INVALID` / `TROUPE_SESSION_UNKNOWN` | Bad session id / the harness returned none. |
-| `TROUPE_AUTH_REQUIRED` | The harness needs a sign-in. |
-| `TROUPE_PROVIDER_FAILED` | The harness reported a failure. |
-| `TROUPE_PROVIDER_UNAVAILABLE` / `TROUPE_PROVIDER_UNKNOWN` | Not installed / no such harness. |
-| `TROUPE_VERSION_UNSUPPORTED` | Incompatible protocol version. |
-| `TROUPE_RPC_ERROR` / `TROUPE_RPC_UNSUPPORTED` | A JSON-RPC error / method not provided. |
-| `TROUPE_OUTPUT_INVALID` | The harness wrote something unreadable. |
-| `TROUPE_MCP_INVALID` | Invalid MCP server descriptor. |
-| `TROUPE_PERMISSION_INVALID` / `TROUPE_PLAN_DENIED` | Unknown mode / the harness cannot run in this mode. |
-| `TROUPE_AGENT_NOT_FOUND` / `TROUPE_AGENT_AMBIGUOUS` / `TROUPE_AGENT_EXISTS` | Agent lookup errors. |
-| `TROUPE_NAME_INVALID` | Invalid or reserved name. |
-| `TROUPE_NO_TARGET` | A message without mentions and no selected agent. |
-| `TROUPE_SLOT_LIMIT` | Reserved for slot limits. |
-| `TROUPE_COLLAB_INVALID` / `TROUPE_COLLAB_UNAVAILABLE` / `TROUPE_COLLAB_SELF` / `TROUPE_COLLAB_TARGET_HELD` | Collaboration request errors. |
-| `TROUPE_BOARD_KEY_INVALID` / `TROUPE_BOARD_FULL` | Board errors. |
-| `TROUPE_DECISION_LIMIT` / `TROUPE_DECISION_NOT_FOUND` | User-question errors. |
-| `TROUPE_APPROVAL_NOT_FOUND` / `TROUPE_APPROVAL_INVALID` | Approval errors. |
-| `TROUPE_NOT_GIT` / `TROUPE_WORKTREE_FAILED` | Git errors. |
-| `TROUPE_MERGE_DIRTY` / `TROUPE_MERGE_CONFLICT` / `TROUPE_MERGE_NOTHING` / `TROUPE_MERGE_FAILED` | Merge refused or failed (`files` lists paths). |
-| `TROUPE_GATE_FAILED` / `TROUPE_GATE_NOT_ARMED` | Goal gate errors. |
-| `TROUPE_GOAL_INVALID` / `TROUPE_GOAL_NOT_FOUND` | Goal errors. |
-| `TROUPE_LOCKED` | The project is open in another engine. |
-| `TROUPE_METHOD_UNKNOWN` / `TROUPE_ARGUMENT_INVALID` / `TROUPE_UNAUTHORIZED` | Client protocol errors. |
+| `CROSS_HARNESS_START_FAILED` | The harness could not start or open a session. |
+| `CROSS_HARNESS_PROCESS_EXITED` | The harness process exited. |
+| `CROSS_HARNESS_CLOSED` | The session or connection was closed. |
+| `CROSS_HARNESS_TIMEOUT` | A harness or remote engine did not answer in time. |
+| `CROSS_HARNESS_CANCELLED` | The turn was stopped. |
+| `CROSS_HARNESS_BUSY` | The agent or session is busy. |
+| `CROSS_HARNESS_PROMPT_INVALID` | Empty or too long message. |
+| `CROSS_HARNESS_SESSION_INVALID` / `CROSS_HARNESS_SESSION_UNKNOWN` | Bad session id / the harness returned none. |
+| `CROSS_HARNESS_AUTH_REQUIRED` | The harness needs a sign-in. |
+| `CROSS_HARNESS_PROVIDER_FAILED` | The harness reported a failure. |
+| `CROSS_HARNESS_PROVIDER_UNAVAILABLE` / `CROSS_HARNESS_PROVIDER_UNKNOWN` | Not installed / no such harness. |
+| `CROSS_HARNESS_VERSION_UNSUPPORTED` | Incompatible protocol version. |
+| `CROSS_HARNESS_RPC_ERROR` / `CROSS_HARNESS_RPC_UNSUPPORTED` | A JSON-RPC error / method not provided. |
+| `CROSS_HARNESS_OUTPUT_INVALID` | The harness wrote something unreadable. |
+| `CROSS_HARNESS_MCP_INVALID` | Invalid MCP server descriptor. |
+| `CROSS_HARNESS_PERMISSION_INVALID` / `CROSS_HARNESS_PLAN_DENIED` | Unknown mode / the harness cannot run in this mode. |
+| `CROSS_HARNESS_AGENT_NOT_FOUND` / `CROSS_HARNESS_AGENT_AMBIGUOUS` / `CROSS_HARNESS_AGENT_EXISTS` | Agent lookup errors. |
+| `CROSS_HARNESS_NAME_INVALID` | Invalid or reserved name. |
+| `CROSS_HARNESS_NO_TARGET` | A message without mentions and no selected agent. |
+| `CROSS_HARNESS_SLOT_LIMIT` | Reserved for slot limits. |
+| `CROSS_HARNESS_COLLAB_INVALID` / `CROSS_HARNESS_COLLAB_UNAVAILABLE` / `CROSS_HARNESS_COLLAB_SELF` / `CROSS_HARNESS_COLLAB_TARGET_HELD` | Collaboration request errors. |
+| `CROSS_HARNESS_BOARD_KEY_INVALID` / `CROSS_HARNESS_BOARD_FULL` | Board errors. |
+| `CROSS_HARNESS_DECISION_LIMIT` / `CROSS_HARNESS_DECISION_NOT_FOUND` | User-question errors. |
+| `CROSS_HARNESS_APPROVAL_NOT_FOUND` / `CROSS_HARNESS_APPROVAL_INVALID` | Approval errors. |
+| `CROSS_HARNESS_NOT_GIT` / `CROSS_HARNESS_WORKTREE_FAILED` | Git errors. |
+| `CROSS_HARNESS_MERGE_DIRTY` / `CROSS_HARNESS_MERGE_CONFLICT` / `CROSS_HARNESS_MERGE_NOTHING` / `CROSS_HARNESS_MERGE_FAILED` | Merge refused or failed (`files` lists paths). |
+| `CROSS_HARNESS_GATE_FAILED` / `CROSS_HARNESS_GATE_NOT_ARMED` | Goal gate errors. |
+| `CROSS_HARNESS_GOAL_INVALID` / `CROSS_HARNESS_GOAL_NOT_FOUND` | Goal errors. |
+| `CROSS_HARNESS_LOCKED` | The project is open in another engine. |
+| `CROSS_HARNESS_METHOD_UNKNOWN` / `CROSS_HARNESS_ARGUMENT_INVALID` / `CROSS_HARNESS_UNAUTHORIZED` | Client protocol errors. |
 
 ## State on disk
 
-`TROUPE_HOME` (default `~/.troupe`) holds `config.json`, `projects/<project-id>/` and
+`CROSS_HARNESS_HOME` (default `~/.cross-harness`) holds `config.json`, `projects/<project-id>/` and
 `worktrees/<project-id>/`. A project directory contains `agents.json`,
 `transcripts/<agent-id>.jsonl`, `board.json`, `decisions.json`, `goals/<goal-id>.json`,
 `events.jsonl` (an append-only audit log of dispatches, approvals, merges and gate

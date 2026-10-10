@@ -1,4 +1,4 @@
-<h1 align="center">Troupe</h1>
+<h1 align="center">cross-harness</h1>
 
 <p align="center">
   <b>Run BizOS CLI, Claude Code, Codex, Kimi Code, OpenCode, Gemini CLI and other coding agents side by side — as one team.</b>
@@ -9,12 +9,12 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/AI-BizOS/troupe"><img alt="GitHub stars" src="https://img.shields.io/github/stars/AI-BizOS/troupe?style=social"></a>
-  <a href="https://github.com/AI-BizOS/troupe/releases"><img alt="Release" src="https://img.shields.io/github/v/release/AI-BizOS/troupe?include_prereleases&label=release&color=2f81f7"></a>
+  <a href="https://github.com/AI-BizOS/cross-harness"><img alt="GitHub stars" src="https://img.shields.io/github/stars/AI-BizOS/cross-harness?style=social"></a>
+  <a href="https://github.com/AI-BizOS/cross-harness/releases"><img alt="Release" src="https://img.shields.io/github/v/release/AI-BizOS/cross-harness?include_prereleases&label=release&color=2f81f7"></a>
   <a href="LICENSE"><img alt="License: Apache-2.0" src="https://img.shields.io/badge/license-Apache--2.0-blue"></a>
   <img alt="Node.js 20.11 or newer" src="https://img.shields.io/badge/node-%E2%89%A5%2020.11-339933">
   <img alt="No runtime dependencies" src="https://img.shields.io/badge/runtime%20dependencies-0-success">
-  <a href="spec/README.md"><img alt="Protocol troupe/1" src="https://img.shields.io/badge/protocol-troupe%2F1-8957e5"></a>
+  <a href="spec/README.md"><img alt="Protocol cross-harness/1" src="https://img.shields.io/badge/protocol-cross-harness%2F1-8957e5"></a>
 </p>
 
 <p align="center">
@@ -29,92 +29,92 @@
 </p>
 
 <p align="center">
-  <img src="docs/media/hero.svg" alt="Troupe's terminal UI: one message starts BizOS CLI, Codex and Claude Code in parallel; you allow BizOS's test command once and for all, Codex asks BizOS a question, and each agent finishes on its own branch.">
+  <img src="docs/media/hero.svg" alt="cross-harness's terminal UI: one message starts BizOS CLI, Codex and Claude Code in parallel; you allow BizOS's test command once and for all, Codex asks BizOS a question, and each agent finishes on its own branch.">
 </p>
 
 <p align="center"><sub>
-  Recorded from Troupe's real terminal UI. The agents are scripted stand-ins that speak the BizOS CLI (<code>bizos acp</code>), Codex and Claude Code protocols, so the recording can be repeated:
+  Recorded from cross-harness's real terminal UI. The agents are scripted stand-ins that speak the BizOS CLI (<code>bizos acp</code>), Codex and Claude Code protocols, so the recording can be repeated:
   what they say is scripted, while the engine, the worktrees, the test runs, the approval and the question passed from one agent to another are real.
   <a href="tools/media">How the recordings are made</a>.
 </sub></p>
 
-## Why Troupe
+## Why cross-harness
 
 Every coding agent comes with its own terminal, its own permission prompts and its own idea of the repository. Use two at once and you are copying answers between windows, approving the same command twice and untangling edits made to the same files.
 
-Troupe puts them on one stage. It starts each agent through the protocol its vendor ships, so it sees every command, edit, plan step and permission request as data. You address agents with `@mentions`, they can ask each other questions through Troupe, everything they want to do waits in one queue for you, each works on its own git branch, and nothing is merged until a check you trust — a command Troupe runs itself, or a review by a different agent — has passed.
+cross-harness puts them on one stage. It starts each agent through the protocol its vendor ships, so it sees every command, edit, plan step and permission request as data. You address agents with `@mentions`, they can ask each other questions through cross-harness, everything they want to do waits in one queue for you, each works on its own git branch, and nothing is merged until a check you trust — a command cross-harness runs itself, or a review by a different agent — has passed.
 
-Troupe is the open cross-harness protocol from the team behind the BizOS CLI, with this reference implementation: a terminal UI, a local web UI and a command for scripts, in plain Node.js with no dependencies. The BizOS CLI is built in: type `@bizos` and it works next to Claude Code, Codex and the rest.
+cross-harness is the open cross-harness protocol from the team behind the BizOS CLI, with this reference implementation: a terminal UI, a local web UI and a command for scripts, in plain Node.js with no dependencies. The BizOS CLI is built in: type `@bizos` and it works next to Claude Code, Codex and the rest.
 
 > [!TIP]
-> **BizOS CLI, built in.** The BizOS CLI, [BizOS Code](https://code.bizos-ai.com/en/), is the BizOS team's coding agent for the terminal: one terminal, every coding agent, orchestrated. It turns one request into a dependency-aware workflow and hands each step to a native BizOS agent or a coding CLI already on your computer — Claude Code, Codex, Kimi Code, DeepSeek and more. Independent steps run in parallel, writers take turns with the workspace, and every result comes back to one conversation. Install it from [code.bizos-ai.com](https://code.bizos-ai.com/en/); in Troupe it is `@bizos` ([setup](#bizos-cli)).
+> **BizOS CLI, built in.** The BizOS CLI, [BizOS Code](https://code.bizos-ai.com/en/), is the BizOS team's coding agent for the terminal: one terminal, every coding agent, orchestrated. It turns one request into a dependency-aware workflow and hands each step to a native BizOS agent or a coding CLI already on your computer — Claude Code, Codex, Kimi Code, DeepSeek and more. Independent steps run in parallel, writers take turns with the workspace, and every result comes back to one conversation. Install it from [code.bizos-ai.com](https://code.bizos-ai.com/en/); in cross-harness it is `@bizos` ([setup](#bizos-cli)).
 
-⭐ **If Troupe saves you time, please [star it on GitHub](https://github.com/AI-BizOS/troupe)** — stars help other developers find it and keep the BizOS team going.
+⭐ **If cross-harness saves you time, please [star it on GitHub](https://github.com/AI-BizOS/cross-harness)** — stars help other developers find it and keep the BizOS team going.
 
 ## What it does
 
 - **One message, many agents.** `@codex @claude review src/` starts both at once; one line per agent gives each its own task. `@all`, `@auto` and `@compare:claude` cover the rest.
-- **Real sessions, not screen scraping.** Each agent runs through its vendor's own protocol — ACP, `codex app-server` or Claude Code's stream-json — so Troupe sees every command, edit, plan step and permission request as data.
+- **Real sessions, not screen scraping.** Each agent runs through its vendor's own protocol — ACP, `codex app-server` or Claude Code's stream-json — so cross-harness sees every command, edit, plan step and permission request as data.
 - **Agents talk to each other.** Every agent gets tools to ask another agent (with deadlock detection), ask you for a decision, share a project board and post its status. They work inside agent sandboxes because they go through files, not sockets.
 - **You approve in one place.** Permission requests from all agents land in one queue. Choose allow once, always allow for this agent, or deny. Plan, ask, workspace and full modes decide what is automatic.
 - **Isolated by default.** In git repositories each agent works in its own worktree on its own branch, so parallel agents never step on each other.
 - **Review, then merge.** See an agent's diff, have a *different* agent review it, then merge with `--no-ff`. Dirty projects and conflicts are refused cleanly.
-- **Goals with evidence.** Write down what "done" means: commands Troupe runs, reviews by another agent, confirmations by you. Troupe checks the work itself, sends failures back to the agent, and holds merges until the checks pass on the exact tree being merged.
-- **Anywhere.** A terminal UI, a local web UI, `troupe run` for scripts and CI, and `--ssh host` to run every agent on another machine.
+- **Goals with evidence.** Write down what "done" means: commands cross-harness runs, reviews by another agent, confirmations by you. cross-harness checks the work itself, sends failures back to the agent, and holds merges until the checks pass on the exact tree being merged.
+- **Anywhere.** A terminal UI, a local web UI, `cross-harness run` for scripts and CI, and `--ssh host` to run every agent on another machine.
 
 ## Review by another agent, then merge
 
-Press `d` to see what an agent changed on its branch and `m` to merge it. Troupe first asks a different agent to review the diff — here Codex reviews the BizOS CLI's fix — and merges with `--no-ff` only when you confirm.
+Press `d` to see what an agent changed on its branch and `m` to merge it. cross-harness first asks a different agent to review the diff — here Codex reviews the BizOS CLI's fix — and merges with `--no-ff` only when you confirm.
 
 <p align="center">
-  <img src="docs/media/review-merge.svg" alt="Troupe's terminal UI: the diff of the BizOS CLI's branch, a review by Codex that ends in PASS, and the merge into main.">
+  <img src="docs/media/review-merge.svg" alt="cross-harness's terminal UI: the diff of the BizOS CLI's branch, a review by Codex that ends in PASS, and the merge into main.">
 </p>
 
 ## The same, in your browser
 
-`troupe gui` serves the same engine on `127.0.0.1`: the agents and their live work, approval cards with one-click answers, diffs, reviews and merges, goals and the project board. It follows your light or dark theme and works in a phone-sized window.
+`cross-harness gui` serves the same engine on `127.0.0.1`: the agents and their live work, approval cards with one-click answers, diffs, reviews and merges, goals and the project board. It follows your light or dark theme and works in a phone-sized window.
 
 <p align="center">
-  <img src="docs/media/web.svg" alt="Troupe's web UI: the same message sent from the browser, an approval card for the BizOS CLI's test command, then a review by another agent and the merge.">
+  <img src="docs/media/web.svg" alt="cross-harness's web UI: the same message sent from the browser, an approval card for the BizOS CLI's test command, then a review by another agent and the merge.">
 </p>
 
-<p align="center"><sub>Recorded from the real web UI in Chrome, served by Troupe's own request handler. This image follows your system's light or dark theme.</sub></p>
+<p align="center"><sub>Recorded from the real web UI in Chrome, served by cross-harness's own request handler. This image follows your system's light or dark theme.</sub></p>
 
 ## How it works
 
 <p align="center">
-  <img src="docs/media/how-it-works.svg" alt="Your interfaces (terminal UI, web UI, troupe run, SSH) talk to one Troupe engine per project. The engine reaches each agent through the protocol its vendor ships: stream-json for Claude Code, app-server for Codex, ACP for Kimi Code, OpenCode, Gemini CLI and others, one-shot for the rest. Agents call Troupe's tools through a file mailbox.">
+  <img src="docs/media/how-it-works.svg" alt="Your interfaces (terminal UI, web UI, cross-harness run, SSH) talk to one cross-harness engine per project. The engine reaches each agent through the protocol its vendor ships: stream-json for Claude Code, app-server for Codex, ACP for Kimi Code, OpenCode, Gemini CLI and others, one-shot for the rest. Agents call cross-harness's tools through a file mailbox.">
 </p>
 
-One engine serves one project. Every interface talks to it through the same small client protocol, in the same process, over stdio or over SSH. Every agent is reached through the session protocol its vendor ships, normalised into the same seven events; agents reach Troupe back through an MCP server (`troupe mcp`) that carries their tool calls as files, so it works inside their sandboxes. The protocol is specified in [spec/](spec/README.md) and the implementation is described in [docs/architecture.md](docs/architecture.md).
+One engine serves one project. Every interface talks to it through the same small client protocol, in the same process, over stdio or over SSH. Every agent is reached through the session protocol its vendor ships, normalised into the same seven events; agents reach cross-harness back through an MCP server (`cross-harness mcp`) that carries their tool calls as files, so it works inside their sandboxes. The protocol is specified in [spec/](spec/README.md) and the implementation is described in [docs/architecture.md](docs/architecture.md).
 
 ## Install
 
 Requirements: Node.js 20.11 or newer, git, and at least one coding agent installed and signed in (for example `claude`, `codex`, `opencode`, `kimi`).
 
-Install the 0.1.3 preview from its release:
+Install the 0.2.0 preview from its release:
 
 ```sh
-npm install -g https://github.com/AI-BizOS/troupe/releases/download/v0.1.3/bizos-ai-troupe-0.1.3.tgz
-troupe detect           # shows which agents Troupe found
+npm install -g https://github.com/AI-BizOS/cross-harness/releases/download/v0.2.0/bizos-ai-cross-harness-0.2.0.tgz
+cross-harness detect           # shows which agents cross-harness found
 ```
 
 Or from source:
 
 ```sh
-git clone https://github.com/AI-BizOS/troupe.git
-cd troupe
-npm install -g .        # installs the `troupe` command; there are no dependencies
+git clone https://github.com/AI-BizOS/cross-harness.git
+cd cross-harness
+npm install -g .        # installs the `cross-harness` command; there are no dependencies
 ```
 
-Update with `troupe update` (`--check` only reports a newer release); a source checkout is updated with `git pull`. The terminal UI and the web UI also mention a newer release, after checking GitHub at most once a day. The [user guide](docs/guide/README.md) covers installing, everyday use and troubleshooting step by step.
+Update with `cross-harness update` (`--check` only reports a newer release); a source checkout is updated with `git pull`. The terminal UI and the web UI also mention a newer release, after checking GitHub at most once a day. The [user guide](docs/guide/README.md) covers installing, everyday use and troubleshooting step by step.
 
 ## Quick start
 
 ```sh
 cd your-project
-troupe                  # terminal UI
-troupe gui              # or: web UI in your browser
+cross-harness                  # terminal UI
+cross-harness gui              # or: web UI in your browser
 ```
 
 Then type a message that starts with the agents you want:
@@ -137,7 +137,7 @@ Mentions count only at the start of a line.
 | `@backend …` | an agent you named |
 | `@codex+ …` | a new Codex agent with a fresh session |
 | `@all …` | every agent on the project |
-| `@auto …` | Troupe picks: two different agents for a review, one otherwise |
+| `@auto …` | cross-harness picks: two different agents for a review, one otherwise |
 | `@codex @kimi @compare:claude which is faster?` | Claude compares both answers once they are in |
 | no mention | goes to the selected agent |
 
@@ -162,13 +162,13 @@ Chinese and other wide characters are measured correctly; `NO_COLOR` is respecte
 
 ## Web UI
 
-`troupe gui` serves the same features on `127.0.0.1` and opens your browser. The address carries a random token in its fragment; requests without it, from another origin, or with an unexpected `Host` header are refused. It works on a phone-sized window and follows the system's light or dark theme.
+`cross-harness gui` serves the same features on `127.0.0.1` and opens your browser. The address carries a random token in its fragment; requests without it, from another origin, or with an unexpected `Host` header are refused. It works on a phone-sized window and follows the system's light or dark theme.
 
 ## Scripts and CI
 
 ```sh
-troupe run "@codex @claude review the last commit" --json
-troupe run "@codex fix the lint errors" --yes --timeout 900
+cross-harness run "@codex @claude review the last commit" --json
+cross-harness run "@codex fix the lint errors" --yes --timeout 900
 ```
 
 `run` sends the message, waits until every agent it reached is idle, and prints the answers. It never waits for a person: requests a mode would ask about are denied unless you pass `--yes`.
@@ -176,11 +176,11 @@ troupe run "@codex fix the lint errors" --yes --timeout 900
 ## Other machines
 
 ```sh
-troupe --ssh dev@buildbox --cwd src/shop-api
-troupe gui --ssh dev@buildbox --cwd src/shop-api
+cross-harness --ssh dev@buildbox --cwd src/shop-api
+cross-harness gui --ssh dev@buildbox --cwd src/shop-api
 ```
 
-The interface stays local; the engine, the agents and the worktrees run on the remote host (which needs Troupe installed). A relative `--cwd` starts from your home directory there. The connection is the plain `ssh` command in batch mode: your SSH config, keys, agent and jump hosts apply, password prompts do not, so use key-based login.
+The interface stays local; the engine, the agents and the worktrees run on the remote host (which needs cross-harness installed). A relative `--cwd` starts from your home directory there. The connection is the plain `ssh` command in batch mode: your SSH config, keys, agent and jump hosts apply, password prompts do not, so use key-based login.
 
 ## Goals
 
@@ -198,19 +198,19 @@ A goal is a short document: the outcome, acceptance criteria, boundaries, open q
 }
 ```
 
-Before it can start, the goal needs an independent check (a command or a review by another agent), answers to its open questions, and your approval of that exact revision. While it runs, Troupe checks the agent's worktree after every turn and sends failures back, up to `maxIterations`. A merge waits until the checks pass on the tree being merged. Press `g` in the terminal UI (or open Goals in the web UI) to write, draft with an agent, approve, start and check goals.
+Before it can start, the goal needs an independent check (a command or a review by another agent), answers to its open questions, and your approval of that exact revision. While it runs, cross-harness checks the agent's worktree after every turn and sends failures back, up to `maxIterations`. A merge waits until the checks pass on the tree being merged. Press `g` in the terminal UI (or open Goals in the web UI) to write, draft with an agent, approve, start and check goals.
 
 ## What agents get
 
 | Tool | Purpose |
 | --- | --- |
-| `troupe_list_agents` | who else is working and on what |
-| `troupe_ask_agent` | ask another agent and wait for its answer |
-| `troupe_check_answers` | collect answers that arrived later |
-| `troupe_ask_user` | ask you to decide, optionally with choices |
-| `troupe_board_read` / `troupe_board_write` | shared plans, interface contracts, file ownership |
-| `troupe_report_progress` | a one-line status |
-| `troupe_goal_status` | its goal and the latest check results |
+| `cross_harness_list_agents` | who else is working and on what |
+| `cross_harness_ask_agent` | ask another agent and wait for its answer |
+| `cross_harness_check_answers` | collect answers that arrived later |
+| `cross_harness_ask_user` | ask you to decide, optionally with choices |
+| `cross_harness_board_read` / `cross_harness_board_write` | shared plans, interface contracts, file ownership |
+| `cross_harness_report_progress` | a one-line status |
+| `cross_harness_goal_status` | its goal and the latest check results |
 
 ## Supported agents
 
@@ -232,19 +232,19 @@ Before it can start, the goal needs an independent check (a command or a review 
 
 All 13 built-in integrations have passed end-to-end checks with real agent installations. Windows workflows have also passed end-to-end checks. The deterministic automated suite uses mock agents to exercise protocol and engine behavior separately from those real-agent checks. See [docs/providers.md](docs/providers.md).
 
-`troupe detect` finds an agent on your `PATH`, in its installer's own folder (Kimi Code's `~/.kimi-code/bin`), or where npm, nvm, pnpm, volta, bun, Homebrew and other managers put commands, and it runs DeepSeek Harness from its desktop app when no `dsh` command is registered. If an agent you installed is missing, see [the guide](docs/guide/agents.md#when-an-agent-is-not-found).
+`cross-harness detect` finds an agent on your `PATH`, in its installer's own folder (Kimi Code's `~/.kimi-code/bin`), or where npm, nvm, pnpm, volta, bun, Homebrew and other managers put commands, and it runs DeepSeek Harness from its desktop app when no `dsh` command is registered. If an agent you installed is missing, see [the guide](docs/guide/agents.md#when-an-agent-is-not-found).
 
 ## BizOS CLI
 
-The BizOS CLI, [BizOS Code](https://code.bizos-ai.com/en/), is built in as `@bizos`. Troupe starts it in its Agent Client Protocol mode (`bizos acp`), so it takes tasks, asks and answers other agents, and goes through the same approvals, reviews and goal checks as every other agent, while the runner behind it stays closed source.
+The BizOS CLI, [BizOS Code](https://code.bizos-ai.com/en/), is built in as `@bizos`. cross-harness starts it in its Agent Client Protocol mode (`bizos acp`), so it takes tasks, asks and answers other agents, and goes through the same approvals, reviews and goal checks as every other agent, while the runner behind it stays closed source.
 
 ```sh
 curl -fsSL https://bizos-ai.com/code/install.sh | sh    # Windows: irm https://bizos-ai.com/code/install.ps1 | iex
 bizos login
-mkdir -p ~/.troupe/worktrees && bizos sandbox grant-write ~/.troupe/worktrees
+mkdir -p ~/.cross-harness/worktrees && bizos sandbox grant-write ~/.cross-harness/worktrees
 ```
 
-BizOS Code runs its agent in an operating-system sandbox that reads and writes only where you allowed it. The last line, run once while BizOS Code is idle, lets it work in the worktrees Troupe gives it and reach the other agents through its mailbox, which Troupe keeps in the same directory; Troupe's own configuration, goals and transcripts stay outside. With `--shared`, also grant the project directory. If Troupe runs from a source checkout instead of an installed package, let BizOS Code read the checkout too (`bizos sandbox grant-read <dir>`), so it can start Troupe's collaboration tools.
+BizOS Code runs its agent in an operating-system sandbox that reads and writes only where you allowed it. The last line, run once while BizOS Code is idle, lets it work in the worktrees cross-harness gives it and reach the other agents through its mailbox, which cross-harness keeps in the same directory; cross-harness's own configuration, goals and transcripts stay outside. With `--shared`, also grant the project directory. If cross-harness runs from a source checkout instead of an installed package, let BizOS Code read the checkout too (`bizos sandbox grant-read <dir>`), so it can start cross-harness's collaboration tools.
 
 ```
 @bizos fix the failing test in src/parser
@@ -253,7 +253,7 @@ BizOS Code runs its agent in an operating-system sandbox that reads and writes o
 
 ## Bring your own runner
 
-Any other closed-source agent runtime can join the same way without publishing its code. Make it speak a session protocol — the [Agent Client Protocol](https://agentclientprotocol.com) is the simplest — and register it in `~/.troupe/config.json`:
+Any other closed-source agent runtime can join the same way without publishing its code. Make it speak a session protocol — the [Agent Client Protocol](https://agentclientprotocol.com) is the simplest — and register it in `~/.cross-harness/config.json`:
 
 ```json
 {
@@ -267,7 +267,7 @@ Any other closed-source agent runtime can join the same way without publishing i
 
 ## Configuration
 
-`~/.troupe/config.json` (or `$TROUPE_HOME/config.json`):
+`~/.cross-harness/config.json` (or `$CROSS_HARNESS_HOME/config.json`):
 
 ```json
 {
@@ -277,16 +277,16 @@ Any other closed-source agent runtime can join the same way without publishing i
 }
 ```
 
-Only this user-level file can name commands to run. A repository cannot make Troupe execute anything by itself; goal checks run only after you approve the goal.
+Only this user-level file can name commands to run. A repository cannot make cross-harness execute anything by itself; goal checks run only after you approve the goal.
 
-Once, after your first merge or the third time you open it, the terminal UI or the web UI asks whether you would like to star Troupe on GitHub; it opens the page only if you choose to and sends nothing. "Later" asks again in two weeks; "Star on GitHub" and "Don't ask again" are final. `"starPrompt": false` in this file, or `TROUPE_NO_STAR_PROMPT=1`, turns it off; `troupe run` and CI never ask.
+Once, after your first merge or the third time you open it, the terminal UI or the web UI asks whether you would like to star cross-harness on GitHub; it opens the page only if you choose to and sends nothing. "Later" asks again in two weeks; "Star on GitHub" and "Don't ask again" are final. `"starPrompt": false` in this file, or `CROSS_HARNESS_NO_STAR_PROMPT=1`, turns it off; `cross-harness run` and CI never ask.
 
-At most once a day, the terminal UI and the web UI read this repository's release tags (`git ls-remote`, so git's proxy settings apply) and mention a newer release. `"updateCheck": false`, or `TROUPE_NO_UPDATE_CHECK=1`, turns that off; `troupe run` and CI never check.
+At most once a day, the terminal UI and the web UI read this repository's release tags (`git ls-remote`, so git's proxy settings apply) and mention a newer release. `"updateCheck": false`, or `CROSS_HARNESS_NO_UPDATE_CHECK=1`, turns that off; `cross-harness run` and CI never check.
 
 ## Security model
 
-- Agents run as you, with your credentials; Troupe adds no privileges. Use the permission modes and each harness's own sandbox to limit them.
-- The only network request Troupe makes by itself is the daily release check above, which reads public tags and sends nothing about you or your projects.
+- Agents run as you, with your credentials; cross-harness adds no privileges. Use the permission modes and each harness's own sandbox to limit them.
+- The only network request cross-harness makes by itself is the daily release check above, which reads public tags and sends nothing about you or your projects.
 - In workspace mode an agent's edits are automatic only inside its own worktree; edits anywhere else, or inside `.git`, are asked. "Always allow" for a command covers that command, never one chained, piped or redirected after it.
 - Output from agents is treated as untrusted text: terminal escape sequences are stripped and the web UI never inserts it as HTML.
 - The web UI listens only on this machine (127.0.0.1 unless you choose `::1` or `localhost`), requires a random token, checks `Host` and `Origin`, and sends a strict Content-Security-Policy.
@@ -295,7 +295,7 @@ At most once a day, the terminal UI and the web UI read this repository's releas
 
 ## Limitations
 
-- Troupe drives agents through their protocols. Agents without one run one-shot (no live session, no approvals, no collaboration tools).
+- cross-harness drives agents through their protocols. Agents without one run one-shot (no live session, no approvals, no collaboration tools).
 - The built-in integrations are end-to-end tested. New custom definitions or changed commands still need their own checks; vendor updates may require argument adjustments.
 - Windows workflows have passed end-to-end checks. The selected agents must still be installed and signed in on that machine.
 - There is no built-in editor, terminal, pull-request integration or usage billing.
@@ -306,4 +306,4 @@ At most once a day, the terminal UI and the web UI read this repository's releas
 npm test        # node --test; every harness protocol is exercised with mock agents
 ```
 
-The browser test also runs when `TROUPE_PLAYWRIGHT` points at a Playwright installation. The animations in this README are recorded from the real interfaces by `npm run media` ([tools/media](tools/media)). See [CONTRIBUTING.md](CONTRIBUTING.md). Licensed under the [Apache License 2.0](LICENSE).
+The browser test also runs when `CROSS_HARNESS_PLAYWRIGHT` points at a Playwright installation. The animations in this README are recorded from the real interfaces by `npm run media` ([tools/media](tools/media)). See [CONTRIBUTING.md](CONTRIBUTING.md). Licensed under the [Apache License 2.0](LICENSE).

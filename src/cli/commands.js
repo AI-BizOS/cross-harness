@@ -1,4 +1,4 @@
-// troupe subcommands. Everything that needs a project goes through an engine client,
+// cross-harness subcommands. Everything that needs a project goes through an engine client,
 // local or remote, so the same command works on this machine and over SSH.
 import fs from 'node:fs';
 import os from 'node:os';
@@ -7,7 +7,7 @@ import { spawnSync } from 'node:child_process';
 import { Engine, VERSION } from '../engine/engine.js';
 import { connectRemote, localClient, serveEngine, sshCommand } from '../engine/rpc.js';
 import { PERMISSION_MODES, PROTOCOL_VERSION } from '../protocol/index.js';
-import { loadConfig, troupeHome } from '../config.js';
+import { loadConfig, crossHarnessHome } from '../config.js';
 import { starPromptFor } from '../star.js';
 import { compareVersions, installKind, latestRelease, PACKAGE_ROOT, releaseUrl, updateCheckFor } from '../update.js';
 import { openUrl } from '../util/open.js';
@@ -18,30 +18,30 @@ import { parseArgs } from './args.js';
 
 const COMMON = { boolean: ['help', 'version', 'shared', 'json', 'refresh', 'no-open', 'stdio', 'yes', 'force', 'check'], string: ['cwd', 'ssh', 'mode', 'lang', 'port', 'timeout', 'remote-command', 'host'], alias: { h: 'help', v: 'version', C: 'cwd' } };
 
-export const HELP = `Troupe ${VERSION} — run coding agents side by side (${PROTOCOL_VERSION})
+export const HELP = `cross-harness ${VERSION} — run coding agents side by side (${PROTOCOL_VERSION})
 
 Usage
-  troupe [dir]                    open the terminal UI for a project (default: here)
-  troupe gui [dir]                open the web UI in your browser
-  troupe run "<message>" [dir]    send a message, wait for the answers, print them
-  troupe agents [dir]             list the agents on a project
-  troupe detect                   list the coding agents installed on this machine
-  troupe update [--check]         install the newest Troupe release (--check: only report it)
-  troupe serve --stdio [dir]      serve a project over stdio (used for --ssh)
-  troupe mcp                      collaboration tools (started by agents, not by you)
+  cross-harness [dir]                    open the terminal UI for a project (default: here)
+  cross-harness gui [dir]                open the web UI in your browser
+  cross-harness run "<message>" [dir]    send a message, wait for the answers, print them
+  cross-harness agents [dir]             list the agents on a project
+  cross-harness detect                   list the coding agents installed on this machine
+  cross-harness update [--check]         install the newest cross-harness release (--check: only report it)
+  cross-harness serve --stdio [dir]      serve a project over stdio (used for --ssh)
+  cross-harness mcp                      collaboration tools (started by agents, not by you)
 
 Messages
   @codex @claude review src/      several agents, one task, started together
   @codex fix the test             one line per agent: each does its own line
   @codex+ ...                     a fresh session instead of resuming
-  @all / @auto / @compare:claude  every agent / let Troupe pick / compare the answers
+  @all / @auto / @compare:claude  every agent / let cross-harness pick / compare the answers
 
 Options
   --cwd <dir>        project directory
-  --ssh <host>       run the agents on another machine (needs troupe installed there;
+  --ssh <host>       run the agents on another machine (needs cross-harness installed there;
                      a relative --cwd starts from your home directory on that host)
   --remote-command <cmd>
-                     with --ssh: how to start troupe there (default: troupe)
+                     with --ssh: how to start cross-harness there (default: cross-harness)
   --mode <mode>      permission mode for new agents: plan, ask, workspace (default), full
   --shared           new agents work in the project directory instead of worktrees
   --lang <en|zh>     interface language
@@ -52,12 +52,12 @@ Options
   --yes              run: allow everything agents ask for (same as --mode full)
   --timeout <sec>    run: give up after this many seconds (default 3600)
   --force            open a project whose lock names a live process (only if that
-                     process is not a troupe using this project)
+                     process is not a cross-harness using this project)
 `;
 
 function projectDir(flags, positionals) {
   const given = flags.cwd || positionals[0] || process.cwd();
-  // A quoted '~/src/app' reaches `troupe serve` on an SSH host unexpanded.
+  // A quoted '~/src/app' reaches `cross-harness serve` on an SSH host unexpanded.
   const dir = path.resolve(given === '~' || given.startsWith('~/') ? path.join(os.homedir(), given.slice(1)) : given);
   if (!fs.existsSync(dir) || !fs.statSync(dir).isDirectory()) throw new Error(`${dir} is not a directory`);
   return dir;
@@ -78,8 +78,8 @@ function configWithFlags(flags) {
 export async function openClient(flags, positionals) {
   if (flags.ssh) {
     const remoteCwd = flags.cwd || positionals[0] || null;
-    const { command, args } = sshCommand(flags.ssh, { cwd: remoteCwd, remoteCommand: flags['remote-command'] || 'troupe' });
-    return connectRemote({ command, args, label: `troupe on ${flags.ssh}` });
+    const { command, args } = sshCommand(flags.ssh, { cwd: remoteCwd, remoteCommand: flags['remote-command'] || 'cross-harness' });
+    return connectRemote({ command, args, label: `cross-harness on ${flags.ssh}` });
   }
   const engine = new Engine({ root: projectDir(flags, positionals), config: configWithFlags(flags) });
   await engine.open({ force: Boolean(flags.force) });
@@ -100,7 +100,7 @@ export async function run(argv) {
   const { flags, positionals } = parsed;
   setLang(pickLang(flags.lang || loadConfig().lang));
   if (flags.version || sub === 'version') {
-    process.stdout.write(`troupe ${VERSION} (${PROTOCOL_VERSION})\n`);
+    process.stdout.write(`cross-harness ${VERSION} (${PROTOCOL_VERSION})\n`);
     return 0;
   }
   if (flags.help || sub === 'help') {
@@ -127,7 +127,7 @@ export async function run(argv) {
 
 async function serve(flags, positionals) {
   if (!flags.stdio) {
-    process.stderr.write('troupe serve needs --stdio (the protocol runs over standard input and output)\n');
+    process.stderr.write('cross-harness serve needs --stdio (the protocol runs over standard input and output)\n');
     return 2;
   }
   const engine = new Engine({ root: projectDir(flags, positionals), config: configWithFlags(flags) });
@@ -174,7 +174,7 @@ async function update(flags) {
   }
   const command = `npm install -g ${releaseUrl(latest)}`;
   process.stdout.write(`${t('update.installing', { command })}\n`);
-  // npm is a .cmd on Windows; the command line holds only a release URL Troupe built.
+  // npm is a .cmd on Windows; the command line holds only a release URL cross-harness built.
   const result = spawnSync('npm', ['install', '-g', releaseUrl(latest)], { stdio: 'inherit', shell: process.platform === 'win32' });
   if (result.status !== 0) {
     process.stderr.write(`${t('update.installFailed', { command })}\n`);
@@ -207,7 +207,7 @@ async function agents(flags, positionals) {
 async function runOnce(flags, positionals) {
   const [message, ...dirs] = positionals;
   if (!message) {
-    process.stderr.write('troupe run needs a message, for example: troupe run "@codex fix the failing test"\n');
+    process.stderr.write('cross-harness run needs a message, for example: cross-harness run "@codex fix the failing test"\n');
     return 2;
   }
   const client = await openClient(flags, dirs);
@@ -233,7 +233,7 @@ async function runOnce(flags, positionals) {
       say(`  ! @${a.agentName} asked: ${oneLine(a.title, 100)} — ${flags.yes ? 'allowed (--yes)' : 'denied (use --yes to allow)'}`);
       client.call('approve', { id: a.id, choice }).catch(() => {});
     }
-    if (event.type === 'decision.requested') say(`  ? @${event.decision.agentName} asks you: ${oneLine(event.decision.question, 160)} (answer it in troupe or troupe gui)`);
+    if (event.type === 'decision.requested') say(`  ? @${event.decision.agentName} asks you: ${oneLine(event.decision.question, 160)} (answer it in cross-harness or cross-harness gui)`);
     if (event.type === 'notice') say(`  ${event.level === 'error' ? '✖' : '·'} ${oneLine(engineText(event, t), 160)}`);
   });
   try {
@@ -273,8 +273,8 @@ async function gui(flags, positionals) {
   const { startGui } = await import('../gui/server.js');
   const client = await openClient(flags, positionals);
   const config = loadConfig();
-  const star = starPromptFor({ home: troupeHome(), config });
-  const updates = updateCheckFor({ home: troupeHome(), config, current: VERSION });
+  const star = starPromptFor({ home: crossHarnessHome(), config });
+  const updates = updateCheckFor({ home: crossHarnessHome(), config, current: VERSION });
   const server = await startGui({ client, port: flags.port ? Number(flags.port) : 0, host: flags.host || '127.0.0.1', lang: pickLang(flags.lang || config.lang), star, update: updates });
   process.stdout.write(`${t('gui.listening', { url: server.url })}\n`);
   if (!flags['no-open']) server.openBrowser();
@@ -290,14 +290,14 @@ async function gui(flags, positionals) {
 
 async function tui(flags, positionals) {
   if (!process.stdin.isTTY || !process.stdout.isTTY) {
-    process.stderr.write('The terminal UI needs an interactive terminal. Use `troupe run "<message>"` or `troupe gui` instead.\n');
+    process.stderr.write('The terminal UI needs an interactive terminal. Use `cross-harness run "<message>"` or `cross-harness gui` instead.\n');
     return 2;
   }
   const { runTui } = await import('../tui/app.js');
   const client = await openClient(flags, positionals);
   try {
     const config = loadConfig();
-    await runTui({ client, lang: pickLang(flags.lang || config.lang), star: starPromptFor({ home: troupeHome(), config }), update: updateCheckFor({ home: troupeHome(), config, current: VERSION }), openUrl });
+    await runTui({ client, lang: pickLang(flags.lang || config.lang), star: starPromptFor({ home: crossHarnessHome(), config }), update: updateCheckFor({ home: crossHarnessHome(), config, current: VERSION }), openUrl });
   } finally {
     await client.close();
   }

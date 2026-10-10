@@ -1,4 +1,4 @@
-// The completion gate: Troupe evaluates a goal's criteria on an agent's work. Command
+// The completion gate: cross-harness evaluates a goal's criteria on an agent's work. Command
 // checks run in the agent's worktree; review criteria go to a different agent; the
 // working agent's own report never counts as evidence (spec/goals.md §Evidence).
 import { runCommand } from '../util/process.js';
@@ -101,13 +101,13 @@ export async function evaluateGate({ goal, agentName, cwd, projectRoot, env, ite
 export function feedbackPrompt(goal, gate) {
   const failing = gate.criteria.filter((c) => !c.passed);
   return [
-    `Troupe checked your work against the goal "${goal.title}" (iteration ${gate.iteration} of ${goal.maxIterations}).`,
+    `cross-harness checked your work against the goal "${goal.title}" (iteration ${gate.iteration} of ${goal.maxIterations}).`,
     `${failing.length} of ${gate.criteria.length} criteria are not met yet:`,
     ...failing.map((c) => {
       const criterion = goal.criteria.find((item) => item.id === c.id);
       const tailText = c.evidence?.outputTail ? `\n  Output (last lines):\n  ${c.evidence.outputTail.trim().split('\n').slice(-15).join('\n  ')}` : '';
       return `- ${c.id}: ${criterion?.text || ''} → ${c.summary}${tailText}`;
     }),
-    'Fix these, then end your turn. Troupe will check again.',
+    'Fix these, then end your turn. cross-harness will check again.',
   ].join('\n');
 }

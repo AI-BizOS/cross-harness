@@ -119,16 +119,16 @@ test('mailbox requests and responses match their schemas', async (t) => {
   clearInterval(watcher);
   assert.deepEqual(validate(schema('mailbox-response'), ok), []);
   assert.deepEqual(validate(schema('mailbox-response'), bad), []);
-  assert.equal(bad.error.code, 'TROUPE_BOARD_KEY_INVALID');
+  assert.equal(bad.error.code, 'CROSS_HARNESS_BOARD_KEY_INVALID');
   assert.ok(seen.length >= 1, 'saw a request on disk');
   for (const request of seen) assert.deepEqual(validate(schema('mailbox-request'), request), []);
 });
 
 test('engine events and client RPC messages match their schemas', async (t) => {
-  const home = tempDir(t, 'troupe-home-');
+  const home = tempDir(t, 'cross-harness-home-');
   fs.mkdirSync(path.join(home, 'mock'));
   const repo = gitRepo(t);
-  const env = { ...gitEnv(), TROUPE_HOME: home, MOCK_STATE: path.join(home, 'mock') };
+  const env = { ...gitEnv(), CROSS_HARNESS_HOME: home, MOCK_STATE: path.join(home, 'mock') };
   const engine = await new Engine({ root: repo.dir, env, builtins: false, providers: mockProviders(), config: { providers: {}, defaults: { mode: 'ask', isolation: 'worktree', maxPerProvider: 3, idleMinutes: 15, gateTimeoutSec: 60, maxIterations: 5 }, lang: null } }).open();
   t.after(() => engine.close());
   // Drive the engine through its stdio protocol and record both directions.
@@ -163,7 +163,7 @@ test('engine events and client RPC messages match their schemas', async (t) => {
   const events = lines.filter((m) => m.method === 'event').map((m) => m.params.event);
   assert.ok(events.length > 5);
   for (const event of events) assert.deepEqual(validate(schema('engine-event'), event), [], event.type);
-  assert.equal(lines.find((m) => m.id === 4).error.data.code, 'TROUPE_AGENT_NOT_FOUND');
+  assert.equal(lines.find((m) => m.id === 4).error.data.code, 'CROSS_HARNESS_AGENT_NOT_FOUND');
   // Every method the schema lists is reachable, and only those.
   assert.deepEqual(rpc.oneOf[1].properties.params.properties.method.enum, [...METHODS]);
   assert.ok(Readable);

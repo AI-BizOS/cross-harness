@@ -1,6 +1,6 @@
-// `troupe mcp`: the collaboration tool server an agent starts over stdio (MCP,
+// `cross-harness mcp`: the collaboration tool server an agent starts over stdio (MCP,
 // newline-delimited JSON-RPC 2.0). Each tool call becomes one request file in the
-// agent's private mailbox (TROUPE_MAILBOX, authenticated by TROUPE_TOKEN); Troupe
+// agent's private mailbox (CROSS_HARNESS_MAILBOX, authenticated by CROSS_HARNESS_TOKEN); cross-harness
 // answers with one response file. Files instead of sockets: harness sandboxes often
 // block loopback and Unix sockets but allow writing to a directory.
 import fs from 'node:fs';
@@ -13,7 +13,7 @@ import { VERSION } from '../version.js';
 const MAX_LINE = 4 * 1024 * 1024;
 const UNCLAIMED_MS = 10_000;
 const GRACE_MS = 30_000;
-const LATER = 'Continue with work that does not depend on it and collect the answer later with troupe_check_answers.';
+const LATER = 'Continue with work that does not depend on it and collect the answer later with cross_harness_check_answers.';
 
 const sleep = (ms) =>
   new Promise((resolve) => {
@@ -27,7 +27,7 @@ export async function exchange({ dir, token, op, params, waitSeconds, pollMs = 1
   const id = randomUUID();
   const body = JSON.stringify({ id, op, params, token });
   if (Buffer.byteLength(body) > LIMITS.mailboxRequestBytes) {
-    return { ok: false, error: { code: 'TROUPE_COLLAB_INVALID', message: 'The request is larger than 256 KB; shorten it.' } };
+    return { ok: false, error: { code: 'CROSS_HARNESS_COLLAB_INVALID', message: 'The request is larger than 256 KB; shorten it.' } };
   }
   const file = path.join(dir, 'requests', `${id}.json`);
   const reply = path.join(dir, 'responses', `${id}.json`);
@@ -47,11 +47,11 @@ export async function exchange({ dir, token, op, params, waitSeconds, pollMs = 1
       return JSON.parse(text);
     }
     const elapsed = Date.now() - started;
-    // A request Troupe never picked up is withdrawn so it cannot run much later.
+    // A request cross-harness never picked up is withdrawn so it cannot run much later.
     if (elapsed > UNCLAIMED_MS && fs.existsSync(file)) {
       try {
         fs.unlinkSync(file);
-        return { ok: false, error: { code: 'TROUPE_COLLAB_UNAVAILABLE', message: 'Troupe is not responding; collaboration is unavailable right now.' } };
+        return { ok: false, error: { code: 'CROSS_HARNESS_COLLAB_UNAVAILABLE', message: 'cross-harness is not responding; collaboration is unavailable right now.' } };
       } catch {
         /* Claimed just now. */
       }
@@ -63,18 +63,18 @@ export async function exchange({ dir, token, op, params, waitSeconds, pollMs = 1
 async function callTool(env, name, args, pollMs) {
   const tool = TOOL_BY_NAME[name];
   const params = args && typeof args === 'object' && !Array.isArray(args) ? args : {};
-  if (!env.TROUPE_MAILBOX || !env.TROUPE_TOKEN) {
-    return textResult('Collaboration is unavailable: this agent was not started by Troupe with a mailbox, so other agents, the board and the user cannot be reached from here.', true);
+  if (!env.CROSS_HARNESS_MAILBOX || !env.CROSS_HARNESS_TOKEN) {
+    return textResult('Collaboration is unavailable: this agent was not started by cross-harness with a mailbox, so other agents, the board and the user cannot be reached from here.', true);
   }
   const asked = params.wait_seconds == null || params.wait_seconds === '' ? tool.wait : Number(params.wait_seconds);
   const waitSeconds = tool.wait ? (Number.isFinite(asked) ? Math.min(Math.max(asked, 0), LIMITS.waitSeconds) : tool.wait) : 0;
   let reply;
   try {
-    reply = await exchange({ dir: env.TROUPE_MAILBOX, token: env.TROUPE_TOKEN, op: tool.op, params, waitSeconds, pollMs });
+    reply = await exchange({ dir: env.CROSS_HARNESS_MAILBOX, token: env.CROSS_HARNESS_TOKEN, op: tool.op, params, waitSeconds, pollMs });
   } catch (cause) {
     return textResult(`Collaboration is unavailable right now (${cause.code || cause.message}).`, true);
   }
-  if (reply.timedOut) return tool.wait ? textResult(`Still waiting for a reply. ${LATER}`) : textResult('Troupe did not respond in time; try again shortly.', true);
+  if (reply.timedOut) return tool.wait ? textResult(`Still waiting for a reply. ${LATER}`) : textResult('cross-harness did not respond in time; try again shortly.', true);
   if (!reply.ok) return textResult(`${reply.error?.code ? `${reply.error.code}: ` : ''}${reply.error?.message || 'The request failed.'}`, true);
   try {
     return textResult(FORMAT[tool.op](reply.result), reply.result?.status === 'failed');
@@ -90,7 +90,7 @@ async function handle(method, params, env, pollMs) {
     return {
       protocolVersion: typeof params?.protocolVersion === 'string' ? params.protocolVersion : '2025-06-18',
       capabilities: { tools: {} },
-      serverInfo: { name: SERVER_NAME, version: VERSION, title: `Troupe collaboration (${PROTOCOL_VERSION})` },
+      serverInfo: { name: SERVER_NAME, version: VERSION, title: `cross-harness collaboration (${PROTOCOL_VERSION})` },
       instructions: INSTRUCTIONS,
     };
   }

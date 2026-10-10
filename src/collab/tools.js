@@ -1,18 +1,18 @@
 // The collaboration tools every agent gets (spec/collaboration.md). Names, inputs and
-// semantics are part of troupe/1; the reply wording is guidance for the model.
+// semantics are part of cross-harness/1; the reply wording is guidance for the model.
 import { LIMITS } from '../protocol/index.js';
 
-export const SERVER_NAME = 'troupe';
+export const SERVER_NAME = 'cross-harness';
 export const BOARD_KEY_PATTERN = '^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$';
 
 export const INSTRUCTIONS = [
-  'You are one of several coding agents working on the same project under Troupe.',
-  'Call troupe_list_agents and troupe_board_read before changing code another agent may own.',
-  'When you need something another agent owns (its task, files, branch or interfaces), ask it with troupe_ask_agent instead of guessing.',
-  'Ask the user with troupe_ask_user only for decisions you cannot make yourself.',
-  'Record plans, interface contracts and file ownership with troupe_board_write, and post a one-line status with troupe_report_progress when you start or finish a step.',
-  'If a goal is set, troupe_goal_status lists its acceptance criteria; Troupe checks them itself when your turn ends, so make them pass rather than claiming they do.',
-  'If an ask stops waiting, keep working and collect the reply later with troupe_check_answers.',
+  'You are one of several coding agents working on the same project under cross-harness.',
+  'Call cross_harness_list_agents and cross_harness_board_read before changing code another agent may own.',
+  'When you need something another agent owns (its task, files, branch or interfaces), ask it with cross_harness_ask_agent instead of guessing.',
+  'Ask the user with cross_harness_ask_user only for decisions you cannot make yourself.',
+  'Record plans, interface contracts and file ownership with cross_harness_board_write, and post a one-line status with cross_harness_report_progress when you start or finish a step.',
+  'If a goal is set, cross_harness_goal_status lists its acceptance criteria; cross-harness checks them itself when your turn ends, so make them pass rather than claiming they do.',
+  'If an ask stops waiting, keep working and collect the reply later with cross_harness_check_answers.',
 ].join(' ');
 
 const object = (properties, required = []) => ({ type: 'object', properties, ...(required.length ? { required } : {}), additionalProperties: false });
@@ -21,21 +21,21 @@ const wait = (fallback) => ({ type: 'number', minimum: 0, maximum: LIMITS.waitSe
 
 export const TOOLS = [
   {
-    name: 'troupe_list_agents',
+    name: 'cross_harness_list_agents',
     op: 'list_agents',
     wait: 0,
     description: 'List the other agents working on this project: their name, harness, state, branch and what each is doing now.',
     inputSchema: object({}),
   },
   {
-    name: 'troupe_ask_agent',
+    name: 'cross_harness_ask_agent',
     op: 'ask_agent',
     wait: 600,
     description:
-      'Ask another agent on this project a question and wait for its answer. Use it for anything that agent owns (its task, files, branch, interfaces) instead of guessing, and make the question self-contained. If no answer arrives in time you get a question id; collect the answer later with troupe_check_answers.',
+      'Ask another agent on this project a question and wait for its answer. Use it for anything that agent owns (its task, files, branch, interfaces) instead of guessing, and make the question self-contained. If no answer arrives in time you get a question id; collect the answer later with cross_harness_check_answers.',
     inputSchema: object(
       {
-        agent: string('Agent name (as shown by troupe_list_agents), id prefix, or harness id.', 200),
+        agent: string('Agent name (as shown by cross_harness_list_agents), id prefix, or harness id.', 200),
         question: string('The question, with the context the other agent needs to answer it.', LIMITS.question),
         wait_seconds: wait(600),
       },
@@ -43,18 +43,18 @@ export const TOOLS = [
     ),
   },
   {
-    name: 'troupe_check_answers',
+    name: 'cross_harness_check_answers',
     op: 'check_answers',
     wait: 0,
-    description: 'Collect answers to earlier troupe_ask_agent and troupe_ask_user questions that arrived after the call stopped waiting. Each answer is returned once.',
+    description: 'Collect answers to earlier cross_harness_ask_agent and cross_harness_ask_user questions that arrived after the call stopped waiting. Each answer is returned once.',
     inputSchema: object({}),
   },
   {
-    name: 'troupe_ask_user',
+    name: 'cross_harness_ask_user',
     op: 'ask_user',
     wait: 1800,
     description:
-      'Ask the user to decide something you cannot decide yourself: unclear requirements, a trade-off between valid designs, or a risky or irreversible action. Offer up to 6 short options when the choice is clear-cut. Waits for the reply; if none arrives in time, continue with independent work and call troupe_check_answers later.',
+      'Ask the user to decide something you cannot decide yourself: unclear requirements, a trade-off between valid designs, or a risky or irreversible action. Offer up to 6 short options when the choice is clear-cut. Waits for the reply; if none arrives in time, continue with independent work and call cross_harness_check_answers later.',
     inputSchema: object(
       {
         question: string('The decision needed, with enough context to answer without reading your session.', LIMITS.question),
@@ -65,14 +65,14 @@ export const TOOLS = [
     ),
   },
   {
-    name: 'troupe_board_read',
+    name: 'cross_harness_board_read',
     op: 'board_read',
     wait: 0,
     description: 'Read the project board shared by all agents. Without a key, list every entry with author, time and a preview; with a key, return that entry in full.',
     inputSchema: object({ key: string('Entry key.', 64, { pattern: BOARD_KEY_PATTERN }) }),
   },
   {
-    name: 'troupe_board_write',
+    name: 'cross_harness_board_write',
     op: 'board_write',
     wait: 0,
     description:
@@ -86,17 +86,17 @@ export const TOOLS = [
     ),
   },
   {
-    name: 'troupe_report_progress',
+    name: 'cross_harness_report_progress',
     op: 'report_progress',
     wait: 0,
     description: 'Tell the user and the other agents in one short line what you are doing now (max 200 characters). Call it when you start or finish a step.',
     inputSchema: object({ status: string('One-line status.', LIMITS.status) }, ['status']),
   },
   {
-    name: 'troupe_goal_status',
+    name: 'cross_harness_goal_status',
     op: 'goal_status',
     wait: 0,
-    description: 'Show the goal assigned to you: its outcome, acceptance criteria, boundaries and the latest results of the checks Troupe runs on your work.',
+    description: 'Show the goal assigned to you: its outcome, acceptance criteria, boundaries and the latest results of the checks cross-harness runs on your work.',
     inputSchema: object({}),
   },
 ];
@@ -107,7 +107,7 @@ const short = (value, max = 80) => {
   const text = String(value ?? '').replace(/\s+/g, ' ').trim();
   return text.length > max ? text.slice(0, max - 1) + '…' : text;
 };
-const LATER = 'Continue with work that does not depend on it and collect the answer later with troupe_check_answers.';
+const LATER = 'Continue with work that does not depend on it and collect the answer later with cross_harness_check_answers.';
 
 /** Turns a hub result into the text the model sees. */
 export const FORMAT = {
@@ -121,7 +121,7 @@ export const FORMAT = {
       : r.status === 'failed'
         ? `@${r.from} could not answer: ${r.error}`
         : r.reason === 'mutual-wait'
-          ? `@${r.from} is itself waiting for your answer, so your question (id ${r.questionId}) was delivered without waiting. Finish your current step; collect their reply later with troupe_check_answers.`
+          ? `@${r.from} is itself waiting for your answer, so your question (id ${r.questionId}) was delivered without waiting. Finish your current step; collect their reply later with cross_harness_check_answers.`
           : `No answer from @${r.from} yet (question ${r.questionId}). ${LATER}`,
   check_answers: (r) => {
     const lines = r.answers.map((a) =>

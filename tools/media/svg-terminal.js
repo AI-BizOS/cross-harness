@@ -167,7 +167,7 @@ const pct = (t, total) => `${Number(((t / total) * 100).toFixed(3))}%`;
  * @param {{t:number, rows:string[], cursor:{row:number,col:number}|null}[]} frames
  * @param {{columns:number, rows:number, title:string, end:number, chapters?:{label:string,start:number,end:number}[], label?:string}} options
  */
-export function terminalSvg(frames, { columns, rows, title, end, chapters = [], label = 'Troupe terminal UI' }) {
+export function terminalSvg(frames, { columns, rows, title, end, chapters = [], label = 'cross-harness terminal UI' }) {
   const total = end;
   const width = num(MARGIN * 2 + PAD * 2 + columns * CELL);
   const screenHeight = rows * LINE;

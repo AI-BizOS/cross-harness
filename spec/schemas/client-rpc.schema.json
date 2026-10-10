@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "urn:troupe:1:client-rpc",
-  "title": "Troupe client protocol message (troupe/1)",
-  "description": "Newline-delimited JSON-RPC 2.0 between a user interface and an engine (`troupe serve --stdio`, also over SSH).",
+  "$id": "urn:cross-harness:1:client-rpc",
+  "title": "cross-harness client protocol message (cross-harness/1)",
+  "description": "Newline-delimited JSON-RPC 2.0 between a user interface and an engine (`cross-harness serve --stdio`, also over SSH).",
   "oneOf": [
     {
       "title": "initialize request",
@@ -156,7 +156,7 @@
               "properties": {
                 "code": {
                   "type": "string",
-                  "pattern": "^TROUPE_[A-Z_]+$"
+                  "pattern": "^CROSS_HARNESS_[A-Z_]+$"
                 }
               }
             }
