@@ -92,10 +92,10 @@ Troupe 是 BizOS CLI 团队开源的跨 Harness 协议，本仓库是它的参�
 
 需要 Node.js 20.11 或更高版本、git，以及至少一个已安装并登录的编程代理（例如 `claude`、`codex`、`opencode`、`kimi`）。
 
-从发布页安装 0.1.1 预览版：
+从发布页安装 0.1.2 预览版：
 
 ```sh
-npm install -g https://github.com/AI-BizOS/troupe/releases/download/v0.1.1/bizos-ai-troupe-0.1.1.tgz
+npm install -g https://github.com/AI-BizOS/troupe/releases/download/v0.1.2/bizos-ai-troupe-0.1.2.tgz
 troupe detect           # 查看 Troupe 找到了哪些代理
 ```
 
@@ -214,21 +214,21 @@ troupe gui --ssh dev@buildbox --cwd src/shop-api
 
 | 代理 | 命令 | 协议 | 核验情况 |
 | --- | --- | --- | --- |
-| BizOS CLI（BizOS Code） | `bizos acp` | ACP | 实机已验证 |
-| Claude Code | `claude` | stream-json | 按文档接入 |
-| Codex | `codex` | app-server | 真实编码已验证 |
-| OpenCode | `opencode acp` | ACP | 握手已验证 |
-| Kimi Code | `kimi acp` | ACP | 握手已验证 |
-| DeepSeek Harness | `dsh --profile acp` | ACP | 握手已验证 |
-| Gemini CLI | `gemini --experimental-acp` | ACP | 按文档接入 |
-| Qwen Code | `qwen --experimental-acp` | ACP | 按文档接入 |
-| Copilot CLI | `copilot --acp` | ACP | 按文档接入 |
-| Goose | `goose acp` | ACP | 按文档接入 |
-| Cursor Agent | `cursor-agent acp` | ACP | 按文档接入 |
-| Amp | `amp -x` | 单次运行 | 按文档接入 |
-| Aider | `aider --message` | 单次运行 | 按文档接入 |
+| BizOS CLI（BizOS Code） | `bizos acp` | ACP | 端到端实测通过 |
+| Claude Code | `claude` | stream-json | 端到端实测通过 |
+| Codex | `codex` | app-server | 端到端实测通过 |
+| OpenCode | `opencode acp` | ACP | 端到端实测通过 |
+| Kimi Code | `kimi acp` | ACP | 端到端实测通过 |
+| DeepSeek Harness | `dsh --profile acp` | ACP | 端到端实测通过 |
+| Gemini CLI | `gemini --experimental-acp` | ACP | 端到端实测通过 |
+| Qwen Code | `qwen --experimental-acp` | ACP | 端到端实测通过 |
+| Copilot CLI | `copilot --acp` | ACP | 端到端实测通过 |
+| Goose | `goose acp` | ACP | 端到端实测通过 |
+| Cursor Agent | `cursor-agent acp` | ACP | 端到端实测通过 |
+| Amp | `amp -x` | 单次运行 | 端到端实测通过 |
+| Aider | `aider --message` | 单次运行 | 端到端实测通过 |
 
-"握手已验证"表示 Troupe 的适配器已与该 CLI 的真实安装完成协议握手（2026-10-09：codex 0.159.1、opencode、kimi、dsh）。"真实编码已验证"表示在此基础上，0.1.0 发布前还有一个真实的 Codex 会话通过 `troupe run` 完成了编码任务，结果经过独立核查。"实机已验证"表示 Troupe 先与 BizOS Code 自己的 ACP 适配器（0.3.05）对接运行（BizOS 后台服务用替身代替），并于 2026-10-10 由 BizOS 团队在已登录的真实安装上确认。"按文档接入"的按厂商文档实现，在界面上标注"未实测"。Troupe 的自动化测试用模拟代理覆盖每种协议，不调用真实模型。详见 [docs/providers.md](docs/providers.md)。
+全部 13 种预置代理接入均已通过真实代理安装下的端到端实测，Windows 完整流程也已通过端到端实测。自动化测试使用模拟代理，独立覆盖协议与引擎行为；它们与真实代理的端到端核验是两类检查。详见 [docs/providers.md](docs/providers.md)。
 
 ## BizOS CLI
 
@@ -289,8 +289,8 @@ BizOS Code 在操作系统沙箱里运行它的代理，只能读写你允许过
 ## 局限
 
 - Troupe 通过代理自己的协议驱动它们。没有会话协议的代理只能单次运行（没有在线会话、审批和协作工具）。
-- 标注"未实测"的集成，可能需要针对你的版本微调参数。目前只有 Codex 通过 Troupe 完成过真实的编码任务；自动化测试使用模拟代理。
-- 尚未在 Windows 上测试。
+- 预置接入均已通过端到端实测。自定义接入或修改过的命令仍需单独核验，厂商升级后可能需要调整参数。
+- Windows 完整流程已通过端到端实测；仍需在本机安装并登录所选代理。
 - 没有内置编辑器、终端、Pull Request 集成或用量计费；见 [docs/comparison.md](docs/comparison.md)。
 
 ## 开发

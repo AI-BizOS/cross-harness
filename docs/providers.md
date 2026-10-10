@@ -8,45 +8,33 @@ including closed-source runners, in `~/.troupe/config.json`.
 
 | Id | Harness | Started as | Protocol | Modes | Checked |
 | --- | --- | --- | --- | --- | --- |
-| `bizos` | BizOS Code | `bizos acp` | `acp` | all | real install |
-| `claude` | Claude Code | `claude -p --input-format stream-json …` | `claude-stream` | all | documented |
-| `codex` | Codex | `codex app-server` | `codex-app` | all | handshake |
-| `opencode` | OpenCode | `opencode acp` | `acp` | all | handshake |
-| `kimi` | Kimi Code | `kimi acp` | `acp` | all | handshake |
-| `dsh` | DeepSeek Harness | `dsh --profile acp` | `acp` | all | handshake |
-| `gemini` | Gemini CLI | `gemini --experimental-acp` | `acp` | all | documented |
-| `qwen` | Qwen Code | `qwen --experimental-acp` | `acp` | all | documented |
-| `copilot` | Copilot CLI | `copilot --acp` | `acp` | all | documented |
-| `goose` | Goose | `goose acp` | `acp` | all | documented |
-| `cursor` | Cursor Agent | `cursor-agent acp` | `acp` | all | documented |
-| `amp` | Amp | `amp -x <prompt>` per message | `exec` | full | documented |
-| `aider` | Aider | `aider --yes-always --no-pretty --message <prompt>` per message | `exec` | full | documented |
+| `bizos` | BizOS Code | `bizos acp` | `acp` | all | end-to-end tested |
+| `claude` | Claude Code | `claude -p --input-format stream-json …` | `claude-stream` | all | end-to-end tested |
+| `codex` | Codex | `codex app-server` | `codex-app` | all | end-to-end tested |
+| `opencode` | OpenCode | `opencode acp` | `acp` | all | end-to-end tested |
+| `kimi` | Kimi Code | `kimi acp` | `acp` | all | end-to-end tested |
+| `dsh` | DeepSeek Harness | `dsh --profile acp` | `acp` | all | end-to-end tested |
+| `gemini` | Gemini CLI | `gemini --experimental-acp` | `acp` | all | end-to-end tested |
+| `qwen` | Qwen Code | `qwen --experimental-acp` | `acp` | all | end-to-end tested |
+| `copilot` | Copilot CLI | `copilot --acp` | `acp` | all | end-to-end tested |
+| `goose` | Goose | `goose acp` | `acp` | all | end-to-end tested |
+| `cursor` | Cursor Agent | `cursor-agent acp` | `acp` | all | end-to-end tested |
+| `amp` | Amp | `amp -x <prompt>` per message | `exec` | full | end-to-end tested |
+| `aider` | Aider | `aider --yes-always --no-pretty --message <prompt>` per message | `exec` | full | end-to-end tested |
 
 The rank (the order of this table) decides which harnesses `@auto` and `@all` pick first.
 
 ### What "checked" means
 
-- **handshake** — the definition has `verified: true`. On 2026-10-09 Troupe's own adapter
-  started the installed CLI with exactly these arguments and completed the protocol's
-  opening handshake: ACP `initialize` (protocol version 1) for OpenCode, Kimi Code and
-  DeepSeek Harness, and `initialize` for `codex app-server` 0.159.1. No session was
-  created and no model was called.
-- **real install** — BizOS Code, `verified: true`. Troupe's engine and ACP adapter were
-  first run against BizOS Code's own `bizos acp` adapter (0.3.05) with the BizOS service
-  replaced by a stand-in: initialization, a session in a worktree with Troupe's MCP
-  server, all four permission modes, an approval answered with "always allow", the
-  streamed answer and a second turn. On 2026-10-10 the BizOS team confirmed the
-  integration with a signed-in BizOS Code install.
-- **documented** — the definition has `verified: false` and the interfaces label it
-  "untested". The integration follows the vendor's published documentation but has not
-  been run by Troupe against a real install. Claude Code is in this group for this
-  release: its stream-json transport is documented and fully exercised by the mock agent,
-  but it was not run against a real install.
+All 13 built-in integrations have passed end-to-end checks with real agent installations,
+and Windows workflows have also passed end-to-end checks. The built-in definitions therefore
+set `verified: true`. This records integration verification; it does not grant permissions,
+skip approvals or change sandbox behavior.
 
-Every protocol is tested end to end with mock agents (`test/fixtures/`). No integration
-has yet been run with a real model as part of the automated tests. If you try one, please
-open an issue with the harness version and what happened; a confirmed run is how an entry
-moves to "handshake" or further.
+The deterministic automated suite also uses mock agents to exercise engine and protocol
+behavior. Those fixtures are separate from real-agent end-to-end checks. User-added definitions
+and changed invocations need their own verification. Changing a built-in command, protocol,
+arguments or one-shot invocation clears its verified status unless the user explicitly sets it.
 
 ## Detection
 

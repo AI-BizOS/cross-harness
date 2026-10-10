@@ -14,7 +14,7 @@ test('built-in providers are valid and ranked', () => {
   assert.equal(list[0].id, 'bizos');
   assert.equal(list[1].id, 'claude');
   assert.ok(list.find((p) => p.id === 'codex').verified);
-  assert.equal(list.find((p) => p.id === 'gemini').verified, false);
+  assert.ok(list.every((p) => p.verified));
 });
 
 test('BizOS Code is built in and started as an ACP agent', () => {
@@ -34,6 +34,11 @@ test('user config can add a closed runner and override built-in fields', () => {
     codex: { args: ['-c', 'model_reasoning_effort=high'] },
   });
   assert.equal(registry.acme.custom, true);
+  assert.equal(registry.acme.verified, false);
+  assert.equal(registry.codex.verified, false);
+  assert.equal(buildRegistry({ claude: { name: 'Renamed Claude' } }).claude.verified, true);
+  assert.equal(buildRegistry({ claude: { command: '/custom/claude' } }).claude.verified, false);
+  assert.equal(buildRegistry({ claude: { command: '/custom/claude', verified: true } }).claude.verified, true);
   assert.equal(registry.acme.protocol, 'acp');
   assert.deepEqual(registry.codex.args, ['-c', 'model_reasoning_effort=high']);
   assert.equal(registry.codex.protocol, 'codex-app');

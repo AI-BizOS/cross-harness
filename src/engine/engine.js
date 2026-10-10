@@ -20,7 +20,7 @@ import { Agent } from './agent.js';
 import { completions, looksLikeReview, parseDispatch, SPECIAL } from './dispatch.js';
 import { capMode, decide, ruleFor } from './policy.js';
 
-export const VERSION = '0.1.1';
+export const VERSION = '0.1.2';
 const BIN = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..', 'bin', 'troupe.js');
 const NAME = /^[a-z][a-z0-9_-]{0,31}$/;
 const KEY = /^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$/;

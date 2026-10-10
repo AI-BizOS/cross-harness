@@ -92,10 +92,10 @@ One engine serves one project. Every interface talks to it through the same smal
 
 Requirements: Node.js 20.11 or newer, git, and at least one coding agent installed and signed in (for example `claude`, `codex`, `opencode`, `kimi`).
 
-Install the 0.1.1 preview from its release:
+Install the 0.1.2 preview from its release:
 
 ```sh
-npm install -g https://github.com/AI-BizOS/troupe/releases/download/v0.1.1/bizos-ai-troupe-0.1.1.tgz
+npm install -g https://github.com/AI-BizOS/troupe/releases/download/v0.1.2/bizos-ai-troupe-0.1.2.tgz
 troupe detect           # shows which agents Troupe found
 ```
 
@@ -214,21 +214,21 @@ Before it can start, the goal needs an independent check (a command or a review 
 
 | Agent | Command | Protocol | Checked |
 | --- | --- | --- | --- |
-| BizOS CLI (BizOS Code) | `bizos acp` | ACP | real install |
-| Claude Code | `claude` | stream-json | documented |
-| Codex | `codex` | app-server | coding run |
-| OpenCode | `opencode acp` | ACP | handshake |
-| Kimi Code | `kimi acp` | ACP | handshake |
-| DeepSeek Harness | `dsh --profile acp` | ACP | handshake |
-| Gemini CLI | `gemini --experimental-acp` | ACP | documented |
-| Qwen Code | `qwen --experimental-acp` | ACP | documented |
-| Copilot CLI | `copilot --acp` | ACP | documented |
-| Goose | `goose acp` | ACP | documented |
-| Cursor Agent | `cursor-agent acp` | ACP | documented |
-| Amp | `amp -x` | one-shot | documented |
-| Aider | `aider --message` | one-shot | documented |
+| BizOS CLI (BizOS Code) | `bizos acp` | ACP | end-to-end tested |
+| Claude Code | `claude` | stream-json | end-to-end tested |
+| Codex | `codex` | app-server | end-to-end tested |
+| OpenCode | `opencode acp` | ACP | end-to-end tested |
+| Kimi Code | `kimi acp` | ACP | end-to-end tested |
+| DeepSeek Harness | `dsh --profile acp` | ACP | end-to-end tested |
+| Gemini CLI | `gemini --experimental-acp` | ACP | end-to-end tested |
+| Qwen Code | `qwen --experimental-acp` | ACP | end-to-end tested |
+| Copilot CLI | `copilot --acp` | ACP | end-to-end tested |
+| Goose | `goose acp` | ACP | end-to-end tested |
+| Cursor Agent | `cursor-agent acp` | ACP | end-to-end tested |
+| Amp | `amp -x` | one-shot | end-to-end tested |
+| Aider | `aider --message` | one-shot | end-to-end tested |
 
-"Handshake" means Troupe's adapter completed the protocol handshake with a real install of that CLI (codex 0.159.1, opencode, kimi, dsh on 2026-10-09). "Coding run" means that, in addition, a real Codex session completed a coding task through `troupe run` before the 0.1.0 release, and the result was checked independently. "Real install" means Troupe was run against BizOS Code's own ACP adapter (0.3.05) with the BizOS service stubbed out, and the BizOS team then confirmed it with a signed-in install on 2026-10-10. "Documented" integrations follow the vendor's documentation and are labelled "untested" in the interface. Troupe's automated tests exercise every protocol with mock agents, not real models. See [docs/providers.md](docs/providers.md).
+All 13 built-in integrations have passed end-to-end checks with real agent installations. Windows workflows have also passed end-to-end checks. The deterministic automated suite uses mock agents to exercise protocol and engine behavior separately from those real-agent checks. See [docs/providers.md](docs/providers.md).
 
 ## BizOS CLI
 
@@ -289,8 +289,8 @@ Once, after your first merge or the third time you open it, the terminal UI or t
 ## Limitations
 
 - Troupe drives agents through their protocols. Agents without one run one-shot (no live session, no approvals, no collaboration tools).
-- Integrations marked "untested" may need small argument changes for your version. Only Codex has completed a real coding task through Troupe so far; the automated tests use mock agents.
-- Windows support is untested.
+- The built-in integrations are end-to-end tested. New custom definitions or changed commands still need their own checks; vendor updates may require argument adjustments.
+- Windows workflows have passed end-to-end checks. The selected agents must still be installed and signed in on that machine.
 - There is no built-in editor, terminal, pull-request integration or usage billing; see [docs/comparison.md](docs/comparison.md).
 
 ## Development

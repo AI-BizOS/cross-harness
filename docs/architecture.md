@@ -167,6 +167,8 @@ interfaces and the client protocol are tested end to end against them with `node
 The terminal UI is driven through a fake terminal and its frames are compared at exact
 widths. The web UI's handler is tested in-process, and, when Playwright and Chrome are
 available, in a headless browser whose requests are routed to that handler. The JSON
+All built-in provider integrations and Windows workflows have also passed end-to-end checks with real agent installations. These checks are separate from the deterministic mock-agent suite.
+
 Schemas in `spec/schemas/` are checked against real traffic.
 
 ## Choices and their costs

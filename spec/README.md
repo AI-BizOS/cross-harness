@@ -60,3 +60,5 @@ A proprietary agent runtime joins without publishing its code: it implements a s
 protocol (ACP is the simplest) and the user registers it in `~/.troupe/config.json`.
 Troupe then treats it like any other harness — it receives tasks, can ask and answer
 other agents, and its work passes the same gates.
+
+All built-in provider integrations and Windows workflows have passed end-to-end checks with real agent installations, in addition to the protocol conformance fixtures.

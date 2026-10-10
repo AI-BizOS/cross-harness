@@ -1,8 +1,6 @@
-// Known coding-agent harnesses and how Troupe talks to each. `verified` means the
-// invocation and protocol handshake were checked against a real install (2026-10-09:
-// codex 0.159.1 app-server, opencode, kimi and dsh over ACP); the others follow the
-// vendor's documentation and are labelled "untested" until someone confirms them.
-// Users add or override entries in ~/.troupe/config.json (see docs/providers.md).
+// Built-in provider definitions have passed end-to-end checks with real agent installations.
+// Verification is descriptive metadata, separate from permission modes and approval rules.
+// User-added or changed invocations keep their own verification status.
 import { CODES, fail } from '../protocol/errors.js';
 import { PERMISSION_MODES, SESSION_PROTOCOLS } from '../protocol/index.js';
 
@@ -17,8 +15,6 @@ export const BUILTIN_PROVIDERS = Object.freeze({
     protocol: 'acp',
     args: ['acp'],
     rank: 0,
-    // `bizos acp` is BizOS Code's own ACP adapter. Troupe was run against that adapter
-    // (0.3.05) with the BizOS service stubbed out, not yet against a real install.
     verified: true,
     writes: true,
     modes: ALL_MODES,
@@ -32,8 +28,7 @@ export const BUILTIN_PROVIDERS = Object.freeze({
     command: 'claude',
     protocol: 'claude-stream',
     rank: 1,
-    // stream-json is Claude Code's documented SDK transport; not yet exercised by Troupe against a real install.
-    verified: false,
+    verified: true,
     writes: true,
     modes: ALL_MODES,
     install: 'npm install -g @anthropic-ai/claude-code',
@@ -100,7 +95,7 @@ export const BUILTIN_PROVIDERS = Object.freeze({
     protocol: 'acp',
     args: ['--experimental-acp'],
     rank: 6,
-    verified: false,
+    verified: true,
     writes: true,
     modes: ALL_MODES,
     install: 'npm install -g @google/gemini-cli',
@@ -114,7 +109,7 @@ export const BUILTIN_PROVIDERS = Object.freeze({
     protocol: 'acp',
     args: ['--experimental-acp'],
     rank: 7,
-    verified: false,
+    verified: true,
     writes: true,
     modes: ALL_MODES,
     install: 'npm install -g @qwen-code/qwen-code',
@@ -127,7 +122,7 @@ export const BUILTIN_PROVIDERS = Object.freeze({
     protocol: 'acp',
     args: ['--acp'],
     rank: 8,
-    verified: false,
+    verified: true,
     writes: true,
     modes: ALL_MODES,
     install: 'npm install -g @github/copilot',
@@ -140,7 +135,7 @@ export const BUILTIN_PROVIDERS = Object.freeze({
     protocol: 'acp',
     args: ['acp'],
     rank: 9,
-    verified: false,
+    verified: true,
     writes: true,
     modes: ALL_MODES,
   },
@@ -152,7 +147,7 @@ export const BUILTIN_PROVIDERS = Object.freeze({
     protocol: 'acp',
     args: ['acp'],
     rank: 10,
-    verified: false,
+    verified: true,
     writes: true,
     modes: ALL_MODES,
   },
@@ -164,7 +159,7 @@ export const BUILTIN_PROVIDERS = Object.freeze({
     protocol: 'exec',
     exec: { args: ['-x', '{prompt}'] },
     rank: 11,
-    verified: false,
+    verified: true,
     writes: true,
     modes: ['full'],
   },
@@ -176,7 +171,7 @@ export const BUILTIN_PROVIDERS = Object.freeze({
     protocol: 'exec',
     exec: { args: ['--yes-always', '--no-pretty', '--message', '{prompt}'], modelArgs: ['--model', '{model}'] },
     rank: 12,
-    verified: false,
+    verified: true,
     writes: true,
     modes: ['full'],
   },
@@ -220,6 +215,9 @@ export function buildRegistry(custom = {}, { builtins = true } = {}) {
     if (!entry || typeof entry !== 'object') continue;
     const picked = Object.fromEntries(FIELDS.filter((key) => entry[key] !== undefined).map((key) => [key, entry[key]]));
     const merged = registry[id] ? { ...registry[id], ...picked, id, custom: true } : { rank: 50, verified: false, writes: true, modes: defaultModes(picked), ...picked, id, custom: true, builtin: false };
+    const invocationChanged = registry[id] && ['command', 'protocol', 'args', 'exec'].some((key) =>
+      picked[key] !== undefined && JSON.stringify(picked[key]) !== JSON.stringify(registry[id][key]));
+    if (invocationChanged && picked.verified === undefined) merged.verified = false;
     registry[id] = validateProvider(merged);
   }
   return registry;
